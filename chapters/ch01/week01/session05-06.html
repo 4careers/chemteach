@@ -1,1 +1,152 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch01 W01 S05-06 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 01 | Week 1 | Session 5-6</div>
+    <div class="session-title">Some Basic Concepts of Chemistry</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 1 | Week 1 | Session 5-6 | May 23, 2026</div>
+    <h1>MEASUREMENT IN CHEMISTRY</h1>
+    <div class="topics">Topics covered today:<br>1.3.2 SI Units<br>1.3.3-1.3.7 Mass, Volume, Density, Temperature</div>
+  </div>
+</div>
+
+<div class="slide" data-type="story" data-config='{"setting": "Paris, 1799 \u2014 The Birth of the Metre", "narrative": "Before SI units, every region had its own measurements \u2014 a 'foot' in one town was not a 'foot' in the next. Trade was chaos, and science was worse: an experiment in London could not be trusted in Paris because no one agreed on what a gram or a metre actually meant. French scientists set out to fix this permanently, defining units from nature itself \u2014 the metre from Earth's circumference.", "reveal": "Science needed one universal language for measurement before it could become a universal language for truth.", "visual": "greek-philosophy"}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "electromagnetic-spectrum", "revealSteps": true, "caption": "(Used here to illustrate scale across orders of magnitude.) Click REVEAL to walk through SI base units: mass (kg), length (m), time (s), temperature (K), amount of substance (mol)."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="analogy" data-config='{"realWorld": {"label": "A RECIPE WITHOUT A MEASURING CUP", "visual": "eggs-dozen", "fact": "If a recipe says 'some sugar' instead of '200 grams', every cook gets a different result. Precision needs a shared, fixed reference."}, "chemistry": {"label": "SI UNITS IN CHEMISTRY", "visual": "mole-atoms", "fact": "Mass in kilograms, volume in cubic metres or litres, temperature in kelvin \u2014 fixed, universal references so every chemist's data means the same thing anywhere on Earth."}, "bridge": "A recipe and a chemistry experiment both fail without exact, agreed-upon units. SI units are chemistry's measuring cup."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Mass, Length, Time, Temperature, Moles, Current, Light", "breakdown": ["Mass \u2192 kilogram (kg)", "Length \u2192 metre (m)", "Time \u2192 second (s)", "Temperature \u2192 kelvin (K)", "Moles \u2192 mole (mol)", "Current \u2192 ampere (A)", "Light \u2192 candela (cd)"], "rule": "These are the 7 SI base units. Every other chemistry unit (density = kg/m3, volume = m3) is derived from these.", "tip": "Density = Mass \u00f7 Volume. If you remember mass and volume units, density's unit follows automatically."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "Two metal blocks are exactly the same size. One feels much heavier than the other. Both are 'metal'. What single property explains the difference, and what is its formula?", "hint": "It connects how much mass is packed into a given space.", "answer": "DENSITY = Mass \u00f7 Volume", "explanation": "Same volume, different mass means different density. Gold (19.3 g/cm3) packs far more mass into the same space than aluminium (2.7 g/cm3) \u2014 that is why a gold block feels so much heavier than an aluminium block of identical size."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Match each quantity to its correct SI unit.", "items": ["Mass", "Volume", "Temperature", "Density", "Time", "Amount of substance"], "categories": ["kilogram", "cubic metre", "kelvin", "kg/m3", "second", "mole"], "answers": {"Mass": "kilogram", "Volume": "cubic metre", "Temperature": "kelvin", "Density": "kg/m3", "Time": "second", "Amount of substance": "mole"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>7 SI base units: kg, m, s, K, mol, A, cd</li><li>Volume is derived: m3 (or litres in lab practice)</li><li>Density = Mass / Volume, a derived quantity</li><li>Temperature in chemistry is measured in kelvin (K = °C + 273)</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 1.5-1, 2, 1.6-1<br>
+      Assignment: 1.5-3, 1.6-2
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 8</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch01_w01_s05-06';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(1, 1, '05-06');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>

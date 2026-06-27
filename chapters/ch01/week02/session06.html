@@ -1,1 +1,148 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch01 W02 S06 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 01 | Week 2 | Session 6</div>
+    <div class="session-title">Some Basic Concepts of Chemistry</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 1 | Week 2 | Session 6 | May 29, 2026</div>
+    <h1>THE MOLE CONCEPT (PART 1)</h1>
+    <div class="topics">Topics covered today:<br>1.8 Mole Concept — Introduction</div>
+  </div>
+</div>
+
+<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "A 'dozen' always means 12 \u2014 a dozen eggs, a dozen pencils, a dozen anything. It is just a convenient counting word for a fixed number."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "Atoms are far too small and far too numerous to count one by one. How do chemists 'count' billions of trillions of atoms in a lab sample?"}, "unknown": {"label": "TODAY'S ANSWER", "text": "Chemists use their own 'dozen' \u2014 a number so large it can bridge the invisible atomic world to the visible, measurable world: the MOLE."}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="analogy" data-config='{"realWorld": {"label": "A DOZEN EGGS", "visual": "eggs-dozen", "fact": "1 dozen always = 12 items, whether eggs, pencils, or oranges. The word 'dozen' is just a fixed counting unit."}, "chemistry": {"label": "A MOLE OF ATOMS", "visual": "mole-atoms", "fact": "1 mole always = 6.022 \u00d7 10^23 particles (Avogadro's number), whether atoms, molecules, or ions. 'Mole' is chemistry's fixed counting unit."}, "bridge": "Just as 'dozen' lets you count eggs in convenient batches, 'mole' lets chemists count atoms in batches large enough to weigh on a balance."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "energy-level-diagram", "revealSteps": true, "caption": "(Used to anchor stepwise reveal.) Click REVEAL to build up: Avogadro's number \u2192 molar mass \u2192 1 mole of any substance weighs its molar mass in grams."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "1 mole of carbon atoms and 1 mole of gold atoms contain the EXACT same number of atoms. Yet 1 mole of gold weighs vastly more than 1 mole of carbon. How can equal numbers of particles have such different masses?", "hint": "Think about what a single gold atom weighs compared to a single carbon atom.", "answer": "Because individual ATOMS of gold and carbon have very different masses", "explanation": "A mole is a fixed COUNT (6.022\u00d710^23 particles), not a fixed mass. Since one gold atom is roughly 16 times heavier than one carbon atom, a mole of gold (197 g) is proportionally heavier than a mole of carbon (12 g) \u2014 same count, different mass per particle."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Six Point Oh Two Two Times Ten to Twenty-Three", "breakdown": ["6.022 \u00d7 10^23 \u2192 Avogadro's number, the number of particles in exactly 1 mole", "Applies to \u2192 atoms, molecules, ions \u2014 any countable particle", "1 mole of an element \u2192 mass in grams equal to its atomic mass"], "rule": "Number of moles = Given mass \u00f7 Molar mass. This single formula bridges the lab balance (grams) to the atomic world (particle count).", "tip": "Whenever you see 'grams', think mass. Whenever you see 'mole' or 'how many atoms', think Avogadro's number."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>A mole is a fixed count: 6.022 × 10^23 particles (Avogadro's number)</li><li>Molar mass = mass of 1 mole of a substance, in grams, numerically equal to atomic/molecular mass</li><li>Moles bridge the invisible atomic scale to the measurable laboratory scale</li><li>Number of moles = Given mass / Molar mass</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 1.8-1, 2<br>
+      Assignment: 1.8-3, 4
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 7</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch01_w02_s06';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(1, 2, '06');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>

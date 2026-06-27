@@ -1,1 +1,148 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch01 W03 S01-02 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 01 | Week 3 | Session 1-2</div>
+    <div class="session-title">Some Basic Concepts of Chemistry</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 1 | Week 3 | Session 1-2 | June 1-2, 2026</div>
+    <h1>THE MOLE CONCEPT (PART 2)</h1>
+    <div class="topics">Topics covered today:<br>1.8 Mole Concept — Molar Volume, Calculations</div>
+  </div>
+</div>
+
+<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "From last class: 1 mole = 6.022 \u00d7 10^23 particles, and 1 mole of an element weighs its atomic mass in grams."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "What about GASES? You cannot weigh a gas as easily as a solid. Is there a shortcut for counting moles of a gas?"}, "unknown": {"label": "TODAY'S ANSWER", "text": "Yes \u2014 at STP, 1 mole of ANY gas occupies exactly the same volume: 22.4 litres. Volume becomes a mole-counting tool for gases."}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "titration-curve", "revealSteps": true, "caption": "(Used to anchor stepwise reveal.) Click REVEAL to build: STP conditions \u2192 molar volume (22.4 L/mol) \u2192 worked numerical examples."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "1 mole of helium gas and 1 mole of carbon dioxide gas are both at STP. Helium is far lighter than CO2. Which one occupies more volume?", "hint": "Molar volume depends on the NUMBER of moles, not on the identity of the gas.", "answer": "NEITHER \u2014 both occupy exactly 22.4 litres", "explanation": "At STP, 1 mole of ANY ideal gas occupies 22.4 litres, regardless of its identity or molar mass. This is one of the most elegant results in chemistry \u2014 gas volume depends only on particle COUNT, not particle mass."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Twenty-Two Point Four At STP For Any Gas", "breakdown": ["22.4 \u2192 litres per mole at STP (0\u00b0C, 1 atm)", "Any Gas \u2192 applies universally, regardless of identity", "Moles of gas \u2192 Volume at STP \u00f7 22.4 L"], "rule": "Moles can be calculated 3 ways: Mass \u00f7 Molar Mass (solids/liquids), Volume \u00f7 22.4 L (gases at STP), or Number of particles \u00f7 Avogadro's number.", "tip": "Always check: is the gas at STP? If not, use the ideal gas equation instead of 22.4 L directly."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Match each quantity to the correct method for finding moles.", "items": ["18 g of water", "44.8 L of CO2 at STP", "1.2044 \u00d7 10^24 atoms of iron"], "categories": ["Mass \u00f7 Molar Mass", "Volume \u00f7 22.4 L", "Particles \u00f7 Avogadro's number"], "answers": {"18 g of water": "Mass \u00f7 Molar Mass", "44.8 L of CO2 at STP": "Volume \u00f7 22.4 L", "1.2044 \u00d7 10^24 atoms of iron": "Particles \u00f7 Avogadro's number"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>At STP, 1 mole of any gas occupies 22.4 litres (molar volume)</li><li>3 routes to moles: mass/molar mass, volume/22.4 L, particles/Avogadro's number</li><li>Gas volume depends on particle count, not particle identity or mass</li><li>These three formulas are the toolkit for all mole-based numericals</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 1.8-5, 6, 7<br>
+      Assignment: 1.8-8, 9
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 7</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch01_w03_s01-02';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(1, 3, '01-02');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>
