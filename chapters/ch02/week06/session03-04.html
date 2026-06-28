@@ -23,43 +23,103 @@
   </div>
 </div>
 
+<!-- 1. TITLE -->
 <div class="slide active" data-type="static">
   <div class="title-card">
     <div class="meta">Chapter 2 | Week 6</div>
     <h1>BOHR'S MODEL & THE HYDROGEN SPECTRUM EXPLAINED</h1>
-    <div class="topics">Topics covered today:<br>2.4 Bohr's Model, Hydrogen Spectrum</div>
+    <div class="topics">Topics covered today:<br>2.4 Bohr's Model, Postulates & Mathematical Proofs</div>
   </div>
 </div>
 
-<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "Hydrogen&#39;s spectrum has sharp, discrete lines \u2014 proving energy in the atom is quantized, not continuous. Rutherford&#39;s model could not explain why."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "What EXACT rule decides which energy levels are allowed and which are forbidden? Why these specific lines and no others?"}, "unknown": {"label": "TODAY&#39;S ANSWER", "text": "Niels Bohr proposed that electrons orbit the nucleus only in certain fixed, quantized orbits \u2014 and jumping between these orbits releases or absorbs EXACTLY the energy seen in the spectral lines."}}'>
+<!-- 2. ALL 4 POSTULATES TOGETHER -->
+<div class="slide" data-type="postulate-list" data-config='{
+  "title": "BOHR&#39;S 4 POSTULATES",
+  "postulates": [
+    { "title": "Circular Orbits", "text": "Electrons revolve around the nucleus in specific circular paths called orbits. The electrostatic force of attraction provides the necessary centripetal force." },
+    { "title": "Quantized Angular Momentum", "text": "Only those orbits are permitted in which the angular momentum of the electron is an integral multiple of h/2π (mvr = nh/2π)." },
+    { "title": "Stationary States", "text": "An electron in a permitted orbit does not radiate energy. These stable orbits are called stationary states." },
+    { "title": "Energy Transitions", "text": "Energy is emitted or absorbed only when an electron jumps from one stationary state to another. The energy difference is ΔE = hν." }
+  ]
+}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="model-3d" data-config='{"model": "atom-bohr", "labels": true, "rotatable": true, "caption": "Drag to rotate. Bohr&#39;s model: electrons confined to specific circular orbits (energy levels n=1,2,3...), never in between."}'>
+<!-- 3. POSTULATE 1 VISUAL -->
+<div class="slide" data-type="model-3d" data-config='{"model": "atom-bohr", "labels": true, "rotatable": true, "caption": "POSTULATE 1: Electrons are confined to specific circular orbits. Drag to rotate the model."}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="animation" data-config='{"sequence": "electron-transition", "steps": ["An electron sits in a low energy orbit (e.g. n=2), its normal stable state.", "It absorbs a photon of exactly the right energy and jumps to a higher orbit (e.g. n=4).", "The electron is now in an unstable, excited state and cannot stay there.", "It falls back down, releasing a photon of energy exactly equal to the gap between the two orbits \u2014 producing one specific spectral line."], "stepByStep": true, "caption": "Click PLAY, then NEXT STEP to see how electron transitions between Bohr orbits produce the hydrogen spectral lines."}'>
+<!-- 4. POSTULATE 1 MATH (Forces) -->
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "PROOF 1: BALANCING FORCES",
+  "steps": [
+    { "text": "For a stable circular orbit, the electrostatic attractive force (F<sub>e</sub>) must perfectly balance the centripetal force (F<sub>c</sub>):", "math": "F<sub>e</sub> = F<sub>c</sub>" },
+    { "text": "Coulomb&#39;s Law for Electrostatic Force (where Z is atomic number, e is electron charge):", "math": "F<sub>e</sub> = <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r<sup>2</sup></span></div>" },
+    { "text": "Centripetal Force for a mass m moving at velocity v in radius r:", "math": "F<sub>c</sub> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>" },
+    { "text": "Equating them:", "math": "<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>" },
+    { "text": "Multiply both sides by r to simplify:", "math": "<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = mv<sup>2</sup> <span style=\"font-size:1rem;color:var(--color-text-muted)\">--- (Equation 1)</span>", "finalBox": true }
+  ]
+}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="riddle" data-config='{"question": "According to Bohr, an electron in orbit does NOT radiate energy continuously, even though it is constantly changing direction (accelerating). This directly contradicts classical electromagnetic theory. Why did Bohr make this assumption anyway?", "hint": "Think about what would happen to the atom if classical theory were followed exactly.", "answer": "Because classical theory predicted the atom would COLLAPSE instantly \u2014 which clearly does not happen", "explanation": "If electrons radiated energy continuously while orbiting (as classical physics demands for any accelerating charge), they would spiral into the nucleus in a fraction of a second. Since atoms are stable, Bohr simply declared certain orbits &#39;allowed&#39; and stable by postulate \u2014 a bold assumption that worked perfectly for hydrogen, even though it broke classical rules."}'>
+<!-- 5. POSTULATE 2 MATH (Radius & Velocity) -->
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "PROOF 2: RADIUS AND VELOCITY",
+  "steps": [
+    { "text": "From Postulate 2, Angular Momentum is quantized:", "math": "mvr = <div class=\"qd-frac\"><span>nh</span><span>2π</span></div>" },
+    { "text": "Rearranging for velocity (v):", "math": "v = <div class=\"qd-frac\"><span>nh</span><span>2πmr</span></div>" },
+    { "text": "Substitute v into Equation 1 (<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = mv<sup>2</sup>):", "math": "<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = m <left>(</left><div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>4π<sup>2</sup>m<sup>2</sup>r<sup>2</sup></span></div><right>)</right>" },
+    { "text": "Solving for radius r gives the radius of the n<sup>th</sup> orbit:", "math": "r<sub>n</sub> = <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>4π<sup>2</sup>mkZe<sup>2</sup></span></div> = 0.529 <div class=\"qd-frac\"><span>n<sup>2</sup></span><span>Z</span></div> &Aring;", "finalBox": true },
+    { "text": "Substituting r back into the velocity equation gives v<sub>n</sub>:", "math": "v<sub>n</sub> = <div class=\"qd-frac\"><span>2πkZe<sup>2</sup></span><span>nh</span></div> = 2.18 &times; 10<sup>6</sup> <div class=\"qd-frac\"><span>Z</span><span>n</span></div> m/s", "finalBox": true }
+  ]
+}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Orbits Are Fixed, Jumps Make Light", "breakdown": ["Orbits Are Fixed \u2192 electrons exist only in specific, quantized circular orbits (n=1,2,3...)", "No radiation while orbiting \u2192 electrons in these orbits do not lose energy", "Jumps Make Light \u2192 transitions between orbits absorb or emit photons of exact energy \u0394E = h\u03bd"], "rule": "Energy of orbit n: En = -13.6/n^2 eV for hydrogen. Larger n = higher energy = farther from nucleus.", "tip": "Emission happens when an electron falls to a LOWER orbit. Absorption happens when it jumps to a HIGHER orbit."}'>
+<!-- 6. POSTULATE 3 VISUAL/TEXT -->
+<div class="slide" data-type="riddle" data-config='{"question": "POSTULATE 3: STATIONARY STATES<br><br>According to Bohr, an electron in an orbit does NOT radiate energy continuously, even though it is constantly accelerating. This directly contradicts classical electromagnetic theory. Why did Bohr make this assumption?", "hint": "Think about what would happen to the atom if classical theory were followed exactly.", "answer": "Classical theory predicted the atom would COLLAPSE instantly.", "explanation": "If electrons radiated energy continuously while orbiting, they would spiral into the nucleus in a fraction of a second. Bohr boldly declared certain orbits stable by postulate \u2014 a revolutionary assumption that worked perfectly for hydrogen."}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="gamification" data-config='{"instruction": "Sort each event as Emission or Absorption.", "items": ["Electron falls from n=3 to n=2", "Electron jumps from n=1 to n=3", "Electron falls from n=4 to n=1", "Electron jumps from n=2 to n=4"], "categories": ["Emission (releases energy)", "Absorption (gains energy)"], "answers": {"Electron falls from n=3 to n=2": "Emission (releases energy)", "Electron jumps from n=1 to n=3": "Absorption (gains energy)", "Electron falls from n=4 to n=1": "Emission (releases energy)", "Electron jumps from n=2 to n=4": "Absorption (gains energy)"}}'>
+<!-- 7. POSTULATE 4 VISUAL -->
+<div class="slide" data-type="animation" data-config='{"sequence": "electron-transition", "steps": ["POSTULATE 4: ENERGY TRANSITIONS", "An electron absorbs a photon of exactly the right energy and jumps to a higher orbit.", "It falls back down, releasing a photon of energy exactly equal to the gap between the two orbits.", "This \u0394E = h\u03bd produces one specific spectral line!"], "stepByStep": true, "caption": "Click PLAY, then NEXT STEP to see transitions."}'>
   <div class="component-container"></div>
 </div>
 
+<!-- 8. POSTULATE 4 MATH (Energy) -->
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "PROOF 3: ENERGY OF THE ELECTRON",
+  "steps": [
+    { "text": "Kinetic Energy (KE = &frac12;mv<sup>2</sup>). Using Eq 1 (mv<sup>2</sup> = kZe<sup>2</sup>/r):", "math": "KE = <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>2r</span></div>" },
+    { "text": "Potential Energy (PE) between charges +Ze and -e:", "math": "PE = - <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div>" },
+    { "text": "Total Energy (E = KE + PE):", "math": "E = <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>2r</span></div> - <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = - <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>2r</span></div>" },
+    { "text": "Notice a fundamental relationship:", "math": "KE = -E <br> PE = 2E" },
+    { "text": "Substitute the formula for r<sub>n</sub> into Total Energy E:", "math": "E<sub>n</sub> = - <div class=\"qd-frac\"><span>2π<sup>2</sup>mk<sup>2</sup>Z<sup>2</sup>e<sup>4</sup></span><span>n<sup>2</sup>h<sup>2</sup></span></div>", "finalBox": true },
+    { "text": "Plugging in the constants gives the famous equation in eV:", "math": "E<sub>n</sub> = -13.6 <div class=\"qd-frac\"><span>Z<sup>2</sup></span><span>n<sup>2</sup></span></div> eV", "finalBox": true }
+  ]
+}'>
+  <div class="component-container"></div>
+</div>
+
+<!-- 9. GAMIFICATION -->
+<div class="slide" data-type="gamification" data-config='{"instruction": "Match the formula to what it calculates.", "items": ["mvr = nh/2π", "r = 0.529(n\u00b2/Z)", "E = -13.6(Z\u00b2/n\u00b2)", "PE = 2E"], "categories": ["Angular Momentum", "Radius", "Total Energy", "Potential Energy"], "answers": {"mvr = nh/2π": "Angular Momentum", "r = 0.529(n\u00b2/Z)": "Radius", "E = -13.6(Z\u00b2/n\u00b2)": "Total Energy", "PE = 2E": "Potential Energy"}}'>
+  <div class="component-container"></div>
+</div>
+
+<!-- 10. SUMMARY -->
 <div class="slide" data-type="static">
   <div class="summary-card">
     <h1>✓ SESSION COMPLETE</h1>
     <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
-    <ul><li>Bohr's model: electrons orbit only in specific, quantized energy levels (n=1,2,3...)</li><li>Electrons in allowed orbits do not radiate energy — they are stable</li><li>Transitions between orbits emit/absorb photons of exact energy, explaining the line spectrum</li><li>Energy of orbit n in hydrogen: En = -13.6/n² eV</li></ul>
+    <ul>
+      <li>Bohr's 4 Postulates successfully explained the stability of the atom and the Hydrogen line spectrum.</li>
+      <li>Radius of orbit: r<sub>n</sub> = 0.529(n&sup2;/Z) &Aring;</li>
+      <li>Velocity of electron: v<sub>n</sub> = 2.18 &times; 10<sup>6</sup>(Z/n) m/s</li>
+      <li>Total Energy: E<sub>n</sub> = -13.6(Z&sup2;/n&sup2;) eV</li>
+      <li>KE = -E and PE = 2E</li>
+    </ul>
     <div class="mcq-block">
       <strong>NCERT MCQs:</strong><br>
       Classwork: 2.4-1, 2, 3<br>
@@ -70,7 +130,7 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 8</span>
+  <span id="slide-counter">Slide 1 of 10</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
@@ -86,6 +146,8 @@
 <script src="../../../components/mnemonic.js"></script>
 <script src="../../../components/comic-strip.js"></script>
 <script src="../../../components/animation.js"></script>
+<script src="../../../components/postulate-list.js"></script>
+<script src="../../../components/math-derivation.js"></script>
 <script>
 const SESSION_ID = 'ch02_w06_s03-04';
 let currentSlide = 0;
@@ -121,6 +183,8 @@ function initCurrentSlide() {
     case 'mnemonic': Mnemonic.init(container, config); break;
     case 'comic-strip': ComicStrip.init(container, config); break;
     case 'animation': ChemAnimation.init(container, config); break;
+    case 'postulate-list': PostulateList.init(container, config); break;
+    case 'math-derivation': MathDerivation.init(container, config); break;
   }
 }
 
@@ -152,4 +216,3 @@ if (ChemProgress.isComplete(SESSION_ID)) {
 </script>
 </body>
 </html>
-
