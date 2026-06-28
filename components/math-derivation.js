@@ -36,6 +36,14 @@ window.MathDerivation = (() => {
           justify-content: center;
           gap: 10px;
         }
+        .qd-math-row sup, .math-step-text sup {
+          vertical-align: super;
+          font-size: 0.6em;
+        }
+        .qd-math-row sub, .math-step-text sub {
+          vertical-align: sub;
+          font-size: 0.6em;
+        }
       `;
       document.head.appendChild(style);
     }
@@ -90,6 +98,7 @@ window.MathDerivation = (() => {
 
       if (step.text) {
         const textEl = document.createElement('div');
+        textEl.className = 'math-step-text';
         textEl.innerHTML = step.text;
         textEl.style.color = 'var(--color-text-muted)';
         textEl.style.fontSize = '1rem';

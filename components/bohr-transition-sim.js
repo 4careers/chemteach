@@ -12,7 +12,24 @@ window.BohrTransitionSim = (() => {
     wrap.style.alignItems = 'center';
     wrap.style.gap = '20px';
     wrap.style.width = '100%';
-    
+
+    // Info panel for energy gain/loss
+    const infoBox = document.createElement('div');
+    infoBox.style.background = 'rgba(0, 229, 255, 0.1)';
+    infoBox.style.border = '1px solid rgba(0, 229, 255, 0.3)';
+    infoBox.style.padding = '15px 20px';
+    infoBox.style.borderRadius = 'var(--radius-md)';
+    infoBox.style.color = 'var(--color-text)';
+    infoBox.style.width = '600px';
+    infoBox.style.maxWidth = '100%';
+    infoBox.style.textAlign = 'center';
+    infoBox.innerHTML = `
+      <div style="font-weight: 700; margin-bottom: 5px;">Energy Gain or Loses energy equal to diff. in 2 energy level.</div>
+      <div style="font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; margin-bottom: 10px;">&Delta;E = E<sub>f</sub> - E<sub>i</sub></div>
+      <div style="color: var(--color-text-muted); font-size: 0.95rem;">Example (Hydrogen): &Delta;E = -3.4 - (-13.6) = 10.2 ev</div>
+    `;
+    wrap.appendChild(infoBox);
+
     // Canvas/Stage
     const stage = document.createElement('div');
     stage.style.width = '600px';

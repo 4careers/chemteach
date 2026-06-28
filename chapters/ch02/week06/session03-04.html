@@ -69,9 +69,10 @@
 <div class="slide" data-type="math-derivation" data-config='{
   "title": "Radius of Electron",
   "steps": [
-    { "text": "From quantization:", "math": "<div class=\"qd-frac\"><span>nh</span><span>2π</span></div> = mvr &rarr; &nbsp; <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>4π<sup>2</sup></span></div> = m<sup>2</sup>v<sup>2</sup>r<sup>2</sup> &nbsp;&nbsp; &rarr; ③" },
-    { "text": "From electrostatic force:", "math": "<div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div> &nbsp;&nbsp; &rarr; ②" },
-    { "text": "Divide eq ③ in ②", "math": "<div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup> / 4π<sup>2</sup></span><span>1/4π&epsilon;<sub>0</sub> &middot; ze<sup>2</sup>/r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>m<sup>2</sup>v<sup>2</sup>r<sup>2</sup></span><span>mv<sup>2</sup> / r</span></div>" },
+    { "text": "", "math": "<div class=\"qd-frac\"><span>nh</span><span>2π</span></div> = mvr &rarr; Equation 1" },
+    { "text": "Squaring both sides:", "math": "<div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>4π<sup>2</sup></span></div> = m<sup>2</sup>v<sup>2</sup>r<sup>2</sup> &rarr; Equation 2" },
+    { "text": "", "math": "<div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div> &rarr; Equation 3" },
+    { "text": "Divide Equation 2 by Equation 3:", "math": "<div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup> / 4π<sup>2</sup></span><span>1/4π&epsilon;<sub>0</sub> &middot; ze<sup>2</sup>/r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>m<sup>2</sup>v<sup>2</sup>r<sup>2</sup></span><span>mv<sup>2</sup> / r</span></div>" },
     { "text": "", "math": "&rArr; <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>π</span></div> &times; <div class=\"qd-frac\"><span>&epsilon;<sub>0</sub>r<sup>2</sup></span><span>ze<sup>2</sup></span></div> = mr<sup>3</sup>" },
     { "text": "", "math": "&rArr; r = <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub></span><span>mπze<sup>2</sup></span></div>" },
     { "text": "", "math": "r<sub>n</sub> = <div class=\"qd-frac\"><span>h<sup>2</sup>&epsilon;<sub>0</sub></span><span>πme<sup>2</sup></span></div> <div class=\"qd-frac\"><span>n<sup>2</sup></span><span>z</span></div>" },
@@ -107,29 +108,53 @@
   <div class="component-container"></div>
 </div>
 
-<!-- 9. MATH (Energy of electron) -->
+<!-- 9. MATH (Kinetic Energy) -->
 <div class="slide" data-type="math-derivation" data-config='{
-  "title": "Energy of electron",
+  "title": "K.E of e<sup>-</sup>",
   "steps": [
-    { "text": "K.E of e<sup>-</sup>", "math": "KE = &frac12;mv<sup>2</sup>" },
-    { "text": "v = ze<sup>2</sup> / 2h&epsilon;<sub>0</sub>n", "math": "KE = &frac12;m <div class=\"qd-frac\"><span>z<sup>2</sup>e<sup>4</sup></span><span>4h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup>n<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mz<sup>2</sup>e<sup>4</sup></span><span>8h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup>n<sup>2</sup></span></div>" },
-    { "text": "K.E = 13.6 z<sup>2</sup>/n<sup>2</sup> ev", "math": "KE = <div class=\"qd-frac\"><span>me<sup>4</sup></span><span>8h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup></span></div> <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>" },
-    { "text": "P.E of e<sup>-</sup> &nbsp; (where q<sub>1</sub>=ze, q<sub>2</sub>=e)", "math": "PE = - <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>q<sub>1</sub>q<sub>2</sub></span><span>r</span></div> = - <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>r</span></div>" },
-    { "text": "Substitute r = (n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub>) / (πmze<sup>2</sup>)", "math": "PE = - <div class=\"qd-frac\"><span>me<sup>4</sup></span><span>4h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup></span></div> &times; <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> = -2 &times; 13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>" },
-    { "text": "P.E = -27.2 z<sup>2</sup>/n<sup>2</sup> ev", "math": "Total energy of electron" },
-    { "text": "TE = PE + KE", "math": "TE = -27.2 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> + 13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> ev" },
+    { "text": "", "math": "KE = &frac12;mv<sup>2</sup>" },
+    { "text": "", "math": "v = <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>2h&epsilon;<sub>0</sub>n</span></div>" },
+    { "text": "", "math": "K.E = &frac12;m <div class=\"qd-frac\"><span>z<sup>2</sup>e<sup>4</sup></span><span>4h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup>n<sup>2</sup></span></div>" },
+    { "text": "", "math": "= <div class=\"qd-frac\"><span>mz<sup>2</sup>e<sup>4</sup></span><span>8h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup>n<sup>2</sup></span></div>" },
+    { "text": "", "math": "= <div class=\"qd-frac\"><span>me<sup>4</sup></span><span>8h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup></span></div> <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>" },
+    { "text": "", "math": "K.E = 13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> ev", "finalBox": true }
+  ]
+}'>
+  <div class="component-container"></div>
+</div>
+
+<!-- 10. MATH (Potential Energy) -->
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "P.E of e<sup>-</sup>",
+  "steps": [
+    { "text": "where q<sub>1</sub>=ze, q<sub>2</sub>=e", "math": "PE = <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>q<sub>1</sub>q<sub>2</sub></span><span>r</span></div>" },
+    { "text": "", "math": "r = <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub></span><span>πmze<sup>2</sup></span></div>" },
+    { "text": "", "math": "P.E = <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub> / πmze<sup>2</sup></span></div>" },
+    { "text": "", "math": "= <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup> &times; πmze<sup>2</sup></span><span>n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub></span></div>" },
+    { "text": "", "math": "P.E = - <div class=\"qd-frac\"><span>me<sup>4</sup></span><span>4h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup></span></div> &times; <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>" },
+    { "text": "", "math": "P.E = -2 &times; 13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>" },
+    { "text": "", "math": "P.E = -27.2 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> ev", "finalBox": true }
+  ]
+}'>
+  <div class="component-container"></div>
+</div>
+
+<!-- 11. MATH (Total Energy) -->
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "Total energy of electron",
+  "steps": [
+    { "text": "", "math": "TE = PE + KE" },
+    { "text": "", "math": "= -27.2 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> + 13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> ev" },
     { "text": "", "math": "TE = -13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>", "finalBox": true }
   ]
 }'>
   <div class="component-container"></div>
 </div>
 
-<!-- 9.1 MATH (Frequency) -->
+<!-- 12. MATH (Frequency) -->
 <div class="slide" data-type="math-derivation" data-config='{
   "title": "Frequency of radiation (IV Postulate)",
   "steps": [
-    { "text": "Energy Gain or Loses energy equal to diff. in 2 energy level.", "math": "&Delta;E = E<sub>f</sub> - E<sub>i</sub>" },
-    { "text": "Example (Hydrogen):", "math": "&Delta;E = -3.4 - (-13.6) = 10.2 ev" },
     { "text": "IV Postulate:", "math": "E = h&nu;" },
     { "text": "", "math": "&Delta;E = E<sub>f</sub> - E<sub>i</sub>" },
     { "text": "", "math": "h&nu; = E<sub>f</sub> - E<sub>i</sub>" },
@@ -167,7 +192,7 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 12</span>
+  <span id="slide-counter">Slide 1 of 14</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
