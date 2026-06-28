@@ -10,11 +10,20 @@ window.Model3D = (() => {
   function bond(x1, y1, z1, x2, y2, z2, color) {
     return { type: 'bond', x1, y1, z1, x2, y2, z2, color };
   }
+  function ring(x, y, z, radius, color) {
+    return { type: 'ring', x, y, z, radius, color };
+  }
 
   const MODELS = {
     'atom-bohr': () => {
       const els = [atom(0, 0, 0, 36, '#FFD740', 'Nucleus')];
+      
+      // Orbit n=1
+      els.push(ring(0, 0, 0, 70, 'rgba(0, 180, 204, 0.4)'));
       for (let i = 0; i < 2; i++) els.push(atom(Math.cos(i * 3) * 70, Math.sin(i * 3) * 70, 0, 12, '#00B4CC', 'e-'));
+      
+      // Orbit n=2
+      els.push(ring(0, 0, 0, 130, 'rgba(0, 180, 204, 0.4)'));
       for (let i = 0; i < 8; i++) {
         const a = (i / 8) * Math.PI * 2;
         els.push(atom(Math.cos(a) * 130, Math.sin(a) * 130, 0, 10, '#00E5FF', 'e-'));
@@ -150,6 +159,18 @@ window.Model3D = (() => {
         dot.appendChild(lbl);
         dot.dataset.labelEl = '1';
         scene.appendChild(dot);
+      } else if (el.type === 'ring') {
+        const rEl = document.createElement('div');
+        rEl.style.position = 'absolute';
+        rEl.style.width = (el.radius * 2) + 'px';
+        rEl.style.height = (el.radius * 2) + 'px';
+        rEl.style.border = `2px solid ${el.color}`;
+        rEl.style.borderRadius = '50%';
+        rEl.style.left = (el.x - el.radius) + 'px';
+        rEl.style.top = (el.y - el.radius) + 'px';
+        rEl.style.transform = `translateZ(${el.z}px)`;
+        rEl.style.pointerEvents = 'none';
+        scene.appendChild(rEl);
       } else {
         const dx = el.x2 - el.x1, dy = el.y2 - el.y1, dz = el.z2 - el.z1;
         const len = Math.sqrt(dx * dx + dy * dy + dz * dz);
