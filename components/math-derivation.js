@@ -85,6 +85,8 @@ window.MathDerivation = (() => {
       stepBox.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
       // Keep space reserved even when invisible
       stepBox.style.visibility = 'hidden';
+      stepBox.style.cursor = 'pointer';
+      stepBox.onclick = () => revealNext();
 
       if (step.text) {
         const textEl = document.createElement('div');

@@ -62,7 +62,8 @@ window.DragDrop = (() => {
       chip.tabIndex = 0;
       chip.dataset.item = text;
       chip.style.background = 'var(--color-secondary)';
-      chip.style.color = '#fff';
+      chip.style.color = '#0D1B2A';
+      chip.style.fontWeight = '700';
       chip.style.padding = '10px 14px';
       chip.style.borderRadius = 'var(--radius-sm)';
       chip.style.cursor = 'grab';
