@@ -241,93 +241,120 @@ window.QuantumSim = (() => {
 
     // --- Heisenberg Pinball Simulation ---
     function initHeisenberg(ctx, canvas, controls) {
-      let eX = canvas.width / 2;
-      let eY = canvas.height / 2;
-      let vX = 1;
-      let vY = 0;
-      let uncertX = Infinity;
-      let uncertV = 0.1;
+      const sliderWrap = document.createElement('div');
+      sliderWrap.className = 'qd-slider-container';
+      
+      const labels = document.createElement('div');
+      labels.className = 'qd-slider-labels';
+      labels.innerHTML = `<span>Radio/IR (Long \u03BB)</span><span style="color:var(--qd-cyan)">Photon Wavelength</span><span>X-Ray/Gamma (Short \u03BB)</span>`;
+      
+      const slider = document.createElement('input');
+      slider.type = 'range';
+      slider.min = '0';
+      slider.max = '100';
+      slider.value = '50';
+      slider.className = 'qd-slider qd-slider-cyan';
+      
+      sliderWrap.appendChild(labels);
+      sliderWrap.appendChild(slider);
       
       const statPanel = document.createElement('div');
       statPanel.className = 'qd-stat-panel';
       statPanel.innerHTML = `
-        <div class="qd-stat"><span class="qd-stat-label">Pos Uncert (Δx)</span><span id="dx" class="qd-stat-value qd-val-cyan">Unknown</span></div>
-        <div class="qd-stat"><span class="qd-stat-label">Vel Uncert (Δv)</span><span id="dv" class="qd-stat-value qd-val-pink">0.1</span></div>
+        <div class="qd-stat"><span class="qd-stat-label">Pos Uncert (\u0394x)</span><span id="dx" class="qd-stat-value qd-val-cyan">Medium</span></div>
+        <div class="qd-stat"><span class="qd-stat-label">Vel Uncert (\u0394p)</span><span id="dp" class="qd-stat-value qd-val-pink">Medium</span></div>
       `;
+      
+      controls.appendChild(sliderWrap);
       controls.appendChild(statPanel);
 
       const dxSpan = statPanel.querySelector('#dx');
-      const dvSpan = statPanel.querySelector('#dv');
+      const dpSpan = statPanel.querySelector('#dp');
+
+      let eX = canvas.width / 2;
+      let eY = canvas.height / 2;
+      let vX = (Math.random() - 0.5);
+      let vY = (Math.random() - 0.5);
+      
+      let flashTime = 0;
+      let photonX = 0, photonY = 0;
 
       canvas.addEventListener('click', (e) => {
         const rect = canvas.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const clickY = e.clientY - rect.top;
+        photonX = e.clientX - rect.left;
+        photonY = e.clientY - rect.top;
         
-        // Shoot photon
-        drawPhoton(clickX, clickY);
+        const dist = Math.hypot(photonX - eX, photonY - eY);
+        // Let's say if we are within the "blur" radius, we hit it
+        const val = parseInt(slider.value) / 100; // 0 (long) to 1 (short)
+        const radius = 100 - (val * 90); // 10 to 100
         
-        // If close, hit the electron
-        const dist = Math.hypot(clickX - eX, clickY - eY);
-        if (dist < 40) {
-          // Hit! Highly accurate position, but ruins velocity
-          uncertX = 1;
-          uncertV = 50;
-          vX = (Math.random() - 0.5) * 10;
-          vY = (Math.random() - 0.5) * 10;
-          
-          dxSpan.textContent = "Very Small";
-          dvSpan.textContent = "Very Large";
-          wrap.classList.add('qd-glow-pink');
-          setTimeout(() => wrap.classList.remove('qd-glow-pink'), 300);
-        } else {
-          dxSpan.textContent = "Missed";
+        if (dist < radius) {
+          flashTime = 1.0;
+          // Kick the electron! Short wavelength = big kick
+          const kick = 1 + (val * 20); 
+          vX = (Math.random() - 0.5) * kick;
+          vY = (Math.random() - 0.5) * kick;
+          // Move the electron to exactly where the photon hit
+          eX = photonX;
+          eY = photonY;
         }
       });
-
-      let photonX = -100;
-      let photonY = -100;
-      let photonAlpha = 0;
-      function drawPhoton(x, y) {
-        photonX = x; photonY = y; photonAlpha = 1;
-      }
 
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
+        const val = parseInt(slider.value) / 100; // 0 = Long (Radio), 1 = Short (Gamma)
+        
+        // Update stats
+        if (val < 0.2) { dxSpan.textContent = "Very Large"; dpSpan.textContent = "Very Small"; }
+        else if (val < 0.4) { dxSpan.textContent = "Large"; dpSpan.textContent = "Small"; }
+        else if (val < 0.6) { dxSpan.textContent = "Medium"; dpSpan.textContent = "Medium"; }
+        else if (val < 0.8) { dxSpan.textContent = "Small"; dpSpan.textContent = "Large"; }
+        else { dxSpan.textContent = "Very Small"; dpSpan.textContent = "Very Large"; }
+        
         // Update Electron
         eX += vX; eY += vY;
-        if(eX < 0 || eX > canvas.width) vX *= -1;
-        if(eY < 0 || eY > canvas.height) vY *= -1;
+        
+        // Wrap around
+        if(eX < 0) eX = canvas.width;
+        if(eX > canvas.width) eX = 0;
+        if(eY < 0) eY = canvas.height;
+        if(eY > canvas.height) eY = 0;
 
-        // Draw Uncertainty Cloud
-        if (uncertX === 1) {
-          ctx.beginPath();
-          ctx.arc(eX, eY, 30, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(6,182,212,0.1)';
-          ctx.fill();
-        } else {
-          // Unknown position (wave spread)
-          ctx.fillStyle = 'rgba(6,182,212,0.02)';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
-        // Draw Electron
+        // Draw Electron Blur (Position Uncertainty)
+        const radius = 100 - (val * 90); // 100 to 10
+        const gradient = ctx.createRadialGradient(eX, eY, 0, eX, eY, radius);
+        gradient.addColorStop(0, `rgba(6,182,212,${0.8 - (val * 0.4)})`);
+        gradient.addColorStop(1, 'rgba(6,182,212,0)');
+        
         ctx.beginPath();
-        ctx.arc(eX, eY, 6, 0, Math.PI * 2);
-        ctx.fillStyle = '#06b6d4';
+        ctx.arc(eX, eY, radius, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Draw Photon flash
-        if (photonAlpha > 0) {
+        // Draw Electron Core (only somewhat visible depending on wavelength)
+        ctx.beginPath();
+        ctx.arc(eX, eY, 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${val})`;
+        ctx.fill();
+
+        // Draw flash
+        if (flashTime > 0) {
           ctx.beginPath();
-          ctx.arc(photonX, photonY, 20, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(236,72,153,${photonAlpha})`;
+          ctx.arc(photonX, photonY, 20 * (2 - flashTime), 0, Math.PI*2);
+          ctx.strokeStyle = `rgba(236,72,153,${flashTime})`;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          
+          ctx.fillStyle = `rgba(236,72,153,${flashTime * 0.5})`;
+          ctx.beginPath();
+          ctx.arc(photonX, photonY, 5, 0, Math.PI*2);
           ctx.fill();
-          photonAlpha -= 0.05;
+          
+          flashTime -= 0.05;
         }
 
-        time++;
         animationId = requestAnimationFrame(draw);
       }
       draw();

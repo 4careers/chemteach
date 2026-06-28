@@ -32,11 +32,15 @@
   </div>
 </div>
 
+<div class="slide" data-type="story" data-config='{"setting": "Heligoland, 1925", "narrative": "Fleeing a severe attack of hay fever, 23-year-old Werner Heisenberg retreated to a barren, pollen-free island in the North Sea. There, alone with the crashing waves and his thoughts, he had a radical epiphany: physics must abandon things it cannot observe. Why try to plot exact planetary orbits for electrons if we can never actually see them?", "reveal": "This purely mathematical leap (Matrix Mechanics) eventually led him to formulate the Uncertainty Principle: nature inherently forbids us from knowing an electron\u0027s exact path.", "visual": "space-atoms", "image": "../../../assets/images/infographics/heligoland-heisenberg.jpg"}'>
+  <div class="component-container"></div>
+</div>
+
 <div class="slide" data-type="riddle" data-config='{"question": "To &#39;see&#39; an electron&#39;s exact position, you would need to bounce light (a photon) off it. But a photon striking an electron knocks it and changes its velocity in the process. So the very act of measuring position disturbs velocity. What does this tell you about ever knowing BOTH position and velocity exactly, at the same time?", "hint": "Think about whether the disturbance can ever be avoided, even in principle.", "answer": "It is IMPOSSIBLE \u2014 you can never know both with perfect precision simultaneously", "explanation": "This is the heart of Heisenberg&#39;s Uncertainty Principle: the act of measuring one property (position) inevitably disturbs the other (momentum/velocity) for very small particles. This is not a limitation of our instruments \u2014 it is a fundamental property of nature at the quantum scale."}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "Everyday Analogy", "image": "Everyday Analogy for Heisenberg Uncertainty Principle.png", "caption": "The Heisenberg Uncertainty Principle explained simply.", "explanation": "Imagine taking a photo of a moving car. If you use a fast shutter speed (sharp photo), you know exactly where it is, but you lose all sense of its speed from the still image. If you use a long exposure (blurry photo), you can estimate speed from the blur length, but you no longer know its exact position! The same fundamental trade-off applies to observing electrons."}'>
+<div class="slide" data-type="quantum-sim" data-config='{"mode": "heisenberg", "title": "The Gamma-Ray Microscope", "instruction": "Click the canvas to fire a photon. Adjust the Wavelength slider to see the trade-off! Short \u03BB (Gamma) gives precise position but knocks the electron violently. Long \u03BB (Radio) is gentle but leaves the position blurry!"}'>
   <div class="component-container"></div>
 </div>
 
@@ -44,15 +48,7 @@
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "Uncertainty Principle in Action", "image": "fan-vs-atom.png", "caption": "The motion blur of macroscopic objects vs microscopic probability clouds.", "explanation": "Just as a fast-spinning fan cannot show both its exact position and exact motion clearly at the same time, an electron’s exact position and velocity cannot be determined simultaneously."}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="quantum-sim" data-config='{"mode": "heisenberg", "title": "Heisenberg Pinball", "instruction": "Click on the canvas to fire a photon. Observe how successfully hitting the electron ruins its velocity predictability!"}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="infographic" data-config='{"title": "Position and Momentum", "image": "Position and Momentum.png", "caption": "The trade-off between measuring where an electron is versus how fast it is moving.", "explanation": "Heisenberg formalized this into an exact mathematical relationship: Δx · Δp ≥ h/4π. It guarantees that any attempt to narrow down an electron’s exact position (shrinking Δx) must inversely blow up the uncertainty in its momentum (increasing Δp). It is physically impossible for both to be zero."}'>
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Δx · Δp ≥ h/4π", "breakdown": ["Δx \u2192 uncertainty in position", "Δp \u2192 uncertainty in momentum", "At Least (≥) \u2192 the PRODUCT of these uncertainties has a guaranteed minimum value", "h/4π \u2192 where h is Planck&#39;s constant"], "rule": "This uncertainty is significant only at the atomic/subatomic scale \u2014 it is utterly negligible for everyday macroscopic objects.", "tip": "Heisenberg&#39;s principle is WHY orbitals (probability clouds) replaced orbits (fixed paths) in the quantum mechanical model."}'>
   <div class="component-container"></div>
 </div>
 
@@ -60,19 +56,11 @@
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Δx · Δp ≥ h/4π", "breakdown": ["Δx \u2192 uncertainty in position", "Δp \u2192 uncertainty in momentum", "At Least \u2192 the PRODUCT of these uncertainties has a guaranteed minimum value", "h/4π \u2192 where h is Planck&#39;s constant"], "rule": "This uncertainty is significant only at the atomic/subatomic scale \u2014 it is utterly negligible for everyday macroscopic objects.", "tip": "Heisenberg&#39;s principle is WHY orbitals (probability clouds) replaced orbits (fixed paths) in the quantum mechanical model."}'>
-  <div class="component-container"></div>
-</div>
-
 <div class="slide" data-type="gamification" data-config='{"instruction": "Sort each statement as Consistent or Violates Heisenberg&#39;s Uncertainty Principle.", "items": ["Electron follows an exact circular path", "Electron exists in a probability cloud (orbital)", "Both position and velocity known exactly at once", "Position known precisely, momentum has spread of possible values"], "categories": ["Violates Uncertainty Principle", "Consistent with Uncertainty Principle"], "answers": {"Electron follows an exact circular path": "Violates Uncertainty Principle", "Electron exists in a probability cloud (orbital)": "Consistent with Uncertainty Principle", "Both position and velocity known exactly at once": "Violates Uncertainty Principle", "Position known precisely, momentum has spread of possible values": "Consistent with Uncertainty Principle"}}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="quantum-sim" data-config='{"mode": "orbital-collapse", "title": "Orbit Dissolution", "instruction": "Drag the slider to transition from a rigid planetary orbit to a statistical probability cloud (orbital)."}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="infographic" data-config='{"title": "Summary", "image": "summary.png", "caption": "Overview of the transition to Quantum Mechanics.", "explanation": "We’ve moved from Bohr’s deterministic universe (where electrons orbit on neat tracks like planets) to a probabilistic universe. We can never know precisely where an electron is or where it’s going—we can only calculate the statistical likelihood of finding it in certain 3D regions of space."}'>
+<div class="slide" data-type="quantum-sim" data-config='{"mode": "orbital-collapse", "title": "Orbit Dissolution", "instruction": "Drag the slider to physically witness the consequence of Heisenberg&#39;s uncertainty: transitioning from a rigid planetary orbit into a statistical probability cloud (orbital)."}'>
   <div class="component-container"></div>
 </div>
 
@@ -95,7 +83,7 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 12</span>
+  <span id="slide-counter">Slide 1 of 11</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
@@ -181,4 +169,3 @@ if (ChemProgress.isComplete(SESSION_ID)) {
 </script>
 </body>
 </html>
-
