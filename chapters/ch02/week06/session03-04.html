@@ -84,7 +84,7 @@
 </div>
 
 <!-- 7. POSTULATE 4 VISUAL -->
-<div class="slide" data-type="animation" data-config='{"sequence": "electron-transition", "steps": ["POSTULATE 4: ENERGY TRANSITIONS", "An electron absorbs a photon of exactly the right energy and jumps to a higher orbit.", "It falls back down, releasing a photon of energy exactly equal to the gap between the two orbits.", "This \u0394E = h\u03bd produces one specific spectral line!"], "stepByStep": true, "caption": "Click PLAY, then NEXT STEP to see transitions."}'>
+<div class="slide" data-type="bohr-transition-sim" data-config='{}'>
   <div class="component-container"></div>
 </div>
 
@@ -148,6 +148,7 @@
 <script src="../../../components/animation.js"></script>
 <script src="../../../components/postulate-list.js"></script>
 <script src="../../../components/math-derivation.js"></script>
+<script src="../../../components/bohr-transition-sim.js"></script>
 <script>
 const SESSION_ID = 'ch02_w06_s03-04';
 let currentSlide = 0;
@@ -185,6 +186,7 @@ function initCurrentSlide() {
     case 'animation': ChemAnimation.init(container, config); break;
     case 'postulate-list': PostulateList.init(container, config); break;
     case 'math-derivation': MathDerivation.init(container, config); break;
+    case 'bohr-transition-sim': BohrTransitionSim.init(container, config); break;
   }
 }
 

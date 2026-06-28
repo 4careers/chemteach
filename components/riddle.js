@@ -23,7 +23,7 @@ window.Riddle = (() => {
     card.style.width = '100%';
 
     const question = document.createElement('div');
-    question.textContent = config.question || '';
+    question.innerHTML = config.question || '';
     question.style.fontSize = '28px';
     question.style.color = 'var(--color-text)';
     question.style.marginBottom = '16px';

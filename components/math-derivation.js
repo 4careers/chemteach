@@ -43,28 +43,27 @@ window.MathDerivation = (() => {
     const wrapper = document.createElement('div');
     wrapper.style.display = 'flex';
     wrapper.style.flexDirection = 'column';
-    wrapper.style.gap = '20px';
     wrapper.style.width = '100%';
-    wrapper.style.maxWidth = '800px';
-    wrapper.style.margin = '0 auto';
-    wrapper.style.background = 'var(--color-card)';
-    wrapper.style.border = '1px solid var(--color-border)';
-    wrapper.style.borderRadius = 'var(--radius)';
+    wrapper.style.minHeight = '500px';
+    wrapper.style.background = 'var(--color-bg)';
+    wrapper.style.border = '2px dashed var(--color-border)';
+    wrapper.style.borderRadius = 'var(--radius-lg)';
     wrapper.style.padding = '30px';
-    wrapper.style.boxShadow = '0 8px 24px rgba(0,0,0,0.2)';
+    wrapper.style.position = 'relative';
 
     const header = document.createElement('h3');
     header.textContent = config.title || 'MATHEMATICAL DERIVATION';
-    header.style.margin = '0 0 10px 0';
+    header.style.margin = '0 0 20px 0';
     header.style.color = 'var(--color-accent)';
     header.style.textAlign = 'center';
-    header.style.letterSpacing = '1px';
+    header.style.letterSpacing = '2px';
     wrapper.appendChild(header);
 
     const stepsContainer = document.createElement('div');
-    stepsContainer.style.display = 'flex';
-    stepsContainer.style.flexDirection = 'column';
-    stepsContainer.style.gap = '20px';
+    stepsContainer.style.display = 'grid';
+    stepsContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(350px, 1fr))';
+    stepsContainer.style.gap = '30px';
+    stepsContainer.style.flexGrow = '1';
     wrapper.appendChild(stepsContainer);
 
     const steps = config.steps || [];
@@ -75,13 +74,17 @@ window.MathDerivation = (() => {
       stepBox.style.display = 'flex';
       stepBox.style.flexDirection = 'column';
       stepBox.style.alignItems = 'center';
-      stepBox.style.padding = '15px';
-      stepBox.style.background = 'var(--color-bg)';
-      stepBox.style.borderLeft = '4px solid var(--color-accent)';
-      stepBox.style.borderRadius = '0 8px 8px 0';
+      stepBox.style.justifyContent = 'center';
+      stepBox.style.padding = '20px';
+      stepBox.style.background = 'var(--color-card)';
+      stepBox.style.border = '1px solid rgba(0, 229, 255, 0.2)';
+      stepBox.style.borderRadius = 'var(--radius-lg)';
+      stepBox.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
       stepBox.style.opacity = '0';
-      stepBox.style.transform = 'translateY(10px)';
-      stepBox.style.transition = 'all 0.4s ease';
+      stepBox.style.transform = 'scale(0.9)';
+      stepBox.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      // Keep space reserved even when invisible
+      stepBox.style.visibility = 'hidden';
 
       if (step.text) {
         const textEl = document.createElement('div');
@@ -102,9 +105,9 @@ window.MathDerivation = (() => {
 
       if (step.finalBox) {
          stepBox.style.border = '2px solid var(--color-accent)';
-         stepBox.style.background = 'rgba(0, 229, 255, 0.05)';
-         stepBox.style.marginTop = '10px';
-         stepBox.style.boxShadow = '0 0 15px rgba(0, 229, 255, 0.2)';
+         stepBox.style.background = 'rgba(0, 229, 255, 0.1)';
+         stepBox.style.boxShadow = '0 0 25px rgba(0, 229, 255, 0.3)';
+         stepBox.style.transform = 'scale(0.9)'; // will scale to 1.05 when revealed
       }
 
       stepsContainer.appendChild(stepBox);
@@ -128,8 +131,9 @@ window.MathDerivation = (() => {
     
     function revealNext() {
       if (currentStep < stepEls.length) {
+        stepEls[currentStep].style.visibility = 'visible';
         stepEls[currentStep].style.opacity = '1';
-        stepEls[currentStep].style.transform = 'translateY(0)';
+        stepEls[currentStep].style.transform = steps[currentStep].finalBox ? 'scale(1.05)' : 'scale(1)';
         currentStep++;
         if (currentStep >= stepEls.length) {
           btn.textContent = 'DERIVATION COMPLETE';
