@@ -1,6 +1,6 @@
 # ChemTeach
 
-Interactive Chemistry Teaching Platform for Vidyanidhi Group of Institutions
+Interactive Chemistry Teaching Platform
 IVTJ JEE 2026–27 | Class 11 NCERT Chemistry | 10 Chapters | 33 Weeks
 
 ## Live Platform

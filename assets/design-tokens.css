@@ -1,30 +1,32 @@
 :root {
-  --color-bg: #0D1B2A;
-  --color-card: #142232;
-  --color-card-hover: #1A2E45;
-  --color-accent: #00B4CC;
-  --color-highlight: #00E5FF;
-  --color-secondary: #1A6B8A;
-  --color-text: #FFFFFF;
-  --color-text-muted: #CCCCCC;
-  --color-text-body: #E0E0E0;
-  --color-border: rgba(0, 180, 204, 0.2);
-  --color-border-active: rgba(0, 180, 204, 0.6);
-  --color-success: #00C853;
-  --color-error: #FF5252;
-  --color-warning: #FFD740;
-  --color-overlay: rgba(13, 27, 42, 0.85);
-  --color-panel-green: #0A2010;
-  --color-panel-amber: #201A00;
-  --color-panel-cyan: #001A20;
+  /* Deep-space indigo base with a plasma-blue / violet / gold spectral accent
+     palette, carried over from the reference Structure of Atom deck. */
+  --color-bg: #0A0A1F;
+  --color-card: #12132E;
+  --color-card-hover: #1A1C42;
+  --color-accent: #2563FF;
+  --color-highlight: #B347FF;
+  --color-secondary: #00D4FF;
+  --color-text: #E2E8F0;
+  --color-text-muted: #94A3B8;
+  --color-text-body: #C7D2E0;
+  --color-border: rgba(37, 99, 255, 0.22);
+  --color-border-active: rgba(37, 99, 255, 0.55);
+  --color-success: #00E676;
+  --color-error: #FF3D6E;
+  --color-warning: #FFD60A;
+  --color-overlay: rgba(10, 10, 31, 0.88);
+  --color-panel-green: #0A1F14;
+  --color-panel-amber: #221A05;
+  --color-panel-cyan: #051A2A;
   --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-mono: 'Courier New', Courier, monospace;
   --radius: 12px;
   --radius-sm: 6px;
   --radius-lg: 20px;
   --transition: 0.3s ease;
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
-  --shadow-glow: 0 0 20px rgba(0, 180, 204, 0.3);
+  --shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 24px rgba(37, 99, 255, 0.35);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,6 +39,28 @@ body {
   font-family: var(--font-main);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Ambient embedded nebula glow, echoing the reference deck's atmosphere */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -10% -10%;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 75% 50% at 12% 5%, rgba(37, 99, 255, 0.20) 0%, transparent 62%),
+    radial-gradient(ellipse 60% 45% at 88% 12%, rgba(179, 71, 255, 0.18) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 50% at 50% 105%, rgba(0, 212, 255, 0.13) 0%, transparent 62%),
+    radial-gradient(ellipse 40% 30% at 70% 60%, rgba(255, 61, 198, 0.07) 0%, transparent 60%);
+  background-size: 130% 130%;
+  animation: ambientDrift 24s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 18% 12%; }
 }
 
 /* Utility classes */
@@ -68,15 +92,15 @@ button:focus-visible {
 }
 
 .btn {
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-highlight));
+  color: #FFFFFF;
   padding: 10px 20px;
   border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 14px;
 }
 
-.btn:hover { background: var(--color-highlight); }
+.btn:hover { filter: brightness(1.12); }
 
 .btn-outline {
   background: transparent;
