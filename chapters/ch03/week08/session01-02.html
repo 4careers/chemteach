@@ -1,1 +1,152 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch03 W08 S01-02 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 03 | Week 8 | Session 1-2</div>
+    <div class="session-title">Classification of Elements and Periodicity</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 2-3 Bridge | Week 8 | Session 1-2 | July 6-7, 2026</div>
+    <h1>ORBITALS, QUANTUM NUMBERS & SHAPES</h1>
+    <div class="topics">Topics covered today:<br>2.6 Orbitals, Quantum Numbers, Shapes (completes Chapter 2)</div>
+  </div>
+</div>
+
+<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "Electrons exist in orbitals \u2014 3D probability regions, not fixed Bohr orbits. Heisenberg proved we can never know an electron's exact path."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "If we can't know an exact path, how do we describe an electron's location, energy, and behaviour AT ALL? We need a different kind of address system."}, "unknown": {"label": "TODAY'S ANSWER", "text": "Four quantum numbers \u2014 n, l, m, s \u2014 together form a unique 'address' for every electron in an atom, describing its energy level, shape, orientation, and spin."}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="model-3d" data-config='{"model": "orbital-sp", "labels": true, "rotatable": true, "caption": "Drag to rotate. The s-orbital is spherical; p-orbitals are dumbbell-shaped, oriented along different axes."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "periodic-table-blocks", "revealSteps": true, "caption": "Click REVEAL to build: Principal (n) \u2192 Azimuthal (l) \u2192 Magnetic (m) \u2192 Spin (s) quantum numbers, one at a time."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Number, Lobe, Map, Spin", "breakdown": ["Number (n) \u2192 Principal quantum number: shell/energy level (1,2,3...)", "Lobe (l) \u2192 Azimuthal quantum number: shape of orbital (0=s, 1=p, 2=d, 3=f)", "Map (m) \u2192 Magnetic quantum number: orientation of orbital in space", "Spin (s) \u2192 Spin quantum number: electron's intrinsic spin, +1/2 or -1/2"], "rule": "No two electrons in the same atom can have all four quantum numbers identical \u2014 this is the Pauli Exclusion Principle.", "tip": "s-orbital: 1 shape, spherical. p-orbital: 3 orientations, dumbbell. d-orbital: 5 orientations, cloverleaf-like."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "Two electrons occupy the same orbital. Their n, l, and m values are therefore identical. What MUST be different between them, by law?", "hint": "Think about the one quantum number that has only two possible values.", "answer": "Their SPIN quantum number (s) \u2014 one must be +1/2 and the other -1/2", "explanation": "The Pauli Exclusion Principle states no two electrons in an atom can share all four quantum numbers. If n, l, and m are identical (same orbital), the only way to keep the electrons distinct is opposite spins \u2014 this is exactly why each orbital holds a maximum of 2 electrons."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Match each quantum number to what it describes.", "items": ["n", "l", "m", "s"], "categories": ["Energy level/shell", "Orbital shape", "Orbital orientation", "Electron spin"], "answers": {"n": "Energy level/shell", "l": "Orbital shape", "m": "Orbital orientation", "s": "Electron spin"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>4 quantum numbers (n, l, m, s) uniquely describe every electron in an atom</li><li>n = shell, l = shape (s,p,d,f), m = orientation, s = spin</li><li>Pauli Exclusion Principle: no two electrons share all 4 quantum numbers</li><li>This completes Chapter 2 (Atomic Structure) and opens the door to the Periodic Table</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 2.6-1, 2, 3<br>
+      Assignment: 2.6-4, 5
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 8</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch03_w08_s01-02';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(3, 8, '01-02');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>
