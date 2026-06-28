@@ -386,9 +386,9 @@
       "file": "chapters/ch02/week07/session03-04.html"
     },
     {
-      "sessionId": "ch03_w08_s01-02",
-      "chapter": 3,
-      "chapterName": "Classification of Elements and Periodicity",
+      "sessionId": "ch02_w08_s01-02",
+      "chapter": 2,
+      "chapterName": "Atomic Structure",
       "week": 8,
       "session": "01-02",
       "dates": [
@@ -402,7 +402,7 @@
       "topics": [
         "2.6 Orbitals, Quantum Numbers, Shapes (completes Ch2)"
       ],
-      "file": "chapters/ch03/week08/session01-02.html"
+      "file": "chapters/ch02/week08/session01-02.html"
     },
     {
       "sessionId": "ch03_w08_s03-04",

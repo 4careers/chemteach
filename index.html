@@ -738,6 +738,7 @@ const CHAPTER_VARIANTS = [
     { kw: ['atomic spectra'], icon: 'spectraLines' },
     { kw: ['quantum mechanical'], icon: 'orbitalCloud' },
     { kw: ['heisenberg', 'uncertainty'], icon: 'uncertaintyBlur' },
+    { kw: ['orbitals, quantum numbers'], icon: 'orbitalCloud' },
     { kw: ['atomic number', 'isotope'], icon: 'bohrAtom' },
   ],
   // Ch3 — Classification of Elements & Periodicity
@@ -912,7 +913,6 @@ function renderChapterGrid(sessions, state, today, lastOpened) {
         <div class="ch-num">${String(ch.num).padStart(2, '0')}</div>
       </div>
       <div class="ch-name">${ch.name}</div>
-      <div class="ch-count">${completed} of ${total} sessions</div>
       <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${percent}%"></div></div>
       <div class="weeks-panel"></div>
     `;
@@ -942,7 +942,6 @@ function renderChapterGrid(sessions, state, today, lastOpened) {
           <span class="info">
             <span class="topic">${s.topics[0]}</span>
             ${isToday ? '<span class="today-badge">TODAY</span>' : ''}
-            <div class="dates">${s.dates.join(', ')}</div>
           </span>
           ${hasNote ? '<span class="note-icon">📝</span>' : ''}
           <a class="go-btn" href="${s.file}">GO</a>

@@ -216,17 +216,11 @@ main.dashboard {
   margin-top: 4px;
 }
 
-.chapter-card .ch-count {
-  font-size: 13px;
-  color: var(--color-text-muted);
-  margin-top: 8px;
-}
-
 .progress-bar-track {
+  margin-top: 12px;
   height: 4px;
   background: rgba(255,255,255,0.1);
   border-radius: 4px;
-  margin-top: 12px;
   overflow: hidden;
 }
 
@@ -292,7 +286,6 @@ main.dashboard {
 @keyframes sessOrbitSpin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
 
 .session-entry .info { flex: 1 1 160px; min-width: 0; }
-.session-entry .dates { color: var(--color-text-muted); font-size: 12px; }
 .session-entry .topic {
   color: var(--color-text-body);
   font-size: 14px;
