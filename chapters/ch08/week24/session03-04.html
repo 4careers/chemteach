@@ -1,1 +1,144 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch08 W24 S03-04 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 08 | Week 24 | Session 3-4</div>
+    <div class="session-title">Redox Reactions</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 8 | Week 24 | Session 3-4 | October 29-30, 2026</div>
+    <h1>BALANCING REDOX EQUATIONS: ACIDIC MEDIUM</h1>
+    <div class="topics">Topics covered today:<br>7.3.2 Balancing Redox Equations (Acidic Medium)</div>
+  </div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "reaction-profile", "revealSteps": true, "caption": "Click REVEAL to build the ion-electron (half-reaction) method in acidic medium: split into half-reactions \u2192 balance atoms \u2192 balance O using H2O \u2192 balance H using H+ \u2192 balance charge using electrons \u2192 combine."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "When balancing a redox equation in ACIDIC medium, oxygen atoms are balanced by adding H2O, and hydrogen atoms are balanced by adding H+. Why specifically H+ (not OH-) for hydrogen, given that we're in an acidic solution?", "hint": "Think about which ion is actually abundant in an acidic solution.", "answer": "Because H+ ions are abundant and freely available in an ACIDIC solution \u2014 using OH- would be chemically inconsistent with acidic conditions", "explanation": "In acidic medium, H+ is the dominant, freely available species (that's literally what makes a solution acidic). Balancing hydrogen atoms using H+ keeps the equation chemically consistent with the stated acidic environment. In basic medium (next class), we instead use OH- and H2O, since H+ would be scarce there."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Split, Balance Atoms, Add Water for Oxygen, Add H-Plus for Hydrogen, Add Electrons for Charge", "breakdown": ["Split \u2192 write the two half-reactions separately (oxidation half, reduction half)", "Balance Atoms \u2192 balance all atoms EXCEPT O and H first", "Add Water for Oxygen \u2192 balance O atoms using H2O", "Add H-Plus for Hydrogen \u2192 balance H atoms using H+ (acidic medium only)", "Add Electrons for Charge \u2192 balance charge on each side using electrons, then equalize electrons between both half-reactions before adding them together"], "rule": "Always check the FINAL combined equation balances for both atoms AND overall charge \u2014 this is the ultimate verification step.", "tip": "If the two half-reactions transfer different numbers of electrons, multiply each half-reaction by the appropriate factor before adding, so electrons cancel exactly."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Order the steps of the ion-electron method correctly.", "items": ["Write half-reactions", "Balance O with H2O", "Balance H with H+", "Balance charge with electrons", "Add half-reactions together"], "categories": ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"], "answers": {"Write half-reactions": "Step 1", "Balance O with H2O": "Step 2", "Balance H with H+": "Step 3", "Balance charge with electrons": "Step 4", "Add half-reactions together": "Step 5"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>Ion-electron method balances redox equations via separate half-reactions</li><li>In acidic medium: balance O using H2O, balance H using H+</li><li>Balance charge using electrons; equalize electron count before combining half-reactions</li><li>Final equation must balance both atoms and total charge</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 7.3-1, 2, 3<br>
+      Assignment: 7.3-4, 5
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 6</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch08_w24_s03-04';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(8, 24, '03-04');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>

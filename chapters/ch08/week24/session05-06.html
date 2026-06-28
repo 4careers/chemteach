@@ -1,1 +1,148 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch08 W24 S05-06 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 08 | Week 24 | Session 5-6</div>
+    <div class="session-title">Redox Reactions</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 8 | Week 24 | Session 5-6 | October 31 - November 2, 2026</div>
+    <h1>BALANCING REDOX EQUATIONS: BASIC MEDIUM</h1>
+    <div class="topics">Topics covered today:<br>7.3.2 Balancing Redox Equations (Basic Medium)</div>
+  </div>
+</div>
+
+<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "In acidic medium, you balance O with H2O and H with H+ \u2014 a method that works perfectly when H+ ions are abundant."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "In a BASIC solution, H+ is essentially absent (it's been neutralized by all that OH-). Can the same balancing method still work using H+?"}, "unknown": {"label": "TODAY'S ANSWER", "text": "No \u2014 in basic medium, after balancing as if in acid, we add OH- to BOTH sides to cancel out any H+, converting it into H2O. This adapts the same core method for basic conditions."}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "reaction-profile", "revealSteps": true, "caption": "Click REVEAL to build the basic-medium adaptation: balance as if acidic first \u2192 add equal OH- to both sides to neutralize all H+ \u2192 simplify H+ + OH- pairs into H2O \u2192 cancel duplicate water molecules."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "After balancing a redox equation as if in acidic medium, you find 4 H+ ions in the equation. To convert this to basic medium, how many OH- ions should you add, and to which side(s) of the equation?", "hint": "You must keep the equation balanced \u2014 whatever you add to one side must be mirrored exactly.", "answer": "Add 4 OH- ions to BOTH sides of the equation", "explanation": "To eliminate H+ in basic medium, you add enough OH- to exactly neutralize every H+ present (H+ + OH- \u2192 H2O), but to keep the equation balanced, you must add the SAME number of OH- ions to both sides simultaneously. The 4 H+ on one side combine with 4 of the added OH- to form 4 H2O, while the other 4 OH- (added to the opposite side) remain as is."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Acid First, Then Add OH to Cancel H", "breakdown": ["Acid First \u2192 balance the entire equation using the acidic-medium method (H2O for O, H+ for H)", "Then Add OH to Cancel H \u2192 add OH- ions equal to the H+ count, to BOTH sides", "H+ + OH- \u2192 H2O \u2192 simplify these pairs wherever they appear", "Cancel Duplicate Water \u2192 if H2O appears on both sides, cancel the common amount"], "rule": "This basic-medium method is simply an ADAPTATION of the acidic method \u2014 never a completely separate, independent procedure.", "tip": "Always do a final check: count every atom type AND total charge on both sides to confirm the equation is fully and correctly balanced."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Order the basic-medium balancing adaptation steps correctly.", "items": ["Balance equation as if acidic", "Add OH- to both sides (matching H+ count)", "Combine H+ and OH- into H2O", "Cancel duplicate water molecules"], "categories": ["Step 1", "Step 2", "Step 3", "Step 4"], "answers": {"Balance equation as if acidic": "Step 1", "Add OH- to both sides (matching H+ count)": "Step 2", "Combine H+ and OH- into H2O": "Step 3", "Cancel duplicate water molecules": "Step 4"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>Basic medium balancing: first balance as if acidic, then convert H+ to H2O using OH-</li><li>Add OH- equally to both sides to keep the equation balanced</li><li>Combine H+/OH- pairs into H2O, then cancel any duplicate water molecules</li><li>Always verify both atom balance and charge balance in the final equation</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 7.3-6, 7, 8<br>
+      Assignment: 7.3-9, 10
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 7</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch08_w24_s05-06';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(8, 24, '05-06');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>
