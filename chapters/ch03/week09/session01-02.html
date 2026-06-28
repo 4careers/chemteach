@@ -35,11 +35,11 @@
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="visual-explain" data-config='{"diagram": "energy-level-diagram", "revealSteps": true, "caption": "Click REVEAL to build: IUPAC numerical roots (nil=0, un=1, bi=2...) \u2192 combine digits of Z \u2192 add &#39;-ium&#39; suffix \u2192 systematic temporary name."}'>
+<div class="slide" data-type="iupac-namer" data-config='{}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Nil Un Bi Tri Quad Pent Hex Sept Oct Enn", "breakdown": ["Nil=0, Un=1, Bi=2, Tri=3, Quad=4, Pent=5, Hex=6, Sept=7, Oct=8, Enn=9", "Combine digits of Z, add suffix &#39;-ium&#39; \u2192 e.g. Z=104 \u2192 Un+Nil+Quad+ium = Unnilquadium"], "rule": "Electronic configuration: arrangement of electrons in orbitals, filled following the (n+l) rule / Aufbau principle \u2014 lowest energy orbitals fill first.", "tip": "Electronic configuration follows: Aufbau Principle (fill lowest energy first), Pauli Exclusion (max 2 electrons/orbital, opposite spins), Hund&#39;s Rule (one electron per orbital before pairing)."}'>
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "(n+l) Rule for Filling", "breakdown": ["Lower (n+l) value fills first", "If (n+l) is same, lower n fills first", "Aufbau: build up from lowest energy"], "rule": "Electronic configuration describes the arrangement of electrons in orbitals.", "tip": "Remember Pauli (max 2 e-, opposite spins) and Hund (singly fill degenerate orbitals before pairing)."}'>
   <div class="component-container"></div>
 </div>
 
@@ -81,6 +81,7 @@
 <script src="../../../components/model-3d.js"></script>
 <script src="../../../components/analogy.js"></script>
 <script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/iupac-namer.js"></script>
 <script src="../../../components/drag-drop.js"></script>
 <script src="../../../components/riddle.js"></script>
 <script src="../../../components/mnemonic.js"></script>
@@ -116,6 +117,7 @@ function initCurrentSlide() {
     case 'model-3d': Model3D.init(container, config); break;
     case 'analogy': Analogy.init(container, config); break;
     case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'iupac-namer': IupacNamer.init(container, config); break;
     case 'gamification': DragDrop.init(container, config); break;
     case 'riddle': Riddle.init(container, config); break;
     case 'mnemonic': Mnemonic.init(container, config); break;

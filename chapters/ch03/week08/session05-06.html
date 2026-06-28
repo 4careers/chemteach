@@ -35,11 +35,7 @@
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="visual-explain" data-config='{"diagram": "periodic-table-blocks", "revealSteps": true, "caption": "Click REVEAL to walk through the modern table&#39;s structure: 18 groups, 7 periods, s/p/d/f blocks, and why atomic number (not mass) is the organizing principle."}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="model-3d" data-config='{"model": "atom-bohr", "labels": true, "rotatable": true, "caption": "Drag to rotate. Each element&#39;s identity and position in the table is fixed entirely by its atomic number \u2014 its proton count."}'>
+<div class="slide" data-type="interactive-pt" data-config='{"mode": "explore"}'>
   <div class="component-container"></div>
 </div>
 
@@ -81,6 +77,7 @@
 <script src="../../../components/model-3d.js"></script>
 <script src="../../../components/analogy.js"></script>
 <script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/interactive-pt.js"></script>
 <script src="../../../components/drag-drop.js"></script>
 <script src="../../../components/riddle.js"></script>
 <script src="../../../components/mnemonic.js"></script>
@@ -116,6 +113,7 @@ function initCurrentSlide() {
     case 'model-3d': Model3D.init(container, config); break;
     case 'analogy': Analogy.init(container, config); break;
     case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'interactive-pt': InteractivePT.init(container, config); break;
     case 'gamification': DragDrop.init(container, config); break;
     case 'riddle': Riddle.init(container, config); break;
     case 'mnemonic': Mnemonic.init(container, config); break;
