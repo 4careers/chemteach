@@ -31,10 +31,8 @@ window.MathDerivation = (() => {
           font-size: 1.4rem;
           color: var(--color-text);
           margin: 10px 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
+          text-align: center;
+          line-height: 2;
         }
         .qd-math-row sup, .math-step-text sup {
           vertical-align: super !important;
