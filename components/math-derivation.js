@@ -37,12 +37,14 @@ window.MathDerivation = (() => {
           gap: 10px;
         }
         .qd-math-row sup, .math-step-text sup {
-          vertical-align: super;
-          font-size: 0.6em;
+          vertical-align: super !important;
+          font-size: 0.7em !important;
+          line-height: 0 !important;
         }
         .qd-math-row sub, .math-step-text sub {
-          vertical-align: sub;
-          font-size: 0.6em;
+          vertical-align: sub !important;
+          font-size: 0.7em !important;
+          line-height: 0 !important;
         }
       `;
       document.head.appendChild(style);
@@ -60,7 +62,7 @@ window.MathDerivation = (() => {
     wrapper.style.position = 'relative';
 
     const header = document.createElement('h3');
-    header.textContent = config.title || 'MATHEMATICAL DERIVATION';
+    header.innerHTML = config.title || 'MATHEMATICAL DERIVATION';
     header.style.margin = '0 0 20px 0';
     header.style.color = 'var(--color-accent)';
     header.style.textAlign = 'center';
