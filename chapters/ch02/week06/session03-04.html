@@ -50,54 +50,91 @@
   <div class="component-container"></div>
 </div>
 
-<!-- 4. POSTULATE 1 MATH (Forces) -->
+<!-- 4. MATH (Electrostatic Force) -->
 <div class="slide" data-type="math-derivation" data-config='{
-  "title": "PROOF 1: BALANCING FORCES",
+  "title": "Electrostatic force b/w Nucleus &amp; electron",
   "steps": [
-    { "text": "For a stable circular orbit, the electrostatic attractive force (F<sub>e</sub>) must perfectly balance the centripetal force (F<sub>c</sub>):", "math": "F<sub>e</sub> = F<sub>c</sub>" },
-    { "text": "Coulomb&#39;s Law for Electrostatic Force (where Z is atomic number, e is electron charge):", "math": "F<sub>e</sub> = <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r<sup>2</sup></span></div>" },
-    { "text": "Centripetal Force for a mass m moving at velocity v in radius r:", "math": "F<sub>c</sub> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>" },
-    { "text": "Equating them:", "math": "<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>" },
-    { "text": "Multiply both sides by r to simplify:", "math": "<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = mv<sup>2</sup> <span style=\"font-size:1rem;color:var(--color-text-muted)\">--- (Equation 1)</span>", "finalBox": true }
+    { "text": "Electron moving around the nucleus bz of Electrostatic force.", "math": "F<sub>e</sub> = <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>q<sub>1</sub>q<sub>2</sub></span><span>r<sup>2</sup></span></div>" },
+    { "text": "e<sup>-</sup> in circular path, where it is centre seeking force - Centripetal force.", "math": "F<sub>c</sub> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>" },
+    { "text": "&there4; Equating them:", "math": "F<sub>e</sub> = F<sub>c</sub>" },
+    { "text": "", "math": "<div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>q<sub>1</sub>q<sub>2</sub></span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>" },
+    { "text": "Where q<sub>1</sub> = ze, q<sub>2</sub> = e", "math": "<div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze &middot; e</span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>" },
+    { "text": "", "math": "<div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div>", "finalBox": true }
   ]
 }'>
   <div class="component-container"></div>
 </div>
 
-<!-- 5. POSTULATE 2 MATH (Radius & Velocity) -->
+<!-- 5. MATH (Radius of Electron) -->
 <div class="slide" data-type="math-derivation" data-config='{
-  "title": "PROOF 2: RADIUS AND VELOCITY",
+  "title": "Radius of Electron",
   "steps": [
-    { "text": "From Postulate 2, Angular Momentum is quantized:", "math": "mvr = <div class=\"qd-frac\"><span>nh</span><span>2π</span></div>" },
-    { "text": "Rearranging for velocity (v):", "math": "v = <div class=\"qd-frac\"><span>nh</span><span>2πmr</span></div>" },
-    { "text": "Substitute v into Equation 1 (<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = mv<sup>2</sup>):", "math": "<div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = m <left>(</left><div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>4π<sup>2</sup>m<sup>2</sup>r<sup>2</sup></span></div><right>)</right>" },
-    { "text": "Solving for radius r gives the radius of the n<sup>th</sup> orbit:", "math": "r<sub>n</sub> = <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>4π<sup>2</sup>mkZe<sup>2</sup></span></div> = 0.529 <div class=\"qd-frac\"><span>n<sup>2</sup></span><span>Z</span></div> &Aring;", "finalBox": true },
-    { "text": "Substituting r back into the velocity equation gives v<sub>n</sub>:", "math": "v<sub>n</sub> = <div class=\"qd-frac\"><span>2πkZe<sup>2</sup></span><span>nh</span></div> = 2.18 &times; 10<sup>6</sup> <div class=\"qd-frac\"><span>Z</span><span>n</span></div> m/s", "finalBox": true }
+    { "text": "From quantization:", "math": "<div class=\"qd-frac\"><span>nh</span><span>2π</span></div> = mvr &rarr; &nbsp; <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>4π<sup>2</sup></span></div> = m<sup>2</sup>v<sup>2</sup>r<sup>2</sup> &nbsp;&nbsp; &rarr; ③" },
+    { "text": "From electrostatic force:", "math": "<div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mv<sup>2</sup></span><span>r</span></div> &nbsp;&nbsp; &rarr; ②" },
+    { "text": "Divide eq ③ in ②", "math": "<div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup> / 4π<sup>2</sup></span><span>1/4π&epsilon;<sub>0</sub> &middot; ze<sup>2</sup>/r<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>m<sup>2</sup>v<sup>2</sup>r<sup>2</sup></span><span>mv<sup>2</sup> / r</span></div>" },
+    { "text": "", "math": "&rArr; <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup></span><span>π</span></div> &times; <div class=\"qd-frac\"><span>&epsilon;<sub>0</sub>r<sup>2</sup></span><span>ze<sup>2</sup></span></div> = mr<sup>3</sup>" },
+    { "text": "", "math": "&rArr; r = <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub></span><span>mπze<sup>2</sup></span></div>" },
+    { "text": "", "math": "r<sub>n</sub> = <div class=\"qd-frac\"><span>h<sup>2</sup>&epsilon;<sub>0</sub></span><span>πme<sup>2</sup></span></div> <div class=\"qd-frac\"><span>n<sup>2</sup></span><span>z</span></div>" },
+    { "text": "r<sub>n</sub> = 5.291 &times; 10<sup>-11</sup> &middot; n<sup>2</sup>/z meters <br> or 0.529 n<sup>2</sup>/z &Aring; <br> or 0.0529 n<sup>2</sup>/z nm", "math": "r<sub>n</sub> = 52.9 <div class=\"qd-frac\"><span>n<sup>2</sup></span><span>z</span></div> pm", "finalBox": true }
   ]
 }'>
   <div class="component-container"></div>
 </div>
 
-<!-- 6. POSTULATE 3 VISUAL/TEXT -->
+<!-- 6. MATH (Velocity of electron) -->
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "Velocity of electron",
+  "steps": [
+    { "text": "", "math": "mvr = n<div class=\"qd-frac\"><span>h</span><span>2π</span></div> &nbsp;&nbsp;&nbsp; &rarr; ①" },
+    { "text": "", "math": "r = <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub></span><span>πmze<sup>2</sup></span></div> &nbsp;&nbsp;&nbsp; &rarr; ②" },
+    { "text": "Substitute r in eq ①", "math": "mv <div class=\"qd-frac\"><span>n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub></span><span>πmze<sup>2</sup></span></div> = n<div class=\"qd-frac\"><span>h</span><span>2π</span></div>" },
+    { "text": "", "math": "<div class=\"qd-frac\"><span>vnh&epsilon;<sub>0</sub></span><span>ze<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>1</span><span>2</span></div>" },
+    { "text": "", "math": "2vnh&epsilon;<sub>0</sub> = ze<sup>2</sup>" },
+    { "text": "", "math": "v = <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>2nh&epsilon;<sub>0</sub></span></div> = <div class=\"qd-frac\"><span>e<sup>2</sup></span><span>h&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>z</span><span>n</span></div>" },
+    { "text": "", "math": "v = 2.18 &times; 10<sup>6</sup> <div class=\"qd-frac\"><span>z</span><span>n</span></div> m/s", "finalBox": true }
+  ]
+}'>
+  <div class="component-container"></div>
+</div>
+
+<!-- 7. POSTULATE 3 VISUAL/TEXT -->
 <div class="slide" data-type="riddle" data-config='{"question": "POSTULATE 3: STATIONARY STATES<br><br>According to Bohr, an electron in an orbit does NOT radiate energy continuously, even though it is constantly accelerating. This directly contradicts classical electromagnetic theory. Why did Bohr make this assumption?", "hint": "Think about what would happen to the atom if classical theory were followed exactly.", "answer": "Classical theory predicted the atom would COLLAPSE instantly.", "explanation": "If electrons radiated energy continuously while orbiting, they would spiral into the nucleus in a fraction of a second. Bohr boldly declared certain orbits stable by postulate \u2014 a revolutionary assumption that worked perfectly for hydrogen."}'>
   <div class="component-container"></div>
 </div>
 
-<!-- 7. POSTULATE 4 VISUAL -->
+<!-- 8. POSTULATE 4 VISUAL -->
 <div class="slide" data-type="bohr-transition-sim" data-config='{}'>
   <div class="component-container"></div>
 </div>
 
-<!-- 8. POSTULATE 4 MATH (Energy) -->
+<!-- 9. MATH (Energy of electron) -->
 <div class="slide" data-type="math-derivation" data-config='{
-  "title": "PROOF 3: ENERGY OF THE ELECTRON",
+  "title": "Energy of electron",
   "steps": [
-    { "text": "Kinetic Energy (KE = &frac12;mv<sup>2</sup>). Using Eq 1 (mv<sup>2</sup> = kZe<sup>2</sup>/r):", "math": "KE = <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>2r</span></div>" },
-    { "text": "Potential Energy (PE) between charges +Ze and -e:", "math": "PE = - <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div>" },
-    { "text": "Total Energy (E = KE + PE):", "math": "E = <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>2r</span></div> - <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>r</span></div> = - <div class=\"qd-frac\"><span>kZe<sup>2</sup></span><span>2r</span></div>" },
-    { "text": "Notice a fundamental relationship:", "math": "KE = -E <br> PE = 2E" },
-    { "text": "Substitute the formula for r<sub>n</sub> into Total Energy E:", "math": "E<sub>n</sub> = - <div class=\"qd-frac\"><span>2π<sup>2</sup>mk<sup>2</sup>Z<sup>2</sup>e<sup>4</sup></span><span>n<sup>2</sup>h<sup>2</sup></span></div>", "finalBox": true },
-    { "text": "Plugging in the constants gives the famous equation in eV:", "math": "E<sub>n</sub> = -13.6 <div class=\"qd-frac\"><span>Z<sup>2</sup></span><span>n<sup>2</sup></span></div> eV", "finalBox": true }
+    { "text": "K.E of e<sup>-</sup>", "math": "KE = &frac12;mv<sup>2</sup>" },
+    { "text": "v = ze<sup>2</sup> / 2h&epsilon;<sub>0</sub>n", "math": "KE = &frac12;m <div class=\"qd-frac\"><span>z<sup>2</sup>e<sup>4</sup></span><span>4h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup>n<sup>2</sup></span></div> = <div class=\"qd-frac\"><span>mz<sup>2</sup>e<sup>4</sup></span><span>8h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup>n<sup>2</sup></span></div>" },
+    { "text": "K.E = 13.6 z<sup>2</sup>/n<sup>2</sup> ev", "math": "KE = <div class=\"qd-frac\"><span>me<sup>4</sup></span><span>8h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup></span></div> <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>" },
+    { "text": "P.E of e<sup>-</sup> &nbsp; (where q<sub>1</sub>=ze, q<sub>2</sub>=e)", "math": "PE = - <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>q<sub>1</sub>q<sub>2</sub></span><span>r</span></div> = - <div class=\"qd-frac\"><span>1</span><span>4π&epsilon;<sub>0</sub></span></div> <div class=\"qd-frac\"><span>ze<sup>2</sup></span><span>r</span></div>" },
+    { "text": "Substitute r = (n<sup>2</sup>h<sup>2</sup>&epsilon;<sub>0</sub>) / (πmze<sup>2</sup>)", "math": "PE = - <div class=\"qd-frac\"><span>me<sup>4</sup></span><span>4h<sup>2</sup>&epsilon;<sub>0</sub><sup>2</sup></span></div> &times; <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> = -2 &times; 13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>" },
+    { "text": "P.E = -27.2 z<sup>2</sup>/n<sup>2</sup> ev", "math": "Total energy of electron" },
+    { "text": "TE = PE + KE", "math": "TE = -27.2 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> + 13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div> ev" },
+    { "text": "", "math": "TE = -13.6 <div class=\"qd-frac\"><span>z<sup>2</sup></span><span>n<sup>2</sup></span></div>", "finalBox": true }
+  ]
+}'>
+  <div class="component-container"></div>
+</div>
+
+<!-- 9.1 MATH (Frequency) -->
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "Frequency of radiation (IV Postulate)",
+  "steps": [
+    { "text": "Energy Gain or Loses energy equal to diff. in 2 energy level.", "math": "&Delta;E = E<sub>f</sub> - E<sub>i</sub>" },
+    { "text": "Example (Hydrogen):", "math": "&Delta;E = -3.4 - (-13.6) = 10.2 ev" },
+    { "text": "IV Postulate:", "math": "E = h&nu;" },
+    { "text": "", "math": "&Delta;E = E<sub>f</sub> - E<sub>i</sub>" },
+    { "text": "", "math": "h&nu; = E<sub>f</sub> - E<sub>i</sub>" },
+    { "text": "", "math": "&nu; = <div class=\"qd-frac\"><span>E<sub>f</sub> - E<sub>i</sub></span><span>h</span></div>" },
+    { "text": "", "math": "&nu; = <div class=\"qd-frac\"><span>&Delta;E</span><span>h</span></div>", "finalBox": true }
   ]
 }'>
   <div class="component-container"></div>
@@ -130,7 +167,7 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 10</span>
+  <span id="slide-counter">Slide 1 of 12</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
