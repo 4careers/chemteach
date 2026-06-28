@@ -83,6 +83,8 @@ window.QuantumSim = (() => {
       initOrbitalCollapse(ctx, canvas, controls);
     } else if (config.mode === 'orbital-shapes') {
       initOrbitalShapes(ctx, canvas, controls);
+    } else if (config.mode === 'double-slit') {
+      initDoubleSlit(ctx, canvas, controls);
     }
 
     // --- Bohr Failure Simulation ---
@@ -522,6 +524,140 @@ window.QuantumSim = (() => {
         ctx.beginPath();
         ctx.arc(cx, cy, 2, 0, Math.PI*2);
         ctx.fill();
+
+        animationId = requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // --- Double Slit Experiment ---
+    function initDoubleSlit(ctx, canvas, controls) {
+      let mode = 'particle';
+      
+      const btnParticle = document.createElement('button');
+      btnParticle.className = 'qd-btn qd-btn-cyan';
+      btnParticle.textContent = 'Particle Mode (Expected)';
+      
+      const btnWave = document.createElement('button');
+      btnWave.className = 'qd-btn';
+      btnWave.textContent = 'Wave Mode (Observed)';
+
+      controls.appendChild(btnParticle);
+      controls.appendChild(btnWave);
+
+      btnParticle.onclick = () => { mode = 'particle'; btnParticle.classList.add('qd-btn-cyan'); btnWave.classList.remove('qd-btn-cyan'); };
+      btnWave.onclick = () => { mode = 'wave'; btnWave.classList.add('qd-btn-cyan'); btnParticle.classList.remove('qd-btn-cyan'); };
+
+      let time = 0;
+      let particles = [];
+      
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        time += 0.05;
+
+        // Draw Electron Gun
+        ctx.fillStyle = '#444';
+        ctx.fillRect(20, canvas.height/2 - 20, 40, 40);
+        ctx.fillStyle = '#06b6d4';
+        ctx.fillRect(60, canvas.height/2 - 5, 10, 10);
+        
+        // Draw Slit Barrier
+        const barrierX = 300;
+        ctx.fillStyle = 'rgba(255,255,255,0.8)';
+        ctx.fillRect(barrierX, 0, 10, canvas.height/2 - 40);
+        ctx.fillRect(barrierX, canvas.height/2 - 10, 10, 20);
+        ctx.fillRect(barrierX, canvas.height/2 + 40, 10, canvas.height/2 - 40);
+
+        // Draw Screen
+        const screenX = canvas.width - 40;
+        ctx.fillStyle = '#222';
+        ctx.fillRect(screenX, 0, 20, canvas.height);
+
+        if (mode === 'particle') {
+          // Fire particles
+          if (Math.random() < 0.3) {
+            const vy = (Math.random() - 0.5) * 2;
+            particles.push({x: 70, y: canvas.height/2, vx: 5, vy: vy, alive: true});
+          }
+          
+          ctx.fillStyle = '#fff';
+          particles.forEach(p => {
+            if (!p.alive) return;
+            p.x += p.vx;
+            p.y += p.vy;
+            
+            // collision with barrier
+            if (p.x > barrierX && p.x < barrierX + 10) {
+              if (p.y < canvas.height/2 - 40 || (p.y > canvas.height/2 - 10 && p.y < canvas.height/2 + 40) || p.y > canvas.height/2 + 40) {
+                p.alive = false;
+              }
+            }
+            
+            // collision with screen
+            if (p.x > screenX) {
+              p.vx = 0; p.vy = 0;
+            } else {
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+              ctx.fill();
+            }
+          });
+          
+          // Draw Hits on Screen
+          ctx.fillStyle = 'rgba(255,255,255,0.5)';
+          particles.forEach(p => {
+            if (p.x > screenX) {
+              ctx.beginPath();
+              ctx.arc(screenX + 5, p.y, 1.5, 0, Math.PI*2);
+              ctx.fill();
+            }
+          });
+          
+        } else {
+          // Wave mode
+          particles = [];
+          
+          // Draw incoming plane waves
+          ctx.strokeStyle = 'rgba(0, 180, 204, 0.4)';
+          ctx.lineWidth = 2;
+          for(let i=0; i<10; i++) {
+            let wx = 70 + ((time * 20 + i * 25) % (barrierX - 70));
+            ctx.beginPath();
+            ctx.moveTo(wx, 0);
+            ctx.lineTo(wx, canvas.height);
+            ctx.stroke();
+          }
+          
+          // Draw concentric waves from slits
+          const slit1Y = canvas.height/2 - 25;
+          const slit2Y = canvas.height/2 + 25;
+          
+          ctx.lineWidth = 1.5;
+          for (let i=0; i<20; i++) {
+            let radius = (time * 20 + i * 20) % (screenX - barrierX);
+            let alpha = Math.max(0, 1 - radius / (screenX - barrierX));
+            ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.5})`;
+            
+            ctx.beginPath();
+            ctx.arc(barrierX + 10, slit1Y, radius, -Math.PI/2, Math.PI/2);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(barrierX + 10, slit2Y, radius, -Math.PI/2, Math.PI/2);
+            ctx.stroke();
+          }
+          
+          // Draw interference pattern on screen
+          for (let y=0; y<canvas.height; y+=4) {
+            let d1 = Math.sqrt(Math.pow(screenX - barrierX, 2) + Math.pow(y - slit1Y, 2));
+            let d2 = Math.sqrt(Math.pow(screenX - barrierX, 2) + Math.pow(y - slit2Y, 2));
+            let phaseDiff = Math.abs(d1 - d2);
+            let intensity = Math.pow(Math.cos(phaseDiff * 0.15), 2);
+            
+            ctx.fillStyle = `rgba(0, 255, 200, ${intensity * 0.8})`;
+            ctx.fillRect(screenX, y, 20, 4);
+          }
+        }
 
         animationId = requestAnimationFrame(draw);
       }
