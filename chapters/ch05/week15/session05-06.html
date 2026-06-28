@@ -1,1 +1,148 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch05 W15 S05-06 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 05 | Week 15 | Session 5-6</div>
+    <div class="session-title">Thermodynamics</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 5 | Week 15 | Session 5-6 | August 31 - September 1, 2026</div>
+    <h1>GIBBS ENERGY & EQUILIBRIUM CONSTANT</h1>
+    <div class="topics">Topics covered today:<br>5.7 Gibbs Energy, Equilibrium Constant</div>
+  </div>
+</div>
+
+<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "Spontaneity depends on BOTH enthalpy (\u0394H) and entropy (\u0394S) \u2014 but juggling two separate quantities to predict spontaneity is awkward."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "Can both \u0394H and \u0394S be combined into ONE single number that directly tells us whether a process will be spontaneous?"}, "unknown": {"label": "TODAY'S ANSWER", "text": "Yes \u2014 Gibbs Free Energy: \u0394G = \u0394H \u2212 T\u0394S. A single calculation, and a single, definitive rule: \u0394G negative means spontaneous, period."}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "reaction-profile", "revealSteps": true, "caption": "Click REVEAL to build: \u0394G = \u0394H \u2212 T\u0394S \u2192 \u0394G<0 spontaneous, \u0394G>0 non-spontaneous, \u0394G=0 equilibrium \u2192 relationship to equilibrium constant K via \u0394G\u00b0 = \u2212RT ln K."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "A reaction has \u0394H = +50 kJ (unfavourable) and \u0394S = +200 J/K (favourable). At very LOW temperature, would you expect this reaction to be spontaneous or not?", "hint": "\u0394G = \u0394H \u2212 T\u0394S. At low T, the T\u0394S term is small.", "answer": "NOT SPONTANEOUS at low temperature (\u0394G would be positive)", "explanation": "At low T, the T\u0394S term is small, so \u0394G \u2248 \u0394H = +50 kJ, which is positive (non-spontaneous). Only at sufficiently HIGH temperature does T\u0394S grow large enough to overcome the positive \u0394H and make \u0394G negative \u2014 this is exactly why some reactions only become spontaneous above a certain temperature."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "G Equals H Minus T S, Negative Means Go", "breakdown": ["G Equals H Minus T S \u2192 \u0394G = \u0394H \u2212 T\u0394S (Gibbs Free Energy equation)", "Negative Means Go \u2192 \u0394G < 0: spontaneous (reaction proceeds forward on its own)", "Positive Means No \u2192 \u0394G > 0: non-spontaneous (reverse reaction is favoured)", "Zero Means Equilibrium \u2192 \u0394G = 0: system is at equilibrium"], "rule": "\u0394G\u00b0 = \u2212RT ln K, connecting standard Gibbs energy change directly to the equilibrium constant K.", "tip": "Large negative \u0394G\u00b0 corresponds to a large K (equilibrium favours products strongly); large positive \u0394G\u00b0 corresponds to a tiny K (equilibrium favours reactants strongly)."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Sort each \u0394G value to its meaning.", "items": ["\u0394G = -50 kJ", "\u0394G = +30 kJ", "\u0394G = 0"], "categories": ["Spontaneous", "Non-spontaneous", "At Equilibrium"], "answers": {"\u0394G = -50 kJ": "Spontaneous", "\u0394G = +30 kJ": "Non-spontaneous", "\u0394G = 0": "At Equilibrium"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>Gibbs Free Energy: ΔG = ΔH − TΔS, combines enthalpy and entropy into one spontaneity criterion</li><li>ΔG < 0: spontaneous; ΔG > 0: non-spontaneous; ΔG = 0: equilibrium</li><li>ΔG° = −RT ln K links Gibbs energy directly to the equilibrium constant</li><li>Temperature can flip a reaction's spontaneity if ΔH and ΔS have opposing signs</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 5.7-1, 2, 3<br>
+      Assignment: 5.7-4, 5
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 7</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch05_w15_s05-06';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(5, 15, '05-06');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>

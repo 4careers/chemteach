@@ -1,1 +1,148 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch05 W14 S03-04 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 05 | Week 14 | Session 3-4</div>
+    <div class="session-title">Thermodynamics</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 5 | Week 14 | Session 3-4 | August 22-24, 2026</div>
+    <h1>HESS'S LAW</h1>
+    <div class="topics">Topics covered today:<br>5.4(e) Hess's Law and Numericals</div>
+  </div>
+</div>
+
+<div class="slide" data-type="story" data-config='{"setting": "Russia, 1840", "narrative": "Germain Hess wanted to measure the enthalpy of forming carbon dioxide directly from carbon and oxygen \u2014 but the reaction was inconveniently hard to measure cleanly in one step. So he tried something clever: he measured carbon burning to CO first, then CO burning to CO2, and added the two enthalpy values together. The total matched the direct, one-step reaction's enthalpy exactly. He had discovered something profound about energy itself.", "reveal": "Since enthalpy is a state function, it doesn't matter HOW you get from reactants to products \u2014 the total energy change is always the same.", "visual": "modern-lab"}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "reaction-profile", "revealSteps": true, "caption": "Click REVEAL to build a Hess's Law cycle: direct path (1 step) vs indirect path (2+ steps) \u2014 both must give the SAME total \u0394H."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "Why does Hess's Law work AT ALL \u2014 what single property of enthalpy makes it mathematically guaranteed that different reaction paths give the same total \u0394H?", "hint": "Think back to state functions vs path functions.", "answer": "Because ENTHALPY IS A STATE FUNCTION \u2014 it depends only on initial and final states, never on the path taken", "explanation": "Since enthalpy depends only on the starting and ending states (not the route taken), ANY path between the same reactants and products must give the identical total \u0394H. This is exactly why Hess's Law works \u2014 it's really just a direct consequence of enthalpy being a state function, not a separate, independent law of nature."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Add the Steps, Same Total Always", "breakdown": ["Add the Steps \u2192 break a hard-to-measure reaction into a series of easier, measurable steps", "Same Total Always \u2192 sum of \u0394H for all steps equals \u0394H for the direct, one-step reaction", "Why \u2192 enthalpy is a state function; path never matters, only start and end points"], "rule": "When combining equations, reversing a reaction flips the sign of its \u0394H; multiplying a reaction by a factor multiplies its \u0394H by the same factor.", "tip": "Hess's Law lets chemists calculate enthalpies for reactions that are dangerous, slow, or impossible to measure directly \u2014 by building them from known, measurable steps."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Match each Hess's Law manipulation to its effect on \u0394H.", "items": ["Reverse a reaction", "Double a reaction's coefficients", "Add two reactions together", "Halve a reaction's coefficients"], "categories": ["\u0394H sign flips", "\u0394H doubles", "\u0394H values add together", "\u0394H halves"], "answers": {"Reverse a reaction": "\u0394H sign flips", "Double a reaction's coefficients": "\u0394H doubles", "Add two reactions together": "\u0394H values add together", "Halve a reaction's coefficients": "\u0394H halves"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>Hess's Law: total ΔH for a reaction is the same regardless of the path/number of steps taken</li><li>This follows directly from enthalpy being a state function</li><li>Reversing a reaction flips the sign of ΔH; scaling a reaction scales ΔH proportionally</li><li>Used to calculate ΔH for reactions that are hard to measure directly</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 5.4-6, 7, 8<br>
+      Assignment: 5.4-9, 10
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 7</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch05_w14_s03-04';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(5, 14, '03-04');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>

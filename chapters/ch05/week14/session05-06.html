@@ -1,1 +1,148 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch05 W14 S05-06 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 05 | Week 14 | Session 5-6</div>
+    <div class="session-title">Thermodynamics</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 5 | Week 14 | Session 5-6 | August 25-26, 2026</div>
+    <h1>ENTHALPIES OF COMBUSTION, ATOMISATION & BOND</h1>
+    <div class="topics">Topics covered today:<br>5.5 Enthalpies: Combustion, Atomisation, Bond</div>
+  </div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "reaction-profile", "revealSteps": true, "caption": "Click REVEAL to build: enthalpy of combustion (always exothermic, complete burning in O2) \u2192 enthalpy of atomisation (breaking into free atoms) \u2192 bond enthalpy (per mole of specific bonds)."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "Enthalpy of combustion is ALWAYS negative (exothermic) for any substance that burns. But enthalpy of atomisation is ALWAYS positive (endothermic), for any substance whatsoever. Why does atomisation always require energy input, with no exceptions?", "hint": "Think about what atomisation actually does to chemical bonds.", "answer": "Because atomisation means BREAKING bonds completely into free atoms, and breaking any bond always requires energy input", "explanation": "Atomisation enthalpy specifically measures the energy needed to break ALL bonds in a substance, separating it into individual gaseous atoms. Since bond-breaking always requires energy (you have to overcome the attractive force holding atoms together), atomisation enthalpy is always positive \u2014 there is no chemical substance for which breaking it apart releases energy."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Burn Releases, Break Absorbs, Bond Strength Tells", "breakdown": ["Burn Releases \u2192 enthalpy of combustion: always exothermic (negative \u0394H), complete burning in excess oxygen", "Break Absorbs \u2192 enthalpy of atomisation: always endothermic (positive \u0394H), breaking into free gaseous atoms", "Bond Strength Tells \u2192 bond enthalpy: energy needed to break ONE mole of a specific bond in gaseous state"], "rule": "Average bond enthalpy is used for bonds appearing in multiple environments (e.g. C-H bonds vary slightly depending on the rest of the molecule) \u2014 it's an average across many similar bonds.", "tip": "Stronger bonds have HIGHER bond enthalpy (more energy needed to break them) and are generally SHORTER in length."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="analogy" data-config='{"realWorld": {"label": "DEMOLISHING A BUILDING vs BUILDING IT", "visual": "see-saw", "fact": "Constructing a building releases potential energy as materials settle into stable positions; demolishing it (breaking all those connections) requires significant energy input \u2014 explosives, machinery, force."}, "chemistry": {"label": "BOND FORMATION vs BOND BREAKING", "visual": "mole-atoms", "fact": "Forming a bond releases energy (system becomes more stable). Breaking a bond always requires energy input (overcoming the attraction holding atoms together) \u2014 exactly like demolition requiring force."}, "bridge": "Just as building releases energy into stability while demolishing requires energy input, bond formation releases energy while bond breaking always demands it."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Sort each enthalpy type as Always Exothermic or Always Endothermic.", "items": ["Enthalpy of Combustion", "Enthalpy of Atomisation", "Bond Breaking", "Bond Formation"], "categories": ["Always Exothermic", "Always Endothermic"], "answers": {"Enthalpy of Combustion": "Always Exothermic", "Enthalpy of Atomisation": "Always Endothermic", "Bond Breaking": "Always Endothermic", "Bond Formation": "Always Exothermic"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>Enthalpy of combustion: always exothermic, complete burning in excess O2</li><li>Enthalpy of atomisation: always endothermic, breaking into free gaseous atoms</li><li>Bond enthalpy: energy per mole to break a specific bond in gaseous state</li><li>Bond breaking is always endothermic; bond formation is always exothermic</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 5.5-1, 2, 3<br>
+      Assignment: 5.5-4, 5
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 7</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch05_w14_s05-06';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(5, 14, '05-06');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>

@@ -1,1 +1,152 @@
-<!-- CONTENT PENDING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch05 W15 S01-02 | ChemTeach</title>
+<link rel="stylesheet" href="../../../assets/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/session.css">
+</head>
+<body>
+
+<div class="slide-header">
+  <div>
+    <div class="crumb">Chapter 05 | Week 15 | Session 1-2</div>
+    <div class="session-title">Thermodynamics</div>
+  </div>
+  <div class="top-controls">
+    <button id="btn-home">HOME</button>
+    <button id="btn-complete">MARK COMPLETE</button>
+    <button id="btn-fullscreen">FULLSCREEN</button>
+  </div>
+</div>
+
+<div class="slide active" data-type="static">
+  <div class="title-card">
+    <div class="meta">Chapter 5 | Week 15 | Session 1-2 | August 26-27, 2026</div>
+    <h1>LATTICE ENTHALPY, ENTHALPY OF SOLUTION & DILUTION</h1>
+    <div class="topics">Topics covered today:<br>5.5(d-f) Lattice Enthalpy, Solution, Dilution</div>
+  </div>
+</div>
+
+<div class="slide" data-type="model-3d" data-config='{"model": "nacl-crystal", "labels": true, "rotatable": true, "caption": "Drag to rotate. Lattice enthalpy: the energy needed to completely separate this NaCl crystal lattice into individual gaseous Na+ and Cl- ions."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "Lattice enthalpy is the energy needed to break apart an ionic solid into its gaseous ions \u2014 always a large, positive (endothermic) value."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "If breaking apart NaCl's lattice takes SO much energy, why does salt dissolve in water so easily and quickly, seemingly without effort?"}, "unknown": {"label": "TODAY'S ANSWER", "text": "Dissolving isn't just lattice breaking \u2014 water molecules surround and stabilize each released ion (hydration), RELEASING a large amount of energy that mostly cancels out the lattice energy cost."}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "reaction-profile", "revealSteps": true, "caption": "Click REVEAL to build the dissolution cycle: lattice enthalpy (+, breaking solid) + enthalpy of hydration (\u2212, ions surrounded by water) = enthalpy of solution (small, can be + or \u2212)."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="riddle" data-config='{"question": "Dissolving some salts in water makes the solution noticeably COLD (endothermic), while dissolving others makes it noticeably WARM (exothermic). What does this difference tell you about the relative SIZE of lattice enthalpy versus hydration enthalpy for each salt?", "hint": "Compare which of the two opposing energy terms 'wins' in each case.", "answer": "If lattice enthalpy > hydration enthalpy (magnitude), dissolution is endothermic (cold). If hydration enthalpy > lattice enthalpy, dissolution is exothermic (warm)", "explanation": "Enthalpy of solution = Lattice enthalpy (always +) + Enthalpy of hydration (always \u2212, since ion-water attraction releases energy). When the energy COST of breaking the lattice exceeds the energy RELEASED by hydration, the net process is endothermic (solution cools). When hydration releases more than the lattice costs, the net process is exothermic (solution warms)."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Lattice Costs, Hydration Pays Back", "breakdown": ["Lattice Costs \u2192 lattice enthalpy: always positive, energy needed to break the ionic solid apart", "Hydration Pays Back \u2192 enthalpy of hydration: always negative, energy released as water surrounds and stabilizes each ion", "Net Result \u2192 enthalpy of solution = lattice enthalpy + hydration enthalpy (can be + or \u2212 depending on which dominates)"], "rule": "Enthalpy of dilution: further heat change when more solvent is added to an already-dissolved solution \u2014 usually small compared to the initial enthalpy of solution.", "tip": "Smaller, more highly charged ions have BOTH higher lattice enthalpy AND higher hydration enthalpy \u2014 the two effects often partially cancel."}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="gamification" data-config='{"instruction": "Match each term to its sign and meaning.", "items": ["Lattice Enthalpy", "Enthalpy of Hydration", "Enthalpy of Solution (when net endothermic)"], "categories": ["Always positive", "Always negative", "Lattice > Hydration in magnitude"], "answers": {"Lattice Enthalpy": "Always positive", "Enthalpy of Hydration": "Always negative", "Enthalpy of Solution (when net endothermic)": "Lattice > Hydration in magnitude"}}'>
+  <div class="component-container"></div>
+</div>
+
+<div class="slide" data-type="static">
+  <div class="summary-card">
+    <h1>✓ SESSION COMPLETE</h1>
+    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
+    <ul><li>Lattice enthalpy: always positive, energy to break ionic solid into gaseous ions</li><li>Enthalpy of hydration: always negative, energy released surrounding ions with water</li><li>Enthalpy of solution = lattice enthalpy + hydration enthalpy</li><li>Enthalpy of dilution: additional heat change on adding more solvent</li></ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: 5.5-6, 7, 8<br>
+      Assignment: 5.5-9, 10
+    </div>
+  </div>
+</div>
+
+<div class="slide-nav">
+  <button id="btn-prev">◀ PREV</button>
+  <span id="slide-counter">Slide 1 of 8</span>
+  <button id="btn-next">NEXT ▶</button>
+</div>
+
+<script src="../../../progress.js"></script>
+<script src="../../../components/story.js"></script>
+<script src="../../../components/scaffold.js"></script>
+<script src="../../../components/particle-sim.js"></script>
+<script src="../../../components/model-3d.js"></script>
+<script src="../../../components/analogy.js"></script>
+<script src="../../../components/visual-explain.js"></script>
+<script src="../../../components/drag-drop.js"></script>
+<script src="../../../components/riddle.js"></script>
+<script src="../../../components/mnemonic.js"></script>
+<script src="../../../components/comic-strip.js"></script>
+<script src="../../../components/animation.js"></script>
+<script>
+const SESSION_ID = 'ch05_w15_s01-02';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+  document.getElementById('btn-prev').disabled = currentSlide === 0;
+  document.getElementById('btn-next').disabled = currentSlide === slides.length - 1;
+  ChemProgress.setLastSlide(SESSION_ID, currentSlide + 1);
+  initCurrentSlide();
+}
+
+function initCurrentSlide() {
+  const slide = slides[currentSlide];
+  const type = slide.dataset.type;
+  const container = slide.querySelector('.component-container');
+  if (!container || container.dataset.init === 'true') return;
+  container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  switch (type) {
+    case 'story': Story.init(container, config); break;
+    case 'known-unknown': Scaffold.init(container, config); break;
+    case 'experiment-sim': ParticleSim.init(container, config); break;
+    case 'model-3d': Model3D.init(container, config); break;
+    case 'analogy': Analogy.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'gamification': DragDrop.init(container, config); break;
+    case 'riddle': Riddle.init(container, config); break;
+    case 'mnemonic': Mnemonic.init(container, config); break;
+    case 'comic-strip': ComicStrip.init(container, config); break;
+    case 'animation': ChemAnimation.init(container, config); break;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+  if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+});
+
+document.getElementById('btn-prev').onclick = () => goToSlide(currentSlide - 1);
+document.getElementById('btn-next').onclick = () => goToSlide(currentSlide + 1);
+document.getElementById('btn-home').onclick = () => window.location.href = '../../../index.html';
+document.getElementById('btn-complete').onclick = () => {
+  ChemProgress.markComplete(SESSION_ID);
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+};
+document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
+
+ChemProgress.setLastOpened(5, 15, '01-02');
+const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
+goToSlide(savedSlide - 1);
+if (ChemProgress.isComplete(SESSION_ID)) {
+  const btn = document.getElementById('btn-complete');
+  btn.textContent = '✓ COMPLETE';
+  btn.classList.add('is-complete');
+}
+</script>
+</body>
+</html>
