@@ -119,13 +119,17 @@ const MCQOverlay = {
       b.classList.add('dim');
     });
     
+    if (typeof clearFX === 'function') clearFX();
     btn.classList.remove('dim');
+    
     if (selectedIdx === correctIdx) {
       btn.classList.add('correct');
-      if (window.MCQFX) MCQFX.triggerConfetti();
+      if (typeof playWin === 'function') playWin();
+      if (typeof launchConfetti === 'function') launchConfetti();
     } else {
       btn.classList.add('wrong');
-      if (window.MCQFX) MCQFX.triggerBoo();
+      if (typeof playBoo === 'function') playBoo();
+      if (typeof launchBoo === 'function') launchBoo();
       allBtns[correctIdx].classList.remove('dim');
       allBtns[correctIdx].classList.add('correct');
     }
