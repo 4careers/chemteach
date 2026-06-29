@@ -43,13 +43,13 @@ const MCQOverlay = {
   
   open: function(filters) {
     this.initDOM();
-    if (!window.MCQs) {
+    if (typeof MCQs === 'undefined') {
       console.error("MCQs array not loaded");
       return;
     }
     
     // Filter questions based on the criteria passed
-    this.questions = window.MCQs.filter(q => {
+    this.questions = MCQs.filter(q => {
       return filters.some(f => f.category === q.category && f.qNum === q.qNum);
     });
     
