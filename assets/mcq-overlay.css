@@ -198,7 +198,7 @@
 /* In-Slide Button Trigger */
 .mcq-slide-btn {
   position: absolute;
-  bottom: 30px;
+  bottom: 100px;
   right: 30px;
   background: rgba(255, 214, 10, 0.15);
   border: 2px solid #ffd60a;
