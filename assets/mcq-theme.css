@@ -62,6 +62,9 @@ body::before {
 }
 
 /* ── LAYOUT ── */
+#home-view { display: block; }
+#question-view { display: none; }
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
