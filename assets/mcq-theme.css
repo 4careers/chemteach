@@ -63,11 +63,11 @@ body::before {
 
 /* ── CARD ── */
 .q-card {
-  background: var(--card-bg); border: 1.5px solid var(--card-border); border-radius: 28px;
-  padding: 48px 48px 44px; box-shadow: var(--card-shadow); backdrop-filter: blur(8px);
+  background: var(--card-bg); border: 1.5px solid var(--card-border); border-radius: 20px;
+  padding: 24px 32px 24px; box-shadow: var(--card-shadow); backdrop-filter: blur(8px);
   animation: cardIn .4s cubic-bezier(.2,.85,.3,1.1);
   position: relative; overflow: hidden;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .q-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
@@ -78,19 +78,19 @@ body::before {
 @keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
 .q-meta {
-  font-size: 17px; font-weight: 700; color: var(--dimmed); margin-bottom: 12px; letter-spacing: .02em;
+  font-size: 15px; font-weight: 700; color: var(--dimmed); margin-bottom: 12px; letter-spacing: .02em;
   display: flex; justify-content: space-between;
 }
 .q-text {
-  font-size: 26px; font-weight: 700; line-height: 1.45; margin-bottom: 26px; white-space: pre-line;
+  font-size: 20px; font-weight: 700; line-height: 1.45; margin-bottom: 16px; white-space: pre-line;
 }
 
 /* ── OPTIONS (MCQ) ── */
 .q-options-container { position: relative; }
 .q-options { display: flex; flex-direction: column; gap: 0; }
 .opt { 
-  display: flex; align-items: center; gap: 16px; width: 100%; text-align: left; background: var(--opt-bg); border: 2px solid var(--opt-bdr);
-  color: var(--opt-col); padding: 16px 22px; border-radius: 16px; margin-bottom: 14px; font-size: 21px;
+  display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; background: var(--opt-bg); border: 2px solid var(--opt-bdr);
+  color: var(--opt-col); padding: 12px 18px; border-radius: 12px; margin-bottom: 10px; font-size: 18px;
   font-weight: 600; cursor: pointer; transition: all .18s cubic-bezier(.2,.85,.3,1.1); line-height: 1.4; 
 }
 .opt-letter {
@@ -110,7 +110,45 @@ body::before {
 .opt.dim { opacity: .4; }
 
 /* ── SOLUTION BOX ── */
-.sol { display: none; margin-top: 24px; background: var(--sol-bg); border: 1px solid var(--sol-bdr); border-radius: 16px; padding: 22px 26px; font-size: 19px; line-height: 1.65; animation: cardIn 0.4s ease forwards; }
+.sol { 
+  display: none; 
+  background: var(--sol-bg); 
+  border: 1px solid var(--sol-bdr); 
+  border-radius: 16px; 
+  padding: 20px 24px; 
+  font-size: 17px; 
+  line-height: 1.65; 
+  animation: cardIn 0.4s ease forwards;
+  
+  /* Draggable styling */
+  position: absolute;
+  z-index: 50;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: calc(100% - 64px); /* Account for card padding */
+  left: 32px;
+  cursor: grab;
+}
+.sol:active {
+  cursor: grabbing;
+}
+.sol-drag-handle {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+.sol-drag-handle::before {
+  content: '';
+  width: 40px;
+  height: 4px;
+  background: var(--text);
+  border-radius: 2px;
+}
 
 /* ── CONFETTI / BOO OVERLAY ── */
 #fxc { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
@@ -151,3 +189,51 @@ body::before {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .math { font-family: "Cambria Math", "Times New Roman", serif; }
+
+/* ── CATEGORY GRID ── */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.category-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  font-size: 1.1rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.category-btn::after {
+  content: '→';
+  color: var(--dimmed);
+  font-size: 1.5rem;
+  transition: transform 0.2s;
+}
+.category-btn:hover {
+  border-color: var(--plasma);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(37,99,255,0.15);
+}
+.category-btn:hover::after {
+  color: var(--plasma);
+  transform: translateX(4px);
+}
+.bottom-nav {
+  margin-top: 2rem;
+  text-align: center;
+}
+.nav-btn {
+  background: var(--card-bg); color: var(--text); border: 1.5px solid var(--card-border); border-radius: 999px;
+  padding: 14px 26px; font-weight: 700; font-size: 17px; cursor: pointer; transition: all .15s;
+}
+.nav-btn:hover { background: rgba(37,99,255,.16); border-color: rgba(37,99,255,.45); }

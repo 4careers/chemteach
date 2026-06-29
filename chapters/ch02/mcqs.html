@@ -32,7 +32,10 @@
   <div id="question-view">
     <div class="view-header">
       <button class="back-btn" id="btn-back-home">← Categories</button>
-      <h2 id="current-category-title"></h2>
+      <div>
+        <h2 id="current-category-title"></h2>
+        <div id="session-title-display" style="color: var(--dimmed); font-size: 0.9rem; margin-top: 4px;"></div>
+      </div>
     </div>
     <div id="questions-container"></div>
   </div>
@@ -114,6 +117,7 @@
               </div>
             </div>
             <div class="sol">
+              <div class="sol-drag-handle"></div>
               <strong>Explanation:</strong><br>
               ${q.explanation}
             </div>
@@ -124,6 +128,11 @@
       
       questionsContainer.appendChild(topicDiv);
     });
+
+    const bottomNav = document.createElement('div');
+    bottomNav.className = 'bottom-nav';
+    bottomNav.innerHTML = `<button class="nav-btn" onclick="document.getElementById('btn-back-home').click()">← Back to Categories</button>`;
+    questionsContainer.appendChild(bottomNav);
     
     if(window.MathJax) {
       MathJax.typesetPromise();
@@ -146,6 +155,9 @@
         <p>Let's see if you can do it 📝🎯</p>
       `;
       const optionsContainer = card.querySelector('.q-options-container');
+      const solDiv = card.querySelector('.sol');
+      if (solDiv) solDiv.style.display = 'none';
+
       optionsContainer.appendChild(overlay);
       
       // Remove btn smoothly
@@ -184,15 +196,18 @@
       launchBoo();
     }
     
-    // Reveal explanation
-    solDiv.style.display = 'block';
+    // Reveal explanation after 3 seconds
+    setTimeout(() => {
+      solDiv.style.display = 'block';
+      makeDraggable(solDiv);
+    }, 3000);
   }
 
-  // Optional: Scroll to specific session topic if URL parameter exists
+  // Session topic / mapping
   const urlParams = new URLSearchParams(window.location.search);
   const sessionNum = urlParams.get('session');
   if (sessionNum) {
-    // We could automatically filter or scroll based on session, but for now we just show categories
+    document.getElementById('session-title-display').textContent = "Session: " + sessionNum;
   }
 </script>
 </body>
