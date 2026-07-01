@@ -130,14 +130,14 @@
   display: flex; justify-content: space-between;
 }
 #mcq-overlay .q-text {
-  font-size: 20px; font-weight: 700; line-height: 1.45; margin-bottom: 16px; white-space: pre-line;
+  font-size: clamp(20px, 2vw, 40px); font-weight: 700; line-height: 1.45; margin-bottom: 16px; white-space: pre-line;
 }
 
 /* Options */
 #mcq-overlay .q-options { display: flex; flex-direction: column; gap: 0; }
 #mcq-overlay .opt { 
   display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; background: var(--opt-bg); border: 2px solid var(--opt-bdr);
-  color: var(--opt-col); padding: 12px 18px; border-radius: 12px; margin-bottom: 10px; font-size: 18px;
+  color: var(--opt-col); padding: 12px 18px; border-radius: 12px; margin-bottom: 10px; font-size: clamp(18px, 1.8vw, 36px);
   font-weight: 600; cursor: pointer; transition: all .18s cubic-bezier(.2,.85,.3,1.1); line-height: 1.4; 
 }
 #mcq-overlay .opt-letter {
@@ -163,7 +163,7 @@
   border: 1px solid var(--sol-bdr); 
   border-radius: 16px; 
   padding: 20px 24px; 
-  font-size: 17px; 
+  font-size: clamp(17px, 1.8vw, 36px); 
   line-height: 1.65; 
   position: absolute;
   z-index: 50;

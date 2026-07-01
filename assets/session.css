@@ -87,7 +87,7 @@
 }
 
 .slide h1 {
-  font-size: 44px;
+  font-size: clamp(32px, 4vw, 80px);
   color: var(--color-text);
   font-weight: 700;
   text-align: center;
@@ -95,7 +95,7 @@
 }
 
 .slide h2 {
-  font-size: 24px;
+  font-size: clamp(20px, 2.5vw, 50px);
   color: var(--color-accent);
   text-align: center;
   font-weight: 600;
@@ -147,11 +147,11 @@
   font-family: var(--font-mono);
 }
 
-.title-card h1 { font-size: 40px; margin-bottom: 24px; }
+.title-card h1 { font-size: clamp(32px, 4.5vw, 90px); margin-bottom: 24px; }
 
 .title-card .topics {
   color: var(--color-text-body);
-  font-size: 17px;
+  font-size: clamp(16px, 1.8vw, 36px);
   line-height: 1.8;
 }
 
@@ -166,20 +166,20 @@
 
 .summary-card h1 {
   color: var(--color-success);
-  font-size: 32px;
+  font-size: clamp(28px, 3.5vw, 70px);
   margin-bottom: 24px;
 }
 
 .summary-card ul {
   color: var(--color-text-body);
-  font-size: 17px;
+  font-size: clamp(16px, 1.8vw, 36px);
   line-height: 1.8;
   margin: 0 0 24px 20px;
 }
 
 .summary-card .mcq-block {
   color: var(--color-text-muted);
-  font-size: 15px;
+  font-size: clamp(14px, 1.5vw, 32px);
   border-top: 1px solid var(--color-border);
   padding-top: 16px;
   line-height: 1.8;

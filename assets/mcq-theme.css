@@ -140,7 +140,7 @@ body::before {
   border-left: 4px solid var(--plasma);
   border-radius: 0 4px 4px 0;
   margin-bottom: 1.5rem;
-  font-size: 1.2rem;
+  font-size: clamp(1.2rem, 1.5vw, 36px);
   color: var(--plasma);
   font-weight: 700;
 }
@@ -162,11 +162,11 @@ body::before {
 @keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
 .q-meta {
-  font-size: 15px; font-weight: 700; color: var(--dimmed); margin-bottom: 12px; letter-spacing: .02em;
+  font-size: clamp(15px, 1.2vw, 24px); font-weight: 700; color: var(--dimmed); margin-bottom: 12px; letter-spacing: .02em;
   display: flex; justify-content: space-between;
 }
 .q-text {
-  font-size: 20px; font-weight: 700; line-height: 1.45; margin-bottom: 16px; white-space: pre-line;
+  font-size: clamp(20px, 2vw, 40px); font-weight: 700; line-height: 1.45; margin-bottom: 16px; white-space: pre-line;
 }
 
 /* ── OPTIONS (MCQ) ── */
@@ -174,7 +174,7 @@ body::before {
 .q-options { display: flex; flex-direction: column; gap: 0; }
 .opt { 
   display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; background: var(--opt-bg); border: 2px solid var(--opt-bdr);
-  color: var(--opt-col); padding: 12px 18px; border-radius: 12px; margin-bottom: 10px; font-size: 18px;
+  color: var(--opt-col); padding: 12px 18px; border-radius: 12px; margin-bottom: 10px; font-size: clamp(18px, 1.8vw, 36px);
   font-weight: 600; cursor: pointer; transition: all .18s cubic-bezier(.2,.85,.3,1.1); line-height: 1.4; 
 }
 .opt-letter {
@@ -200,7 +200,7 @@ body::before {
   border: 1px solid var(--sol-bdr); 
   border-radius: 16px; 
   padding: 20px 24px; 
-  font-size: 17px; 
+  font-size: clamp(17px, 1.8vw, 36px); 
   line-height: 1.65; 
   animation: cardIn 0.4s ease forwards;
   
@@ -285,7 +285,7 @@ body::before {
   border: 1.5px solid var(--card-border);
   border-radius: 20px;
   padding: 22px 26px;
-  font-size: 1.15rem;
+  font-size: clamp(1.15rem, 2vw, 40px);
   color: var(--text);
   cursor: pointer;
   transition: all 0.22s ease;
