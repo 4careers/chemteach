@@ -279,12 +279,12 @@ window.QuantumSim = (() => {
       let flashTime = 0;
       let photonX = 0, photonY = 0;
 
-      canvas.addEventListener('click', (e) => {
+      function triggerFire(clientX, clientY) {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / (rect.width || 1);
         const scaleY = canvas.height / (rect.height || 1);
-        photonX = (e.clientX - rect.left) * scaleX;
-        photonY = (e.clientY - rect.top) * scaleY;
+        photonX = (clientX - rect.left) * scaleX;
+        photonY = (clientY - rect.top) * scaleY;
         
         // Always flash where the user clicks
         flashTime = 1.0;
@@ -301,7 +301,18 @@ window.QuantumSim = (() => {
           eX = photonX;
           eY = photonY;
         }
+      }
+
+      canvas.addEventListener('click', (e) => {
+        triggerFire(e.clientX, e.clientY);
       });
+      
+      canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (e.touches && e.touches.length > 0) {
+          triggerFire(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, {passive: false});
 
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
