@@ -597,9 +597,9 @@ window.QuantumSim = (() => {
 
         // Draw Electron Gun
         ctx.fillStyle = '#444';
-        ctx.fillRect(20, canvas.height/2 - 20, 40, 40);
+        ctx.fillRect(0, canvas.height/2 - 20, 40, 40);
         ctx.fillStyle = '#06b6d4';
-        ctx.fillRect(60, canvas.height/2 - 5, 10, 10);
+        ctx.fillRect(40, canvas.height/2 - 5, 10, 10);
         
         // Draw Slit Barrier
         const barrierX = 300;
@@ -617,7 +617,7 @@ window.QuantumSim = (() => {
           // Fire particles
           if (Math.random() < 0.3) {
             const vy = (Math.random() - 0.5) * 2;
-            particles.push({x: 70, y: canvas.height/2, vx: 5, vy: vy, alive: true});
+            particles.push({x: 50, y: canvas.height/2, vx: 5, vy: vy, alive: true});
           }
           
           ctx.fillStyle = '#fff';
@@ -661,7 +661,7 @@ window.QuantumSim = (() => {
           ctx.strokeStyle = 'rgba(0, 180, 204, 0.4)';
           ctx.lineWidth = 2;
           for(let i=0; i<10; i++) {
-            let wx = 70 + ((time * 20 + i * 25) % (barrierX - 70));
+            let wx = 50 + ((time * 20 + i * 25) % (barrierX - 50));
             ctx.beginPath();
             ctx.moveTo(wx, 0);
             ctx.lineTo(wx, canvas.height);
