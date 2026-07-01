@@ -93,7 +93,7 @@ body::before {
   z-index: 100;
 }
 .header-inner {
-  max-width: 1100px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 1.25rem 20px;
   display: flex;
@@ -127,9 +127,9 @@ body::before {
 .view-header h2 { margin: 0; }
 
 .container {
-  max-width: 1100px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 12px;
 }
 
 /* ── CARD ── */
