@@ -60,7 +60,26 @@
   <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":60}, {"category":"NCERT Extract (MCQs CORNER)","qNum":61}, {"category":"NCERT Extract (MCQs CORNER)","qNum":62}])'>MCQs 📝</button>
 </div>
 
+
+<div class="slide" data-type="visual-explain" data-config='{"title": "Numerical Proof: Heisenberg", "layout": "split", "points": ["Let&#39;s calculate uncertainty for a 1 milligram (10⁻⁶ kg) object:", "\\(\\Delta x \\cdot \\Delta v = \\frac{h}{4\\pi m} = \\frac{6.626 \\times 10^{-34}}{4 \\times 3.14 \\times 10^{-6}} \\approx 10^{-28} \\text{ m}^2\\text{s}^{-1}\\)", "This value is so infinitesimally small that it means nothing for a macroscopic object. You can know its position and speed accurately.", "Now, for an electron (mass = 9.11 × 10⁻³¹ kg):", "\\(\\Delta x \\cdot \\Delta v = \\frac{6.626 \\times 10^{-34}}{4 \\times 3.14 \\times 9.11 \\times 10^{-31}} \\approx 10^{-4} \\text{ m}^2\\text{s}^{-1}\\)", "If you try to locate an electron to within the size of an atom (~10⁻⁸ m), the uncertainty in its velocity becomes ~10⁴ m/s! It&#39;s impossible to fix a path."], "visual": "scales"}'>
+  <div class="component-container"></div>
+</div>
+
 <div class="slide" data-type="known-unknown" data-config='{"known": {"label": "WHAT BOHR ASSUMED", "text": "Bohr&#39;s model assumed an electron moves in an exact, fixed circular path \u2014 meaning its exact position AND exact velocity at any instant were both perfectly known."}, "bridge": {"label": "WHY THAT IS NOW IMPOSSIBLE", "text": "Heisenberg&#39;s principle proves you can NEVER know both position and momentum exactly at the same time for something as small as an electron. Bohr&#39;s &#39;fixed orbit&#39; picture directly violates this fundamental limit."}, "unknown": {"label": "WHAT REPLACES IT", "text": "We describe electrons using probability \u2014 orbitals that show WHERE an electron is LIKELY to be found, never an exact path. This uncertainty is built into nature itself, not a flaw in our tools."}}'>
+  <div class="component-container"></div>
+</div>
+
+
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "Mathematical Failure of Bohr&#39;s Model",
+  "steps": [
+    { "text": "Bohr&#39;s model requires an electron to have a specific trajectory (an exact distance r and exact velocity v).", "math": "" },
+    { "text": "To define a trajectory, we must know both position (x) and velocity (v) EXACTLY at the same time.", "math": "\\Delta x = 0 \\text{ and } \\Delta v = 0" },
+    { "text": "But Heisenberg proved:", "math": "\\Delta x \\cdot \\Delta v \\ge \\frac{h}{4\\pi m}" },
+    { "text": "If Bohr were right and position was exactly known (\\Delta x \\to 0), then uncertainty in velocity must approach infinity (\\Delta v \\to \\infty).", "math": "\\lim_{\\Delta x \\to 0} \\Delta v = \\infty", "finalBox": true },
+    { "text": "Conclusion: Definite paths or trajectories for electrons DO NOT EXIST.", "math": "" }
+  ]
+}'>
   <div class="component-container"></div>
 </div>
 
@@ -92,7 +111,7 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 12</span>
+  <span id="slide-counter">Slide 1 of 14</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
@@ -110,6 +129,7 @@
 <script src="../../../components/animation.js?v=3"></script>
 <script src="../../../components/infographic.js?v=3"></script>
 <script src="../../../components/quantum-sim.js?v=3"></script>
+<script src="../../../components/math-derivation.js?v=3"></script>
 <script src="../mcq-data.js?v=3"></script>
 <script src="../../../assets/mcq-fx.js?v=3"></script>
 <script src="../../../assets/mcq-overlay.js?v=3"></script>
@@ -151,6 +171,8 @@ function initCurrentSlide() {
     case 'animation': ChemAnimation.init(container, config); break;
     case 'infographic': Infographic.init(container, config); break;
     case 'quantum-sim': QuantumSim.init(container, config); break;
+    case 'math-derivation': MathDerivation.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
   }
 }
 

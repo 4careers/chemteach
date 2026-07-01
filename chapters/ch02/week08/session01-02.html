@@ -50,6 +50,70 @@
   <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":64}])'>MCQs 📝</button>
 </div>
 
+
+<!-- Slide 4b: Radial Probability Graphs -->
+<div class="slide" data-type="static">
+  <div class="summary-card" style="max-width: 1400px; display: flex; flex-direction: column; align-items: center;">
+    <h1 style="color: var(--plasma); margin-bottom: 20px;">Radial Probability Distribution Graphs</h1>
+    <div style="display: flex; gap: 40px; width: 100%; justify-content: center; flex-wrap: wrap;">
+      
+      <!-- Psi^2 vs r -->
+      <div style="background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); width: 45%; min-width: 300px;">
+        <h3 style="text-align: center; margin-bottom: 15px;">Probability Density (\\(|\\psi|^2\\)) vs Distance (r)</h3>
+        <svg viewBox="0 0 400 250" style="width: 100%; background: #000; border-radius: 4px;">
+          <!-- Axes -->
+          <line x1="40" y1="210" x2="380" y2="210" stroke="#fff" stroke-width="2"/>
+          <line x1="40" y1="210" x2="40" y2="20" stroke="#fff" stroke-width="2"/>
+          <text x="380" y="225" fill="#fff" font-size="12">r</text>
+          <text x="10" y="30" fill="#fff" font-size="12">|ψ|²</text>
+          
+          <!-- 1s Curve -->
+          <path d="M 40 40 Q 60 180, 350 205" fill="none" stroke="#06b6d4" stroke-width="3"/>
+          <text x="60" y="60" fill="#06b6d4" font-weight="bold">1s</text>
+          
+          <!-- 2s Curve -->
+          <path d="M 40 100 Q 50 180, 80 210 Q 120 220, 150 205 Q 180 190, 350 208" fill="none" stroke="#ec4899" stroke-width="3"/>
+          <text x="100" y="190" fill="#ec4899" font-weight="bold">2s</text>
+          
+          <circle cx="80" cy="210" r="4" fill="red"/>
+          <text x="75" y="225" fill="red" font-size="10">Node</text>
+        </svg>
+        <p style="margin-top: 15px; font-size: 14px; color: var(--color-text-muted);">
+          <b>Key Takeaway:</b> Probability density is MAXIMUM at the nucleus (r=0) for s-orbitals. The 2s orbital hits zero (a radial node) before rising again.
+        </p>
+      </div>
+
+      <!-- 4*pi*r^2*Psi^2 vs r -->
+      <div style="background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); width: 45%; min-width: 300px;">
+        <h3 style="text-align: center; margin-bottom: 15px;">Radial Probability Function (\\(4\\pi r^2 |\\psi|^2\\)) vs (r)</h3>
+        <svg viewBox="0 0 400 250" style="width: 100%; background: #000; border-radius: 4px;">
+          <!-- Axes -->
+          <line x1="40" y1="210" x2="380" y2="210" stroke="#fff" stroke-width="2"/>
+          <line x1="40" y1="210" x2="40" y2="20" stroke="#fff" stroke-width="2"/>
+          <text x="380" y="225" fill="#fff" font-size="12">r</text>
+          <text x="5" y="30" fill="#fff" font-size="12">4πr²|ψ|²</text>
+          
+          <!-- 1s Curve -->
+          <path d="M 40 210 Q 80 50, 140 50 Q 200 50, 350 208" fill="none" stroke="#06b6d4" stroke-width="3"/>
+          <text x="140" y="40" fill="#06b6d4" font-weight="bold">1s</text>
+          
+          <!-- 2s Curve -->
+          <path d="M 40 210 Q 55 180, 70 180 Q 85 180, 100 210 Q 180 50, 240 50 Q 300 50, 380 208" fill="none" stroke="#ec4899" stroke-width="3"/>
+          <text x="240" y="40" fill="#ec4899" font-weight="bold">2s</text>
+          
+          <circle cx="100" cy="210" r="4" fill="red"/>
+          <text x="95" y="225" fill="red" font-size="10">Node</text>
+        </svg>
+        <p style="margin-top: 15px; font-size: 14px; color: var(--color-text-muted);">
+          <b>Key Takeaway:</b> Probability of finding the electron at the nucleus (r=0) is ZERO (volume is zero). The peaks show the most probable distance from the nucleus.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <!-- Slide 5: Scaffold/List (4 Quantum Numbers Intro) -->
 <div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Quantum Numbers: The Electron&#39;s Address", "breakdown": ["n \u2192 Principal (Shell / Energy / Size)", "l \u2192 Azimuthal (Subshell / Shape / Orbital Angular Momentum)", "m_l \u2192 Magnetic (Orientation in space)", "m_s \u2192 Electron Spin (Intrinsic rotation)"], "rule": "Every electron in an atom is uniquely identified by these four numbers. No two electrons can have the exact same four numbers.", "tip": "Think of it as: City (n), Street (l), House Number (m_l), and Resident (m_s)."}'>
   <div class="component-container"></div>
@@ -162,7 +226,7 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 21</span>
+  <span id="slide-counter">Slide 1 of 22</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 

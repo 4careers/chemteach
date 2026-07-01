@@ -59,12 +59,38 @@
   <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"Exam Archive","qNum":8}, {"category":"NCERT Extract (MCQs CORNER)","qNum":63}])'>MCQs 📝</button>
 </div>
 
+
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "Derivation of de Broglie Equation",
+  "steps": [
+    { "text": "According to Planck&#39;s quantum theory, the energy of a photon is:", "math": "E = h\\nu = \\frac{hc}{\\lambda}" },
+    { "text": "According to Einstein&#39;s mass-energy equivalence, energy is:", "math": "E = mc^2" },
+    { "text": "Equating both, we get:", "math": "\\frac{hc}{\\lambda} = mc^2 \\implies \\lambda = \\frac{h}{mc}" },
+    { "text": "For a material particle of mass (m) moving with velocity (v), replace c with v:", "math": "\\lambda = \\frac{h}{mv} = \\frac{h}{p}", "finalBox": true }
+  ]
+}'>
+  <div class="component-container"></div>
+</div>
+
 <div class="slide" data-type="infographic" data-config='{"title": "de Broglie Equation", "image": "Understanding de Broglie Equation.png", "caption": "Calculating the wavelength of matter.", "explanation": "The formula λ = h/mv relates a particle’s wavelength to its mass and velocity. Because Planck’s constant (h) is incredibly small, macroscopic objects have a wavelength so tiny it is undetectable. But for a near-massless electron, the wavelength is physically significant."}'>
   <div class="component-container"></div>
   <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":54}, {"category":"NCERT Extract (MCQs CORNER)","qNum":55}, {"category":"NCERT Extract (MCQs CORNER)","qNum":56}, {"category":"Numerical Value Type Questions","qNum":8}, {"category":"Numerical Value Type Questions","qNum":9}, {"category":"NCERT Exemplar Problems","qNum":13}])'>MCQs 📝</button>
 </div>
 
 <div class="slide" data-type="mnemonic" data-config='{"mnemonic": "λ = h / mv", "breakdown": ["λ \u2192 de Broglie wavelength of any moving particle", "h \u2192 Planck&#39;s constant", "mv \u2192 mass \u00d7 velocity (momentum, p)", "Formula \u2192 \u03bb = h/p = h/(mv)"], "rule": "Every moving object has a de Broglie wavelength, but it is only noticeable for extremely light particles like electrons \u2014 for everyday objects, \u03bb is far too small to detect.", "tip": "Orbital \u2260 Orbit. An orbit is a fixed path (Bohr). An orbital is a 3D region of space where there is high PROBABILITY of finding an electron (quantum model)."}'>
+  <div class="component-container"></div>
+</div>
+
+
+<div class="slide" data-type="math-derivation" data-config='{
+  "title": "de Broglie Wavelength & Kinetic Energy",
+  "steps": [
+    { "text": "We know kinetic energy (K.E.) of a particle is given by:", "math": "K.E. = \\frac{1}{2}mv^2" },
+    { "text": "Multiplying both sides by m:", "math": "m \\cdot K.E. = \\frac{1}{2}m^2v^2 \\implies m^2v^2 = 2m(K.E.)" },
+    { "text": "Taking the square root to find momentum (p = mv):", "math": "p = \\sqrt{2m(K.E.)}" },
+    { "text": "Substituting this into the de Broglie equation (\\lambda = h/p):", "math": "\\lambda = \\frac{h}{\\sqrt{2m(K.E.)}}", "finalBox": true }
+  ]
+}'>
   <div class="component-container"></div>
 </div>
 
@@ -76,6 +102,11 @@
 <div class="slide" data-type="infographic" data-config='{"title": "Macro vs Micro", "image": "Macroscopic vs Microscopic Objects.png", "caption": "Why we only observe wave nature in microscopic particles.", "explanation": "A moving cricket ball technically has a wavelength! However, because of its large mass, the calculated wavelength is billions of times smaller than an atomic nucleus. In contrast, an electron’s tiny mass results in a wavelength comparable to atomic dimensions."}'>
   <div class="component-container"></div>
   <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":52}, {"category":"NCERT Extract (MCQs CORNER)","qNum":53}, {"category":"Numerical Value Type Questions","qNum":6}])'>MCQs 📝</button>
+</div>
+
+
+<div class="slide" data-type="visual-explain" data-config='{"title": "Numerical Proof: Macro vs Micro", "layout": "split", "points": ["Let&#39;s calculate the wavelength of a 0.1 kg ball moving at 10 m/s:", "\\(\\lambda = \\frac{6.626 \\times 10^{-34} \\text{ J s}}{0.1 \\text{ kg} \\times 10 \\text{ m/s}} = 6.626 \\times 10^{-34} \\text{ m}\\)", "This wavelength is so incomprehensibly small that it cannot be detected by any instrument.", "Now, let&#39;s calculate for an electron (mass = 9.11 × 10⁻³¹ kg) moving at the same speed (10 m/s):", "\\(\\lambda = \\frac{6.626 \\times 10^{-34} \\text{ J s}}{9.11 \\times 10^{-31} \\text{ kg} \\times 10 \\text{ m/s}} = 7.27 \\times 10^{-5} \\text{ m}\\)", "This is easily measurable and comparable to atomic dimensions!"], "visual": "scales"}'>
+  <div class="component-container"></div>
 </div>
 
 <div class="slide" data-type="quantum-sim" data-config='{"mode": "wave-morph", "title": "Wave-Particle Duality Morph", "instruction": "Drag the slider to transition the particle into a waveform."}'>
@@ -102,7 +133,7 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 13</span>
+  <span id="slide-counter">Slide 1 of 16</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
@@ -120,6 +151,7 @@
 <script src="../../../components/animation.js?v=3"></script>
 <script src="../../../components/infographic.js?v=3"></script>
 <script src="../../../components/quantum-sim.js?v=3"></script>
+<script src="../../../components/math-derivation.js?v=3"></script>
 <script src="../mcq-data.js?v=3"></script>
 <script src="../../../assets/mcq-fx.js?v=3"></script>
 <script src="../../../assets/mcq-overlay.js?v=3"></script>
@@ -161,6 +193,8 @@ function initCurrentSlide() {
     case 'animation': ChemAnimation.init(container, config); break;
     case 'infographic': Infographic.init(container, config); break;
     case 'quantum-sim': QuantumSim.init(container, config); break;
+    case 'math-derivation': MathDerivation.init(container, config); break;
+    case 'visual-explain': VisualExplain.init(container, config); break;
   }
 }
 
