@@ -64,9 +64,9 @@ window.VisualExplain = (() => {
       { x: 512, y: 100, w: 60, h: 20, text: 's', fill: 'transparent', textColor: '#FFD740' }
     ],
     'historical-classification': [
-      { alwaysVisible: true, x: 220, y: 10, w: 160, h: 30, text: 'The Genesis of Periodicity', fill: 'transparent', textColor: 'var(--color-primary)' },
+      { alwaysVisible: true, x: 220, y: 10, w: 160, h: 30, text: 'The Genesis of Periodicity', fill: 'transparent', textColor: 'var(--color-accent)' },
       { alwaysVisible: true, x: 220, y: 35, w: 160, h: 20, text: '(Searching for the Pattern of Matter)', fill: 'transparent', textColor: 'var(--color-text-muted)', fontSize: '12' },
-      { x: 10, y: 70, w: 160, h: 40, imageH: 100, image: '../../../assets/images/infographics/dobereiner-caricature.jpg', text: 'Dobereiner (Triads)', descLines: ['Law of Triads:', 'Atomic mass of middle', 'element is avg of', 'the other two.'] },
+      { alwaysVisible: true, x: 10, y: 70, w: 160, h: 40, imageH: 100, image: '../../../assets/images/infographics/dobereiner-caricature.jpg', text: 'Dobereiner (Triads)', descLines: ['Law of Triads:', 'Atomic mass of middle', 'element is avg of', 'the other two.'] },
       { x: 180, y: 120, w: 40, h: 40, text: '➔', fill: 'transparent', textColor: 'var(--color-accent)' },
       { x: 220, y: 70, w: 160, h: 40, imageH: 100, image: '../../../assets/images/infographics/newlands-caricature.jpg', text: 'Newlands (Octaves)', descLines: ['Law of Octaves:', 'Properties repeat', 'every eighth element', '(like musical notes).'] },
       { x: 390, y: 120, w: 40, h: 40, text: '➔', fill: 'transparent', textColor: 'var(--color-accent)' },
