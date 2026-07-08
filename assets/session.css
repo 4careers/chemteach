@@ -1,6 +1,7 @@
 /* ChemTeach — shared session slide-deck styles */
 
 .slide {
+  position: relative;
   display: none;
   min-height: 100vh;
   flex-direction: column;
