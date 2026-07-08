@@ -49,13 +49,14 @@ window.LotharSim = (() => {
     wrap.style.width = '100%';
 
     const canvas = document.createElement('canvas');
-    canvas.width = 800;
-    canvas.height = 400;
-    canvas.style.background = 'var(--color-card)';
+    canvas.width = 900;
+    canvas.height = 450;
+    canvas.style.background = 'radial-gradient(circle at center, #1a1a2e, #0f0f1a)';
     canvas.style.border = '1px solid var(--color-border)';
     canvas.style.borderRadius = 'var(--radius)';
     canvas.style.maxWidth = '100%';
     canvas.style.cursor = 'crosshair';
+    canvas.style.boxShadow = '0 0 20px rgba(0,200,255,0.1) inset';
 
     const controls = document.createElement('div');
     controls.style.display = 'flex';
@@ -65,11 +66,11 @@ window.LotharSim = (() => {
     controls.style.justifyContent = 'center';
 
     const filters = [
-      { id: 'all', label: 'All Elements', color: 'var(--color-accent)' },
-      { id: 'alkali', label: 'Highlight Peaks (Alkali Metals)', color: 'var(--color-error)' },
-      { id: 'halogen', label: 'Highlight Ascending (Halogens)', color: 'var(--color-success)' },
-      { id: 'alkali-earth', label: 'Highlight Descending (Alk. Earth)', color: 'var(--color-warning)' },
-      { id: 'transition', label: 'Highlight Valleys (Transition)', color: 'var(--color-secondary)' }
+      { id: 'all', label: 'All Elements', color: '#00d4ff' },
+      { id: 'alkali', label: 'Highlight Peaks (Alkali)', color: '#ff3366' },
+      { id: 'halogen', label: 'Highlight Ascending (Halogens)', color: '#00ffaa' },
+      { id: 'alkali-earth', label: 'Highlight Descending (Alk. Earth)', color: '#ffaa00' },
+      { id: 'transition', label: 'Highlight Valleys (Transition)', color: '#aa33ff' }
     ];
 
     let activeFilter = 'all';
@@ -79,16 +80,18 @@ window.LotharSim = (() => {
       btn.textContent = f.label;
       btn.className = 'btn';
       btn.style.background = f.id === 'all' ? f.color : 'transparent';
-      btn.style.color = f.id === 'all' ? '#fff' : f.color;
+      btn.style.color = f.id === 'all' ? '#000' : f.color;
       btn.style.border = `1px solid ${f.color}`;
       btn.style.transition = 'all 0.3s ease';
+      btn.style.fontWeight = 'bold';
       
       btn.onclick = () => {
         activeFilter = f.id;
         Array.from(controls.children).forEach((child, i) => {
           if (filters[i]) {
             child.style.background = filters[i].id === activeFilter ? filters[i].color : 'transparent';
-            child.style.color = filters[i].id === activeFilter ? '#fff' : filters[i].color;
+            child.style.color = filters[i].id === activeFilter ? '#000' : filters[i].color;
+            child.style.boxShadow = filters[i].id === activeFilter ? `0 0 10px ${filters[i].color}` : 'none';
           }
         });
       };
@@ -112,11 +115,11 @@ window.LotharSim = (() => {
     let time = 0;
     
     // Animation state
-    let pointsVisible = 0;
+    let progress = 0;
 
     // Mapping functions
-    const padX = 50;
-    const padY = 50;
+    const padX = 60;
+    const padY = 60;
     const graphW = canvas.width - padX * 2;
     const graphH = canvas.height - padY * 2;
     const maxMass = 90;
@@ -131,12 +134,13 @@ window.LotharSim = (() => {
       const my = (e.clientY - rect.top) * (canvas.height / rect.height);
       
       let found = -1;
-      for (let i = 0; i < pointsVisible; i++) {
+      const visibleCount = Math.floor(progress) + 1;
+      for (let i = 0; i < Math.min(visibleCount, ELEMENTS.length); i++) {
         const el = ELEMENTS[i];
         const ex = getX(el.mass);
         const ey = getY(el.vol);
         const dist = Math.hypot(mx - ex, my - ey);
-        if (dist < 15) {
+        if (dist < 20) {
           found = i;
           break;
         }
@@ -147,7 +151,25 @@ window.LotharSim = (() => {
     canvas.onmouseleave = () => { hoverIndex = -1; };
 
     function drawAxes() {
-      ctx.strokeStyle = 'var(--color-text-muted)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      
+      // Grid lines
+      for (let m = 20; m <= 80; m += 20) {
+        const x = getX(m);
+        ctx.moveTo(x, padY / 2);
+        ctx.lineTo(x, canvas.height - padY);
+      }
+      for (let v = 20; v <= 60; v += 20) {
+        const y = getY(v);
+        ctx.moveTo(padX, y);
+        ctx.lineTo(canvas.width - padX / 2, y);
+      }
+      ctx.stroke();
+
+      // Main axes
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(padX, padY / 2);
@@ -155,27 +177,24 @@ window.LotharSim = (() => {
       ctx.lineTo(canvas.width - padX / 2, canvas.height - padY);
       ctx.stroke();
 
-      ctx.fillStyle = 'var(--color-text)';
+      ctx.fillStyle = '#aaa';
       ctx.font = '14px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('Atomic Mass', canvas.width / 2, canvas.height - 15);
+      ctx.fillText('Atomic Mass', canvas.width / 2, canvas.height - 20);
       
       ctx.save();
-      ctx.translate(15, canvas.height / 2);
+      ctx.translate(20, canvas.height / 2);
       ctx.rotate(-Math.PI / 2);
       ctx.fillText('Atomic Volume', 0, 0);
       ctx.restore();
       
       // Ticks
-      ctx.fillStyle = 'var(--color-text-muted)';
       for (let m = 20; m <= 80; m += 20) {
         const x = getX(m);
-        ctx.fillRect(x, canvas.height - padY, 2, 5);
         ctx.fillText(m, x, canvas.height - padY + 18);
       }
       for (let v = 20; v <= 60; v += 20) {
         const y = getY(v);
-        ctx.fillRect(padX - 5, y, 5, 2);
         ctx.textAlign = 'right';
         ctx.fillText(v, padX - 10, y + 5);
       }
@@ -185,20 +204,37 @@ window.LotharSim = (() => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawAxes();
 
-      // Draw lines
-      if (pointsVisible > 1) {
+      const maxVisibleIndex = Math.floor(progress);
+      
+      // Draw neon connecting line
+      if (maxVisibleIndex > 0) {
         ctx.beginPath();
         ctx.moveTo(getX(ELEMENTS[0].mass), getY(ELEMENTS[0].vol));
-        for (let i = 1; i < pointsVisible; i++) {
-          ctx.lineTo(getX(ELEMENTS[i].mass), getY(ELEMENTS[i].vol));
+        
+        for (let i = 1; i <= maxVisibleIndex; i++) {
+          if (i === maxVisibleIndex && i < ELEMENTS.length - 1) {
+            // Interpolate last segment
+            const prev = ELEMENTS[i - 1];
+            const next = ELEMENTS[i];
+            const subProgress = progress - maxVisibleIndex;
+            const x = getX(prev.mass) + (getX(next.mass) - getX(prev.mass)) * subProgress;
+            const y = getY(prev.vol) + (getY(next.vol) - getY(prev.vol)) * subProgress;
+            ctx.lineTo(x, y);
+          } else {
+            ctx.lineTo(getX(ELEMENTS[i].mass), getY(ELEMENTS[i].vol));
+          }
         }
-        ctx.strokeStyle = 'rgba(37, 99, 255, 0.4)';
-        ctx.lineWidth = 2;
+        
+        ctx.strokeStyle = '#00d4ff';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = '#00d4ff';
+        ctx.shadowBlur = 10;
         ctx.stroke();
+        ctx.shadowBlur = 0; // reset
       }
 
-      // Draw points
-      for (let i = 0; i < pointsVisible; i++) {
+      // Draw points and labels
+      for (let i = 0; i <= maxVisibleIndex && i < ELEMENTS.length; i++) {
         const el = ELEMENTS[i];
         const x = getX(el.mass);
         const y = getY(el.vol);
@@ -207,35 +243,55 @@ window.LotharSim = (() => {
         const isHighlighted = activeFilter === el.type;
         const isFaded = activeFilter !== 'all' && !isHighlighted;
         
+        // Pulse effect for highlighted items
+        let radius = isHover ? 10 : 6;
+        if (isHighlighted) {
+          radius += Math.sin(time * 0.1) * 2;
+        }
+
         ctx.beginPath();
-        ctx.arc(x, y, isHover ? 8 : 5, 0, Math.PI * 2);
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
         
+        const colorMap = {
+          'alkali': '#ff3366',
+          'halogen': '#00ffaa',
+          'alkali-earth': '#ffaa00',
+          'transition': '#aa33ff'
+        };
+        const pointColor = colorMap[el.type] || '#00d4ff';
+
         if (isFaded) {
-          ctx.fillStyle = 'rgba(148, 163, 184, 0.2)';
-        } else if (isHighlighted) {
-          const colorMap = {
-            'alkali': 'var(--color-error)',
-            'halogen': 'var(--color-success)',
-            'alkali-earth': 'var(--color-warning)',
-            'transition': 'var(--color-secondary)'
-          };
-          ctx.fillStyle = colorMap[el.type] || 'var(--color-accent)';
-          // Glow
-          ctx.shadowColor = ctx.fillStyle;
-          ctx.shadowBlur = 10;
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        } else if (isHighlighted || activeFilter === 'all') {
+          ctx.fillStyle = pointColor;
+          ctx.shadowColor = pointColor;
+          ctx.shadowBlur = 15;
         } else {
-          ctx.fillStyle = 'var(--color-accent)';
+          ctx.fillStyle = pointColor;
         }
         
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Label points that are highlighted or hovered
-        if ((isHighlighted || isHover) && !isFaded) {
+        // Labels: Angle them and stagger slightly to prevent overlap
+        if ((isHighlighted || isHover || activeFilter === 'all') && !isFaded) {
           ctx.fillStyle = '#fff';
-          ctx.font = isHover ? 'bold 14px sans-serif' : '12px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(el.symbol, x, y - 10);
+          ctx.font = isHover ? 'bold 16px sans-serif' : '14px sans-serif';
+          
+          ctx.save();
+          // Angle 45 degrees up and right
+          ctx.translate(x + 5, y - 10);
+          ctx.rotate(-Math.PI / 4);
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          
+          if (isHighlighted || isHover) {
+            ctx.shadowColor = pointColor;
+            ctx.shadowBlur = 5;
+          }
+          
+          ctx.fillText(el.symbol, 0, 0);
+          ctx.restore();
         }
       }
 
@@ -245,33 +301,34 @@ window.LotharSim = (() => {
         const x = getX(el.mass);
         const y = getY(el.vol);
         
-        ctx.fillStyle = 'var(--color-card)';
-        ctx.strokeStyle = 'var(--color-border-active)';
+        ctx.fillStyle = 'rgba(10, 10, 20, 0.9)';
+        ctx.strokeStyle = '#fff';
         ctx.lineWidth = 1;
         
         const text = `${el.symbol} (Mass: ${el.mass}, Vol: ${el.vol})`;
+        ctx.font = '14px sans-serif';
         const tw = ctx.measureText(text).width;
         
-        let tx = x + 15;
-        let ty = y - 25;
-        if (tx + tw + 20 > canvas.width) tx = x - tw - 25;
+        let tx = x + 20;
+        let ty = y - 30;
+        if (tx + tw + 20 > canvas.width) tx = x - tw - 40;
         
         ctx.beginPath();
-        ctx.roundRect(tx, ty, tw + 20, 24, 4);
+        ctx.roundRect(tx, ty, tw + 20, 30, 6);
         ctx.fill();
         ctx.stroke();
         
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = '#00d4ff';
         ctx.textAlign = 'left';
-        ctx.font = '12px sans-serif';
-        ctx.fillText(text, tx + 10, ty + 16);
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillText(text, tx + 10, ty + 20);
       }
     }
 
     function step() {
       time++;
-      if (time % 2 === 0 && pointsVisible < ELEMENTS.length) {
-        pointsVisible++;
+      if (progress < ELEMENTS.length) {
+        progress += 0.25; // Speed of graph drawing
       }
     }
 
@@ -280,6 +337,13 @@ window.LotharSim = (() => {
       drawGraph();
       raf = requestAnimationFrame(loop);
     }
+
+    // Reset progress to re-draw when filters change, purely for dramatic effect
+    controls.addEventListener('click', (e) => {
+      if(e.target.tagName === 'BUTTON') {
+        progress = 0;
+      }
+    });
 
     loop();
     return { destroy: () => cancelAnimationFrame(raf) };
