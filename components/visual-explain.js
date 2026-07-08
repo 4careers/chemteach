@@ -92,6 +92,9 @@ window.VisualExplain = (() => {
     svgWrap.style.borderRadius = 'var(--radius)';
     svgWrap.style.border = '1px solid var(--color-border)';
     svgWrap.style.padding = '16px';
+    if (revealSteps) {
+      svgWrap.style.cursor = 'pointer';
+    }
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 600 260');
@@ -204,11 +207,6 @@ window.VisualExplain = (() => {
 
     svgWrap.appendChild(svg);
 
-    const revealBtn = document.createElement('button');
-    revealBtn.textContent = 'REVEAL NEXT';
-    revealBtn.className = 'btn';
-    revealBtn.style.display = revealSteps ? 'inline-block' : 'none';
-
     let revealed = 0;
     const groups = svg.querySelectorAll('.reveal-group');
 
@@ -218,13 +216,16 @@ window.VisualExplain = (() => {
         revealed++;
       }
       if (revealed >= groups.length) {
-        revealBtn.textContent = 'ALL REVEALED';
-        revealBtn.disabled = true;
+        svgWrap.style.cursor = 'default';
+        svgWrap.onclick = null;
       }
     }
 
-    revealBtn.onclick = revealNext;
-    if (!revealSteps) groups.forEach(g => g.style.opacity = '1');
+    if (revealSteps) {
+      svgWrap.onclick = revealNext;
+    } else {
+      groups.forEach(g => g.style.opacity = '1');
+    }
 
     const captionEl = document.createElement('div');
     captionEl.textContent = config.caption || '';
@@ -233,7 +234,6 @@ window.VisualExplain = (() => {
     captionEl.style.textAlign = 'center';
 
     wrap.appendChild(svgWrap);
-    wrap.appendChild(revealBtn);
     wrap.appendChild(captionEl);
     container.appendChild(wrap);
   }
