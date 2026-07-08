@@ -462,9 +462,9 @@
       "file": "chapters/ch03/week09/session01-02.html"
     },
     {
-      "sessionId": "ch04_w09_s03-04",
-      "chapter": 4,
-      "chapterName": "Chemical Bonding and Molecular Structure",
+      "sessionId": "ch03_w09_s03-04",
+      "chapter": 3,
+      "chapterName": "Classification of Elements and Periodicity",
       "week": 9,
       "session": "03-04",
       "dates": [
@@ -478,12 +478,12 @@
       "topics": [
         "3.6-3.7 s,p,d,f Blocks, Atomic Radius (completes Ch3)"
       ],
-      "file": "chapters/ch04/week09/session03-04.html"
+      "file": "chapters/ch03/week09/session03-04.html"
     },
     {
-      "sessionId": "ch04_w09_s05-06",
-      "chapter": 4,
-      "chapterName": "Chemical Bonding and Molecular Structure",
+      "sessionId": "ch03_w09_s05-06",
+      "chapter": 3,
+      "chapterName": "Classification of Elements and Periodicity",
       "week": 9,
       "session": "05-06",
       "dates": [
@@ -497,7 +497,7 @@
       "topics": [
         "4.1 Kossel-Lewis Approach, Octet Rule, Covalent Bond"
       ],
-      "file": "chapters/ch04/week09/session05-06.html"
+      "file": "chapters/ch03/week09/session05-06.html"
     },
     {
       "sessionId": "ch04_w10_s01-02",

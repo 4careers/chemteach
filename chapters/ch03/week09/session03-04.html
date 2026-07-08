@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<title>Ch04 W09 S05-06 | ChemTeach</title>
+<title>Ch03 W09 S03-04 | ChemTeach</title>
 <link rel="stylesheet" href="../../../assets/design-tokens.css?v=13">
 <link rel="stylesheet" href="../../../assets/session.css?v=13">
 <script src="../../../assets/theme.js?v=13"></script>
@@ -12,12 +12,13 @@
 
 <div class="slide-header">
   <div>
-    <div class="crumb">Chapter 04 | Week 9 | Session 5-6</div>
+    <div class="crumb">Chapter 03 | Week 9 | Session 3-4</div>
     <div class="session-title">Chemical Bonding and Molecular Structure</div>
   </div>
   <div class="top-controls">
     <button class="theme-toggle-btn" onclick="ChemTheme.toggle()">☀️ Light Mode</button>
     <button id="btn-home">HOME</button>
+    <button id="btn-quiz" onclick="window.location.href='../../mcqs.html?week=9&session=03-04'" style="background: rgba(0,255,170,0.2); border: 1px solid #00ffaa; color: #00ffaa; font-weight: bold;">📝 TAKE QUIZ</button>
     <button id="btn-complete">MARK COMPLETE</button>
     <button id="btn-fullscreen">FULLSCREEN</button>
   </div>
@@ -25,33 +26,29 @@
 
 <div class="slide active" data-type="static">
   <div class="title-card">
-    <div class="meta">Chapter 4 | Week 9 | Session 5-6 | July 17-18, 2026</div>
-    <h1>KOSSEL-LEWIS APPROACH, OCTET RULE & COVALENT BOND</h1>
-    <div class="topics">Topics covered today:<br>4.1 Kossel-Lewis Approach, Octet Rule, Covalent Bond</div>
+    <div class="meta">Chapter 3-4 Bridge | Week 9 | Session 3-4 | July 15-16, 2026</div>
+    <h1>s, p, d, f BLOCKS & ATOMIC RADIUS</h1>
+    <div class="topics">Topics covered today:<br>3.6-3.7 s,p,d,f Blocks, Atomic Radius (completes Chapter 3)</div>
   </div>
 </div>
 
-<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "Noble gases (He, Ne, Ar...) are famously unreactive \u2014 they almost never form compounds."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "Why are noble gases so stable while almost every other element eagerly reacts and bonds? What is special about their electron arrangement?"}, "unknown": {"label": "TODAY&#39;S ANSWER", "text": "Noble gases have a complete outer shell of 8 electrons (an octet) \u2014 the most stable arrangement possible. Every other atom bonds specifically to ACHIEVE this same stable octet, by sharing or transferring electrons."}}'>
+<div class="slide" data-type="visual-explain" data-config='{"diagram": "periodic-table-blocks", "revealSteps": true, "caption": "Click REVEAL to colour in the periodic table by block: s-block (groups 1-2), p-block (13-18), d-block (3-12), f-block (lanthanides/actinides)."}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="story" data-config='{"setting": "Germany & USA, 1916 (independently)", "narrative": "Walther Kossel and Gilbert Lewis, working independently and unaware of each other, both proposed the same revolutionary idea: atoms bond because they are &#39;chasing&#39; the stable electron arrangement of noble gases. Kossel focused on atoms that achieve this by completely losing or gaining electrons (forming ions). Lewis focused on atoms that achieve this by SHARING electron pairs \u2014 and invented the simple dot diagrams chemists still use today.", "reveal": "Two scientists, continents apart, arrived at the same truth: bonding is really atoms competing to copy the stability of noble gases.", "visual": "classroom-1800s"}'>
+<div class="slide" data-type="analogy" data-config='{"realWorld": {"label": "APARTMENT FLOORS IN A BUILDING", "visual": "stadium-crowd", "fact": "Ground floor residents step outside fastest; top floor residents have the farthest walk. Distance from the entrance changes how &#39;reachable&#39; you are."}, "chemistry": {"label": "ATOMIC RADIUS ACROSS A PERIOD/GROUP", "visual": "mole-atoms", "fact": "Moving down a group, atomic radius increases (more shells, like climbing floors away from the nucleus). Moving across a period, atomic radius decreases (more nuclear charge pulls electrons closer)."}, "bridge": "Just as floor number changes your distance from the entrance, shell number and nuclear charge together determine how close an atom&#39;s outer electrons sit to its nucleus."}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="visual-explain" data-config='{"diagram": "bond-polarity-spectrum", "revealSteps": true, "caption": "Click REVEAL to build: octet rule \u2192 ionic bond (Kossel, electron transfer) \u2192 covalent bond (Lewis, electron sharing) \u2192 Lewis dot structures."}'>
+<div class="slide" data-type="riddle" data-config='{"question": "Sodium (Na) has atomic radius larger than Chlorine (Cl), even though both are in Period 3 and Cl has MORE protons. Why does Cl&#39;s stronger nuclear pull result in a SMALLER atom?", "hint": "Both atoms have the same number of shells. What differs is how strongly the nucleus pulls those same shells inward.", "answer": "Cl has a higher effective nuclear charge pulling its electrons in tighter, despite having the same number of shells as Na", "explanation": "Across a period, electrons are added to the SAME shell while protons increase. The stronger positive pull from more protons draws the entire electron cloud inward, shrinking atomic radius \u2014 this is why radius decreases left to right across a period, even as atomic number increases."}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="riddle" data-config='{"question": "A chlorine atom (7 valence electrons) and another chlorine atom (also 7 valence electrons) bond to form Cl2. Neither atom can fully give away or take electrons completely, since they are identical. How do they BOTH achieve a stable octet?", "hint": "If neither can take electrons fully, what&#39;s the alternative way to &#39;complete&#39; an octet?", "answer": "They SHARE a pair of electrons \u2014 a COVALENT BOND", "explanation": "By sharing one electron pair between them, each chlorine atom can &#39;count&#39; that shared pair toward its own octet \u2014 both atoms effectively see 8 electrons around themselves without either having to fully lose or gain anything. This is the essence of covalent bonding."}'>
+<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Down Grows, Across Shrinks", "breakdown": ["Down Grows \u2192 atomic radius increases down a group (more electron shells added)", "Across Shrinks \u2192 atomic radius decreases across a period (more nuclear charge, same shell)"], "rule": "s-block: groups 1-2 (filling s orbitals). p-block: groups 13-18 (filling p orbitals). d-block: groups 3-12, transition metals (filling d orbitals). f-block: lanthanides and actinides (filling f orbitals).", "tip": "s and p blocks together are called &#39;main group&#39; elements; d-block elements are the &#39;transition metals&#39;."}'>
   <div class="component-container"></div>
 </div>
 
-<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Eight is Great, Share to Complete", "breakdown": ["Eight is Great \u2192 octet rule: atoms are most stable with 8 electrons in their outer shell (like noble gases)", "Share to Complete \u2192 covalent bond: atoms achieve octet by SHARING electron pairs, not transferring them", "Lewis Structure \u2192 dots represent valence electrons; lines/dot-pairs between atoms represent shared bonding pairs"], "rule": "Covalent bonds form typically between two non-metals, both needing to gain electrons \u2014 sharing solves both their needs simultaneously.", "tip": "Exceptions to the octet rule exist (e.g. H needs only 2, Be needs only 4) \u2014 the rule is a strong guideline, not an absolute law."}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="gamification" data-config='{"instruction": "Sort each pair of elements to the bond type they would most likely form.", "items": ["Cl + Cl", "H + H", "O + O", "N + N"], "categories": ["Covalent Bond (sharing)"], "answers": {"Cl + Cl": "Covalent Bond (sharing)", "H + H": "Covalent Bond (sharing)", "O + O": "Covalent Bond (sharing)", "N + N": "Covalent Bond (sharing)"}}'>
+<div class="slide" data-type="gamification" data-config='{"instruction": "Sort each element group to its correct block.", "items": ["Alkali metals (Group 1)", "Halogens (Group 17)", "Transition metals", "Lanthanides"], "categories": ["s-block", "p-block", "d-block", "f-block"], "answers": {"Alkali metals (Group 1)": "s-block", "Halogens (Group 17)": "p-block", "Transition metals": "d-block", "Lanthanides": "f-block"}}'>
   <div class="component-container"></div>
 </div>
 
@@ -59,18 +56,18 @@
   <div class="summary-card">
     <h1>✓ SESSION COMPLETE</h1>
     <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
-    <ul><li>Octet rule: atoms tend toward 8 electrons in their outermost shell, mimicking noble gas stability</li><li>Kossel's approach: ionic bonding via electron transfer</li><li>Lewis's approach: covalent bonding via electron SHARING</li><li>Lewis dot structures represent valence electrons and shared bonding pairs</li></ul>
+    <ul><li>Periodic table divided into s, p, d, f blocks based on which orbital is being filled</li><li>Atomic radius increases down a group (more shells)</li><li>Atomic radius decreases across a period (increasing nuclear charge pulls electrons inward)</li><li>This completes Chapter 3 entirely — next we explore why and how atoms bond</li></ul>
     <div class="mcq-block">
       <strong>NCERT MCQs:</strong><br>
-      Classwork: 4.1-1, 2, 3<br>
-      Assignment: 4.1-4, 5
+      Classwork: 3.7-1, 2, 3<br>
+      Assignment: 3.7-4, 5
     </div>
   </div>
 </div>
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 8</span>
+  <span id="slide-counter">Slide 1 of 7</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
@@ -87,7 +84,7 @@
 <script src="../../../components/comic-strip.js?v=13"></script>
 <script src="../../../components/animation.js?v=13"></script>
 <script>
-const SESSION_ID = 'ch04_w09_s05-06';
+const SESSION_ID = 'ch04_w09_s03-04';
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 
@@ -141,7 +138,7 @@ document.getElementById('btn-complete').onclick = () => {
 };
 document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
 
-ChemProgress.setLastOpened(4, 9, '05-06');
+ChemProgress.setLastOpened(4, 9, '03-04');
 const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
 goToSlide(savedSlide - 1);
 if (ChemProgress.isComplete(SESSION_ID)) {
