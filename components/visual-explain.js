@@ -64,11 +64,13 @@ window.VisualExplain = (() => {
       { x: 512, y: 100, w: 60, h: 20, text: 's', fill: 'transparent', textColor: '#FFD740' }
     ],
     'historical-classification': [
-      { x: 20, y: 20, w: 140, h: 40, imageH: 140, image: '../../../assets/images/infographics/dobereiner-caricature.jpg', text: 'Dobereiner (Triads)' },
-      { x: 175, y: 80, w: 50, h: 40, text: '➔', fill: 'transparent', textColor: 'var(--color-accent)' },
-      { x: 230, y: 20, w: 140, h: 40, imageH: 140, image: '../../../assets/images/infographics/newlands-caricature.jpg', text: 'Newlands (Octaves)' },
-      { x: 385, y: 80, w: 50, h: 40, text: '➔', fill: 'transparent', textColor: 'var(--color-accent)' },
-      { x: 440, y: 20, w: 140, h: 40, imageH: 140, image: '../../../assets/images/infographics/mendeleev-caricature.jpg', text: 'Mendeleev (Table)' }
+      { alwaysVisible: true, x: 220, y: 10, w: 160, h: 30, text: 'The Genesis of Periodicity', fill: 'transparent', textColor: 'var(--color-primary)' },
+      { alwaysVisible: true, x: 220, y: 35, w: 160, h: 20, text: '(Searching for the Pattern of Matter)', fill: 'transparent', textColor: 'var(--color-text-muted)', fontSize: '12' },
+      { x: 10, y: 70, w: 160, h: 40, imageH: 100, image: '../../../assets/images/infographics/dobereiner-caricature.jpg', text: 'Dobereiner (Triads)', descLines: ['Law of Triads:', 'Atomic mass of middle', 'element is avg of', 'the other two.'] },
+      { x: 180, y: 120, w: 40, h: 40, text: '➔', fill: 'transparent', textColor: 'var(--color-accent)' },
+      { x: 220, y: 70, w: 160, h: 40, imageH: 100, image: '../../../assets/images/infographics/newlands-caricature.jpg', text: 'Newlands (Octaves)', descLines: ['Law of Octaves:', 'Properties repeat', 'every eighth element', '(like musical notes).'] },
+      { x: 390, y: 120, w: 40, h: 40, text: '➔', fill: 'transparent', textColor: 'var(--color-accent)' },
+      { x: 430, y: 70, w: 160, h: 40, imageH: 100, image: '../../../assets/images/infographics/mendeleev-caricature.jpg', text: 'Mendeleev (Table)', descLines: ['Periodic Law:', 'Properties are periodic', 'functions of atomic mass.', 'Left gaps for unknowns.'] }
     ]
   };
 
@@ -97,7 +99,12 @@ window.VisualExplain = (() => {
 
     nodes.forEach((n, i) => {
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      g.style.opacity = revealSteps ? '0' : '1';
+      if (revealSteps && !n.alwaysVisible) {
+        g.style.opacity = '0';
+        g.classList.add('reveal-group');
+      } else {
+        g.style.opacity = '1';
+      }
       g.style.transition = 'opacity 0.4s ease';
 
       if (n.image) {
@@ -137,14 +144,26 @@ window.VisualExplain = (() => {
 
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', n.x + n.w / 2);
-        text.setAttribute('y', n.y + (n.imageH || n.h) + 24);
+        text.setAttribute('y', n.y + (n.imageH || n.h) + 20);
         text.setAttribute('text-anchor', 'middle');
         text.setAttribute('fill', 'var(--color-text)');
-        text.setAttribute('font-size', '13');
+        text.setAttribute('font-size', n.fontSize || '13');
         text.setAttribute('font-weight', '600');
         text.textContent = n.text;
         g.appendChild(text);
 
+        if (n.descLines) {
+          n.descLines.forEach((line, idx) => {
+            const desc = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            desc.setAttribute('x', n.x + n.w / 2);
+            desc.setAttribute('y', n.y + (n.imageH || n.h) + 36 + (idx * 14));
+            desc.setAttribute('text-anchor', 'middle');
+            desc.setAttribute('fill', 'var(--color-text-muted)');
+            desc.setAttribute('font-size', '11');
+            desc.textContent = line;
+            g.appendChild(desc);
+          });
+        }
       } else {
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         rect.setAttribute('x', n.x);
@@ -158,13 +177,26 @@ window.VisualExplain = (() => {
 
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', n.x + n.w / 2);
-        text.setAttribute('y', n.y + n.h / 2 + 5);
+        text.setAttribute('y', n.y + n.h / 2 + (n.fill === 'transparent' ? 5 : 4));
         text.setAttribute('text-anchor', 'middle');
         text.setAttribute('fill', n.textColor || 'var(--color-text)');
-        text.setAttribute('font-size', n.fill === 'transparent' ? '24' : '13');
+        text.setAttribute('font-size', n.fontSize || (n.fill === 'transparent' ? '24' : '13'));
         text.setAttribute('font-weight', '600');
         text.textContent = n.text;
         g.appendChild(text);
+
+        if (n.descLines) {
+          n.descLines.forEach((line, idx) => {
+            const desc = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            desc.setAttribute('x', n.x + n.w / 2);
+            desc.setAttribute('y', n.y + n.h / 2 + 20 + (idx * 14));
+            desc.setAttribute('text-anchor', 'middle');
+            desc.setAttribute('fill', 'var(--color-text-muted)');
+            desc.setAttribute('font-size', '11');
+            desc.textContent = line;
+            g.appendChild(desc);
+          });
+        }
       }
 
       svg.appendChild(g);
@@ -178,7 +210,7 @@ window.VisualExplain = (() => {
     revealBtn.style.display = revealSteps ? 'inline-block' : 'none';
 
     let revealed = 0;
-    const groups = svg.querySelectorAll('g');
+    const groups = svg.querySelectorAll('.reveal-group');
 
     function revealNext() {
       if (revealed < groups.length) {
