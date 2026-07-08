@@ -5,83 +5,91 @@
 window.MendeleevTable = (() => {
   const tableData = [
     // Series 1
-    { series: 1, group: '0', symbol: 'He', mass: '4.0' },
-    { series: 1, group: 'I', symbol: 'H', mass: '1.008' },
+    { series: 1, group: 'I', name: 'Hydrogen', symbol: 'H', mass: '1.008', align: 'right' },
+    
     // Series 2
-    { series: 2, group: '0', symbol: 'Ne', mass: '19.9' },
-    { series: 2, group: 'I', symbol: 'Li', mass: '7.03' },
-    { series: 2, group: 'II', symbol: 'Be', mass: '9.1' },
-    { series: 2, group: 'III', symbol: 'B', mass: '11.0' },
-    { series: 2, group: 'IV', symbol: 'C', mass: '12.0' },
-    { series: 2, group: 'V', symbol: 'N', mass: '14.04' },
-    { series: 2, group: 'VI', symbol: 'O', mass: '16.00' },
-    { series: 2, group: 'VII', symbol: 'F', mass: '19.0' },
+    { series: 2, group: '0', name: 'Helium', symbol: 'He', mass: '4.0', align: 'left' },
+    { series: 2, group: 'I', name: 'Lithium', symbol: 'Li', mass: '7.03', align: 'left' },
+    { series: 2, group: 'II', name: 'Beryllium', symbol: 'Be', mass: '9.1', align: 'left' },
+    { series: 2, group: 'III', name: 'Boron', symbol: 'B', mass: '11.0', align: 'left' },
+    { series: 2, group: 'IV', name: 'Carbon', symbol: 'C', mass: '12.0', align: 'left' },
+    { series: 2, group: 'V', name: 'Nitrogen', symbol: 'N', mass: '14.04', align: 'left' },
+    { series: 2, group: 'VI', name: 'Oxygen', symbol: 'O', mass: '16.00', align: 'left' },
+    { series: 2, group: 'VII', name: 'Fluorine', symbol: 'F', mass: '19.0', align: 'left' },
+    
     // Series 3
-    { series: 3, group: '0', symbol: 'Ar', mass: '38' },
-    { series: 3, group: 'I', symbol: 'Na', mass: '23.5' },
-    { series: 3, group: 'II', symbol: 'Mg', mass: '24.3' },
-    { series: 3, group: 'III', symbol: 'Al', mass: '27.0' },
-    { series: 3, group: 'IV', symbol: 'Si', mass: '28.4' },
-    { series: 3, group: 'V', symbol: 'P', mass: '31.0' },
-    { series: 3, group: 'VI', symbol: 'S', mass: '32.06' },
-    { series: 3, group: 'VII', symbol: 'Cl', mass: '35.45' },
+    { series: 3, group: '0', name: 'Neon', symbol: 'Ne', mass: '19.9', align: 'right' },
+    { series: 3, group: 'I', name: 'Sodium', symbol: 'Na', mass: '23.5', align: 'right' },
+    { series: 3, group: 'II', name: 'Magnesium', symbol: 'Mg', mass: '24.3', align: 'right' },
+    { series: 3, group: 'III', name: 'Aluminium', symbol: 'Al', mass: '27.0', align: 'right' },
+    { series: 3, group: 'IV', name: 'Silicon', symbol: 'Si', mass: '28.4', align: 'right' },
+    { series: 3, group: 'V', name: 'Phosphorus', symbol: 'P', mass: '31.0', align: 'right' },
+    { series: 3, group: 'VI', name: 'Sulphur', symbol: 'S', mass: '32.06', align: 'right' },
+    { series: 3, group: 'VII', name: 'Chlorine', symbol: 'Cl', mass: '35.45', align: 'right' },
+    
     // Series 4
-    { series: 4, group: '0', symbol: 'Kr', mass: '81.8' },
-    { series: 4, group: 'I', symbol: 'K', mass: '39.1' },
-    { series: 4, group: 'II', symbol: 'Ca', mass: '40.1' },
-    { series: 4, group: 'III', symbol: 'Sc', mass: '44.1' },
-    { series: 4, group: 'IV', symbol: 'Ti', mass: '48.1' },
-    { series: 4, group: 'V', symbol: 'V', mass: '51.4' },
-    { series: 4, group: 'VI', symbol: 'Cr', mass: '52.1' },
-    { series: 4, group: 'VII', symbol: 'Mn', mass: '55.0' },
-    { series: 4, group: 'VIII', symbol: 'Fe Co Ni', mass: '55.9 59 59', span: true },
+    { series: 4, group: '0', name: 'Argon', symbol: 'Ar', mass: '38', align: 'left' },
+    { series: 4, group: 'I', name: 'Potassium', symbol: 'K', mass: '39.1', align: 'left' },
+    { series: 4, group: 'II', name: 'Calcium', symbol: 'Ca', mass: '40.1', align: 'left' },
+    { series: 4, group: 'III', name: 'Scandium', symbol: 'Sc', mass: '44.1', align: 'left' },
+    { series: 4, group: 'IV', name: 'Titanium', symbol: 'Ti', mass: '48.1', align: 'left' },
+    { series: 4, group: 'V', name: 'Vanadium', symbol: 'V', mass: '51.4', align: 'left' },
+    { series: 4, group: 'VI', name: 'Chromium', symbol: 'Cr', mass: '52.1', align: 'left' },
+    { series: 4, group: 'VII', name: 'Manganese', symbol: 'Mn', mass: '55.0', align: 'left' },
+    { series: 4, group: 'VIII', customHTML: '<div style="display:flex; justify-content:space-between; text-align:left; gap:10px;"><div>Iron<br><strong>Fe</strong><br>55.9</div><div>Cobalt<br><strong>Co</strong><br>59</div><div>Nickel<br><strong>Ni</strong><br>59</div><div style="align-self:flex-end; color:#888;">(Cu)</div></div>' },
+    
     // Series 5
-    { series: 5, group: 'I', symbol: 'Cu', mass: '63.6' },
-    { series: 5, group: 'II', symbol: 'Zn', mass: '65.4' },
-    { series: 5, group: 'III', symbol: 'Ga', mass: '70.0', highlight: 'gap' },
-    { series: 5, group: 'IV', symbol: 'Ge', mass: '72.3', highlight: 'gap' },
-    { series: 5, group: 'V', symbol: 'As', mass: '75' },
-    { series: 5, group: 'VI', symbol: 'Se', mass: '79' },
-    { series: 5, group: 'VII', symbol: 'Br', mass: '79.95' },
+    { series: 5, group: 'I', name: 'Copper', symbol: 'Cu', mass: '63.6', align: 'right' },
+    { series: 5, group: 'II', name: 'Zinc', symbol: 'Zn', mass: '65.4', align: 'right' },
+    { series: 5, group: 'III', name: 'Gallium', symbol: 'Ga', mass: '70.0', align: 'right', highlight: 'gap' },
+    { series: 5, group: 'IV', name: 'Germanium', symbol: 'Ge', mass: '72.3', align: 'right', highlight: 'gap' },
+    { series: 5, group: 'V', name: 'Arsenic', symbol: 'As', mass: '75', align: 'right' },
+    { series: 5, group: 'VI', name: 'Selenium', symbol: 'Se', mass: '79', align: 'right' },
+    { series: 5, group: 'VII', name: 'Bromine', symbol: 'Br', mass: '79.95', align: 'right' },
+    
     // Series 6
-    { series: 6, group: '0', symbol: 'Xe', mass: '128' },
-    { series: 6, group: 'I', symbol: 'Rb', mass: '85.4' },
-    { series: 6, group: 'II', symbol: 'Sr', mass: '87.6' },
-    { series: 6, group: 'III', symbol: 'Y', mass: '89.0' },
-    { series: 6, group: 'IV', symbol: 'Zr', mass: '90.6' },
-    { series: 6, group: 'V', symbol: 'Nb', mass: '94.0' },
-    { series: 6, group: 'VI', symbol: 'Mo', mass: '96.0' },
-    { series: 6, group: 'VIII', symbol: 'Ru Rh Pd', mass: '101.7 103 106.5', span: true },
+    { series: 6, group: '0', name: 'Krypton', symbol: 'Kr', mass: '81.8', align: 'left' },
+    { series: 6, group: 'I', name: 'Rubidium', symbol: 'Rb', mass: '85.4', align: 'left' },
+    { series: 6, group: 'II', name: 'Strontium', symbol: 'Sr', mass: '87.6', align: 'left' },
+    { series: 6, group: 'III', name: 'Yttrium', symbol: 'Y', mass: '89.0', align: 'left' },
+    { series: 6, group: 'IV', name: 'Zirconium', symbol: 'Zr', mass: '90.6', align: 'left' },
+    { series: 6, group: 'V', name: 'Niobium', symbol: 'Nb', mass: '94.0', align: 'left' },
+    { series: 6, group: 'VI', name: 'Molybdenum', symbol: 'Mo', mass: '96.0', align: 'left' },
+    { series: 6, group: 'VIII', customHTML: '<div style="display:flex; justify-content:space-between; text-align:left; gap:10px;"><div>Ruthenium<br><strong>Ru</strong><br>101.7</div><div>Rhodium<br><strong>Rh</strong><br>103.0</div><div>Palladium<br><strong>Pd</strong><br>106.5</div><div style="align-self:flex-end; color:#888;">(Ag)</div></div>' },
+    
     // Series 7
-    { series: 7, group: 'I', symbol: 'Ag', mass: '107.9' },
-    { series: 7, group: 'II', symbol: 'Cd', mass: '112.4' },
-    { series: 7, group: 'III', symbol: 'In', mass: '114.0' },
-    { series: 7, group: 'IV', symbol: 'Sn', mass: '119.0' },
-    { series: 7, group: 'V', symbol: 'Sb', mass: '120.0' },
-    { series: 7, group: 'VI', symbol: 'Te', mass: '127.6', highlight: 'inversion' },
-    { series: 7, group: 'VII', symbol: 'I', mass: '126.9', highlight: 'inversion' },
+    { series: 7, group: 'I', name: 'Silver', symbol: 'Ag', mass: '107.9', align: 'right' },
+    { series: 7, group: 'II', name: 'Cadmium', symbol: 'Cd', mass: '112.4', align: 'right' },
+    { series: 7, group: 'III', name: 'Indium', symbol: 'In', mass: '114.0', align: 'right' },
+    { series: 7, group: 'IV', name: 'Tin', symbol: 'Sn', mass: '119.0', align: 'right' },
+    { series: 7, group: 'V', name: 'Antimony', symbol: 'Sb', mass: '120.0', align: 'right' },
+    { series: 7, group: 'VI', name: 'Tellurium', symbol: 'Te', mass: '127.6', align: 'right', highlight: 'inversion' },
+    { series: 7, group: 'VII', name: 'Iodine', symbol: 'I', mass: '126.9', align: 'right', highlight: 'inversion' },
+    
     // Series 8
-    { series: 8, group: '0', symbol: 'Xe', mass: '128' },
-    { series: 8, group: 'I', symbol: 'Cs', mass: '132.9' },
-    { series: 8, group: 'II', symbol: 'Ba', mass: '137.4' },
-    { series: 8, group: 'III', symbol: 'La', mass: '139' },
-    { series: 8, group: 'IV', symbol: 'Ce', mass: '140' },
-    // Series 9 (Empty)
+    { series: 8, group: '0', name: 'Xenon', symbol: 'Xe', mass: '128', align: 'left' },
+    { series: 8, group: 'I', name: 'Caesium', symbol: 'Cs', mass: '132.9', align: 'left' },
+    { series: 8, group: 'II', name: 'Barium', symbol: 'Ba', mass: '137.4', align: 'left' },
+    { series: 8, group: 'III', name: 'Lanthanum', symbol: 'La', mass: '139', align: 'left' },
+    { series: 8, group: 'IV', name: 'Cerium', symbol: 'Ce', mass: '140', align: 'left' },
+    
     // Series 10
-    { series: 10, group: 'III', symbol: 'Yb', mass: '173' },
-    { series: 10, group: 'V', symbol: 'Ta', mass: '183' },
-    { series: 10, group: 'VI', symbol: 'W', mass: '184' },
-    { series: 10, group: 'VIII', symbol: 'Os Ir Pt', mass: '191 193 194.9', span: true },
+    { series: 10, group: 'III', name: 'Ytterbium', symbol: 'Yb', mass: '173', align: 'left' },
+    { series: 10, group: 'V', name: 'Tantalum', symbol: 'Ta', mass: '183', align: 'left' },
+    { series: 10, group: 'VI', name: 'Tungsten', symbol: 'W', mass: '184', align: 'left' },
+    { series: 10, group: 'VIII', customHTML: '<div style="display:flex; justify-content:space-between; text-align:left; gap:10px;"><div>Osmium<br><strong>Os</strong><br>191</div><div>Iridium<br><strong>Ir</strong><br>193</div><div>Platinum<br><strong>Pt</strong><br>194.9</div><div style="align-self:flex-end; color:#888;">(Au)</div></div>' },
+    
     // Series 11
-    { series: 11, group: 'I', symbol: 'Au', mass: '197.2' },
-    { series: 11, group: 'II', symbol: 'Hg', mass: '200.0' },
-    { series: 11, group: 'III', symbol: 'Tl', mass: '204.1' },
-    { series: 11, group: 'IV', symbol: 'Pb', mass: '206.9' },
-    { series: 11, group: 'V', symbol: 'Bi', mass: '208' },
+    { series: 11, group: 'I', name: 'Gold', symbol: 'Au', mass: '197.2', align: 'right' },
+    { series: 11, group: 'II', name: 'Mercury', symbol: 'Hg', mass: '200.0', align: 'right' },
+    { series: 11, group: 'III', name: 'Thallium', symbol: 'Tl', mass: '204.1', align: 'right' },
+    { series: 11, group: 'IV', name: 'Lead', symbol: 'Pb', mass: '206.9', align: 'right' },
+    { series: 11, group: 'V', name: 'Bismuth', symbol: 'Bi', mass: '208', align: 'right' },
+    
     // Series 12
-    { series: 12, group: 'II', symbol: 'Ra', mass: '224' },
-    { series: 12, group: 'IV', symbol: 'Th', mass: '232' },
-    { series: 12, group: 'VI', symbol: 'U', mass: '239' }
+    { series: 12, group: 'II', name: 'Radium', symbol: 'Ra', mass: '224', align: 'left' },
+    { series: 12, group: 'IV', name: 'Thorium', symbol: 'Th', mass: '232', align: 'left' },
+    { series: 12, group: 'VI', name: 'Uranium', symbol: 'U', mass: '239', align: 'left' }
   ];
 
   const groups = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
@@ -272,10 +280,16 @@ window.MendeleevTable = (() => {
           if (item.highlight) {
             td.dataset.hl = item.highlight;
           }
-          td.innerHTML = `
-            <div style="font-size:16px; font-weight:bold; color:#fff;">${item.symbol}</div>
-            <div style="font-size:11px; color:#888;">${item.mass}</div>
-          `;
+          if (item.customHTML) {
+            td.innerHTML = item.customHTML;
+          } else {
+            td.style.textAlign = item.align || 'center';
+            td.innerHTML = `
+              <div style="font-size:12px; color:#ccc;">${item.name}</div>
+              <div style="font-size:16px; font-weight:bold; color:#fff;">${item.symbol}</div>
+              <div style="font-size:11px; color:#888;">${item.mass}</div>
+            `;
+          }
         } else {
           td.innerHTML = `<span style="color:#333;">-</span>`;
         }
