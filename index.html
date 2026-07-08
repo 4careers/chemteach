@@ -910,7 +910,7 @@ function renderTodayBanner(sessions, today) {
         <div class="label">TODAY'S SESSION</div>
         <div class="topic">${match.topics[0]}</div>
       </div>
-      <a class="go-btn" href="${match.file}">GO TO SESSION</a>
+      <a class="go-btn" href="${match.file}?v=13">GO TO SESSION</a>
     `;
   } else {
     banner.innerHTML = `<div class="topic">No session today — rest well!</div>`;
@@ -969,7 +969,7 @@ function renderChapterGrid(sessions, state, today, lastOpened) {
           ${hasNote ? '<span class="note-icon">📝</span>' : ''}
           <div style="display:flex; gap: 8px;">
             <a class="go-btn mcq-btn" href="chapters/ch${String(s.chapter).padStart(2, '0')}/mcqs.html?week=${s.week}&session=${s.session}&v=2" style="background-color: var(--color-surface); color: var(--color-primary); border: 1px solid var(--color-primary);">MCQs</a>
-            <a class="go-btn" href="${s.file}">GO</a>
+            <a class="go-btn" href="${s.file}?v=13">GO</a>
           </div>
         `;
         block.appendChild(entry);
