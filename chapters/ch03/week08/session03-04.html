@@ -58,6 +58,7 @@
 </div>
 
 <script src="../../../progress.js?v=13"></script>
+<script src="../../../components/infographic.js?v=13"></script>
 <script src="../../../components/story.js?v=13"></script>
 <script src="../../../components/scaffold.js?v=13"></script>
 <script src="../../../components/particle-sim.js?v=13"></script>
@@ -94,6 +95,7 @@ function initCurrentSlide() {
   const config = JSON.parse(slide.dataset.config || '{}');
   switch (type) {
     case 'story': Story.init(container, config); break;
+    case 'infographic': Infographic.init(container, config); break;
     case 'known-unknown': Scaffold.init(container, config); break;
     case 'experiment-sim': ParticleSim.init(container, config); break;
     case 'model-3d': Model3D.init(container, config); break;
