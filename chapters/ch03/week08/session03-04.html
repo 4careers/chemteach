@@ -39,6 +39,10 @@
   <div class="component-container"></div>
 </div>
 
+<div class="slide" data-type="lothar-sim" data-config='{}'>
+  <div class="component-container"></div>
+</div>
+
 <div class="slide" data-type="riddle" data-config='{"question": "Mendeleev predicted an undiscovered element he called &#39;eka-silicon&#39;. Years later, germanium was discovered matching his prediction almost exactly. What does this prove?", "hint": "Think about what successful PREDICTION demonstrates.", "answer": "The periodic pattern was a real law of nature, not just a coincidence.", "explanation": "Predicting unknown elements proved his table captured a fundamental property of the universe."}'>
   <div class="component-container"></div>
 </div>
@@ -53,12 +57,13 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 6</span>
+  <span id="slide-counter">Slide 1 of 7</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
 <script src="../../../progress.js?v=13"></script>
 <script src="../../../components/infographic.js?v=13"></script>
+<script src="../../../components/lothar-sim.js?v=13"></script>
 <script src="../../../components/story.js?v=13"></script>
 <script src="../../../components/scaffold.js?v=13"></script>
 <script src="../../../components/particle-sim.js?v=13"></script>
@@ -101,6 +106,7 @@ function initCurrentSlide() {
     case 'model-3d': Model3D.init(container, config); break;
     case 'analogy': Analogy.init(container, config); break;
     case 'visual-explain': VisualExplain.init(container, config); break;
+    case 'lothar-sim': LotharSim.init(container, config); break;
     case 'gamification': DragDrop.init(container, config); break;
     case 'riddle': Riddle.init(container, config); break;
     case 'mnemonic': Mnemonic.init(container, config); break;
