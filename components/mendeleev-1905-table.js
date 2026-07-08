@@ -59,7 +59,29 @@ window.MendeleevTable = (() => {
     { series: 7, group: 'IV', symbol: 'Sn', mass: '119.0' },
     { series: 7, group: 'V', symbol: 'Sb', mass: '120.0' },
     { series: 7, group: 'VI', symbol: 'Te', mass: '127.6', highlight: 'inversion' },
-    { series: 7, group: 'VII', symbol: 'I', mass: '126.9', highlight: 'inversion' }
+    { series: 7, group: 'VII', symbol: 'I', mass: '126.9', highlight: 'inversion' },
+    // Series 8
+    { series: 8, group: '0', symbol: 'Xe', mass: '128' },
+    { series: 8, group: 'I', symbol: 'Cs', mass: '132.9' },
+    { series: 8, group: 'II', symbol: 'Ba', mass: '137.4' },
+    { series: 8, group: 'III', symbol: 'La', mass: '139' },
+    { series: 8, group: 'IV', symbol: 'Ce', mass: '140' },
+    // Series 9 (Empty)
+    // Series 10
+    { series: 10, group: 'III', symbol: 'Yb', mass: '173' },
+    { series: 10, group: 'V', symbol: 'Ta', mass: '183' },
+    { series: 10, group: 'VI', symbol: 'W', mass: '184' },
+    { series: 10, group: 'VIII', symbol: 'Os Ir Pt', mass: '191 193 194.9', span: true },
+    // Series 11
+    { series: 11, group: 'I', symbol: 'Au', mass: '197.2' },
+    { series: 11, group: 'II', symbol: 'Hg', mass: '200.0' },
+    { series: 11, group: 'III', symbol: 'Tl', mass: '204.1' },
+    { series: 11, group: 'IV', symbol: 'Pb', mass: '206.9' },
+    { series: 11, group: 'V', symbol: 'Bi', mass: '208' },
+    // Series 12
+    { series: 12, group: 'II', symbol: 'Ra', mass: '224' },
+    { series: 12, group: 'IV', symbol: 'Th', mass: '232' },
+    { series: 12, group: 'VI', symbol: 'U', mass: '239' }
   ];
 
   const groups = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
@@ -234,7 +256,7 @@ window.MendeleevTable = (() => {
     const tbody = document.createElement('tbody');
     
     let delayCounter = 0;
-    for (let s = 1; s <= 7; s++) {
+    for (let s = 1; s <= 12; s++) {
       let tr = document.createElement('tr');
       tr.innerHTML = `<th>${s}</th>`;
       
@@ -243,7 +265,7 @@ window.MendeleevTable = (() => {
         let td = document.createElement('td');
         td.dataset.row = s;
         td.dataset.col = colIndex;
-        td.style.animationDelay = `${delayCounter * 0.02}s`;
+        td.style.animationDelay = `${delayCounter * 0.005}s`;
         delayCounter++;
         
         if (item) {
@@ -251,8 +273,8 @@ window.MendeleevTable = (() => {
             td.dataset.hl = item.highlight;
           }
           td.innerHTML = `
-            <div style="font-size:18px; font-weight:bold; color:#fff;">${item.symbol}</div>
-            <div style="font-size:12px; color:#888;">${item.mass}</div>
+            <div style="font-size:16px; font-weight:bold; color:#fff;">${item.symbol}</div>
+            <div style="font-size:11px; color:#888;">${item.mass}</div>
           `;
         } else {
           td.innerHTML = `<span style="color:#333;">-</span>`;
@@ -261,6 +283,24 @@ window.MendeleevTable = (() => {
       });
       tbody.appendChild(tr);
     }
+    
+    // Add formula rows
+    const oxides = ['-', 'R₂O', 'RO', 'R₂O₃', 'RO₂', 'R₂O₅', 'RO₃', 'R₂O₇', 'RO₄'];
+    const hydrides = ['-', '-', '-', '-', 'RH₄', 'RH₃', 'RH₂', 'RH', '-'];
+    
+    let trOxides = document.createElement('tr');
+    trOxides.innerHTML = '<th style="font-size:10px; padding:4px;">HIGHER SALINE<br>OXIDES</th>';
+    oxides.forEach(f => {
+      trOxides.innerHTML += `<td style="color:#00ffaa; font-family:monospace; padding:4px; font-size:12px; height:auto;">${f}</td>`;
+    });
+    tbody.appendChild(trOxides);
+    
+    let trHydrides = document.createElement('tr');
+    trHydrides.innerHTML = '<th style="font-size:10px; padding:4px;">HIGHER GASEOUS<br>HYDROGEN COMP.</th>';
+    hydrides.forEach(f => {
+      trHydrides.innerHTML += `<td style="color:#00d4ff; font-family:monospace; padding:4px; font-size:12px; height:auto;">${f}</td>`;
+    });
+    tbody.appendChild(trHydrides);
     
     table.appendChild(tbody);
     tableWrap.appendChild(table);
