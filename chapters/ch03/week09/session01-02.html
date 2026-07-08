@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../../../assets/design-tokens.css?v=13">
 <link rel="stylesheet" href="../../../assets/session.css?v=13">
 <script src="../../../assets/theme.js?v=13"></script>
+<link rel="stylesheet" href="../../../assets/mcq-overlay.css?v=13">
 </head>
 <body>
 
@@ -18,7 +19,6 @@
   <div class="top-controls">
     <button class="theme-toggle-btn" onclick="ChemTheme.toggle()">☀️ Light Mode</button>
     <button id="btn-home">HOME</button>
-    <button id="btn-quiz" onclick="window.location.href='../../mcqs.html?week=9&session=01-02'" style="background: rgba(0,255,170,0.2); border: 1px solid #00ffaa; color: #00ffaa; font-weight: bold;">📝 TAKE QUIZ</button>
     <button id="btn-complete">MARK COMPLETE</button>
     <button id="btn-fullscreen">FULLSCREEN</button>
   </div>
@@ -37,7 +37,8 @@
 </div>
 
 <div class="slide" data-type="iupac-namer" data-config='{}'>
-  <div class="component-container"></div>
+  <div class="component-container">
+  <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":9},{"category":"NCERT Extract (MCQs CORNER)","qNum":10},{"category":"Exam Archive","qNum":9}])'>MCQs 📝</button></div>
 </div>
 
 
@@ -51,11 +52,17 @@
 </div>
 
 <div class="slide" data-type="infographic" data-config='{"title": "Next Chapter: Chemical Bonding", "image": "chemical_bonding_intro.jpg", "caption": "How isolated atoms unite.", "explanation": "Now that we know how atoms are structured and organized, the next chapter will explore how and why they bond together to form molecules and compounds."}'>
-  <div class="component-container"></div>
+  <div class="component-container">
+  <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":11},{"category":"NCERT Extract (MCQs CORNER)","qNum":14}])'>MCQs 📝</button></div>
 </div>
 
 <div class="slide" data-type="infographic" data-config='{"title": "Visual Summary: Nomenclature & Configuration", "image": "summary_nomenclature.jpg", "caption": "IUPAC Naming and Electron Orbitals.", "explanation": "Z>100 elements use systematic numerical roots. Electrons fill orbitals following Aufbau, Pauli Exclusion, and Hund&#39;s Rule."}'>
   <div class="component-container"></div>
+
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: Embedded within slides
+    </div>
 </div>
 
 <div class="slide-nav">
@@ -79,6 +86,10 @@
 <script src="../../../components/mnemonic.js?v=13"></script>
 <script src="../../../components/comic-strip.js?v=13"></script>
 <script src="../../../components/animation.js?v=13"></script>
+
+<script src="../mcq-data.js?v=13"></script>
+<script src="../../../assets/mcq-fx.js?v=13"></script>
+<script src="../../../assets/mcq-overlay.js?v=13"></script>
 <script>
 const SESSION_ID = 'ch03_w09_s01-02';
 let currentSlide = 0;
@@ -121,6 +132,7 @@ function initCurrentSlide() {
 }
 
 document.addEventListener('keydown', e => {
+  if (window.mcqOverlayActive) return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
   if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();

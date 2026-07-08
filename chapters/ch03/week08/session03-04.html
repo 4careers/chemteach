@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../../../assets/design-tokens.css?v=13">
 <link rel="stylesheet" href="../../../assets/session.css?v=13">
 <script src="../../../assets/theme.js?v=13"></script>
+<link rel="stylesheet" href="../../../assets/mcq-overlay.css?v=13">
 </head>
 <body>
 
@@ -18,7 +19,6 @@
   <div class="top-controls">
     <button class="theme-toggle-btn" onclick="ChemTheme.toggle()">☀️ Light Mode</button>
     <button id="btn-home">HOME</button>
-    <button id="btn-quiz" onclick="window.location.href='../../mcqs.html?week=8&session=03-04'" style="background: rgba(0,255,170,0.2); border: 1px solid #00ffaa; color: #00ffaa; font-weight: bold;">📝 TAKE QUIZ</button>
     <button id="btn-complete">MARK COMPLETE</button>
     <button id="btn-fullscreen">FULLSCREEN</button>
   </div>
@@ -34,7 +34,8 @@
 
 
 <div class="slide" data-type="visual-explain" data-config='{"diagram": "historical-classification", "revealSteps": true, "caption": "Click anywhere on the diagram to trace the history: Dobereiner&#39;s Triads \u2192 Newlands&#39; Octaves \u2192 Mendeleev&#39;s Periodic Table."}'>
-  <div class="component-container"></div>
+  <div class="component-container">
+  <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":1},{"category":"NCERT Extract (MCQs CORNER)","qNum":2},{"category":"NCERT Extract (MCQs CORNER)","qNum":3}])'>MCQs 📝</button></div>
 </div>
 
 <div class="slide" data-type="infographic" data-config='{"title": "1868 - Lothar Meyer", "image": "lothar_meyer.jpg", "caption": "The pattern became clearer...", "explanation": "“Lothar Meyer plotted physical properties such as atomic volume against atomic weight and obtained a periodically repeated pattern.” — NCERT. He noticed that elements with similar properties occupied similar positions on the curve. This paved the way for Mendeleev!"}'>
@@ -42,7 +43,8 @@
 </div>
 
 <div class="slide" data-type="lothar-sim" data-config='{}'>
-  <div class="component-container"></div>
+  <div class="component-container">
+  <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":5}])'>MCQs 📝</button></div>
 </div>
 
 <div class="slide" data-type="story" data-config='{"setting": "1869 - The Periodic Law", "narrative": "Mendeleev fully recognized the significance of periodicity and used a broader range of physical and chemical properties to classify elements, not just strict atomic weight.", "reveal": "\"The properties of the elements are a periodic function of their atomic weights.\"", "visual": "classroom-1800s"}'>
@@ -50,7 +52,8 @@
 </div>
 
 <div class="slide" data-type="mendeleev-1905-table" data-config='{}'>
-  <div class="component-container"></div>
+  <div class="component-container">
+  <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"NCERT Extract (MCQs CORNER)","qNum":6},{"category":"Assertion & Reason Questions","qNum":1}])'>MCQs 📝</button></div>
 </div>
 
 <div class="slide" data-type="prediction-table" data-config='{}'>
@@ -79,6 +82,10 @@
       <li style="margin-bottom: 15px;">🔹 <strong>Mendeleev's Periodic Law:</strong> Formalized that properties are a periodic function of atomic weight.</li>
       <li style="margin-bottom: 15px;">🔹 <strong>Bold Predictions:</strong> Mendeleev left gaps for Eka-Aluminium and Eka-Silicon, predicting their exact properties years before discovery!</li>
     </ul>
+    <div class="mcq-block">
+      <strong>NCERT MCQs:</strong><br>
+      Classwork: Embedded within slides
+    </div>
     <h2 style="text-align: center; color: #00ffaa; margin-top: 40px; font-style: italic;">Great job completing the session!</h2>
   </div>
 </div>
@@ -105,6 +112,10 @@
 <script src="../../../components/mnemonic.js?v=13"></script>
 <script src="../../../components/comic-strip.js?v=13"></script>
 <script src="../../../components/animation.js?v=13"></script>
+
+<script src="../mcq-data.js?v=13"></script>
+<script src="../../../assets/mcq-fx.js?v=13"></script>
+<script src="../../../assets/mcq-overlay.js?v=13"></script>
 <script>
 const SESSION_ID = 'ch03_w08_s03-04';
 let currentSlide = 0;
@@ -148,6 +159,7 @@ function initCurrentSlide() {
 }
 
 document.addEventListener('keydown', e => {
+  if (window.mcqOverlayActive) return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
   if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
