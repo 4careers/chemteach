@@ -180,7 +180,7 @@ window.LotharSim = (() => {
       ctx.fillStyle = '#aaa';
       ctx.font = '14px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('Atomic Mass', canvas.width / 2, canvas.height - 20);
+      ctx.fillText('Atomic Weight', canvas.width / 2, canvas.height - 20);
       
       ctx.save();
       ctx.translate(20, canvas.height / 2);
@@ -211,7 +211,8 @@ window.LotharSim = (() => {
         ctx.beginPath();
         ctx.moveTo(getX(ELEMENTS[0].mass), getY(ELEMENTS[0].vol));
         
-        for (let i = 1; i <= maxVisibleIndex; i++) {
+        const limit = Math.min(maxVisibleIndex, ELEMENTS.length - 1);
+        for (let i = 1; i <= limit; i++) {
           if (i === maxVisibleIndex && i < ELEMENTS.length - 1) {
             // Interpolate last segment
             const prev = ELEMENTS[i - 1];
@@ -327,8 +328,10 @@ window.LotharSim = (() => {
 
     function step() {
       time++;
-      if (progress < ELEMENTS.length) {
+      if (progress < ELEMENTS.length - 1) {
         progress += 0.25; // Speed of graph drawing
+      } else {
+        progress = ELEMENTS.length - 1;
       }
     }
 
