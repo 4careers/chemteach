@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "Mendeleev vs. Moseley", "image": "mass_vs_atomic_number.jpg", "caption": "The true ordering principle is Atomic Number, not Mass.", "explanation": "Mendeleev&#39;s table organized by atomic mass had anomalies (like Argon coming before Potassium despite being heavier). Henry Moseley proved that ATOMIC NUMBER (number of protons) is the fundamental property, fixing all anomalies and giving us the Modern Periodic Law."}'>
+<div class="slide" data-type="moseley-sim" data-config='{"caption": "Select an Anode Target and FIRE ELECTRONS to see the X-ray wavelength shorten as Atomic Number (Z) increases!"}'>
   <div class="component-container"></div>
 </div>
 
@@ -61,6 +61,7 @@
 
 <script src="../../../progress.js?v=13"></script>
 <script src="../../../components/infographic.js?v=13"></script>
+<script src="../../../components/moseley-sim.js?v=14"></script>
 <script src="../../../components/story.js?v=13"></script>
 <script src="../../../components/scaffold.js?v=13"></script>
 <script src="../../../components/particle-sim.js?v=13"></script>
@@ -99,6 +100,7 @@ function initCurrentSlide() {
   switch (type) {
     case 'story': Story.init(container, config); break;
     case 'infographic': Infographic.init(container, config); break;
+    case 'moseley-sim': MoseleySim.init(container, config); break;
     case 'known-unknown': Scaffold.init(container, config); break;
     case 'experiment-sim': ParticleSim.init(container, config); break;
     case 'model-3d': Model3D.init(container, config); break;

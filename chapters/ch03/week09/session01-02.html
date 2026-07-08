@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "Naming Superheavy Elements", "image": "particle_accelerator.jpg", "caption": "Particle accelerators synthesize elements that exist for fractions of a second.", "explanation": "Before official names are debated and ratified, IUPAC provides a temporary, unambiguous systematic name based purely on the atomic number using Latin and Greek roots."}'>
+<div class="slide" data-type="accelerator-sim" data-config='{}'>
   <div class="component-container"></div>
 </div>
 
@@ -65,6 +65,7 @@
 
 <script src="../../../progress.js?v=13"></script>
 <script src="../../../components/infographic.js?v=13"></script>
+<script src="../../../components/accelerator-sim.js?v=14"></script>
 <script src="../../../components/story.js?v=13"></script>
 <script src="../../../components/scaffold.js?v=13"></script>
 <script src="../../../components/particle-sim.js?v=13"></script>
@@ -103,6 +104,7 @@ function initCurrentSlide() {
   switch (type) {
     case 'story': Story.init(container, config); break;
     case 'infographic': Infographic.init(container, config); break;
+    case 'accelerator-sim': AcceleratorSim.init(container, config); break;
     case 'known-unknown': Scaffold.init(container, config); break;
     case 'experiment-sim': ParticleSim.init(container, config); break;
     case 'model-3d': Model3D.init(container, config); break;
