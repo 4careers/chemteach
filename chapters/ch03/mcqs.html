@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>MCQs | Chapter 3</title>
+<link rel="stylesheet" href="../../assets/design-tokens.css?v=13">
+<link rel="stylesheet" href="../../assets/mcq-theme.css?v=13">
+<link rel="stylesheet" href="../../assets/mcq-overlay.css?v=13">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js?v=13"></script>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <h1>ChemTeach | Chapter 3 MCQs</h1>
+    <a href="../../index.html" class="back-btn">← Back to Dashboard</a>
+  </div>
+</header>
+
+<div class="container">
+  
+  <div id="home-view">
+    <div>
+      <h2 style="margin-top:0; margin-bottom: 0.5rem;">Select Question Category</h2>
+      <div id="home-session-title" style="color: var(--dimmed); font-size: 0.95rem; margin-bottom: 2rem; font-weight: 600;">Loading session...</div>
+    </div>
+    <div class="category-grid" id="category-grid">
+      <button class="category-btn" data-cat="NCERT Extract (MCQs CORNER)">NCERT Extract (MCQs CORNER)</button>
+      <button class="category-btn" data-cat="NCERT Exemplar Problems">NCERT Exemplar</button>
+      <button class="category-btn" data-cat="Assertion & Reason Questions">Assertion & Reason Questions</button>
+      <button class="category-btn" data-cat="Statement Based Questions">Statement Based Questions</button>
+      <button class="category-btn" data-cat="Numerical Value Type Questions">Numerical Value Type Questions</button>
+      <button class="category-btn" data-cat="Exam Archive">Exam Archive</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="../../assets/mcq-fx.js?v=13"></script>
+<script src="../../assets/mcq-overlay.js?v=13"></script>
+<script src="mcq-data.js?v=13"></script>
+<script>
+  let sessionTopicPrefix = "";
+  let sessionName = "Chapter 3 MCQs";
+
+  async function init() {
+    const params = new URLSearchParams(window.location.search);
+    const week = parseInt(params.get('week'));
+    const sessionStr = params.get('session');
+
+    if (week && sessionStr) {
+      try {
+        const res = await fetch('../../SCHEDULE.json');
+        const data = await res.json();
+        const sess = data.sessions.find(s => s.chapter === 3 && s.week === week && s.session === sessionStr);
+        if (sess && sess.topics && sess.topics.length > 0) {
+          sessionName = sess.topics[0];
+          // Match prefixes like "3.1-3.2" or "3.3"
+          const match = sessionName.match(/^([\d\.\-]+)/);
+          if (match) {
+            sessionTopicPrefix = match[1];
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load schedule:", err);
+      }
+    }
+    
+    document.getElementById('home-session-title').textContent = sessionName;
+  }
+
+  init();
+
+  // Handle Category Clicks
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const category = e.target.getAttribute('data-cat');
+      
+      const catQs = MCQs.filter(q => {
+        if (q.category !== category) return false;
+        
+        if (sessionTopicPrefix && q.topic !== "General") {
+          // e.g., sessionTopicPrefix might be "3.1-3.2"
+          const prefixes = sessionTopicPrefix.split('-');
+          return prefixes.some(prefix => q.topic.startsWith(prefix));
+        }
+        return true;
+      });
+      
+      if (catQs.length === 0) {
+        alert('No questions found for this category and session.');
+        return;
+      }
+
+      const filters = catQs.map(q => ({ category: q.category, qNum: q.qNum }));
+      MCQOverlay.open(filters);
+    });
+  });
+
+</script>
+</body>
+</html>
