@@ -1,5 +1,6 @@
 /**
  * MendeleevTable — Interactive recreation of Mendeleev's 1905 Periodic Table (Fig 3.1).
+ * Grand Overhaul Version with Crosshairs and Particles.
  */
 window.MendeleevTable = (() => {
   const tableData = [
@@ -66,99 +67,195 @@ window.MendeleevTable = (() => {
   function build(container, config) {
     container.innerHTML = '';
     
+    // Inject Custom Styles
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .mendeleev-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px;
+        background: radial-gradient(circle at center, #1a1a2a, #0a0a10);
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        box-shadow: 0 0 40px rgba(0, 212, 255, 0.1) inset, 0 10px 30px rgba(0,0,0,0.8);
+        overflow: hidden;
+      }
+      .particle-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: 
+          radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(255, 51, 102, 0.05) 0%, transparent 50%);
+        z-index: 0;
+      }
+      .mendeleev-table-wrap {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        overflow-x: auto;
+      }
+      .mendeleev-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+      }
+      .mendeleev-table th, .mendeleev-table td {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        transition: all 0.3s ease;
+      }
+      .mendeleev-table th {
+        background: rgba(0, 212, 255, 0.1);
+        color: #00d4ff;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+      }
+      .mendeleev-table td {
+        height: 65px;
+        vertical-align: top;
+        position: relative;
+        color: #ddd;
+        opacity: 0;
+        transform: scale(0.9);
+        animation: tdFadeIn 0.5s forwards ease-out;
+      }
+      @keyframes tdFadeIn {
+        to { opacity: 1; transform: scale(1); }
+      }
+      .mendeleev-table td:hover {
+        background: rgba(0, 212, 255, 0.2) !important;
+        transform: scale(1.05);
+        z-index: 10;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        border-color: #00d4ff;
+      }
+      /* Crosshair effect */
+      .crosshair-active {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .hl-inversion-active {
+        background: rgba(255, 51, 102, 0.3) !important;
+        box-shadow: 0 0 15px rgba(255, 51, 102, 0.8) inset;
+        border: 2px solid #ff3366 !important;
+        animation: pulseRed 1.5s infinite;
+      }
+      .hl-gap-active {
+        background: rgba(0, 255, 170, 0.3) !important;
+        box-shadow: 0 0 15px rgba(0, 255, 170, 0.8) inset;
+        border: 2px solid #00ffaa !important;
+        animation: pulseGreen 1.5s infinite;
+      }
+      @keyframes pulseRed {
+        0% { box-shadow: 0 0 15px rgba(255,51,102,0.8) inset; }
+        50% { box-shadow: 0 0 25px rgba(255,51,102,1) inset; }
+        100% { box-shadow: 0 0 15px rgba(255,51,102,0.8) inset; }
+      }
+      @keyframes pulseGreen {
+        0% { box-shadow: 0 0 15px rgba(0,255,170,0.8) inset; }
+        50% { box-shadow: 0 0 25px rgba(0,255,170,1) inset; }
+        100% { box-shadow: 0 0 15px rgba(0,255,170,0.8) inset; }
+      }
+    `;
+    container.appendChild(style);
+
     const wrap = document.createElement('div');
-    wrap.style.display = 'flex';
-    wrap.style.flexDirection = 'column';
-    wrap.style.alignItems = 'center';
-    wrap.style.gap = '20px';
-    wrap.style.width = '100%';
-    wrap.style.maxWidth = '1200px';
-    wrap.style.margin = '0 auto';
-    wrap.style.padding = '30px';
-    wrap.style.background = 'var(--color-card)';
-    wrap.style.borderRadius = 'var(--radius-lg)';
-    wrap.style.border = '1px solid var(--color-border)';
-    wrap.style.boxShadow = 'var(--shadow-glow)';
+    wrap.className = 'mendeleev-container';
+
+    const bg = document.createElement('div');
+    bg.className = 'particle-bg';
+    wrap.appendChild(bg);
 
     const title = document.createElement('h2');
     title.innerHTML = "Mendeleev's Periodic Table (1905 Version)";
     title.style.margin = '0';
-    title.style.color = 'var(--color-accent)';
+    title.style.color = '#fff';
+    title.style.textShadow = '0 0 10px rgba(255,255,255,0.5)';
     title.style.textAlign = 'center';
+    title.style.position = 'relative';
+    title.style.zIndex = '1';
 
     // Controls
     const controls = document.createElement('div');
     controls.style.display = 'flex';
     controls.style.gap = '15px';
+    controls.style.position = 'relative';
+    controls.style.zIndex = '1';
     
     const btnInversion = document.createElement('button');
     btnInversion.className = 'btn';
     btnInversion.textContent = '🔍 Highlight Tellurium/Iodine Inversion';
-    btnInversion.style.background = 'transparent';
+    btnInversion.style.background = 'rgba(0,0,0,0.5)';
     btnInversion.style.border = '1px solid #ff3366';
     btnInversion.style.color = '#ff3366';
-    btnInversion.style.padding = '8px 16px';
-    btnInversion.style.borderRadius = '6px';
+    btnInversion.style.padding = '10px 20px';
+    btnInversion.style.borderRadius = '8px';
     btnInversion.style.cursor = 'pointer';
+    btnInversion.style.transition = 'all 0.3s ease';
 
     const btnGaps = document.createElement('button');
     btnGaps.className = 'btn';
     btnGaps.textContent = '🔍 Highlight Eka-Al & Eka-Si (Gaps)';
-    btnGaps.style.background = 'transparent';
+    btnGaps.style.background = 'rgba(0,0,0,0.5)';
     btnGaps.style.border = '1px solid #00ffaa';
     btnGaps.style.color = '#00ffaa';
-    btnGaps.style.padding = '8px 16px';
-    btnGaps.style.borderRadius = '6px';
+    btnGaps.style.padding = '10px 20px';
+    btnGaps.style.borderRadius = '8px';
     btnGaps.style.cursor = 'pointer';
+    btnGaps.style.transition = 'all 0.3s ease';
 
     controls.appendChild(btnInversion);
     controls.appendChild(btnGaps);
 
     const tableWrap = document.createElement('div');
-    tableWrap.style.width = '100%';
-    tableWrap.style.overflowX = 'auto';
+    tableWrap.className = 'mendeleev-table-wrap';
 
     const table = document.createElement('table');
-    table.style.width = '100%';
-    table.style.borderCollapse = 'collapse';
-    table.style.textAlign = 'center';
-    table.style.fontSize = '12px';
-    table.style.background = 'rgba(0,0,0,0.2)';
+    table.className = 'mendeleev-table';
 
     const thead = document.createElement('thead');
     let trHead = document.createElement('tr');
-    trHead.innerHTML = '<th style="border:1px solid #555; padding:8px; background:#222;">SERIES</th>';
+    trHead.innerHTML = '<th>SERIES</th>';
     groups.forEach(g => {
-      trHead.innerHTML += `<th style="border:1px solid #555; padding:8px; background:#222;">Group ${g}</th>`;
+      trHead.innerHTML += `<th>Group ${g}</th>`;
     });
     thead.appendChild(trHead);
     table.appendChild(thead);
 
     const tbody = document.createElement('tbody');
     
+    let delayCounter = 0;
     for (let s = 1; s <= 7; s++) {
       let tr = document.createElement('tr');
-      tr.innerHTML = `<th style="border:1px solid #555; padding:8px; background:#222;">${s}</th>`;
+      tr.innerHTML = `<th>${s}</th>`;
       
-      groups.forEach(g => {
+      groups.forEach((g, colIndex) => {
         const item = tableData.find(d => d.series === s && d.group === g);
         let td = document.createElement('td');
-        td.style.border = '1px solid #555';
-        td.style.padding = '8px';
-        td.style.height = '60px';
-        td.style.verticalAlign = 'top';
-        td.style.position = 'relative';
+        td.dataset.row = s;
+        td.dataset.col = colIndex;
+        td.style.animationDelay = `${delayCounter * 0.02}s`;
+        delayCounter++;
         
         if (item) {
           if (item.highlight) {
-            td.classList.add(`hl-${item.highlight}`);
+            td.dataset.hl = item.highlight;
           }
           td.innerHTML = `
-            <div style="font-size:16px; font-weight:bold;">${item.symbol}</div>
-            <div style="font-size:11px; color:#aaa;">${item.mass}</div>
+            <div style="font-size:18px; font-weight:bold; color:#fff;">${item.symbol}</div>
+            <div style="font-size:12px; color:#888;">${item.mass}</div>
           `;
         } else {
-          td.innerHTML = `<span style="color:#444;">-</span>`;
+          td.innerHTML = `<span style="color:#333;">-</span>`;
         }
         tr.appendChild(td);
       });
@@ -168,57 +265,80 @@ window.MendeleevTable = (() => {
     table.appendChild(tbody);
     tableWrap.appendChild(table);
 
+    // Crosshair logic
+    table.addEventListener('mouseover', (e) => {
+      const td = e.target.closest('td');
+      if (!td) return;
+      const row = td.dataset.row;
+      const col = td.dataset.col;
+      
+      table.querySelectorAll('td').forEach(cell => {
+        if (cell.dataset.row === row || cell.dataset.col === col) {
+          cell.classList.add('crosshair-active');
+        } else {
+          cell.classList.remove('crosshair-active');
+        }
+      });
+    });
+
+    table.addEventListener('mouseleave', () => {
+      table.querySelectorAll('td').forEach(cell => {
+        cell.classList.remove('crosshair-active');
+      });
+    });
+
     // Explainer box
     const explainer = document.createElement('div');
     explainer.style.minHeight = '60px';
-    explainer.style.padding = '15px';
-    explainer.style.background = 'rgba(255,255,255,0.05)';
+    explainer.style.padding = '15px 30px';
+    explainer.style.background = 'rgba(0,0,0,0.6)';
     explainer.style.borderRadius = '8px';
     explainer.style.textAlign = 'center';
     explainer.style.color = '#ccc';
     explainer.style.fontStyle = 'italic';
+    explainer.style.border = '1px solid rgba(255,255,255,0.1)';
     explainer.style.width = '100%';
-    explainer.innerHTML = 'Interact with the table or use the buttons above to highlight key historical insights.';
+    explainer.style.position = 'relative';
+    explainer.style.zIndex = '1';
+    explainer.innerHTML = 'Hover over the grid to explore, or use the buttons above to highlight key historical insights.';
 
     // Interaction Logic
     btnInversion.onclick = () => {
       resetHighlights();
-      btnInversion.style.background = '#ff3366';
+      btnInversion.style.background = 'rgba(255,51,102,0.2)';
       btnInversion.style.color = '#fff';
-      const targets = table.querySelectorAll('.hl-inversion');
-      targets.forEach(t => {
-        t.style.background = 'rgba(255,51,102,0.3)';
-        t.style.boxShadow = '0 0 15px rgba(255,51,102,0.8) inset';
-        t.style.border = '2px solid #ff3366';
-      });
-      explainer.innerHTML = '<strong style="color:#ff3366">The Te/I Inversion:</strong> Mendeleev placed Tellurium (127.6) before Iodine (126.9). He ignored strict atomic weight order because Iodine clearly belonged with the Halogens (F, Cl, Br) based on chemical properties!';
+      btnInversion.style.boxShadow = '0 0 15px rgba(255,51,102,0.5)';
+      
+      const targets = table.querySelectorAll('td[data-hl="inversion"]');
+      targets.forEach(t => t.classList.add('hl-inversion-active'));
+      
+      explainer.innerHTML = '<strong style="color:#ff3366; font-size:18px;">The Te/I Inversion:</strong> Mendeleev placed Tellurium (127.6) before Iodine (126.9). He ignored strict atomic weight order because Iodine clearly belonged with the Halogens (F, Cl, Br) based on chemical properties!';
     };
 
     btnGaps.onclick = () => {
       resetHighlights();
-      btnGaps.style.background = '#00ffaa';
-      btnGaps.style.color = '#000';
-      const targets = table.querySelectorAll('.hl-gap');
-      targets.forEach(t => {
-        t.style.background = 'rgba(0,255,170,0.3)';
-        t.style.boxShadow = '0 0 15px rgba(0,255,170,0.8) inset';
-        t.style.border = '2px solid #00ffaa';
-      });
-      explainer.innerHTML = '<strong style="color:#00ffaa">The Predictive Gaps:</strong> Here are Gallium and Germanium. In 1869, these spots were completely empty! Mendeleev called them Eka-Aluminium and Eka-Silicon, predicting they would eventually be discovered.';
+      btnGaps.style.background = 'rgba(0,255,170,0.2)';
+      btnGaps.style.color = '#fff';
+      btnGaps.style.boxShadow = '0 0 15px rgba(0,255,170,0.5)';
+      
+      const targets = table.querySelectorAll('td[data-hl="gap"]');
+      targets.forEach(t => t.classList.add('hl-gap-active'));
+      
+      explainer.innerHTML = '<strong style="color:#00ffaa; font-size:18px;">The Predictive Gaps:</strong> Here are Gallium and Germanium. In 1869, these spots were completely empty! Mendeleev called them Eka-Aluminium and Eka-Silicon, predicting they would eventually be discovered.';
     };
 
     function resetHighlights() {
-      btnInversion.style.background = 'transparent';
+      btnInversion.style.background = 'rgba(0,0,0,0.5)';
       btnInversion.style.color = '#ff3366';
-      btnGaps.style.background = 'transparent';
+      btnInversion.style.boxShadow = 'none';
+      btnGaps.style.background = 'rgba(0,0,0,0.5)';
       btnGaps.style.color = '#00ffaa';
-      const tds = table.querySelectorAll('td');
-      tds.forEach(td => {
-        td.style.background = 'transparent';
-        td.style.boxShadow = 'none';
-        td.style.border = '1px solid #555';
+      btnGaps.style.boxShadow = 'none';
+      
+      table.querySelectorAll('td').forEach(td => {
+        td.classList.remove('hl-inversion-active', 'hl-gap-active');
       });
-      explainer.innerHTML = 'Interact with the table or use the buttons above to highlight key historical insights.';
+      explainer.innerHTML = 'Hover over the grid to explore, or use the buttons above to highlight key historical insights.';
     }
 
     wrap.appendChild(title);
