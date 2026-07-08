@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mendeleev's Periodic Table (1905)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 50px;
+      background-color: #050505;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    #mendeleev-container {
+      width: 100%;
+      max-width: 1200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="mendeleev-container"></div>
+  
+  <script>
+    // Copy of mendeleev-1905-table.js
+    window.MendeleevTable = (() => {
+      const tableData = [
+        { series: 1, group: 'I', name: 'Hydrogen', symbol: 'H', mass: '1.008', align: 'right' },
+        { series: 2, group: '0', name: 'Helium', symbol: 'He', mass: '4.0', align: 'left' },
+        { series: 2, group: 'I', name: 'Lithium', symbol: 'Li', mass: '7.03', align: 'left' },
+        { series: 2, group: 'II', name: 'Beryllium', symbol: 'Be', mass: '9.1', align: 'left' },
+        { series: 2, group: 'III', name: 'Boron', symbol: 'B', mass: '11.0', align: 'left' },
+        { series: 2, group: 'IV', name: 'Carbon', symbol: 'C', mass: '12.0', align: 'left' },
+        { series: 2, group: 'V', name: 'Nitrogen', symbol: 'N', mass: '14.04', align: 'left' },
+        { series: 2, group: 'VI', name: 'Oxygen', symbol: 'O', mass: '16.00', align: 'left' },
+        { series: 2, group: 'VII', name: 'Fluorine', symbol: 'F', mass: '19.0', align: 'left' },
+        { series: 3, group: '0', name: 'Neon', symbol: 'Ne', mass: '19.9', align: 'right' },
+        { series: 3, group: 'I', name: 'Sodium', symbol: 'Na', mass: '23.5', align: 'right' },
+        { series: 3, group: 'II', name: 'Magnesium', symbol: 'Mg', mass: '24.3', align: 'right' },
+        { series: 3, group: 'III', name: 'Aluminium', symbol: 'Al', mass: '27.0', align: 'right' },
+        { series: 3, group: 'IV', name: 'Silicon', symbol: 'Si', mass: '28.4', align: 'right' },
+        { series: 3, group: 'V', name: 'Phosphorus', symbol: 'P', mass: '31.0', align: 'right' },
+        { series: 3, group: 'VI', name: 'Sulphur', symbol: 'S', mass: '32.06', align: 'right' },
+        { series: 3, group: 'VII', name: 'Chlorine', symbol: 'Cl', mass: '35.45', align: 'right' },
+        { series: 4, group: '0', name: 'Argon', symbol: 'Ar', mass: '38', align: 'left' },
+        { series: 4, group: 'I', name: 'Potassium', symbol: 'K', mass: '39.1', align: 'left' },
+        { series: 4, group: 'II', name: 'Calcium', symbol: 'Ca', mass: '40.1', align: 'left' },
+        { series: 4, group: 'III', name: 'Scandium', symbol: 'Sc', mass: '44.1', align: 'left' },
+        { series: 4, group: 'IV', name: 'Titanium', symbol: 'Ti', mass: '48.1', align: 'left' },
+        { series: 4, group: 'V', name: 'Vanadium', symbol: 'V', mass: '51.4', align: 'left' },
+        { series: 4, group: 'VI', name: 'Chromium', symbol: 'Cr', mass: '52.1', align: 'left' },
+        { series: 4, group: 'VII', name: 'Manganese', symbol: 'Mn', mass: '55.0', align: 'left' },
+        { series: 4, group: 'VIII', customHTML: '<div style="display:flex; justify-content:space-between; text-align:left; gap:10px;"><div>Iron<br><strong>Fe</strong><br>55.9</div><div>Cobalt<br><strong>Co</strong><br>59</div><div>Nickel<br><strong>Ni</strong><br>59</div><div style="align-self:flex-end; color:#888;">(Cu)</div></div>' },
+        { series: 5, group: 'I', name: 'Copper', symbol: 'Cu', mass: '63.6', align: 'right' },
+        { series: 5, group: 'II', name: 'Zinc', symbol: 'Zn', mass: '65.4', align: 'right' },
+        { series: 5, group: 'III', name: 'Gallium', symbol: 'Ga', mass: '70.0', align: 'right', highlight: 'gap' },
+        { series: 5, group: 'IV', name: 'Germanium', symbol: 'Ge', mass: '72.3', align: 'right', highlight: 'gap' },
+        { series: 5, group: 'V', name: 'Arsenic', symbol: 'As', mass: '75', align: 'right' },
+        { series: 5, group: 'VI', name: 'Selenium', symbol: 'Se', mass: '79', align: 'right' },
+        { series: 5, group: 'VII', name: 'Bromine', symbol: 'Br', mass: '79.95', align: 'right' },
+        { series: 6, group: '0', name: 'Krypton', symbol: 'Kr', mass: '81.8', align: 'left' },
+        { series: 6, group: 'I', name: 'Rubidium', symbol: 'Rb', mass: '85.4', align: 'left' },
+        { series: 6, group: 'II', name: 'Strontium', symbol: 'Sr', mass: '87.6', align: 'left' },
+        { series: 6, group: 'III', name: 'Yttrium', symbol: 'Y', mass: '89.0', align: 'left' },
+        { series: 6, group: 'IV', name: 'Zirconium', symbol: 'Zr', mass: '90.6', align: 'left' },
+        { series: 6, group: 'V', name: 'Niobium', symbol: 'Nb', mass: '94.0', align: 'left' },
+        { series: 6, group: 'VI', name: 'Molybdenum', symbol: 'Mo', mass: '96.0', align: 'left' },
+        { series: 6, group: 'VIII', customHTML: '<div style="display:flex; justify-content:space-between; text-align:left; gap:10px;"><div>Ruthenium<br><strong>Ru</strong><br>101.7</div><div>Rhodium<br><strong>Rh</strong><br>103.0</div><div>Palladium<br><strong>Pd</strong><br>106.5</div><div style="align-self:flex-end; color:#888;">(Ag)</div></div>' },
+        { series: 7, group: 'I', name: 'Silver', symbol: 'Ag', mass: '107.9', align: 'right' },
+        { series: 7, group: 'II', name: 'Cadmium', symbol: 'Cd', mass: '112.4', align: 'right' },
+        { series: 7, group: 'III', name: 'Indium', symbol: 'In', mass: '114.0', align: 'right' },
+        { series: 7, group: 'IV', name: 'Tin', symbol: 'Sn', mass: '119.0', align: 'right' },
+        { series: 7, group: 'V', name: 'Antimony', symbol: 'Sb', mass: '120.0', align: 'right' },
+        { series: 7, group: 'VI', name: 'Tellurium', symbol: 'Te', mass: '127.6', align: 'right', highlight: 'inversion' },
+        { series: 7, group: 'VII', name: 'Iodine', symbol: 'I', mass: '126.9', align: 'right', highlight: 'inversion' },
+        { series: 8, group: '0', name: 'Xenon', symbol: 'Xe', mass: '128', align: 'left' },
+        { series: 8, group: 'I', name: 'Caesium', symbol: 'Cs', mass: '132.9', align: 'left' },
+        { series: 8, group: 'II', name: 'Barium', symbol: 'Ba', mass: '137.4', align: 'left' },
+        { series: 8, group: 'III', name: 'Lanthanum', symbol: 'La', mass: '139', align: 'left' },
+        { series: 8, group: 'IV', name: 'Cerium', symbol: 'Ce', mass: '140', align: 'left' },
+        { series: 10, group: 'III', name: 'Ytterbium', symbol: 'Yb', mass: '173', align: 'left' },
+        { series: 10, group: 'V', name: 'Tantalum', symbol: 'Ta', mass: '183', align: 'left' },
+        { series: 10, group: 'VI', name: 'Tungsten', symbol: 'W', mass: '184', align: 'left' },
+        { series: 10, group: 'VIII', customHTML: '<div style="display:flex; justify-content:space-between; text-align:left; gap:10px;"><div>Osmium<br><strong>Os</strong><br>191</div><div>Iridium<br><strong>Ir</strong><br>193</div><div>Platinum<br><strong>Pt</strong><br>194.9</div><div style="align-self:flex-end; color:#888;">(Au)</div></div>' },
+        { series: 11, group: 'I', name: 'Gold', symbol: 'Au', mass: '197.2', align: 'right' },
+        { series: 11, group: 'II', name: 'Mercury', symbol: 'Hg', mass: '200.0', align: 'right' },
+        { series: 11, group: 'III', name: 'Thallium', symbol: 'Tl', mass: '204.1', align: 'right' },
+        { series: 11, group: 'IV', name: 'Lead', symbol: 'Pb', mass: '206.9', align: 'right' },
+        { series: 11, group: 'V', name: 'Bismuth', symbol: 'Bi', mass: '208', align: 'right' },
+        { series: 12, group: 'II', name: 'Radium', symbol: 'Ra', mass: '224', align: 'left' },
+        { series: 12, group: 'IV', name: 'Thorium', symbol: 'Th', mass: '232', align: 'left' },
+        { series: 12, group: 'VI', name: 'Uranium', symbol: 'U', mass: '239', align: 'left' }
+      ];
+
+      const groups = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+
+      function build(container, config) {
+        container.innerHTML = '';
+        
+        const style = document.createElement('style');
+        style.innerHTML = `
+          .mendeleev-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background: radial-gradient(circle at center, #1a1a2a, #0a0a10);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.1) inset, 0 10px 30px rgba(0,0,0,0.8);
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          }
+          .particle-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: 
+              radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(255, 51, 102, 0.05) 0%, transparent 50%);
+            z-index: 0;
+          }
+          .mendeleev-table-wrap {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            overflow-x: auto;
+          }
+          .mendeleev-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+          }
+          .mendeleev-table th, .mendeleev-table td {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            transition: all 0.3s ease;
+          }
+          .mendeleev-table th {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+          }
+          .mendeleev-table td {
+            height: 65px;
+            vertical-align: top;
+            position: relative;
+            color: #ddd;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: tdFadeIn 0.5s forwards ease-out;
+          }
+          @keyframes tdFadeIn {
+            to { opacity: 1; transform: scale(1); }
+          }
+          .mendeleev-table td:hover {
+            background: rgba(0, 212, 255, 0.2) !important;
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            border-color: #00d4ff;
+          }
+          .crosshair-active {
+            background: rgba(255, 255, 255, 0.05);
+          }
+          .hl-inversion-active {
+            background: rgba(255, 51, 102, 0.3) !important;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.8) inset;
+            border: 2px solid #ff3366 !important;
+            animation: pulseRed 1.5s infinite;
+          }
+          .hl-gap-active {
+            background: rgba(0, 255, 170, 0.3) !important;
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.8) inset;
+            border: 2px solid #00ffaa !important;
+            animation: pulseGreen 1.5s infinite;
+          }
+          @keyframes pulseRed {
+            0% { box-shadow: 0 0 15px rgba(255,51,102,0.8) inset; }
+            50% { box-shadow: 0 0 25px rgba(255,51,102,1) inset; }
+            100% { box-shadow: 0 0 15px rgba(255,51,102,0.8) inset; }
+          }
+          @keyframes pulseGreen {
+            0% { box-shadow: 0 0 15px rgba(0,255,170,0.8) inset; }
+            50% { box-shadow: 0 0 25px rgba(0,255,170,1) inset; }
+            100% { box-shadow: 0 0 15px rgba(0,255,170,0.8) inset; }
+          }
+        `;
+        container.appendChild(style);
+
+        const wrap = document.createElement('div');
+        wrap.className = 'mendeleev-container';
+
+        const bg = document.createElement('div');
+        bg.className = 'particle-bg';
+        wrap.appendChild(bg);
+
+        const title = document.createElement('h2');
+        title.innerHTML = "Mendeleev's Periodic Table (1905 Version)";
+        title.style.margin = '0';
+        title.style.color = '#fff';
+        title.style.textShadow = '0 0 10px rgba(255,255,255,0.5)';
+        title.style.textAlign = 'center';
+        title.style.position = 'relative';
+        title.style.zIndex = '1';
+
+        const controls = document.createElement('div');
+        controls.style.display = 'flex';
+        controls.style.gap = '15px';
+        controls.style.position = 'relative';
+        controls.style.zIndex = '1';
+        
+        const btnInversion = document.createElement('button');
+        btnInversion.textContent = '🔍 Highlight Tellurium/Iodine Inversion';
+        btnInversion.style.background = 'rgba(0,0,0,0.5)';
+        btnInversion.style.border = '1px solid #ff3366';
+        btnInversion.style.color = '#ff3366';
+        btnInversion.style.padding = '10px 20px';
+        btnInversion.style.borderRadius = '8px';
+        btnInversion.style.cursor = 'pointer';
+        btnInversion.style.transition = 'all 0.3s ease';
+
+        const btnGaps = document.createElement('button');
+        btnGaps.textContent = '🔍 Highlight Eka-Al & Eka-Si (Gaps)';
+        btnGaps.style.background = 'rgba(0,0,0,0.5)';
+        btnGaps.style.border = '1px solid #00ffaa';
+        btnGaps.style.color = '#00ffaa';
+        btnGaps.style.padding = '10px 20px';
+        btnGaps.style.borderRadius = '8px';
+        btnGaps.style.cursor = 'pointer';
+        btnGaps.style.transition = 'all 0.3s ease';
+
+        controls.appendChild(btnInversion);
+        controls.appendChild(btnGaps);
+
+        const tableWrap = document.createElement('div');
+        tableWrap.className = 'mendeleev-table-wrap';
+
+        const table = document.createElement('table');
+        table.className = 'mendeleev-table';
+
+        const thead = document.createElement('thead');
+        let trHead = document.createElement('tr');
+        trHead.innerHTML = '<th>SERIES</th>';
+        groups.forEach(g => {
+          trHead.innerHTML += `<th>Group ${g}</th>`;
+        });
+        thead.appendChild(trHead);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        
+        let delayCounter = 0;
+        for (let s = 1; s <= 12; s++) {
+          let tr = document.createElement('tr');
+          tr.innerHTML = `<th>${s}</th>`;
+          
+          groups.forEach((g, colIndex) => {
+            const item = tableData.find(d => d.series === s && d.group === g);
+            let td = document.createElement('td');
+            td.dataset.row = s;
+            td.dataset.col = colIndex;
+            td.style.animationDelay = `${delayCounter * 0.005}s`;
+            delayCounter++;
+            
+            if (item) {
+              if (item.highlight) td.dataset.hl = item.highlight;
+              
+              if (item.customHTML) {
+                td.innerHTML = item.customHTML;
+              } else {
+                td.style.textAlign = item.align || 'center';
+                td.innerHTML = `
+                  <div style="font-size:12px; color:#ccc;">${item.name}</div>
+                  <div style="font-size:16px; font-weight:bold; color:#fff;">${item.symbol}</div>
+                  <div style="font-size:11px; color:#888;">${item.mass}</div>
+                `;
+              }
+            } else {
+              td.innerHTML = `<span style="color:#333;">-</span>`;
+            }
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        }
+        
+        const oxides = ['-', 'R₂O', 'RO', 'R₂O₃', 'RO₂', 'R₂O₅', 'RO₃', 'R₂O₇', 'RO₄'];
+        const hydrides = ['-', '-', '-', '-', 'RH₄', 'RH₃', 'RH₂', 'RH', '-'];
+        
+        let trOxides = document.createElement('tr');
+        trOxides.innerHTML = '<th style="font-size:10px; padding:4px;">HIGHER SALINE<br>OXIDES</th>';
+        oxides.forEach(f => {
+          trOxides.innerHTML += `<td style="color:#00ffaa; font-family:monospace; padding:4px; font-size:12px; height:auto;">${f}</td>`;
+        });
+        tbody.appendChild(trOxides);
+        
+        let trHydrides = document.createElement('tr');
+        trHydrides.innerHTML = '<th style="font-size:10px; padding:4px;">HIGHER GASEOUS<br>HYDROGEN COMP.</th>';
+        hydrides.forEach(f => {
+          trHydrides.innerHTML += `<td style="color:#00d4ff; font-family:monospace; padding:4px; font-size:12px; height:auto;">${f}</td>`;
+        });
+        tbody.appendChild(trHydrides);
+        
+        table.appendChild(tbody);
+        tableWrap.appendChild(table);
+
+        table.addEventListener('mouseover', (e) => {
+          const td = e.target.closest('td');
+          if (!td) return;
+          const row = td.dataset.row;
+          const col = td.dataset.col;
+          
+          table.querySelectorAll('td').forEach(cell => {
+            if (cell.dataset.row === row || cell.dataset.col === col) {
+              cell.classList.add('crosshair-active');
+            } else {
+              cell.classList.remove('crosshair-active');
+            }
+          });
+        });
+
+        table.addEventListener('mouseleave', () => {
+          table.querySelectorAll('td').forEach(cell => {
+            cell.classList.remove('crosshair-active');
+          });
+        });
+
+        const explainer = document.createElement('div');
+        explainer.style.minHeight = '60px';
+        explainer.style.padding = '15px 30px';
+        explainer.style.background = 'rgba(0,0,0,0.6)';
+        explainer.style.borderRadius = '8px';
+        explainer.style.textAlign = 'center';
+        explainer.style.color = '#ccc';
+        explainer.style.fontStyle = 'italic';
+        explainer.style.border = '1px solid rgba(255,255,255,0.1)';
+        explainer.style.width = '100%';
+        explainer.style.position = 'relative';
+        explainer.style.zIndex = '1';
+        explainer.style.boxSizing = 'border-box';
+        explainer.innerHTML = 'Hover over the grid to explore, or use the buttons above to highlight key historical insights.';
+
+        btnInversion.onclick = () => {
+          resetHighlights();
+          btnInversion.style.background = 'rgba(255,51,102,0.2)';
+          btnInversion.style.color = '#fff';
+          btnInversion.style.boxShadow = '0 0 15px rgba(255,51,102,0.5)';
+          
+          const targets = table.querySelectorAll('td[data-hl="inversion"]');
+          targets.forEach(t => t.classList.add('hl-inversion-active'));
+          
+          explainer.innerHTML = '<strong style="color:#ff3366; font-size:18px;">The Te/I Inversion:</strong> Mendeleev placed Tellurium (127.6) before Iodine (126.9). He ignored strict atomic weight order because Iodine clearly belonged with the Halogens (F, Cl, Br) based on chemical properties!';
+        };
+
+        btnGaps.onclick = () => {
+          resetHighlights();
+          btnGaps.style.background = 'rgba(0,255,170,0.2)';
+          btnGaps.style.color = '#fff';
+          btnGaps.style.boxShadow = '0 0 15px rgba(0,255,170,0.5)';
+          
+          const targets = table.querySelectorAll('td[data-hl="gap"]');
+          targets.forEach(t => t.classList.add('hl-gap-active'));
+          
+          explainer.innerHTML = '<strong style="color:#00ffaa; font-size:18px;">The Predictive Gaps:</strong> Here are Gallium and Germanium. In 1869, these spots were completely empty! Mendeleev called them Eka-Aluminium and Eka-Silicon, predicting they would eventually be discovered.';
+        };
+
+        function resetHighlights() {
+          btnInversion.style.background = 'rgba(0,0,0,0.5)';
+          btnInversion.style.color = '#ff3366';
+          btnInversion.style.boxShadow = 'none';
+          btnGaps.style.background = 'rgba(0,0,0,0.5)';
+          btnGaps.style.color = '#00ffaa';
+          btnGaps.style.boxShadow = 'none';
+          
+          table.querySelectorAll('td').forEach(td => {
+            td.classList.remove('hl-inversion-active', 'hl-gap-active');
+          });
+          explainer.innerHTML = 'Hover over the grid to explore, or use the buttons above to highlight key historical insights.';
+        }
+
+        wrap.appendChild(title);
+        wrap.appendChild(controls);
+        wrap.appendChild(tableWrap);
+        wrap.appendChild(explainer);
+        container.appendChild(wrap);
+      }
+
+      return { init: build };
+    })();
+    
+    // Initialize the component
+    const container = document.getElementById('mendeleev-container');
+    window.MendeleevTable.init(container, {});
+  </script>
+</body>
+</html>
