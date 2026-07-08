@@ -193,7 +193,7 @@ window.PredictionTable = (() => {
     table.className = 'prediction-table';
 
     const thead = document.createElement('thead');
-    thead.innerHTML = \`
+    thead.innerHTML = `
       <tr>
         <th class="th-prop" style="width: 25%;">Property</th>
         <th class="th-pred" style="width: 18.75%;">Eka-aluminium<br>(predicted)</th>
@@ -201,7 +201,7 @@ window.PredictionTable = (() => {
         <th class="th-pred" style="width: 18.75%;">Eka-silicon<br>(predicted)</th>
         <th class="th-found reveal-col" style="width: 18.75%;">Germanium<br>(found)</th>
       </tr>
-    \`;
+    `;
 
     const tbody = document.createElement('tbody');
     
@@ -215,13 +215,13 @@ window.PredictionTable = (() => {
 
     rows.forEach((r, i) => {
       const tr = document.createElement('tr');
-      tr.innerHTML = \`
-        <td class="td-prop">\${r[0]}</td>
-        <td class="td-pred">\${r[1]}</td>
-        <td class="td-found reveal-col" style="transition-delay: \${i * 0.1}s;">\${r[2]}</td>
-        <td class="td-pred">\${r[3]}</td>
-        <td class="td-found reveal-col" style="transition-delay: \${i * 0.1}s;">\${r[4]}</td>
-      \`;
+      tr.innerHTML = `
+        <td class="td-prop">${r[0]}</td>
+        <td class="td-pred">${r[1]}</td>
+        <td class="td-found reveal-col" style="transition-delay: ${i * 0.1}s;">${r[2]}</td>
+        <td class="td-pred">${r[3]}</td>
+        <td class="td-found reveal-col" style="transition-delay: ${i * 0.1}s;">${r[4]}</td>
+      `;
       tbody.appendChild(tr);
     });
 
