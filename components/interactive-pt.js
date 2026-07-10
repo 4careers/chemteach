@@ -2934,7 +2934,7 @@ window.InteractivePT = (() => {
           html += `<circle cx="${CENTER}" cy="${CENTER}" r="${r}" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" />`;
           
           // Draw electrons on this orbit inside a rotating group
-          html += `<g transform-origin="${CENTER}px ${CENTER}px">`;
+          html += `<g>`;
           html += `<animateTransform attributeName="transform" type="rotate" from="0 ${CENTER} ${CENTER}" to="360 ${CENTER} ${CENTER}" dur="${duration}s" repeatCount="indefinite" />`;
           
           for(let i=0; i<electrons; i++) {
