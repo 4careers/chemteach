@@ -3008,10 +3008,10 @@ window.InteractivePT = (() => {
           }
           
           html += '<div style="display:flex; flex-direction:column; align-items:center;">';
-          html += `<div style="margin-bottom:4px; font-size:0.9rem; color:var(--color-text-muted); font-weight:bold;">${orb.subshell}</div>`;
+          html += `<div style="margin-bottom:4px; font-size:1rem; color:var(--color-text-muted); font-weight:bold;">${orb.subshell}</div>`;
           html += '<div style="display:flex; gap:2px;">';
           boxes.forEach(b => {
-              html += `<div style="width:26px; height:26px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:bold; color:var(--color-primary); border-radius:3px; font-family:monospace;">${b}</div>`;
+              html += `<div style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-size:1.2rem; font-weight:bold; color:var(--color-primary); border-radius:3px; font-family:monospace;">${b}</div>`;
           });
           html += '</div></div>';
       });
@@ -3021,7 +3021,7 @@ window.InteractivePT = (() => {
   };
 
   const renderAtomSimulation = (shells, color) => {
-      const SVG_SIZE = 160;
+      const SVG_SIZE = 220;
       const CENTER = SVG_SIZE / 2;
       let html = `<div style="width:${SVG_SIZE}px; height:${SVG_SIZE}px; position:relative; display:flex; align-items:center; justify-content:center; flex-shrink:0;">`;
       html += `<svg width="${SVG_SIZE}" height="${SVG_SIZE}" viewBox="0 0 ${SVG_SIZE} ${SVG_SIZE}">`;
@@ -3339,13 +3339,15 @@ window.InteractivePT = (() => {
                  html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor}; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${el.sym} - ${ECONFS[el.z].name}</h4>`;
             }
             
-            html += `<table style="margin-top:10px; border-collapse: collapse; width: 100%; font-size: 1.05rem;">`;
-            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7); width: 45%;">Symbol:</td><td style="font-weight:bold;">${el.sym}</td></tr>`;
-            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Element Name:</td><td style="font-weight:bold;">${ECONFS[el.z].name}</td></tr>`;
-            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Atomic Number:</td><td style="font-weight:bold;">${el.z}</td></tr>`;
-            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Atomic Mass:</td><td style="font-weight:bold;">${ECONFS[el.z].mass}</td></tr>`;
-            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Electronic Config:</td><td style="font-weight:bold; letter-spacing:1px;">${ECONFS[el.z].html}</td></tr>`;
-            html += `</table>`;
+            html += `<div style="display:flex; justify-content:space-between; margin-top: 10px; font-size: 1.1rem; color: rgba(255,255,255,0.7);">`;
+            html += `<div>Z = <span style="color:#fff; font-weight:bold;">${el.z}</span></div>`;
+            html += `<div>Mass = <span style="color:#fff; font-weight:bold;">${ECONFS[el.z].mass}</span></div>`;
+            html += `</div>`;
+            
+            html += `<div style="margin-top:20px; background:rgba(0,0,0,0.3); border-radius: 8px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); text-align:center;">`;
+            html += `<div style="font-size:0.9rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">Electronic Configuration</div>`;
+            html += `<div style="font-size:1.6rem; font-weight:bold; letter-spacing: 2px; color:${blockColor}; text-shadow: 0 0 10px rgba(0,0,0,0.5);">${ECONFS[el.z].html}</div>`;
+            html += `</div>`;
             
             html += `<div style="margin-top: 15px;">`;
             html += renderOrbitals(ECONFS[el.z].valence);
