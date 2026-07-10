@@ -3273,38 +3273,6 @@ window.InteractivePT = (() => {
             return;
         }
         
-        if (infoPanel.style.opacity === "0") {
-            let clickX = 0, clickY = 0, hasPos = false;
-            if (e && e.clientX) { clickX = e.clientX; clickY = e.clientY; hasPos = true; }
-            else if (e && e.touches && e.touches.length > 0) { clickX = e.touches[0].clientX; clickY = e.touches[0].clientY; hasPos = true; }
-            
-            if (hasPos) {
-                const screenW = window.innerWidth;
-                const screenH = window.innerHeight;
-                
-                if (clickX > screenW / 2) {
-                    infoPanel.style.left = "40px";
-                    infoPanel.style.right = "auto";
-                } else {
-                    infoPanel.style.right = "40px";
-                    infoPanel.style.left = "auto";
-                }
-                
-                if (clickY > screenH / 2) {
-                    infoPanel.style.top = "40px";
-                    infoPanel.style.bottom = "auto";
-                } else {
-                    infoPanel.style.bottom = "40px";
-                    infoPanel.style.top = "auto";
-                }
-            } else {
-                 infoPanel.style.left = "40px";
-                 infoPanel.style.top = "40px";
-                 infoPanel.style.right = "auto";
-                 infoPanel.style.bottom = "auto";
-            }
-        }
-        
         infoPanel.style.opacity = "1";
         infoPanel.style.pointerEvents = "auto";
 
@@ -3387,6 +3355,56 @@ window.InteractivePT = (() => {
             html += `</div></div>`;
         }
         infoContent.innerHTML = html;
+        
+        // Smart Collision-Avoidance Repositioning
+        setTimeout(() => {
+            const screenW = window.innerWidth;
+            const screenH = window.innerHeight;
+            const modalW = infoPanel.offsetWidth || 550;
+            const modalH = infoPanel.offsetHeight || 600;
+            
+            let highlightedCells = Array.from(cells).filter(c => parseFloat(c.style.opacity) >= 1);
+            if (highlightedCells.length === 0 && selectedElementZ) {
+                 const elCell = cells.find(c => parseInt(c.dataset.z) === selectedElementZ);
+                 if (elCell) highlightedCells = [elCell];
+            }
+            
+            const padding = 40;
+            const candidates = [
+                { id: 'top-left', left: padding, right: null, top: padding, bottom: null, rect: { l: padding, r: padding+modalW, t: padding, b: padding+modalH } },
+                { id: 'top-right', left: null, right: padding, top: padding, bottom: null, rect: { l: screenW-padding-modalW, r: screenW-padding, t: padding, b: padding+modalH } },
+                { id: 'bottom-left', left: padding, right: null, top: null, bottom: padding, rect: { l: padding, r: padding+modalW, t: screenH-padding-modalH, b: screenH-padding } },
+                { id: 'bottom-right', left: null, right: padding, top: null, bottom: padding, rect: { l: screenW-padding-modalW, r: screenW-padding, t: screenH-padding-modalH, b: screenH-padding } },
+                { id: 'top-center', left: (screenW-modalW)/2, right: null, top: padding, bottom: null, rect: { l: (screenW-modalW)/2, r: (screenW+modalW)/2, t: padding, b: padding+modalH } },
+                { id: 'bottom-center', left: (screenW-modalW)/2, right: null, top: null, bottom: padding, rect: { l: (screenW-modalW)/2, r: (screenW+modalW)/2, t: screenH-padding-modalH, b: screenH-padding } }
+            ];
+            
+            let bestCandidate = candidates[0];
+            let minOverlap = Infinity;
+            
+            candidates.forEach(cand => {
+                 let overlapArea = 0;
+                 highlightedCells.forEach(c => {
+                     const cRect = c.getBoundingClientRect();
+                     const xOverlap = Math.max(0, Math.min(cand.rect.r, cRect.right) - Math.max(cand.rect.l, cRect.left));
+                     const yOverlap = Math.max(0, Math.min(cand.rect.b, cRect.bottom) - Math.max(cand.rect.t, cRect.top));
+                     overlapArea += (xOverlap * yOverlap);
+                 });
+                 if (cand.rect.b > screenH) overlapArea += 100000;
+                 if (cand.rect.r > screenW) overlapArea += 100000;
+                 
+                 if (overlapArea < minOverlap) {
+                     minOverlap = overlapArea;
+                     bestCandidate = cand;
+                 }
+            });
+            
+            if (bestCandidate.left !== null) { infoPanel.style.left = bestCandidate.left + 'px'; infoPanel.style.right = 'auto'; }
+            else { infoPanel.style.right = bestCandidate.right + 'px'; infoPanel.style.left = 'auto'; }
+            
+            if (bestCandidate.top !== null) { infoPanel.style.top = bestCandidate.top + 'px'; infoPanel.style.bottom = 'auto'; }
+            else { infoPanel.style.bottom = bestCandidate.bottom + 'px'; infoPanel.style.top = 'auto'; }
+        }, 10); // slight delay to allow innerHTML to reflow and calculate offsetHeight
     };
 
     const renderHighlights = (e) => {
