@@ -60,7 +60,6 @@ window.InteractivePT = (() => {
     { z: 54, sym: 'Xe', group: 18, period: 5, block: 'p' },
     { z: 55, sym: 'Cs', group: 1, period: 6, block: 's' },
     { z: 56, sym: 'Ba', group: 2, period: 6, block: 's' },
-    // Lanthanides
     { z: 57, sym: 'La', group: 3, period: 6, block: 'd' },
     { z: 58, sym: 'Ce', group: null, period: 8, block: 'f' },
     { z: 59, sym: 'Pr', group: null, period: 8, block: 'f' },
@@ -76,7 +75,6 @@ window.InteractivePT = (() => {
     { z: 69, sym: 'Tm', group: null, period: 8, block: 'f' },
     { z: 70, sym: 'Yb', group: null, period: 8, block: 'f' },
     { z: 71, sym: 'Lu', group: null, period: 8, block: 'f' },
-    
     { z: 72, sym: 'Hf', group: 4, period: 6, block: 'd' },
     { z: 73, sym: 'Ta', group: 5, period: 6, block: 'd' },
     { z: 74, sym: 'W', group: 6, period: 6, block: 'd' },
@@ -92,11 +90,9 @@ window.InteractivePT = (() => {
     { z: 84, sym: 'Po', group: 16, period: 6, block: 'p' },
     { z: 85, sym: 'At', group: 17, period: 6, block: 'p' },
     { z: 86, sym: 'Rn', group: 18, period: 6, block: 'p' },
-    
     { z: 87, sym: 'Fr', group: 1, period: 7, block: 's' },
     { z: 88, sym: 'Ra', group: 2, period: 7, block: 's' },
     { z: 89, sym: 'Ac', group: 3, period: 7, block: 'd' },
-    // Actinides
     { z: 90, sym: 'Th', group: null, period: 9, block: 'f' },
     { z: 91, sym: 'Pa', group: null, period: 9, block: 'f' },
     { z: 92, sym: 'U', group: null, period: 9, block: 'f' },
@@ -111,7 +107,6 @@ window.InteractivePT = (() => {
     { z: 101, sym: 'Md', group: null, period: 9, block: 'f' },
     { z: 102, sym: 'No', group: null, period: 9, block: 'f' },
     { z: 103, sym: 'Lr', group: null, period: 9, block: 'f' },
-
     { z: 104, sym: 'Rf', group: 4, period: 7, block: 'd' },
     { z: 105, sym: 'Db', group: 5, period: 7, block: 'd' },
     { z: 106, sym: 'Sg', group: 6, period: 7, block: 'd' },
@@ -130,2721 +125,2840 @@ window.InteractivePT = (() => {
   ];
 
   const ECONFS = {
-    "1": {
-        "name": "Hydrogen",
-        "html": "1s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "1s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            1
-        ]
-    },
-    "2": {
-        "name": "Helium",
-        "html": "1s<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "1s",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2
-        ]
-    },
-    "3": {
-        "name": "Lithium",
-        "html": "[He] 2s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            1
-        ]
-    },
-    "4": {
-        "name": "Beryllium",
-        "html": "[He] 2s<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            2
-        ]
-    },
-    "5": {
-        "name": "Boron",
-        "html": "[He] 2s<sup>2</sup> 2p<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 2
-            },
-            {
-                "subshell": "2p",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            3
-        ]
-    },
-    "6": {
-        "name": "Carbon",
-        "html": "[He] 2s<sup>2</sup> 2p<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 2
-            },
-            {
-                "subshell": "2p",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            4
-        ]
-    },
-    "7": {
-        "name": "Nitrogen",
-        "html": "[He] 2s<sup>2</sup> 2p<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 2
-            },
-            {
-                "subshell": "2p",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            5
-        ]
-    },
-    "8": {
-        "name": "Oxygen",
-        "html": "[He] 2s<sup>2</sup> 2p<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 2
-            },
-            {
-                "subshell": "2p",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            6
-        ]
-    },
-    "9": {
-        "name": "Fluorine",
-        "html": "[He] 2s<sup>2</sup> 2p<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 2
-            },
-            {
-                "subshell": "2p",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            7
-        ]
-    },
-    "10": {
-        "name": "Neon",
-        "html": "[He] 2s<sup>2</sup> 2p<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "2s",
-                "e": 2
-            },
-            {
-                "subshell": "2p",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8
-        ]
-    },
-    "11": {
-        "name": "Sodium",
-        "html": "[Ne] 3s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            1
-        ]
-    },
-    "12": {
-        "name": "Magnesium",
-        "html": "[Ne] 3s<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            2
-        ]
-    },
-    "13": {
-        "name": "Aluminum",
-        "html": "[Ne] 3s<sup>2</sup> 3p<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 2
-            },
-            {
-                "subshell": "3p",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            3
-        ]
-    },
-    "14": {
-        "name": "Silicon",
-        "html": "[Ne] 3s<sup>2</sup> 3p<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 2
-            },
-            {
-                "subshell": "3p",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            4
-        ]
-    },
-    "15": {
-        "name": "Phosphorus",
-        "html": "[Ne] 3s<sup>2</sup> 3p<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 2
-            },
-            {
-                "subshell": "3p",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            5
-        ]
-    },
-    "16": {
-        "name": "Sulfur",
-        "html": "[Ne] 3s<sup>2</sup> 3p<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 2
-            },
-            {
-                "subshell": "3p",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            6
-        ]
-    },
-    "17": {
-        "name": "Chlorine",
-        "html": "[Ne] 3s<sup>2</sup> 3p<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 2
-            },
-            {
-                "subshell": "3p",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            7
-        ]
-    },
-    "18": {
-        "name": "Argon",
-        "html": "[Ne] 3s<sup>2</sup> 3p<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "3s",
-                "e": 2
-            },
-            {
-                "subshell": "3p",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            8
-        ]
-    },
-    "19": {
-        "name": "Potassium",
-        "html": "[Ar] 4s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            8,
-            1
-        ]
-    },
-    "20": {
-        "name": "Calcium",
-        "html": "[Ar] 4s<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            8,
-            2
-        ]
-    },
-    "21": {
-        "name": "Scandium",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            9,
-            2
-        ]
-    },
-    "22": {
-        "name": "Titanium",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            10,
-            2
-        ]
-    },
-    "23": {
-        "name": "Vanadium",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            11,
-            2
-        ]
-    },
-    "24": {
-        "name": "Chromium",
-        "html": "[Ar] 4s<sup>1</sup> 3d<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 1
-            },
-            {
-                "subshell": "3d",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            13,
-            1
-        ]
-    },
-    "25": {
-        "name": "Manganese",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            13,
-            2
-        ]
-    },
-    "26": {
-        "name": "Iron",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            14,
-            2
-        ]
-    },
-    "27": {
-        "name": "Cobalt",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>7</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 7
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            15,
-            2
-        ]
-    },
-    "28": {
-        "name": "Nickel",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>8</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 8
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            16,
-            2
-        ]
-    },
-    "29": {
-        "name": "Copper",
-        "html": "[Ar] 4s<sup>1</sup> 3d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 1
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            1
-        ]
-    },
-    "30": {
-        "name": "Zinc",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            2
-        ]
-    },
-    "31": {
-        "name": "Gallium",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            },
-            {
-                "subshell": "4p",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            3
-        ]
-    },
-    "32": {
-        "name": "Germanium",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            },
-            {
-                "subshell": "4p",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            4
-        ]
-    },
-    "33": {
-        "name": "Arsenic",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            },
-            {
-                "subshell": "4p",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            5
-        ]
-    },
-    "34": {
-        "name": "Selenium",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            },
-            {
-                "subshell": "4p",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            6
-        ]
-    },
-    "35": {
-        "name": "Bromine",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            },
-            {
-                "subshell": "4p",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            7
-        ]
-    },
-    "36": {
-        "name": "Krypton",
-        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "4s",
-                "e": 2
-            },
-            {
-                "subshell": "3d",
-                "e": 10
-            },
-            {
-                "subshell": "4p",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            8
-        ]
-    },
-    "37": {
-        "name": "Rubidium",
-        "html": "[Kr] 5s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            8,
-            1
-        ]
-    },
-    "38": {
-        "name": "Strontium",
-        "html": "[Kr] 5s<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            8,
-            2
-        ]
-    },
-    "39": {
-        "name": "Yttrium",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            9,
-            2
-        ]
-    },
-    "40": {
-        "name": "Zirconium",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            10,
-            2
-        ]
-    },
-    "41": {
-        "name": "Niobium",
-        "html": "[Kr] 5s<sup>1</sup> 4d<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 1
-            },
-            {
-                "subshell": "4d",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            12,
-            1
-        ]
-    },
-    "42": {
-        "name": "Molybdenum",
-        "html": "[Kr] 5s<sup>1</sup> 4d<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 1
-            },
-            {
-                "subshell": "4d",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            13,
-            1
-        ]
-    },
-    "43": {
-        "name": "Technetium",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            13,
-            2
-        ]
-    },
-    "44": {
-        "name": "Ruthenium",
-        "html": "[Kr] 5s<sup>1</sup> 4d<sup>7</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 1
-            },
-            {
-                "subshell": "4d",
-                "e": 7
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            15,
-            1
-        ]
-    },
-    "45": {
-        "name": "Rhodium",
-        "html": "[Kr] 5s<sup>1</sup> 4d<sup>8</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 1
-            },
-            {
-                "subshell": "4d",
-                "e": 8
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            16,
-            1
-        ]
-    },
-    "46": {
-        "name": "Palladium",
-        "html": "[Kr] 4d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "4d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18
-        ]
-    },
-    "47": {
-        "name": "Silver",
-        "html": "[Kr] 5s<sup>1</sup> 4d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 1
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            1
-        ]
-    },
-    "48": {
-        "name": "Cadmium",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            2
-        ]
-    },
-    "49": {
-        "name": "Indium",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            },
-            {
-                "subshell": "5p",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            3
-        ]
-    },
-    "50": {
-        "name": "Tin",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            },
-            {
-                "subshell": "5p",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            4
-        ]
-    },
-    "51": {
-        "name": "Antimony",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            },
-            {
-                "subshell": "5p",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            5
-        ]
-    },
-    "52": {
-        "name": "Tellurium",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            },
-            {
-                "subshell": "5p",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            6
-        ]
-    },
-    "53": {
-        "name": "Iodine",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            },
-            {
-                "subshell": "5p",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            7
-        ]
-    },
-    "54": {
-        "name": "Xenon",
-        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "5s",
-                "e": 2
-            },
-            {
-                "subshell": "4d",
-                "e": 10
-            },
-            {
-                "subshell": "5p",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            8
-        ]
-    },
-    "55": {
-        "name": "Cesium",
-        "html": "[Xe] 6s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            8,
-            1
-        ]
-    },
-    "56": {
-        "name": "Barium",
-        "html": "[Xe] 6s<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            8,
-            2
-        ]
-    },
-    "57": {
-        "name": "Lanthanum",
-        "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "5d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            18,
-            9,
-            2
-        ]
-    },
-    "58": {
-        "name": "Cerium",
-        "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup> 4f<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "5d",
-                "e": 1
-            },
-            {
-                "subshell": "4f",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            19,
-            9,
-            2
-        ]
-    },
-    "59": {
-        "name": "Praseodymium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            21,
-            8,
-            2
-        ]
-    },
-    "60": {
-        "name": "Neodymium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            22,
-            8,
-            2
-        ]
-    },
-    "61": {
-        "name": "Promethium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            23,
-            8,
-            2
-        ]
-    },
-    "62": {
-        "name": "Samarium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            24,
-            8,
-            2
-        ]
-    },
-    "63": {
-        "name": "Europium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 7
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            25,
-            8,
-            2
-        ]
-    },
-    "64": {
-        "name": "Gadolinium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup> 5d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 7
-            },
-            {
-                "subshell": "5d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            25,
-            9,
-            2
-        ]
-    },
-    "65": {
-        "name": "Terbium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>9</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 9
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            27,
-            8,
-            2
-        ]
-    },
-    "66": {
-        "name": "Dysprosium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            28,
-            8,
-            2
-        ]
-    },
-    "67": {
-        "name": "Holmium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>11</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 11
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            29,
-            8,
-            2
-        ]
-    },
-    "68": {
-        "name": "Erbium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>12</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 12
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            30,
-            8,
-            2
-        ]
-    },
-    "69": {
-        "name": "Thulium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>13</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 13
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            31,
-            8,
-            2
-        ]
-    },
-    "70": {
-        "name": "Ytterbium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            8,
-            2
-        ]
-    },
-    "71": {
-        "name": "Lutetium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            9,
-            2
-        ]
-    },
-    "72": {
-        "name": "Hafnium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            10,
-            2
-        ]
-    },
-    "73": {
-        "name": "Tantalum",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            11,
-            2
-        ]
-    },
-    "74": {
-        "name": "Tungsten",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            12,
-            2
-        ]
-    },
-    "75": {
-        "name": "Rhenium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            13,
-            2
-        ]
-    },
-    "76": {
-        "name": "Osmium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            14,
-            2
-        ]
-    },
-    "77": {
-        "name": "Iridium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>7</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 7
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            15,
-            2
-        ]
-    },
-    "78": {
-        "name": "Platinum",
-        "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>9</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 1
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 9
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            17,
-            1
-        ]
-    },
-    "79": {
-        "name": "Gold",
-        "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 1
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            1
-        ]
-    },
-    "80": {
-        "name": "Mercury",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            2
-        ]
-    },
-    "81": {
-        "name": "Thallium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            },
-            {
-                "subshell": "6p",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            3
-        ]
-    },
-    "82": {
-        "name": "Lead",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            },
-            {
-                "subshell": "6p",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            4
-        ]
-    },
-    "83": {
-        "name": "Bismuth",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            },
-            {
-                "subshell": "6p",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            5
-        ]
-    },
-    "84": {
-        "name": "Polonium",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            },
-            {
-                "subshell": "6p",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            6
-        ]
-    },
-    "85": {
-        "name": "Astatine",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            },
-            {
-                "subshell": "6p",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            7
-        ]
-    },
-    "86": {
-        "name": "Radon",
-        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "6s",
-                "e": 2
-            },
-            {
-                "subshell": "4f",
-                "e": 14
-            },
-            {
-                "subshell": "5d",
-                "e": 10
-            },
-            {
-                "subshell": "6p",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            8
-        ]
-    },
-    "87": {
-        "name": "Francium",
-        "html": "[Rn] 7s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            8,
-            1
-        ]
-    },
-    "88": {
-        "name": "Radium",
-        "html": "[Rn] 7s<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            8,
-            2
-        ]
-    },
-    "89": {
-        "name": "Actinium",
-        "html": "[Rn] 7s<sup>2</sup> 6d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "6d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            9,
-            2
-        ]
-    },
-    "90": {
-        "name": "Thorium",
-        "html": "[Rn] 7s<sup>2</sup> 6d<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "6d",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            18,
-            10,
-            2
-        ]
-    },
-    "91": {
-        "name": "Protactinium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>2</sup> 6d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 2
-            },
-            {
-                "subshell": "6d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            20,
-            9,
-            2
-        ]
-    },
-    "92": {
-        "name": "Uranium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>3</sup> 6d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 3
-            },
-            {
-                "subshell": "6d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            21,
-            9,
-            2
-        ]
-    },
-    "93": {
-        "name": "Neptunium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>4</sup> 6d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 4
-            },
-            {
-                "subshell": "6d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            22,
-            9,
-            2
-        ]
-    },
-    "94": {
-        "name": "Plutonium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            24,
-            8,
-            2
-        ]
-    },
-    "95": {
-        "name": "Americium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 7
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            25,
-            8,
-            2
-        ]
-    },
-    "96": {
-        "name": "Curium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup> 6d<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 7
-            },
-            {
-                "subshell": "6d",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            25,
-            9,
-            2
-        ]
-    },
-    "97": {
-        "name": "Berkelium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>9</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 9
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            27,
-            8,
-            2
-        ]
-    },
-    "98": {
-        "name": "Californium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            28,
-            8,
-            2
-        ]
-    },
-    "99": {
-        "name": "Einsteinium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>11</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 11
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            29,
-            8,
-            2
-        ]
-    },
-    "100": {
-        "name": "Fermium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>12</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 12
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            30,
-            8,
-            2
-        ]
-    },
-    "101": {
-        "name": "Mendelevium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>13</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 13
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            31,
-            8,
-            2
-        ]
-    },
-    "102": {
-        "name": "Nobelium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            8,
-            2
-        ]
-    },
-    "103": {
-        "name": "Lawrencium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 7p<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "7p",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            8,
-            3
-        ]
-    },
-    "104": {
-        "name": "Rutherfordium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            10,
-            2
-        ]
-    },
-    "105": {
-        "name": "Dubnium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            11,
-            2
-        ]
-    },
-    "106": {
-        "name": "Seaborgium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            12,
-            2
-        ]
-    },
-    "107": {
-        "name": "Bohrium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            13,
-            2
-        ]
-    },
-    "108": {
-        "name": "Hassium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            14,
-            2
-        ]
-    },
-    "109": {
-        "name": "Meitnerium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>7</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 7
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            15,
-            2
-        ]
-    },
-    "110": {
-        "name": "Darmstadtium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>8</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 8
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            16,
-            2
-        ]
-    },
-    "111": {
-        "name": "Roentgenium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>9</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 9
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            17,
-            2
-        ]
-    },
-    "112": {
-        "name": "Copernicium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 10
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            2
-        ]
-    },
-    "113": {
-        "name": "Nihonium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 10
-            },
-            {
-                "subshell": "7p",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            3
-        ]
-    },
-    "114": {
-        "name": "Flerovium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>2</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 10
-            },
-            {
-                "subshell": "7p",
-                "e": 2
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            4
-        ]
-    },
-    "115": {
-        "name": "Moscovium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>3</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 10
-            },
-            {
-                "subshell": "7p",
-                "e": 3
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            5
-        ]
-    },
-    "116": {
-        "name": "Livermorium",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>4</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 10
-            },
-            {
-                "subshell": "7p",
-                "e": 4
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            6
-        ]
-    },
-    "117": {
-        "name": "Tennessine",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>5</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 10
-            },
-            {
-                "subshell": "7p",
-                "e": 5
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            7
-        ]
-    },
-    "118": {
-        "name": "Oganesson",
-        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>6</sup>",
-        "valence": [
-            {
-                "subshell": "7s",
-                "e": 2
-            },
-            {
-                "subshell": "5f",
-                "e": 14
-            },
-            {
-                "subshell": "6d",
-                "e": 10
-            },
-            {
-                "subshell": "7p",
-                "e": 6
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            8
-        ]
-    },
-    "119": {
-        "name": "Element 119",
-        "html": "[Og] 8s<sup>1</sup>",
-        "valence": [
-            {
-                "subshell": "8s",
-                "e": 1
-            }
-        ],
-        "shells": [
-            2,
-            8,
-            18,
-            32,
-            32,
-            18,
-            8,
-            1
-        ]
-    }
+  "1": {
+    "name": "Hydrogen",
+    "mass": 1.008,
+    "html": "1s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "1s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      1
+    ]
+  },
+  "2": {
+    "name": "Helium",
+    "mass": 4.003,
+    "html": "1s<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "1s",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2
+    ]
+  },
+  "3": {
+    "name": "Lithium",
+    "mass": 6.94,
+    "html": "[He] 2s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      1
+    ]
+  },
+  "4": {
+    "name": "Beryllium",
+    "mass": 9.012,
+    "html": "[He] 2s<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      2
+    ]
+  },
+  "5": {
+    "name": "Boron",
+    "mass": 10.81,
+    "html": "[He] 2s<sup>2</sup> 2p<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 2
+      },
+      {
+        "subshell": "2p",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      3
+    ]
+  },
+  "6": {
+    "name": "Carbon",
+    "mass": 12.011,
+    "html": "[He] 2s<sup>2</sup> 2p<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 2
+      },
+      {
+        "subshell": "2p",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      4
+    ]
+  },
+  "7": {
+    "name": "Nitrogen",
+    "mass": 14.007,
+    "html": "[He] 2s<sup>2</sup> 2p<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 2
+      },
+      {
+        "subshell": "2p",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      5
+    ]
+  },
+  "8": {
+    "name": "Oxygen",
+    "mass": 15.999,
+    "html": "[He] 2s<sup>2</sup> 2p<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 2
+      },
+      {
+        "subshell": "2p",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      6
+    ]
+  },
+  "9": {
+    "name": "Fluorine",
+    "mass": 18.998,
+    "html": "[He] 2s<sup>2</sup> 2p<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 2
+      },
+      {
+        "subshell": "2p",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      7
+    ]
+  },
+  "10": {
+    "name": "Neon",
+    "mass": 20.18,
+    "html": "[He] 2s<sup>2</sup> 2p<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "2s",
+        "e": 2
+      },
+      {
+        "subshell": "2p",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8
+    ]
+  },
+  "11": {
+    "name": "Sodium",
+    "mass": 22.99,
+    "html": "[Ne] 3s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      1
+    ]
+  },
+  "12": {
+    "name": "Magnesium",
+    "mass": 24.305,
+    "html": "[Ne] 3s<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      2
+    ]
+  },
+  "13": {
+    "name": "Aluminum",
+    "mass": 26.982,
+    "html": "[Ne] 3s<sup>2</sup> 3p<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 2
+      },
+      {
+        "subshell": "3p",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      3
+    ]
+  },
+  "14": {
+    "name": "Silicon",
+    "mass": 28.085,
+    "html": "[Ne] 3s<sup>2</sup> 3p<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 2
+      },
+      {
+        "subshell": "3p",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      4
+    ]
+  },
+  "15": {
+    "name": "Phosphorus",
+    "mass": 30.974,
+    "html": "[Ne] 3s<sup>2</sup> 3p<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 2
+      },
+      {
+        "subshell": "3p",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      5
+    ]
+  },
+  "16": {
+    "name": "Sulfur",
+    "mass": 32.06,
+    "html": "[Ne] 3s<sup>2</sup> 3p<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 2
+      },
+      {
+        "subshell": "3p",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      6
+    ]
+  },
+  "17": {
+    "name": "Chlorine",
+    "mass": 35.45,
+    "html": "[Ne] 3s<sup>2</sup> 3p<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 2
+      },
+      {
+        "subshell": "3p",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      7
+    ]
+  },
+  "18": {
+    "name": "Argon",
+    "mass": 39.95,
+    "html": "[Ne] 3s<sup>2</sup> 3p<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "3s",
+        "e": 2
+      },
+      {
+        "subshell": "3p",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      8
+    ]
+  },
+  "19": {
+    "name": "Potassium",
+    "mass": 39.1,
+    "html": "[Ar] 4s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      8,
+      1
+    ]
+  },
+  "20": {
+    "name": "Calcium",
+    "mass": 40.08,
+    "html": "[Ar] 4s<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      8,
+      2
+    ]
+  },
+  "21": {
+    "name": "Scandium",
+    "mass": 44.96,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      9,
+      2
+    ]
+  },
+  "22": {
+    "name": "Titanium",
+    "mass": 47.87,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      10,
+      2
+    ]
+  },
+  "23": {
+    "name": "Vanadium",
+    "mass": 50.94,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      11,
+      2
+    ]
+  },
+  "24": {
+    "name": "Chromium",
+    "mass": 52.0,
+    "html": "[Ar] 4s<sup>1</sup> 3d<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 1
+      },
+      {
+        "subshell": "3d",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      13,
+      1
+    ]
+  },
+  "25": {
+    "name": "Manganese",
+    "mass": 54.94,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      13,
+      2
+    ]
+  },
+  "26": {
+    "name": "Iron",
+    "mass": 55.85,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      14,
+      2
+    ]
+  },
+  "27": {
+    "name": "Cobalt",
+    "mass": 58.93,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>7</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 7
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      15,
+      2
+    ]
+  },
+  "28": {
+    "name": "Nickel",
+    "mass": 58.69,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>8</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 8
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      16,
+      2
+    ]
+  },
+  "29": {
+    "name": "Copper",
+    "mass": 63.55,
+    "html": "[Ar] 4s<sup>1</sup> 3d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 1
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      1
+    ]
+  },
+  "30": {
+    "name": "Zinc",
+    "mass": 65.38,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      2
+    ]
+  },
+  "31": {
+    "name": "Gallium",
+    "mass": 69.72,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      },
+      {
+        "subshell": "4p",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      3
+    ]
+  },
+  "32": {
+    "name": "Germanium",
+    "mass": 72.63,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      },
+      {
+        "subshell": "4p",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      4
+    ]
+  },
+  "33": {
+    "name": "Arsenic",
+    "mass": 74.92,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      },
+      {
+        "subshell": "4p",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      5
+    ]
+  },
+  "34": {
+    "name": "Selenium",
+    "mass": 78.97,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      },
+      {
+        "subshell": "4p",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      6
+    ]
+  },
+  "35": {
+    "name": "Bromine",
+    "mass": 79.9,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      },
+      {
+        "subshell": "4p",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      7
+    ]
+  },
+  "36": {
+    "name": "Krypton",
+    "mass": 83.8,
+    "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "4s",
+        "e": 2
+      },
+      {
+        "subshell": "3d",
+        "e": 10
+      },
+      {
+        "subshell": "4p",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      8
+    ]
+  },
+  "37": {
+    "name": "Rubidium",
+    "mass": 85.47,
+    "html": "[Kr] 5s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      8,
+      1
+    ]
+  },
+  "38": {
+    "name": "Strontium",
+    "mass": 87.62,
+    "html": "[Kr] 5s<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      8,
+      2
+    ]
+  },
+  "39": {
+    "name": "Yttrium",
+    "mass": 88.91,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      9,
+      2
+    ]
+  },
+  "40": {
+    "name": "Zirconium",
+    "mass": 91.22,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      10,
+      2
+    ]
+  },
+  "41": {
+    "name": "Niobium",
+    "mass": 92.91,
+    "html": "[Kr] 5s<sup>1</sup> 4d<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 1
+      },
+      {
+        "subshell": "4d",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      12,
+      1
+    ]
+  },
+  "42": {
+    "name": "Molybdenum",
+    "mass": 95.95,
+    "html": "[Kr] 5s<sup>1</sup> 4d<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 1
+      },
+      {
+        "subshell": "4d",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      13,
+      1
+    ]
+  },
+  "43": {
+    "name": "Technetium",
+    "mass": "(98)",
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      13,
+      2
+    ]
+  },
+  "44": {
+    "name": "Ruthenium",
+    "mass": 101.07,
+    "html": "[Kr] 5s<sup>1</sup> 4d<sup>7</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 1
+      },
+      {
+        "subshell": "4d",
+        "e": 7
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      15,
+      1
+    ]
+  },
+  "45": {
+    "name": "Rhodium",
+    "mass": 102.91,
+    "html": "[Kr] 5s<sup>1</sup> 4d<sup>8</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 1
+      },
+      {
+        "subshell": "4d",
+        "e": 8
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      16,
+      1
+    ]
+  },
+  "46": {
+    "name": "Palladium",
+    "mass": 106.42,
+    "html": "[Kr] 4d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "4d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18
+    ]
+  },
+  "47": {
+    "name": "Silver",
+    "mass": 107.87,
+    "html": "[Kr] 5s<sup>1</sup> 4d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 1
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      1
+    ]
+  },
+  "48": {
+    "name": "Cadmium",
+    "mass": 112.41,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      2
+    ]
+  },
+  "49": {
+    "name": "Indium",
+    "mass": 114.82,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      },
+      {
+        "subshell": "5p",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      3
+    ]
+  },
+  "50": {
+    "name": "Tin",
+    "mass": 118.71,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      },
+      {
+        "subshell": "5p",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      4
+    ]
+  },
+  "51": {
+    "name": "Antimony",
+    "mass": 121.76,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      },
+      {
+        "subshell": "5p",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      5
+    ]
+  },
+  "52": {
+    "name": "Tellurium",
+    "mass": 127.6,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      },
+      {
+        "subshell": "5p",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      6
+    ]
+  },
+  "53": {
+    "name": "Iodine",
+    "mass": 126.9,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      },
+      {
+        "subshell": "5p",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      7
+    ]
+  },
+  "54": {
+    "name": "Xenon",
+    "mass": 131.29,
+    "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "5s",
+        "e": 2
+      },
+      {
+        "subshell": "4d",
+        "e": 10
+      },
+      {
+        "subshell": "5p",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      8
+    ]
+  },
+  "55": {
+    "name": "Cesium",
+    "mass": 132.91,
+    "html": "[Xe] 6s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      8,
+      1
+    ]
+  },
+  "56": {
+    "name": "Barium",
+    "mass": 137.33,
+    "html": "[Xe] 6s<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      8,
+      2
+    ]
+  },
+  "57": {
+    "name": "Lanthanum",
+    "mass": 138.91,
+    "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "5d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      18,
+      9,
+      2
+    ]
+  },
+  "58": {
+    "name": "Cerium",
+    "mass": 140.12,
+    "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup> 4f<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "5d",
+        "e": 1
+      },
+      {
+        "subshell": "4f",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      19,
+      9,
+      2
+    ]
+  },
+  "59": {
+    "name": "Praseodymium",
+    "mass": 140.91,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      21,
+      8,
+      2
+    ]
+  },
+  "60": {
+    "name": "Neodymium",
+    "mass": 144.24,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      22,
+      8,
+      2
+    ]
+  },
+  "61": {
+    "name": "Promethium",
+    "mass": "(145)",
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      23,
+      8,
+      2
+    ]
+  },
+  "62": {
+    "name": "Samarium",
+    "mass": 150.36,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      24,
+      8,
+      2
+    ]
+  },
+  "63": {
+    "name": "Europium",
+    "mass": 151.96,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 7
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      25,
+      8,
+      2
+    ]
+  },
+  "64": {
+    "name": "Gadolinium",
+    "mass": 157.25,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup> 5d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 7
+      },
+      {
+        "subshell": "5d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      25,
+      9,
+      2
+    ]
+  },
+  "65": {
+    "name": "Terbium",
+    "mass": 158.93,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>9</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 9
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      27,
+      8,
+      2
+    ]
+  },
+  "66": {
+    "name": "Dysprosium",
+    "mass": 162.5,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      28,
+      8,
+      2
+    ]
+  },
+  "67": {
+    "name": "Holmium",
+    "mass": 164.93,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>11</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 11
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      29,
+      8,
+      2
+    ]
+  },
+  "68": {
+    "name": "Erbium",
+    "mass": 167.26,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>12</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 12
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      30,
+      8,
+      2
+    ]
+  },
+  "69": {
+    "name": "Thulium",
+    "mass": 168.93,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>13</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 13
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      31,
+      8,
+      2
+    ]
+  },
+  "70": {
+    "name": "Ytterbium",
+    "mass": 173.05,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      8,
+      2
+    ]
+  },
+  "71": {
+    "name": "Lutetium",
+    "mass": 174.97,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      9,
+      2
+    ]
+  },
+  "72": {
+    "name": "Hafnium",
+    "mass": 178.49,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      10,
+      2
+    ]
+  },
+  "73": {
+    "name": "Tantalum",
+    "mass": 180.95,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      11,
+      2
+    ]
+  },
+  "74": {
+    "name": "Tungsten",
+    "mass": 183.84,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      12,
+      2
+    ]
+  },
+  "75": {
+    "name": "Rhenium",
+    "mass": 186.21,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      13,
+      2
+    ]
+  },
+  "76": {
+    "name": "Osmium",
+    "mass": 190.23,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      14,
+      2
+    ]
+  },
+  "77": {
+    "name": "Iridium",
+    "mass": 192.22,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>7</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 7
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      15,
+      2
+    ]
+  },
+  "78": {
+    "name": "Platinum",
+    "mass": 195.08,
+    "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>9</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 1
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 9
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      17,
+      1
+    ]
+  },
+  "79": {
+    "name": "Gold",
+    "mass": 196.97,
+    "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 1
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      1
+    ]
+  },
+  "80": {
+    "name": "Mercury",
+    "mass": 200.59,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      2
+    ]
+  },
+  "81": {
+    "name": "Thallium",
+    "mass": 204.38,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      },
+      {
+        "subshell": "6p",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      3
+    ]
+  },
+  "82": {
+    "name": "Lead",
+    "mass": 207.2,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      },
+      {
+        "subshell": "6p",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      4
+    ]
+  },
+  "83": {
+    "name": "Bismuth",
+    "mass": 208.98,
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      },
+      {
+        "subshell": "6p",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      5
+    ]
+  },
+  "84": {
+    "name": "Polonium",
+    "mass": "(209)",
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      },
+      {
+        "subshell": "6p",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      6
+    ]
+  },
+  "85": {
+    "name": "Astatine",
+    "mass": "(210)",
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      },
+      {
+        "subshell": "6p",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      7
+    ]
+  },
+  "86": {
+    "name": "Radon",
+    "mass": "(222)",
+    "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "6s",
+        "e": 2
+      },
+      {
+        "subshell": "4f",
+        "e": 14
+      },
+      {
+        "subshell": "5d",
+        "e": 10
+      },
+      {
+        "subshell": "6p",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      8
+    ]
+  },
+  "87": {
+    "name": "Francium",
+    "mass": "(223)",
+    "html": "[Rn] 7s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      8,
+      1
+    ]
+  },
+  "88": {
+    "name": "Radium",
+    "mass": "(226)",
+    "html": "[Rn] 7s<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      8,
+      2
+    ]
+  },
+  "89": {
+    "name": "Actinium",
+    "mass": "(227)",
+    "html": "[Rn] 7s<sup>2</sup> 6d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "6d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      9,
+      2
+    ]
+  },
+  "90": {
+    "name": "Thorium",
+    "mass": 232.04,
+    "html": "[Rn] 7s<sup>2</sup> 6d<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "6d",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      18,
+      10,
+      2
+    ]
+  },
+  "91": {
+    "name": "Protactinium",
+    "mass": 231.04,
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>2</sup> 6d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 2
+      },
+      {
+        "subshell": "6d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      20,
+      9,
+      2
+    ]
+  },
+  "92": {
+    "name": "Uranium",
+    "mass": 238.03,
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>3</sup> 6d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 3
+      },
+      {
+        "subshell": "6d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      21,
+      9,
+      2
+    ]
+  },
+  "93": {
+    "name": "Neptunium",
+    "mass": "(237)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>4</sup> 6d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 4
+      },
+      {
+        "subshell": "6d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      22,
+      9,
+      2
+    ]
+  },
+  "94": {
+    "name": "Plutonium",
+    "mass": "(244)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      24,
+      8,
+      2
+    ]
+  },
+  "95": {
+    "name": "Americium",
+    "mass": "(243)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 7
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      25,
+      8,
+      2
+    ]
+  },
+  "96": {
+    "name": "Curium",
+    "mass": "(247)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup> 6d<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 7
+      },
+      {
+        "subshell": "6d",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      25,
+      9,
+      2
+    ]
+  },
+  "97": {
+    "name": "Berkelium",
+    "mass": "(247)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>9</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 9
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      27,
+      8,
+      2
+    ]
+  },
+  "98": {
+    "name": "Californium",
+    "mass": "(251)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      28,
+      8,
+      2
+    ]
+  },
+  "99": {
+    "name": "Einsteinium",
+    "mass": "(252)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>11</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 11
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      29,
+      8,
+      2
+    ]
+  },
+  "100": {
+    "name": "Fermium",
+    "mass": "(257)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>12</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 12
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      30,
+      8,
+      2
+    ]
+  },
+  "101": {
+    "name": "Mendelevium",
+    "mass": "(258)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>13</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 13
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      31,
+      8,
+      2
+    ]
+  },
+  "102": {
+    "name": "Nobelium",
+    "mass": "(259)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      8,
+      2
+    ]
+  },
+  "103": {
+    "name": "Lawrencium",
+    "mass": "(262)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 7p<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "7p",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      8,
+      3
+    ]
+  },
+  "104": {
+    "name": "Rutherfordium",
+    "mass": "(267)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      10,
+      2
+    ]
+  },
+  "105": {
+    "name": "Dubnium",
+    "mass": "(268)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      11,
+      2
+    ]
+  },
+  "106": {
+    "name": "Seaborgium",
+    "mass": "(269)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      12,
+      2
+    ]
+  },
+  "107": {
+    "name": "Bohrium",
+    "mass": "(270)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      13,
+      2
+    ]
+  },
+  "108": {
+    "name": "Hassium",
+    "mass": "(269)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      14,
+      2
+    ]
+  },
+  "109": {
+    "name": "Meitnerium",
+    "mass": "(278)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>7</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 7
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      15,
+      2
+    ]
+  },
+  "110": {
+    "name": "Darmstadtium",
+    "mass": "(281)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>8</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 8
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      16,
+      2
+    ]
+  },
+  "111": {
+    "name": "Roentgenium",
+    "mass": "(282)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>9</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 9
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      17,
+      2
+    ]
+  },
+  "112": {
+    "name": "Copernicium",
+    "mass": "(285)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 10
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      2
+    ]
+  },
+  "113": {
+    "name": "Nihonium",
+    "mass": "(286)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 10
+      },
+      {
+        "subshell": "7p",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      3
+    ]
+  },
+  "114": {
+    "name": "Flerovium",
+    "mass": "(289)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>2</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 10
+      },
+      {
+        "subshell": "7p",
+        "e": 2
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      4
+    ]
+  },
+  "115": {
+    "name": "Moscovium",
+    "mass": "(290)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>3</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 10
+      },
+      {
+        "subshell": "7p",
+        "e": 3
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      5
+    ]
+  },
+  "116": {
+    "name": "Livermorium",
+    "mass": "(293)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>4</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 10
+      },
+      {
+        "subshell": "7p",
+        "e": 4
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      6
+    ]
+  },
+  "117": {
+    "name": "Tennessine",
+    "mass": "(294)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>5</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 10
+      },
+      {
+        "subshell": "7p",
+        "e": 5
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      7
+    ]
+  },
+  "118": {
+    "name": "Oganesson",
+    "mass": "(294)",
+    "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>6</sup>",
+    "valence": [
+      {
+        "subshell": "7s",
+        "e": 2
+      },
+      {
+        "subshell": "5f",
+        "e": 14
+      },
+      {
+        "subshell": "6d",
+        "e": 10
+      },
+      {
+        "subshell": "7p",
+        "e": 6
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      8
+    ]
+  },
+  "119": {
+    "name": "Element 119",
+    "mass": "(315)",
+    "html": "[Og] 8s<sup>1</sup>",
+    "valence": [
+      {
+        "subshell": "8s",
+        "e": 1
+      }
+    ],
+    "shells": [
+      2,
+      8,
+      18,
+      32,
+      32,
+      18,
+      8,
+      1
+    ]
+  }
 };
 
   const GROUP_INFO = {
@@ -2868,13 +2982,6 @@ window.InteractivePT = (() => {
     7: { name: "7th Period", outer: "7s, 5f, 6d, 7p", props: ["Contains 32 elements (Fr to Og)", "Includes Actinoid series (5f)", "All elements beyond Uranium are man-made"] },
     8: { name: "Lanthanoids (4f Series)", outer: "4f, 5d, 6s", props: ["Inner transition metals", "Electrons fill the 4f subshell", "Lanthanoid contraction causes similar radii"] },
     9: { name: "Actinoids (5f Series)", outer: "5f, 6d, 7s", props: ["Inner transition metals", "Electrons fill the 5f subshell", "Radioactive, mostly synthetic elements"] }
-  };
-
-  const BLOCK_COLORS = {
-    "s": "#00B4CC", 
-    "p": "#FFD740",
-    "d": "#FF5252", 
-    "f": "#E040FB"
   };
 
   const renderOrbitals = (valence) => {
@@ -2952,10 +3059,35 @@ window.InteractivePT = (() => {
       return html;
   };
 
+  const ELEMENT_COLORS = {};
+  const cBLUE = '#99C7DF';
+  const cGREEN = '#6AB683';
+  const cORANGE = '#E49975';
+  const cPINK = '#E4889F';
+  const cTAN = '#D8C6A8';
+  const cPURPLE = '#D9A9B9';
+  
+  const _assign = (list, color) => list.forEach(z => ELEMENT_COLORS[z] = color);
+  _assign([3,4,11,12,19,20,37,38,55,56,87,88, 13,31,49,50,81,82,83,113,114,115,116,117], cBLUE);
+  _assign([1, 5,6,7,8,9, 15,16,17, 34,35, 53, 85], cGREEN);
+  _assign([14, 32,33, 51,52, 84], cORANGE);
+  _assign([2,10,18,36,54,86,118], cPINK);
+  
+  let _tanEls = [];
+  for(let i=21; i<=30; i++) _tanEls.push(i);
+  for(let i=39; i<=48; i++) _tanEls.push(i);
+  for(let i=57; i<=80; i++) _tanEls.push(i);
+  _tanEls.push(89);
+  for(let i=104; i<=112; i++) _tanEls.push(i);
+  _assign(_tanEls, cTAN);
+  
+  let _purpEls = [];
+  for(let i=90; i<=103; i++) _purpEls.push(i);
+  _assign(_purpEls, cPURPLE);
+
   function build(container, config) {
     container.innerHTML = "";
     
-    // Main wrapper (Flex Row for Table and Info Panel)
     const wrapper = document.createElement("div");
     wrapper.style.display = "flex";
     wrapper.style.flexDirection = "row";
@@ -2965,7 +3097,6 @@ window.InteractivePT = (() => {
     wrapper.style.width = "100%";
     wrapper.style.flexWrap = "wrap"; 
 
-    // Left container for PT
     const ptContainer = document.createElement("div");
     ptContainer.style.display = "flex";
     ptContainer.style.flexDirection = "column";
@@ -2973,16 +3104,43 @@ window.InteractivePT = (() => {
 
     const ptGrid = document.createElement("div");
     ptGrid.style.display = "grid";
-    ptGrid.style.gridTemplateColumns = "20px repeat(18, 40px)"; // INCREASED WIDTH from 30px to 40px for names
-    ptGrid.style.gridTemplateRows = "20px repeat(10, 42px)"; // INCREASED HEIGHT from 30px to 42px
+    ptGrid.style.gridTemplateColumns = "30px 60px 60px 20px 30px repeat(10, 60px) 20px 30px repeat(6, 60px)";
+    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 70px) 20px 25px repeat(2, 70px)";
     ptGrid.style.gap = "4px";
     ptGrid.style.position = "relative";
+    ptGrid.style.fontFamily = "sans-serif";
 
-    // Info Panel
+    // Draw Background Boxes for Blocks
+    const drawBox = (rStart, rSpan, cStart, cSpan) => {
+        const box = document.createElement('div');
+        box.style.gridRow = `${rStart} / span ${rSpan}`;
+        box.style.gridColumn = `${cStart} / span ${cSpan}`;
+        box.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+        box.style.pointerEvents = 'none';
+        box.style.zIndex = '0';
+        ptGrid.appendChild(box);
+    };
+    drawBox(1, 9, 1, 3); // s-BLOCK
+    drawBox(4, 6, 5, 11); // d-BLOCK
+    drawBox(1, 9, 17, 7); // p-BLOCK
+    drawBox(11, 3, 4, 16); // f-BLOCK
+
+    const cells = [];
+    let selectedType = null;
+    let selectedVal = null;
+    let selectedElementZ = null;
+
+    const getEl = (z) => ELEMENTS.find(e => e.z === z);
+
     const infoPanel = document.createElement("div");
     infoPanel.style.flex = "1";
     infoPanel.style.minWidth = "300px";
-    infoPanel.style.maxWidth = "480px"; // slightly wider for side-by-side
+    infoPanel.style.maxWidth = "480px";
+    // ADD SCROLLABILITY to Info Panel specifically
+    infoPanel.style.maxHeight = "85vh"; 
+    infoPanel.style.overflowY = "auto";
+    infoPanel.style.position = "sticky"; // helps if page does scroll a bit
+    infoPanel.style.top = "20px";
     infoPanel.style.background = "var(--color-card)";
     infoPanel.style.border = "1px solid var(--color-border)";
     infoPanel.style.borderRadius = "8px";
@@ -2999,22 +3157,13 @@ window.InteractivePT = (() => {
     infoTitle.style.fontSize = "1.5rem";
     infoTitle.style.borderBottom = "1px solid var(--color-border)";
     infoTitle.style.paddingBottom = "10px";
-    infoTitle.textContent = "Interactive Periodic Table";
 
     const infoContent = document.createElement("div");
     infoContent.style.fontSize = "1rem";
     infoContent.style.lineHeight = "1.6";
-    infoContent.innerHTML = "<p>Tap on any Period or Group button to view its properties and boundary elements.</p><p>Tap on an individual element to view its exact electronic configuration.</p>";
     
     infoPanel.appendChild(infoTitle);
     infoPanel.appendChild(infoContent);
-
-    const cells = [];
-    let selectedType = null; // 'group', 'period'
-    let selectedVal = null;
-    let selectedElementZ = null;
-
-    const getEl = (z) => ELEMENTS.find(e => e.z === z);
 
     const updateInfoPanel = () => {
         if (!selectedType && !selectedElementZ) {
@@ -3040,11 +3189,9 @@ window.InteractivePT = (() => {
                 html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
             }
-
             html += `<strong>Key Properties:</strong><ul style="margin-top:5px; padding-left:20px;">`;
             data.props.forEach(p => html += `<li>${p}</li>`);
             html += `</ul>`;
-
         } else if (selectedType === "period") {
             const per = selectedVal;
             const data = PERIOD_INFO[per];
@@ -3052,13 +3199,9 @@ window.InteractivePT = (() => {
             html += `<p><strong>Fills Subshells:</strong> ${data.outer}</p>`;
             
             let periodEls = [];
-            if (per === 8) {
-                periodEls = ELEMENTS.filter(e => e.period === 8).sort((a,b) => a.z - b.z);
-            } else if (per === 9) {
-                periodEls = ELEMENTS.filter(e => e.period === 9).sort((a,b) => a.z - b.z);
-            } else {
-                periodEls = ELEMENTS.filter(e => e.period === per).sort((a,b) => a.z - b.z);
-            }
+            if (per === 8) periodEls = ELEMENTS.filter(e => e.period === 8).sort((a,b) => a.z - b.z);
+            else if (per === 9) periodEls = ELEMENTS.filter(e => e.period === 9).sort((a,b) => a.z - b.z);
+            else periodEls = ELEMENTS.filter(e => e.period === per).sort((a,b) => a.z - b.z);
             
             if (periodEls.length > 0) {
                 const first = periodEls[0];
@@ -3068,7 +3211,6 @@ window.InteractivePT = (() => {
                 html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
             }
-
             html += `<strong>Key Trends:</strong><ul style="margin-top:5px; padding-left:20px;">`;
             data.props.forEach(p => html += `<li>${p}</li>`);
             html += `</ul>`;
@@ -3077,31 +3219,21 @@ window.InteractivePT = (() => {
         if (selectedElementZ) {
             if (!selectedType) infoTitle.textContent = "Element Selection";
             const el = getEl(selectedElementZ);
-            if (selectedType) {
-                html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
-            }
-            const blockColor = BLOCK_COLORS[el.block];
+            if (selectedType) html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
+            const blockColor = ELEMENT_COLORS[el.z];
             
             html += `<div style="background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2)); border:1px solid var(--color-border); padding:20px; border-radius:8px; animation: fadeIn 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">`;
-            
             html += `<div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">`;
-            
-            // Text Details Left Side
             html += `<div style="flex:1;">`;
-            html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor};">${ECONFS[el.z].name}</h4>`;
-            html += `<div style="font-size:1rem; font-weight:bold; margin-top:4px;">${el.sym} (Z = ${el.z})</div>`;
+            html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor}; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${ECONFS[el.z].name}</h4>`;
+            html += `<div style="font-size:1rem; font-weight:bold; margin-top:4px;">${el.sym} (Z = ${el.z} | Mass: ${ECONFS[el.z].mass})</div>`;
             html += `<div style="font-size:0.9rem; color:var(--color-text-muted); margin-top:2px;">${el.block}-block</div>`;
             html += `<div style="margin-top:15px; font-size:1.1rem; letter-spacing:1px;">${ECONFS[el.z].html}</div>`;
             html += renderOrbitals(ECONFS[el.z].valence);
             html += `</div>`;
-            
-            // Atom Simulation Right Side
             html += renderAtomSimulation(ECONFS[el.z].shells, blockColor);
-            
-            html += `</div>`;
-            html += `</div>`;
+            html += `</div></div>`;
         }
-
         infoContent.innerHTML = html;
     };
 
@@ -3111,61 +3243,51 @@ window.InteractivePT = (() => {
             if (selectedType === 'group' && parseInt(c.dataset.group) === selectedVal) shouldHighlightGroupPeriod = true;
             if (selectedType === 'period') {
                 const p = parseInt(c.dataset.period);
-                if (p === selectedVal) {
+                if (p === selectedVal || (selectedVal === 6 && p === 8) || (selectedVal === 7 && p === 9)) {
                     shouldHighlightGroupPeriod = true;
                 }
             }
 
             const isSelectedElement = selectedElementZ && parseInt(c.dataset.z) === selectedElementZ;
+            const elColor = ELEMENT_COLORS[parseInt(c.dataset.z)];
 
             if (isSelectedElement) {
                 c.style.transform = 'scale(1.1)';
                 c.style.zIndex = '10';
-                c.style.background = BLOCK_COLORS[c.dataset.block];
-                c.style.color = '#000';
                 c.style.opacity = '1';
                 c.style.borderColor = '#fff';
                 c.style.borderWidth = '2px';
-                c.style.boxShadow = `0 0 20px ${BLOCK_COLORS[c.dataset.block]}`;
-                c.style.filter = 'blur(0px)';
+                c.style.boxShadow = `0 0 20px ${elColor}`;
+                c.style.filter = 'blur(0px) brightness(1.2)';
             } else if (shouldHighlightGroupPeriod) {
-                c.style.background = BLOCK_COLORS[c.dataset.block];
-                c.style.color = '#000';
                 c.style.opacity = '1';
                 c.style.transform = 'scale(1.05)';
                 c.style.zIndex = '5';
-                c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
-                c.style.filter = 'blur(0px)';
-                c.style.borderColor = 'transparent';
+                c.style.boxShadow = `0 0 10px ${elColor}`;
+                c.style.filter = 'blur(0px) brightness(1.1)';
+                c.style.borderColor = 'rgba(0,0,0,0.5)';
                 c.style.borderWidth = '1px';
             } else if (selectedType || selectedElementZ) {
-                // Dim others
-                c.style.opacity = '0.15';
-                c.style.filter = 'blur(3px)';
+                c.style.opacity = '0.4';
+                c.style.filter = 'blur(1px) grayscale(50%)';
                 c.style.transform = 'scale(0.95)';
-                c.style.background = 'var(--color-card)';
-                c.style.color = 'var(--color-text-muted)';
                 c.style.zIndex = '1';
                 c.style.boxShadow = 'none';
-                c.style.borderColor = 'var(--color-border)';
+                c.style.borderColor = 'rgba(0,0,0,0.2)';
                 c.style.borderWidth = '1px';
             } else {
-                // Normal state
-                c.style.background = 'var(--color-card)';
-                c.style.color = 'var(--color-text)';
-                c.style.borderColor = 'var(--color-border)';
                 c.style.opacity = '1';
-                c.style.filter = 'blur(0px)';
+                c.style.filter = 'none';
                 c.style.transform = 'scale(1)';
                 c.style.zIndex = '1';
                 c.style.boxShadow = 'none';
+                c.style.borderColor = 'rgba(0,0,0,0.2)';
                 c.style.borderWidth = '1px';
             }
         });
         updateInfoPanel();
     };
 
-    // Global click listener to reset if clicked outside
     document.addEventListener('click', (e) => {
         if (!wrapper.contains(e.target)) {
             selectedType = null;
@@ -3175,77 +3297,101 @@ window.InteractivePT = (() => {
         }
     });
 
-    // Group Buttons
-    for (let i = 1; i <= 18; i++) {
-      const gBtn = document.createElement('div');
-      gBtn.textContent = i;
-      gBtn.style.gridRow = 1;
-      gBtn.style.gridColumn = i + 1;
-      gBtn.style.fontSize = '12px';
-      gBtn.style.fontWeight = 'bold';
-      gBtn.style.display = 'flex';
-      gBtn.style.alignItems = 'center';
-      gBtn.style.justifyContent = 'center';
-      gBtn.style.background = 'rgba(255,255,255,0.1)';
-      gBtn.style.borderRadius = '4px';
-      gBtn.style.cursor = 'pointer';
-      gBtn.style.color = 'var(--color-text)';
-      gBtn.style.transition = 'all 0.2s ease';
-      
-      gBtn.onclick = (e) => {
-          e.stopPropagation();
-          if (selectedType === 'group' && selectedVal === i) {
-              selectedType = null;
-              selectedVal = null;
-          } else {
-              selectedType = 'group';
-              selectedVal = i;
-          }
-          selectedElementZ = null;
-          renderHighlights();
-      };
-      ptGrid.appendChild(gBtn);
-    }
-    
-    // Period Buttons
-    for (let i = 1; i <= 9; i++) {
-      const pBtn = document.createElement('div');
-      if (i <= 7) {
-        pBtn.textContent = i;
-      } else if (i === 8) {
-        pBtn.textContent = '4f';
-        pBtn.title = 'Lanthanoids';
-      } else if (i === 9) {
-        pBtn.textContent = '5f';
-        pBtn.title = 'Actinoids';
-      }
-      pBtn.style.gridRow = i + 1;
-      pBtn.style.gridColumn = 1;
-      pBtn.style.fontSize = '12px';
-      pBtn.style.fontWeight = 'bold';
-      pBtn.style.display = 'flex';
-      pBtn.style.alignItems = 'center';
-      pBtn.style.justifyContent = 'center';
-      pBtn.style.background = 'rgba(255,255,255,0.1)';
-      pBtn.style.borderRadius = '4px';
-      pBtn.style.cursor = 'pointer';
-      pBtn.style.color = 'var(--color-text)';
-      pBtn.style.transition = 'all 0.2s ease';
-      
-      pBtn.onclick = (e) => {
-          e.stopPropagation();
-          if (selectedType === 'period' && selectedVal === i) {
-              selectedType = null;
-              selectedVal = null;
-          } else {
-              selectedType = 'period';
-              selectedVal = i;
-          }
-          selectedElementZ = null;
-          renderHighlights();
-      };
-      ptGrid.appendChild(pBtn);
-    }
+    const addLabel = (text, row, col, spanC = 1, spanR = 1, isTitle = false) => {
+        const lbl = document.createElement('div');
+        lbl.textContent = text;
+        lbl.style.gridRow = `${row} / span ${spanR}`;
+        lbl.style.gridColumn = `${col} / span ${spanC}`;
+        lbl.style.display = 'flex';
+        lbl.style.alignItems = 'center';
+        lbl.style.justifyContent = 'center';
+        lbl.style.color = isTitle ? 'var(--color-text)' : 'rgba(255,255,255,0.6)';
+        lbl.style.fontSize = isTitle ? '14px' : '12px';
+        lbl.style.fontStyle = isTitle ? 'italic' : 'normal';
+        if (text.includes('\n')) {
+            lbl.style.whiteSpace = 'pre-wrap';
+            lbl.style.textAlign = 'center';
+            lbl.style.lineHeight = '1.2';
+        }
+        ptGrid.appendChild(lbl);
+    };
+
+    const addClickableLabel = (text, row, col, type, val, spanC = 1) => {
+        const lbl = document.createElement('div');
+        lbl.textContent = text;
+        lbl.style.gridRow = row;
+        lbl.style.gridColumn = `${col} / span ${spanC}`;
+        lbl.style.display = 'flex';
+        lbl.style.alignItems = 'center';
+        lbl.style.justifyContent = 'center';
+        lbl.style.fontSize = '12px';
+        lbl.style.cursor = 'pointer';
+        lbl.style.color = 'var(--color-text)';
+        if (text.includes('\n')) {
+            lbl.style.whiteSpace = 'pre-wrap';
+            lbl.style.textAlign = 'center';
+            lbl.style.lineHeight = '1.2';
+        }
+        
+        lbl.onclick = (e) => {
+            e.stopPropagation();
+            if (selectedType === type && selectedVal === val) {
+                selectedType = null;
+                selectedVal = null;
+            } else {
+                selectedType = type;
+                selectedVal = val;
+            }
+            selectedElementZ = null;
+            renderHighlights();
+        };
+        ptGrid.appendChild(lbl);
+    };
+
+    // Titles
+    addLabel('s-BLOCK', 1, 1, 3, 1, true);
+    addLabel('d-BLOCK', 4, 5, 11, 1, true);
+    addLabel('p-BLOCK', 1, 17, 7, 1, true);
+    addLabel('f-BLOCK', 11, 4, 16, 1, true);
+
+    // Group numbers
+    [1,2].forEach(g => addClickableLabel(g.toString(), 2, g+1, 'group', g));
+    for(let g=3; g<=12; g++) addClickableLabel(g.toString(), 5, g+3, 'group', g);
+    for(let g=13; g<=18; g++) addClickableLabel(g.toString(), 2, g+5, 'group', g);
+
+    // s-block orbitals (Periods)
+    ['1s', '2s', '3s', '4s', '5s', '6s', '7s'].forEach((orb, i) => addClickableLabel(orb, i+3, 1, 'period', i+1));
+    // d-block orbitals
+    ['3d', '4d', '5d', '6d'].forEach((orb, i) => addLabel(orb, i+6, 5));
+    // p-block orbitals
+    ['2p', '3p', '4p', '5p', '6p', '7p'].forEach((orb, i) => addLabel(orb, i+4, 17));
+
+    // f-block labels (Periods 8 and 9)
+    addClickableLabel('Lanthanoids\n4f', 12, 4, 'period', 8, 2);
+    addClickableLabel('Actinoids\n5f', 13, 4, 'period', 9, 2);
+
+    const getGridPos = (el) => {
+        if (el.z === 1) return { row: 3, col: 10 };
+        if (el.z === 2) return { row: 3, col: 23 };
+        
+        if (el.z >= 58 && el.z <= 71) return { row: 12, col: el.z - 58 + 6 };
+        if (el.z >= 90 && el.z <= 103) return { row: 13, col: el.z - 90 + 6 };
+        
+        let row;
+        if (el.period === 2) row = 4;
+        else if (el.period === 3) row = 5;
+        else if (el.period === 4) row = 6;
+        else if (el.period === 5) row = 7;
+        else if (el.period === 6) row = 8;
+        else if (el.period === 7) row = 9;
+        
+        let col;
+        if (el.group <= 2) col = el.group + 1;
+        else if (el.group >= 3 && el.group <= 12) col = el.group + 3;
+        else if (el.group >= 13) col = el.group + 5;
+        
+        return { row, col };
+    };
 
     ELEMENTS.forEach(el => {
       const cell = document.createElement('div');
@@ -3253,41 +3399,45 @@ window.InteractivePT = (() => {
       cell.style.flexDirection = 'column';
       cell.style.alignItems = 'center';
       cell.style.justifyContent = 'center';
-      cell.style.borderRadius = '4px';
       cell.style.cursor = 'pointer';
       cell.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-      cell.style.border = '1px solid var(--color-border)';
-      cell.style.background = 'var(--color-card)';
-      cell.style.color = 'var(--color-text)';
+      cell.style.border = '1px solid rgba(0,0,0,0.2)';
+      cell.style.background = ELEMENT_COLORS[el.z];
+      cell.style.color = '#000';
       cell.style.userSelect = 'none';
+      cell.style.position = 'relative';
 
-      if (el.group) {
-        cell.style.gridColumn = el.group + 1;
-        cell.style.gridRow = el.period + 1;
-      } else {
-        const offset = (el.z >= 58 && el.z <= 71) ? el.z - 57 : el.z - 89;
-        cell.style.gridColumn = 3 + offset + 1;
-        cell.style.gridRow = el.period + 1;
-      }
+      const pos = getGridPos(el);
+      cell.style.gridRow = pos.row;
+      cell.style.gridColumn = pos.col;
 
-      // Add Symbol
+      // Z (Top Left)
+      const zEl = document.createElement('div');
+      zEl.textContent = el.z;
+      zEl.style.fontSize = '11px';
+      zEl.style.fontWeight = 'bold';
+      zEl.style.position = 'absolute';
+      zEl.style.top = '3px';
+      zEl.style.left = '4px';
+      zEl.style.opacity = '0.8';
+      cell.appendChild(zEl);
+
+      // Symbol (Center)
       const symEl = document.createElement('div');
       symEl.textContent = el.sym;
-      symEl.style.fontSize = 'clamp(14px, 1.2vw, 20px)';
+      symEl.style.fontSize = '24px';
       symEl.style.fontWeight = 'bold';
+      symEl.style.marginTop = '4px';
       cell.appendChild(symEl);
 
-      // Add Full Name
-      const nameEl = document.createElement('div');
-      nameEl.textContent = ECONFS[el.z].name;
-      nameEl.style.fontSize = '8px';
-      nameEl.style.marginTop = '2px';
-      nameEl.style.textOverflow = 'ellipsis';
-      nameEl.style.overflow = 'hidden';
-      nameEl.style.whiteSpace = 'nowrap';
-      nameEl.style.width = '100%';
-      nameEl.style.textAlign = 'center';
-      cell.appendChild(nameEl);
+      // Mass (Bottom)
+      const massEl = document.createElement('div');
+      massEl.textContent = ECONFS[el.z].mass;
+      massEl.style.fontSize = '11px';
+      massEl.style.marginTop = 'auto';
+      massEl.style.marginBottom = '3px';
+      massEl.style.opacity = '0.9';
+      cell.appendChild(massEl);
 
       cell.dataset.block = el.block;
       cell.dataset.z = el.z;
@@ -3296,20 +3446,14 @@ window.InteractivePT = (() => {
 
       cell.onclick = (e) => {
           e.stopPropagation();
-          
           if (selectedType === 'group' && parseInt(el.group) !== selectedVal) return;
           if (selectedType === 'period') {
               let p = parseInt(el.period);
               let allowed = (p === selectedVal) || (selectedVal === 6 && p === 8) || (selectedVal === 7 && p === 9);
               if (!allowed) return;
           }
-          
-          if (selectedElementZ === el.z) {
-              // Clicked again, clear element highlight
-              selectedElementZ = null;
-          } else {
-              selectedElementZ = el.z;
-          }
+          if (selectedElementZ === el.z) selectedElementZ = null;
+          else selectedElementZ = el.z;
           renderHighlights();
       };
 
@@ -3321,7 +3465,6 @@ window.InteractivePT = (() => {
     wrapper.appendChild(ptContainer);
     wrapper.appendChild(infoPanel);
     
-    // Add simple fadeIn animation
     const style = document.createElement('style');
     style.textContent = `
       @keyframes fadeIn {
@@ -3332,6 +3475,7 @@ window.InteractivePT = (() => {
     wrapper.appendChild(style);
     
     container.appendChild(wrapper);
+    updateInfoPanel(); // Initialize default text
   }
 
   return { init: build };
