@@ -1,6 +1,6 @@
 /**
  * InteractivePT - Modern Periodic Table visualization
- * Features Directional Hover: Left/Right highlights Period, Up/Down highlights Group
+ * Features tiny clickable/hoverable buttons for Periods and Groups
  */
 window.InteractivePT = (() => {
   const ELEMENTS = [
@@ -155,7 +155,7 @@ window.InteractivePT = (() => {
     infoPanel.style.color = 'var(--color-text)';
     infoPanel.style.fontWeight = 'bold';
     infoPanel.style.fontSize = '1.1rem';
-    infoPanel.textContent = 'Wiggle cursor LEFT/RIGHT to highlight PERIOD. Wiggle UP/DOWN to highlight GROUP.';
+    infoPanel.textContent = 'Hover over elements or the tiny Period/Group buttons.';
 
     const btnS = document.createElement('button'); btnS.className = 'btn btn-outline'; btnS.textContent = 's-block';
     const btnP = document.createElement('button'); btnP.className = 'btn btn-outline'; btnP.textContent = 'p-block';
@@ -166,17 +166,70 @@ window.InteractivePT = (() => {
 
     const ptGrid = document.createElement('div');
     ptGrid.style.display = 'grid';
-    ptGrid.style.gridTemplateColumns = 'repeat(18, 30px)';
-    ptGrid.style.gridTemplateRows = 'repeat(10, 30px)';
+    // Col 1 is for period buttons (20px), Cols 2-19 are for elements (30px)
+    ptGrid.style.gridTemplateColumns = '20px repeat(18, 30px)';
+    // Row 1 is for group buttons (20px), Rows 2-11 are for elements (30px)
+    ptGrid.style.gridTemplateRows = '20px repeat(10, 30px)';
     ptGrid.style.gap = '4px';
     ptGrid.style.position = 'relative';
 
     const cells = [];
     
-    let activeMode = 'none';
-    let startX = 0;
-    let startY = 0;
-    let originCell = null;
+    // Group Buttons (Top Row)
+    for (let i = 1; i <= 18; i++) {
+      const gBtn = document.createElement('div');
+      gBtn.textContent = i;
+      gBtn.style.gridRow = 1;
+      gBtn.style.gridColumn = i + 1; // offset by 1
+      gBtn.style.fontSize = '10px';
+      gBtn.style.display = 'flex';
+      gBtn.style.alignItems = 'center';
+      gBtn.style.justifyContent = 'center';
+      gBtn.style.background = 'rgba(255,255,255,0.1)';
+      gBtn.style.borderRadius = '4px';
+      gBtn.style.cursor = 'pointer';
+      gBtn.style.color = 'var(--color-text)';
+      gBtn.style.transition = 'all 0.2s ease';
+      
+      gBtn.onmouseenter = () => {
+        gBtn.style.background = 'rgba(255,255,255,0.3)';
+        infoPanel.textContent = `Group ${i}`;
+        highlightGroup(i);
+      };
+      gBtn.onmouseleave = () => {
+        gBtn.style.background = 'rgba(255,255,255,0.1)';
+        resetHighlights();
+      };
+      ptGrid.appendChild(gBtn);
+    }
+    
+    // Period Buttons (Left Column)
+    for (let i = 1; i <= 7; i++) {
+      const pBtn = document.createElement('div');
+      pBtn.textContent = i;
+      pBtn.style.gridRow = i + 1; // offset by 1
+      pBtn.style.gridColumn = 1;
+      pBtn.style.fontSize = '10px';
+      pBtn.style.display = 'flex';
+      pBtn.style.alignItems = 'center';
+      pBtn.style.justifyContent = 'center';
+      pBtn.style.background = 'rgba(255,255,255,0.1)';
+      pBtn.style.borderRadius = '4px';
+      pBtn.style.cursor = 'pointer';
+      pBtn.style.color = 'var(--color-text)';
+      pBtn.style.transition = 'all 0.2s ease';
+      
+      pBtn.onmouseenter = () => {
+        pBtn.style.background = 'rgba(255,255,255,0.3)';
+        infoPanel.textContent = `Period ${i}`;
+        highlightPeriod(i);
+      };
+      pBtn.onmouseleave = () => {
+        pBtn.style.background = 'rgba(255,255,255,0.1)';
+        resetHighlights();
+      };
+      ptGrid.appendChild(pBtn);
+    }
 
     ELEMENTS.forEach(el => {
       const cell = document.createElement('div');
@@ -194,12 +247,12 @@ window.InteractivePT = (() => {
       cell.style.userSelect = 'none';
 
       if (el.group) {
-        cell.style.gridColumn = el.group;
-        cell.style.gridRow = el.period;
+        cell.style.gridColumn = el.group + 1;
+        cell.style.gridRow = el.period + 1;
       } else {
         const offset = (el.z >= 58 && el.z <= 71) ? el.z - 57 : el.z - 89;
-        cell.style.gridColumn = 3 + offset;
-        cell.style.gridRow = el.period;
+        cell.style.gridColumn = 3 + offset + 1;
+        cell.style.gridRow = el.period + 1;
       }
 
       cell.textContent = el.sym;
@@ -209,109 +262,87 @@ window.InteractivePT = (() => {
       cell.dataset.group = el.group || '';
       cell.dataset.period = el.period;
 
-      cell.onmouseenter = (e) => {
-        startX = e.clientX;
-        startY = e.clientY;
-        originCell = cell;
-        activeMode = 'none';
-        
+      cell.onmouseenter = () => {
         infoPanel.textContent = `Z=${el.z} | ${el.sym} | ${el.block}-block | Period ${el.period > 7 ? el.period-2 : el.period}` + (el.group ? ` | Group ${el.group}` : '');
-        
-        // Initial hover: Blur everything else slightly, highlight this cell
-        cells.forEach(c => {
-          if (c === cell) {
-            c.style.transform = 'scale(1.2)';
-            c.style.zIndex = '10';
-            c.style.background = BLOCK_COLORS[el.block];
-            c.style.color = '#000';
-            c.style.opacity = '1';
-            c.style.borderColor = BLOCK_COLORS[el.block];
-            c.style.boxShadow = `0 0 15px ${BLOCK_COLORS[el.block]}`;
-            c.style.filter = 'blur(0px)';
-          } else {
-            c.style.opacity = '0.4';
-            c.style.filter = 'blur(2px)';
-            c.style.background = 'var(--color-card)';
-            c.style.color = 'var(--color-text-muted)';
-            c.style.transform = 'scale(1)';
-            c.style.zIndex = '1';
-            c.style.boxShadow = 'none';
-            c.style.borderColor = 'transparent';
-          }
-        });
+        highlightSingleCell(cell, el.block);
       };
-      
-      cell.onmousemove = (e) => {
-        if (!originCell || originCell !== cell) return;
-        
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
-        
-        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
-          if (Math.abs(dx) > Math.abs(dy)) {
-            activeMode = 'period';
-          } else {
-            activeMode = 'group';
-          }
-        }
-        
-        if (activeMode === 'period') {
-          cells.forEach(c => {
-            if (c.dataset.period === cell.dataset.period) {
-              c.style.background = BLOCK_COLORS[c.dataset.block];
-              c.style.color = '#000';
-              c.style.opacity = '1';
-              c.style.transform = 'scale(1.1)';
-              c.style.zIndex = '5';
-              c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
-              c.style.filter = 'blur(0px)';
-              c.style.borderColor = 'transparent';
-            } else {
-              c.style.opacity = '0.1';
-              c.style.filter = 'blur(4px)';
-              c.style.transform = 'scale(0.95)';
-              c.style.background = 'var(--color-card)';
-              c.style.color = 'var(--color-text-muted)';
-              c.style.zIndex = '1';
-              c.style.boxShadow = 'none';
-            }
-          });
-        } else if (activeMode === 'group') {
-          cells.forEach(c => {
-            const isSameGroup = cell.dataset.group && c.dataset.group === cell.dataset.group;
-            const isSameFBlock = !cell.dataset.group && c.dataset.period === cell.dataset.period && c.dataset.block === 'f';
-            
-            if (isSameGroup || isSameFBlock) {
-              c.style.background = BLOCK_COLORS[c.dataset.block];
-              c.style.color = '#000';
-              c.style.opacity = '1';
-              c.style.transform = 'scale(1.1)';
-              c.style.zIndex = '5';
-              c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
-              c.style.filter = 'blur(0px)';
-              c.style.borderColor = 'transparent';
-            } else {
-              c.style.opacity = '0.1';
-              c.style.filter = 'blur(4px)';
-              c.style.transform = 'scale(0.95)';
-              c.style.background = 'var(--color-card)';
-              c.style.color = 'var(--color-text-muted)';
-              c.style.zIndex = '1';
-              c.style.boxShadow = 'none';
-            }
-          });
-        }
-      };
-      
-      cell.onmouseleave = () => {
-        originCell = null;
-        activeMode = 'none';
-        resetHighlights();
-      };
+      cell.onmouseleave = resetHighlights;
 
       cells.push(cell);
       ptGrid.appendChild(cell);
     });
+
+    const highlightSingleCell = (targetCell, block) => {
+      cells.forEach(c => {
+        if (c === targetCell) {
+          c.style.transform = 'scale(1.2)';
+          c.style.zIndex = '10';
+          c.style.background = BLOCK_COLORS[block];
+          c.style.color = '#000';
+          c.style.opacity = '1';
+          c.style.borderColor = BLOCK_COLORS[block];
+          c.style.boxShadow = `0 0 15px ${BLOCK_COLORS[block]}`;
+          c.style.filter = 'blur(0px)';
+        } else {
+          c.style.opacity = '0.4';
+          c.style.filter = 'blur(2px)';
+          c.style.background = 'var(--color-card)';
+          c.style.color = 'var(--color-text-muted)';
+          c.style.transform = 'scale(1)';
+          c.style.zIndex = '1';
+          c.style.boxShadow = 'none';
+          c.style.borderColor = 'transparent';
+        }
+      });
+    };
+
+    const highlightPeriod = (periodNum) => {
+      cells.forEach(c => {
+        // match period, or corresponding f-block period (8=lanthanides in p6, 9=actinides in p7)
+        const isSamePeriod = parseInt(c.dataset.period) === periodNum || (periodNum === 6 && parseInt(c.dataset.period) === 8) || (periodNum === 7 && parseInt(c.dataset.period) === 9);
+        if (isSamePeriod) {
+          c.style.background = BLOCK_COLORS[c.dataset.block];
+          c.style.color = '#000';
+          c.style.opacity = '1';
+          c.style.transform = 'scale(1.1)';
+          c.style.zIndex = '5';
+          c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
+          c.style.filter = 'blur(0px)';
+          c.style.borderColor = 'transparent';
+        } else {
+          c.style.opacity = '0.1';
+          c.style.filter = 'blur(4px)';
+          c.style.transform = 'scale(0.95)';
+          c.style.background = 'var(--color-card)';
+          c.style.color = 'var(--color-text-muted)';
+          c.style.zIndex = '1';
+          c.style.boxShadow = 'none';
+        }
+      });
+    };
+
+    const highlightGroup = (groupNum) => {
+      cells.forEach(c => {
+        if (parseInt(c.dataset.group) === groupNum) {
+          c.style.background = BLOCK_COLORS[c.dataset.block];
+          c.style.color = '#000';
+          c.style.opacity = '1';
+          c.style.transform = 'scale(1.1)';
+          c.style.zIndex = '5';
+          c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
+          c.style.filter = 'blur(0px)';
+          c.style.borderColor = 'transparent';
+        } else {
+          c.style.opacity = '0.1';
+          c.style.filter = 'blur(4px)';
+          c.style.transform = 'scale(0.95)';
+          c.style.background = 'var(--color-card)';
+          c.style.color = 'var(--color-text-muted)';
+          c.style.zIndex = '1';
+          c.style.boxShadow = 'none';
+        }
+      });
+    };
 
     const highlightBlock = (block) => {
       cells.forEach(c => {
@@ -336,7 +367,7 @@ window.InteractivePT = (() => {
     };
 
     const resetHighlights = () => {
-      infoPanel.textContent = 'Wiggle cursor LEFT/RIGHT to highlight PERIOD. Wiggle UP/DOWN to highlight GROUP.';
+      infoPanel.textContent = 'Hover over elements or the tiny Period/Group buttons.';
       cells.forEach(c => {
         c.style.background = 'var(--color-card)';
         c.style.color = 'var(--color-text)';
