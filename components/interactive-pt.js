@@ -1,6 +1,6 @@
 /**
  * InteractivePT - Modern Periodic Table visualization
- * Features touch-friendly UI and dynamic Info Panel
+ * Features touch-friendly UI, dynamic Info Panel, and Orbital Diagrams
  */
 window.InteractivePT = (() => {
   const ELEMENTS = [
@@ -60,7 +60,7 @@ window.InteractivePT = (() => {
     { z: 54, sym: 'Xe', group: 18, period: 5, block: 'p' },
     { z: 55, sym: 'Cs', group: 1, period: 6, block: 's' },
     { z: 56, sym: 'Ba', group: 2, period: 6, block: 's' },
-    // Lanthanides (f-block, drawn below)
+    // Lanthanides
     { z: 57, sym: 'La', group: 3, period: 6, block: 'd' },
     { z: 58, sym: 'Ce', group: null, period: 8, block: 'f' },
     { z: 59, sym: 'Pr', group: null, period: 8, block: 'f' },
@@ -130,125 +130,1737 @@ window.InteractivePT = (() => {
   ];
 
   const ECONFS = {
-    "1": "1s<sup>1</sup>",
-    "2": "1s<sup>2</sup>",
-    "3": "[He] 2s<sup>1</sup>",
-    "4": "[He] 2s<sup>2</sup>",
-    "5": "[He] 2s<sup>2</sup> 2p<sup>1</sup>",
-    "6": "[He] 2s<sup>2</sup> 2p<sup>2</sup>",
-    "7": "[He] 2s<sup>2</sup> 2p<sup>3</sup>",
-    "8": "[He] 2s<sup>2</sup> 2p<sup>4</sup>",
-    "9": "[He] 2s<sup>2</sup> 2p<sup>5</sup>",
-    "10": "[He] 2s<sup>2</sup> 2p<sup>6</sup>",
-    "11": "[Ne] 3s<sup>1</sup>",
-    "12": "[Ne] 3s<sup>2</sup>",
-    "13": "[Ne] 3s<sup>2</sup> 3p<sup>1</sup>",
-    "14": "[Ne] 3s<sup>2</sup> 3p<sup>2</sup>",
-    "15": "[Ne] 3s<sup>2</sup> 3p<sup>3</sup>",
-    "16": "[Ne] 3s<sup>2</sup> 3p<sup>4</sup>",
-    "17": "[Ne] 3s<sup>2</sup> 3p<sup>5</sup>",
-    "18": "[Ne] 3s<sup>2</sup> 3p<sup>6</sup>",
-    "19": "[Ar] 4s<sup>1</sup>",
-    "20": "[Ar] 4s<sup>2</sup>",
-    "21": "[Ar] 4s<sup>2</sup> 3d<sup>1</sup>",
-    "22": "[Ar] 4s<sup>2</sup> 3d<sup>2</sup>",
-    "23": "[Ar] 4s<sup>2</sup> 3d<sup>3</sup>",
-    "24": "[Ar] 4s<sup>1</sup> 3d<sup>5</sup>",
-    "25": "[Ar] 4s<sup>2</sup> 3d<sup>5</sup>",
-    "26": "[Ar] 4s<sup>2</sup> 3d<sup>6</sup>",
-    "27": "[Ar] 4s<sup>2</sup> 3d<sup>7</sup>",
-    "28": "[Ar] 4s<sup>2</sup> 3d<sup>8</sup>",
-    "29": "[Ar] 4s<sup>1</sup> 3d<sup>10</sup>",
-    "30": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup>",
-    "31": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>1</sup>",
-    "32": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>2</sup>",
-    "33": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>3</sup>",
-    "34": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>4</sup>",
-    "35": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>5</sup>",
-    "36": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>6</sup>",
-    "37": "[Kr] 5s<sup>1</sup>",
-    "38": "[Kr] 5s<sup>2</sup>",
-    "39": "[Kr] 5s<sup>2</sup> 4d<sup>1</sup>",
-    "40": "[Kr] 5s<sup>2</sup> 4d<sup>2</sup>",
-    "41": "[Kr] 5s<sup>1</sup> 4d<sup>4</sup>",
-    "42": "[Kr] 5s<sup>1</sup> 4d<sup>5</sup>",
-    "43": "[Kr] 5s<sup>2</sup> 4d<sup>5</sup>",
-    "44": "[Kr] 5s<sup>1</sup> 4d<sup>7</sup>",
-    "45": "[Kr] 5s<sup>1</sup> 4d<sup>8</sup>",
-    "46": "[Kr] 4d<sup>10</sup>",
-    "47": "[Kr] 5s<sup>1</sup> 4d<sup>10</sup>",
-    "48": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup>",
-    "49": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>1</sup>",
-    "50": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>2</sup>",
-    "51": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>3</sup>",
-    "52": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>4</sup>",
-    "53": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>5</sup>",
-    "54": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>6</sup>",
-    "55": "[Xe] 6s<sup>1</sup>",
-    "56": "[Xe] 6s<sup>2</sup>",
-    "57": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup>",
-    "58": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup> 4f<sup>1</sup>",
-    "59": "[Xe] 6s<sup>2</sup> 4f<sup>3</sup>",
-    "60": "[Xe] 6s<sup>2</sup> 4f<sup>4</sup>",
-    "61": "[Xe] 6s<sup>2</sup> 4f<sup>5</sup>",
-    "62": "[Xe] 6s<sup>2</sup> 4f<sup>6</sup>",
-    "63": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup>",
-    "64": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup> 5d<sup>1</sup>",
-    "65": "[Xe] 6s<sup>2</sup> 4f<sup>9</sup>",
-    "66": "[Xe] 6s<sup>2</sup> 4f<sup>10</sup>",
-    "67": "[Xe] 6s<sup>2</sup> 4f<sup>11</sup>",
-    "68": "[Xe] 6s<sup>2</sup> 4f<sup>12</sup>",
-    "69": "[Xe] 6s<sup>2</sup> 4f<sup>13</sup>",
-    "70": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup>",
-    "71": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>1</sup>",
-    "72": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>2</sup>",
-    "73": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>3</sup>",
-    "74": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>4</sup>",
-    "75": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>5</sup>",
-    "76": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>6</sup>",
-    "77": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>7</sup>",
-    "78": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>9</sup>",
-    "79": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
-    "80": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
-    "81": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>1</sup>",
-    "82": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>2</sup>",
-    "83": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>3</sup>",
-    "84": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>4</sup>",
-    "85": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>5</sup>",
-    "86": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>6</sup>",
-    "87": "[Rn] 7s<sup>1</sup>",
-    "88": "[Rn] 7s<sup>2</sup>",
-    "89": "[Rn] 7s<sup>2</sup> 6d<sup>1</sup>",
-    "90": "[Rn] 7s<sup>2</sup> 6d<sup>2</sup>",
-    "91": "[Rn] 7s<sup>2</sup> 5f<sup>2</sup> 6d<sup>1</sup>",
-    "92": "[Rn] 7s<sup>2</sup> 5f<sup>3</sup> 6d<sup>1</sup>",
-    "93": "[Rn] 7s<sup>2</sup> 5f<sup>4</sup> 6d<sup>1</sup>",
-    "94": "[Rn] 7s<sup>2</sup> 5f<sup>6</sup>",
-    "95": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup>",
-    "96": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup> 6d<sup>1</sup>",
-    "97": "[Rn] 7s<sup>2</sup> 5f<sup>9</sup>",
-    "98": "[Rn] 7s<sup>2</sup> 5f<sup>10</sup>",
-    "99": "[Rn] 7s<sup>2</sup> 5f<sup>11</sup>",
-    "100": "[Rn] 7s<sup>2</sup> 5f<sup>12</sup>",
-    "101": "[Rn] 7s<sup>2</sup> 5f<sup>13</sup>",
-    "102": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup>",
-    "103": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 7p<sup>1</sup>",
-    "104": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>2</sup>",
-    "105": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>3</sup>",
-    "106": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>4</sup>",
-    "107": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>5</sup>",
-    "108": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>6</sup>",
-    "109": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>7</sup>",
-    "110": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>8</sup>",
-    "111": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>9</sup>",
-    "112": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup>",
-    "113": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>1</sup>",
-    "114": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>2</sup>",
-    "115": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>3</sup>",
-    "116": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>4</sup>",
-    "117": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>5</sup>",
-    "118": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>6</sup>",
-    "119": "[Og] 8s<sup>1</sup>"
+    "1": {
+        "html": "1s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "1s",
+                "e": 1
+            }
+        ]
+    },
+    "2": {
+        "html": "1s<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "1s",
+                "e": 2
+            }
+        ]
+    },
+    "3": {
+        "html": "[He] 2s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 1
+            }
+        ]
+    },
+    "4": {
+        "html": "[He] 2s<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 2
+            }
+        ]
+    },
+    "5": {
+        "html": "[He] 2s<sup>2</sup> 2p<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 2
+            },
+            {
+                "subshell": "2p",
+                "e": 1
+            }
+        ]
+    },
+    "6": {
+        "html": "[He] 2s<sup>2</sup> 2p<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 2
+            },
+            {
+                "subshell": "2p",
+                "e": 2
+            }
+        ]
+    },
+    "7": {
+        "html": "[He] 2s<sup>2</sup> 2p<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 2
+            },
+            {
+                "subshell": "2p",
+                "e": 3
+            }
+        ]
+    },
+    "8": {
+        "html": "[He] 2s<sup>2</sup> 2p<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 2
+            },
+            {
+                "subshell": "2p",
+                "e": 4
+            }
+        ]
+    },
+    "9": {
+        "html": "[He] 2s<sup>2</sup> 2p<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 2
+            },
+            {
+                "subshell": "2p",
+                "e": 5
+            }
+        ]
+    },
+    "10": {
+        "html": "[He] 2s<sup>2</sup> 2p<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "2s",
+                "e": 2
+            },
+            {
+                "subshell": "2p",
+                "e": 6
+            }
+        ]
+    },
+    "11": {
+        "html": "[Ne] 3s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 1
+            }
+        ]
+    },
+    "12": {
+        "html": "[Ne] 3s<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 2
+            }
+        ]
+    },
+    "13": {
+        "html": "[Ne] 3s<sup>2</sup> 3p<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 2
+            },
+            {
+                "subshell": "3p",
+                "e": 1
+            }
+        ]
+    },
+    "14": {
+        "html": "[Ne] 3s<sup>2</sup> 3p<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 2
+            },
+            {
+                "subshell": "3p",
+                "e": 2
+            }
+        ]
+    },
+    "15": {
+        "html": "[Ne] 3s<sup>2</sup> 3p<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 2
+            },
+            {
+                "subshell": "3p",
+                "e": 3
+            }
+        ]
+    },
+    "16": {
+        "html": "[Ne] 3s<sup>2</sup> 3p<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 2
+            },
+            {
+                "subshell": "3p",
+                "e": 4
+            }
+        ]
+    },
+    "17": {
+        "html": "[Ne] 3s<sup>2</sup> 3p<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 2
+            },
+            {
+                "subshell": "3p",
+                "e": 5
+            }
+        ]
+    },
+    "18": {
+        "html": "[Ne] 3s<sup>2</sup> 3p<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "3s",
+                "e": 2
+            },
+            {
+                "subshell": "3p",
+                "e": 6
+            }
+        ]
+    },
+    "19": {
+        "html": "[Ar] 4s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 1
+            }
+        ]
+    },
+    "20": {
+        "html": "[Ar] 4s<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            }
+        ]
+    },
+    "21": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 1
+            }
+        ]
+    },
+    "22": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 2
+            }
+        ]
+    },
+    "23": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 3
+            }
+        ]
+    },
+    "24": {
+        "html": "[Ar] 4s<sup>1</sup> 3d<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 1
+            },
+            {
+                "subshell": "3d",
+                "e": 5
+            }
+        ]
+    },
+    "25": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 5
+            }
+        ]
+    },
+    "26": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 6
+            }
+        ]
+    },
+    "27": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>7</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 7
+            }
+        ]
+    },
+    "28": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>8</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 8
+            }
+        ]
+    },
+    "29": {
+        "html": "[Ar] 4s<sup>1</sup> 3d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 1
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            }
+        ]
+    },
+    "30": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            }
+        ]
+    },
+    "31": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            },
+            {
+                "subshell": "4p",
+                "e": 1
+            }
+        ]
+    },
+    "32": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            },
+            {
+                "subshell": "4p",
+                "e": 2
+            }
+        ]
+    },
+    "33": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            },
+            {
+                "subshell": "4p",
+                "e": 3
+            }
+        ]
+    },
+    "34": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            },
+            {
+                "subshell": "4p",
+                "e": 4
+            }
+        ]
+    },
+    "35": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            },
+            {
+                "subshell": "4p",
+                "e": 5
+            }
+        ]
+    },
+    "36": {
+        "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "4s",
+                "e": 2
+            },
+            {
+                "subshell": "3d",
+                "e": 10
+            },
+            {
+                "subshell": "4p",
+                "e": 6
+            }
+        ]
+    },
+    "37": {
+        "html": "[Kr] 5s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 1
+            }
+        ]
+    },
+    "38": {
+        "html": "[Kr] 5s<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            }
+        ]
+    },
+    "39": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 1
+            }
+        ]
+    },
+    "40": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 2
+            }
+        ]
+    },
+    "41": {
+        "html": "[Kr] 5s<sup>1</sup> 4d<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 1
+            },
+            {
+                "subshell": "4d",
+                "e": 4
+            }
+        ]
+    },
+    "42": {
+        "html": "[Kr] 5s<sup>1</sup> 4d<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 1
+            },
+            {
+                "subshell": "4d",
+                "e": 5
+            }
+        ]
+    },
+    "43": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 5
+            }
+        ]
+    },
+    "44": {
+        "html": "[Kr] 5s<sup>1</sup> 4d<sup>7</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 1
+            },
+            {
+                "subshell": "4d",
+                "e": 7
+            }
+        ]
+    },
+    "45": {
+        "html": "[Kr] 5s<sup>1</sup> 4d<sup>8</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 1
+            },
+            {
+                "subshell": "4d",
+                "e": 8
+            }
+        ]
+    },
+    "46": {
+        "html": "[Kr] 4d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "4d",
+                "e": 10
+            }
+        ]
+    },
+    "47": {
+        "html": "[Kr] 5s<sup>1</sup> 4d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 1
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            }
+        ]
+    },
+    "48": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            }
+        ]
+    },
+    "49": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            },
+            {
+                "subshell": "5p",
+                "e": 1
+            }
+        ]
+    },
+    "50": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            },
+            {
+                "subshell": "5p",
+                "e": 2
+            }
+        ]
+    },
+    "51": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            },
+            {
+                "subshell": "5p",
+                "e": 3
+            }
+        ]
+    },
+    "52": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            },
+            {
+                "subshell": "5p",
+                "e": 4
+            }
+        ]
+    },
+    "53": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            },
+            {
+                "subshell": "5p",
+                "e": 5
+            }
+        ]
+    },
+    "54": {
+        "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "5s",
+                "e": 2
+            },
+            {
+                "subshell": "4d",
+                "e": 10
+            },
+            {
+                "subshell": "5p",
+                "e": 6
+            }
+        ]
+    },
+    "55": {
+        "html": "[Xe] 6s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 1
+            }
+        ]
+    },
+    "56": {
+        "html": "[Xe] 6s<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            }
+        ]
+    },
+    "57": {
+        "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "5d",
+                "e": 1
+            }
+        ]
+    },
+    "58": {
+        "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup> 4f<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "5d",
+                "e": 1
+            },
+            {
+                "subshell": "4f",
+                "e": 1
+            }
+        ]
+    },
+    "59": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 3
+            }
+        ]
+    },
+    "60": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 4
+            }
+        ]
+    },
+    "61": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 5
+            }
+        ]
+    },
+    "62": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 6
+            }
+        ]
+    },
+    "63": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 7
+            }
+        ]
+    },
+    "64": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup> 5d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 7
+            },
+            {
+                "subshell": "5d",
+                "e": 1
+            }
+        ]
+    },
+    "65": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>9</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 9
+            }
+        ]
+    },
+    "66": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 10
+            }
+        ]
+    },
+    "67": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>11</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 11
+            }
+        ]
+    },
+    "68": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>12</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 12
+            }
+        ]
+    },
+    "69": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>13</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 13
+            }
+        ]
+    },
+    "70": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            }
+        ]
+    },
+    "71": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 1
+            }
+        ]
+    },
+    "72": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 2
+            }
+        ]
+    },
+    "73": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 3
+            }
+        ]
+    },
+    "74": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 4
+            }
+        ]
+    },
+    "75": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 5
+            }
+        ]
+    },
+    "76": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 6
+            }
+        ]
+    },
+    "77": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>7</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 7
+            }
+        ]
+    },
+    "78": {
+        "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>9</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 1
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 9
+            }
+        ]
+    },
+    "79": {
+        "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 1
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            }
+        ]
+    },
+    "80": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            }
+        ]
+    },
+    "81": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            },
+            {
+                "subshell": "6p",
+                "e": 1
+            }
+        ]
+    },
+    "82": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            },
+            {
+                "subshell": "6p",
+                "e": 2
+            }
+        ]
+    },
+    "83": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            },
+            {
+                "subshell": "6p",
+                "e": 3
+            }
+        ]
+    },
+    "84": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            },
+            {
+                "subshell": "6p",
+                "e": 4
+            }
+        ]
+    },
+    "85": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            },
+            {
+                "subshell": "6p",
+                "e": 5
+            }
+        ]
+    },
+    "86": {
+        "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "6s",
+                "e": 2
+            },
+            {
+                "subshell": "4f",
+                "e": 14
+            },
+            {
+                "subshell": "5d",
+                "e": 10
+            },
+            {
+                "subshell": "6p",
+                "e": 6
+            }
+        ]
+    },
+    "87": {
+        "html": "[Rn] 7s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 1
+            }
+        ]
+    },
+    "88": {
+        "html": "[Rn] 7s<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            }
+        ]
+    },
+    "89": {
+        "html": "[Rn] 7s<sup>2</sup> 6d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "6d",
+                "e": 1
+            }
+        ]
+    },
+    "90": {
+        "html": "[Rn] 7s<sup>2</sup> 6d<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "6d",
+                "e": 2
+            }
+        ]
+    },
+    "91": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>2</sup> 6d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 2
+            },
+            {
+                "subshell": "6d",
+                "e": 1
+            }
+        ]
+    },
+    "92": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>3</sup> 6d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 3
+            },
+            {
+                "subshell": "6d",
+                "e": 1
+            }
+        ]
+    },
+    "93": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>4</sup> 6d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 4
+            },
+            {
+                "subshell": "6d",
+                "e": 1
+            }
+        ]
+    },
+    "94": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 6
+            }
+        ]
+    },
+    "95": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 7
+            }
+        ]
+    },
+    "96": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup> 6d<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 7
+            },
+            {
+                "subshell": "6d",
+                "e": 1
+            }
+        ]
+    },
+    "97": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>9</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 9
+            }
+        ]
+    },
+    "98": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 10
+            }
+        ]
+    },
+    "99": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>11</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 11
+            }
+        ]
+    },
+    "100": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>12</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 12
+            }
+        ]
+    },
+    "101": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>13</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 13
+            }
+        ]
+    },
+    "102": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            }
+        ]
+    },
+    "103": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 7p<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "7p",
+                "e": 1
+            }
+        ]
+    },
+    "104": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 2
+            }
+        ]
+    },
+    "105": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 3
+            }
+        ]
+    },
+    "106": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 4
+            }
+        ]
+    },
+    "107": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 5
+            }
+        ]
+    },
+    "108": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 6
+            }
+        ]
+    },
+    "109": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>7</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 7
+            }
+        ]
+    },
+    "110": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>8</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 8
+            }
+        ]
+    },
+    "111": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>9</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 9
+            }
+        ]
+    },
+    "112": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 10
+            }
+        ]
+    },
+    "113": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 10
+            },
+            {
+                "subshell": "7p",
+                "e": 1
+            }
+        ]
+    },
+    "114": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>2</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 10
+            },
+            {
+                "subshell": "7p",
+                "e": 2
+            }
+        ]
+    },
+    "115": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>3</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 10
+            },
+            {
+                "subshell": "7p",
+                "e": 3
+            }
+        ]
+    },
+    "116": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>4</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 10
+            },
+            {
+                "subshell": "7p",
+                "e": 4
+            }
+        ]
+    },
+    "117": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>5</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 10
+            },
+            {
+                "subshell": "7p",
+                "e": 5
+            }
+        ]
+    },
+    "118": {
+        "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>6</sup>",
+        "valence": [
+            {
+                "subshell": "7s",
+                "e": 2
+            },
+            {
+                "subshell": "5f",
+                "e": 14
+            },
+            {
+                "subshell": "6d",
+                "e": 10
+            },
+            {
+                "subshell": "7p",
+                "e": 6
+            }
+        ]
+    },
+    "119": {
+        "html": "[Og] 8s<sup>1</sup>",
+        "valence": [
+            {
+                "subshell": "8s",
+                "e": 1
+            }
+        ]
+    }
 };
 
   const GROUP_INFO = {
@@ -281,6 +1893,42 @@ window.InteractivePT = (() => {
     "f": "#E040FB"
   };
 
+  const renderOrbitals = (valence) => {
+      if (!valence || valence.length === 0) return '';
+      let html = '<div style="display:flex; gap:15px; margin-top:10px; flex-wrap:wrap;">';
+      
+      const boxesCount = { 's': 1, 'p': 3, 'd': 5, 'f': 7 };
+      
+      valence.forEach(orb => {
+          let type = orb.subshell[1];
+          let maxBoxes = boxesCount[type];
+          let e = orb.e;
+          
+          let boxes = Array(maxBoxes).fill('');
+          // Fill up arrows
+          for(let i=0; i<maxBoxes && e>0; i++) {
+              boxes[i] = '↑';
+              e--;
+          }
+          // Fill down arrows
+          for(let i=0; i<maxBoxes && e>0; i++) {
+              boxes[i] = '↑↓';
+              e--;
+          }
+          
+          html += '<div style="display:flex; flex-direction:column; align-items:center;">';
+          html += `<div style="margin-bottom:4px; font-size:0.9rem; color:var(--color-text-muted); font-weight:bold;">${orb.subshell}</div>`;
+          html += '<div style="display:flex; gap:2px;">';
+          boxes.forEach(b => {
+              html += `<div style="width:26px; height:26px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:bold; color:var(--color-primary); border-radius:3px; font-family:monospace;">${b}</div>`;
+          });
+          html += '</div></div>';
+      });
+      
+      html += '</div>';
+      return html;
+  };
+
   function build(container, config) {
     container.innerHTML = "";
     
@@ -292,7 +1940,7 @@ window.InteractivePT = (() => {
     wrapper.style.justifyContent = "center";
     wrapper.style.gap = "40px";
     wrapper.style.width = "100%";
-    wrapper.style.flexWrap = "wrap"; // allow wrapping on smaller screens
+    wrapper.style.flexWrap = "wrap"; 
 
     // Left container for PT
     const ptContainer = document.createElement("div");
@@ -360,14 +2008,13 @@ window.InteractivePT = (() => {
             infoTitle.textContent = `Group ${grp} - ${data.name}`;
             html += `<p><strong>Outer Configuration:</strong> ${data.outer}</p>`;
             
-            // Find first and last element of this group
             const groupEls = ELEMENTS.filter(e => e.group === grp).sort((a,b) => a.z - b.z);
             if (groupEls.length > 0) {
                 const first = groupEls[0];
                 const last = groupEls[groupEls.length - 1];
                 html += `<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; margin-bottom:10px;">`;
-                html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z]}</div>`;
-                html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z]}</div>`;
+                html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z].html}</div>`;
+                html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
             }
 
@@ -381,7 +2028,6 @@ window.InteractivePT = (() => {
             infoTitle.textContent = data.name;
             html += `<p><strong>Fills Subshells:</strong> ${data.outer}</p>`;
             
-            // Note: periods 8 and 9 are f-block series
             let periodEls = [];
             if (per === 8) {
                 periodEls = ELEMENTS.filter(e => e.period === 8).sort((a,b) => a.z - b.z);
@@ -395,8 +2041,8 @@ window.InteractivePT = (() => {
                 const first = periodEls[0];
                 const last = periodEls[periodEls.length - 1];
                 html += `<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; margin-bottom:10px;">`;
-                html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z]}</div>`;
-                html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z]}</div>`;
+                html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z].html}</div>`;
+                html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
             }
 
@@ -411,10 +2057,13 @@ window.InteractivePT = (() => {
             if (selectedType) {
                 html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
             }
-            html += `<div style="background:var(--color-primary); color:#000; padding:15px; border-radius:8px; animation: fadeIn 0.3s;">`;
-            html += `<h4 style="margin:0 0 10px 0; font-size:1.2rem;">${el.sym} (Atomic Number: ${el.z})</h4>`;
-            html += `<div><strong>Block:</strong> ${el.block}-block</div>`;
-            html += `<div style="margin-top:8px;"><strong>Configuration:</strong> <span style="font-size:1.1rem; display:block; margin-top:4px;">${ECONFS[el.z]}</span></div>`;
+            html += `<div style="background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2)); border:1px solid var(--color-border); padding:20px; border-radius:8px; animation: fadeIn 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">`;
+            html += `<div style="display:flex; justify-content:space-between; align-items:center;">`;
+            html += `<h4 style="margin:0; font-size:1.5rem; color:var(--color-primary);">${el.sym}</h4>`;
+            html += `<span style="font-size:0.9rem; color:var(--color-text-muted);">Z = ${el.z} | ${el.block}-block</span>`;
+            html += `</div>`;
+            html += `<div style="margin-top:15px; font-size:1.1rem; letter-spacing:1px;">${ECONFS[el.z].html}</div>`;
+            html += renderOrbitals(ECONFS[el.z].valence);
             html += `</div>`;
         }
 
@@ -595,8 +2244,16 @@ window.InteractivePT = (() => {
 
       cell.onclick = (e) => {
           e.stopPropagation();
+          
+          if (selectedType === 'group' && parseInt(el.group) !== selectedVal) return;
+          if (selectedType === 'period') {
+              let p = parseInt(el.period);
+              let allowed = (p === selectedVal) || (selectedVal === 6 && p === 8) || (selectedVal === 7 && p === 9);
+              if (!allowed) return;
+          }
+          
           if (selectedElementZ === el.z) {
-              // Clicked again, clear element highlight but KEEP period/group
+              // Clicked again, clear element highlight
               selectedElementZ = null;
           } else {
               selectedElementZ = el.z;
@@ -612,7 +2269,7 @@ window.InteractivePT = (() => {
     wrapper.appendChild(ptContainer);
     wrapper.appendChild(infoPanel);
     
-    // Add simple fadeIn animation for the element highlight box
+    // Add simple fadeIn animation
     const style = document.createElement('style');
     style.textContent = `
       @keyframes fadeIn {
