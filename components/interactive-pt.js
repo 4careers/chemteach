@@ -3105,25 +3105,36 @@ window.InteractivePT = (() => {
     const ptGrid = document.createElement("div");
     ptGrid.style.display = "grid";
     ptGrid.style.gridTemplateColumns = "30px 60px 60px 20px 30px repeat(10, 60px) 20px 30px repeat(6, 60px)";
-    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 70px) 20px 25px repeat(2, 70px)";
+    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 70px)";
     ptGrid.style.gap = "4px";
     ptGrid.style.position = "relative";
     ptGrid.style.fontFamily = "sans-serif";
 
-    // Draw Background Boxes for Blocks
-    const drawBox = (rStart, rSpan, cStart, cSpan) => {
+    const fGrid = document.createElement("div");
+    fGrid.style.display = "grid";
+    fGrid.style.gridTemplateColumns = "60px repeat(14, 60px)";
+    fGrid.style.gridTemplateRows = "25px 70px 70px";
+    fGrid.style.gap = "4px";
+    fGrid.style.position = "relative";
+    fGrid.style.fontFamily = "sans-serif";
+    fGrid.style.border = "1px solid rgba(255, 255, 255, 0.3)";
+    fGrid.style.padding = "4px";
+    fGrid.style.marginLeft = "146px"; 
+    fGrid.style.alignSelf = "flex-start";
+
+    // Draw Background Boxes for Blocks (Main Grid)
+    const drawBox = (rStart, rSpan, cStart, cSpan, targetGrid = ptGrid) => {
         const box = document.createElement('div');
         box.style.gridRow = `${rStart} / span ${rSpan}`;
         box.style.gridColumn = `${cStart} / span ${cSpan}`;
         box.style.border = '1px solid rgba(255, 255, 255, 0.3)';
         box.style.pointerEvents = 'none';
         box.style.zIndex = '0';
-        ptGrid.appendChild(box);
+        targetGrid.appendChild(box);
     };
     drawBox(1, 9, 1, 3); // s-BLOCK
     drawBox(4, 6, 5, 11); // d-BLOCK
     drawBox(1, 9, 17, 7); // p-BLOCK
-    drawBox(11, 3, 4, 16); // f-BLOCK
 
     const cells = [];
     let selectedType = null;
@@ -3315,7 +3326,7 @@ window.InteractivePT = (() => {
         }
     });
 
-    const addLabel = (text, row, col, spanC = 1, spanR = 1, isTitle = false) => {
+    const addLabel = (text, row, col, spanC = 1, spanR = 1, isTitle = false, targetGrid = ptGrid) => {
         const lbl = document.createElement('div');
         lbl.textContent = text;
         lbl.style.gridRow = `${row} / span ${spanR}`;
@@ -3331,10 +3342,10 @@ window.InteractivePT = (() => {
             lbl.style.textAlign = 'center';
             lbl.style.lineHeight = '1.2';
         }
-        ptGrid.appendChild(lbl);
+        targetGrid.appendChild(lbl);
     };
 
-    const addClickableLabel = (text, row, col, type, val, spanC = 1) => {
+    const addClickableLabel = (text, row, col, type, val, spanC = 1, targetGrid = ptGrid) => {
         const lbl = document.createElement('div');
         lbl.textContent = text;
         lbl.style.gridRow = row;
@@ -3384,16 +3395,17 @@ window.InteractivePT = (() => {
     // p-block orbitals
     ['2p', '3p', '4p', '5p', '6p', '7p'].forEach((orb, i) => addLabel(orb, i+4, 17));
 
-    // f-block labels (Periods 8 and 9)
-    addClickableLabel('Lanthanoids\n4f', 12, 4, 'period', 8, 2);
-    addClickableLabel('Actinoids\n5f', 13, 4, 'period', 9, 2);
+    // f-block title and labels (Periods 8 and 9)
+    addLabel('f-BLOCK', 1, 1, 15, 1, true, fGrid);
+    addClickableLabel('Lanthanoids\n4f', 2, 1, 'period', 8, 1, fGrid);
+    addClickableLabel('Actinoids\n5f', 3, 1, 'period', 9, 1, fGrid);
 
     const getGridPos = (el) => {
-        if (el.z === 1) return { row: 3, col: 10 };
-        if (el.z === 2) return { row: 3, col: 23 };
+        if (el.z >= 58 && el.z <= 71) return { row: 2, col: el.z - 58 + 2, grid: fGrid };
+        if (el.z >= 90 && el.z <= 103) return { row: 3, col: el.z - 90 + 2, grid: fGrid };
         
-        if (el.z >= 58 && el.z <= 71) return { row: 12, col: el.z - 58 + 6 };
-        if (el.z >= 90 && el.z <= 103) return { row: 13, col: el.z - 90 + 6 };
+        if (el.z === 1) return { row: 3, col: 10, grid: ptGrid };
+        if (el.z === 2) return { row: 3, col: 23, grid: ptGrid };
         
         let row;
         if (el.period === 2) row = 4;
@@ -3408,7 +3420,7 @@ window.InteractivePT = (() => {
         else if (el.group >= 3 && el.group <= 12) col = el.group + 3;
         else if (el.group >= 13) col = el.group + 5;
         
-        return { row, col };
+        return { row, col, grid: ptGrid };
     };
 
     ELEMENTS.forEach(el => {
@@ -3476,10 +3488,11 @@ window.InteractivePT = (() => {
       };
 
       cells.push(cell);
-      ptGrid.appendChild(cell);
+      pos.grid.appendChild(cell);
     });
 
     ptContainer.appendChild(ptGrid);
+    ptContainer.appendChild(fGrid);
     wrapper.appendChild(ptContainer);
     wrapper.appendChild(infoPanel);
     
