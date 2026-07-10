@@ -74,7 +74,7 @@
     <h2>3.6.1 The s-Block Elements</h2>
     <p>The elements of Group 1 (alkali metals) and Group 2 (alkaline earth metals) constitute the s-block.</p>
     <ul>
-      <li><strong>Configuration:</strong> $ns^1$ (Group 1) and $ns^2$ (Group 2).</li>
+      <li><strong>Configuration:</strong> ns<sup>1</sup> (Group 1) and ns<sup>2</sup> (Group 2).</li>
       <li><strong>Properties:</strong> They are highly reactive metals with low ionization enthalpies.</li>
       <li><strong>Reactivity:</strong> They readily lose their outermost electron(s) to form $+1$ (Group 1) or $+2$ (Group 2) ions. Their metallic character and reactivity increase as we go down the group.</li>
       <li><strong>Occurrence:</strong> Because they are so reactive, they are never found pure in nature.</li>
@@ -88,8 +88,8 @@
     <h2>3.6.2 The p-Block Elements</h2>
     <p>The p-block comprises Groups 13 to 18. Together with the s-block, they are called the <strong>Representative Elements</strong> or Main Group Elements.</p>
     <ul>
-      <li><strong>Configuration:</strong> Varies from $ns^2 np^1$ to $ns^2 np^6$ in each period.</li>
-      <li><strong>Noble Gases (Group 18):</strong> Have a completely filled valence shell ($ns^2 np^6$). They are highly stable and unreactive.</li>
+      <li><strong>Configuration:</strong> Varies from ns<sup>2</sup> np<sup>1</sup> to ns<sup>2</sup> np<sup>6</sup> in each period.</li>
+      <li><strong>Noble Gases (Group 18):</strong> Have a completely filled valence shell (ns<sup>2</sup> np<sup>6</sup>). They are highly stable and unreactive.</li>
       <li><strong>Halogens (Group 17) & Chalcogens (Group 16):</strong> Have high negative electron gain enthalpies and readily gain 1 or 2 electrons to attain a stable noble gas configuration.</li>
     </ul>
     <p>Non-metallic character increases across a period (left to right) and decreases down a group.</p>
@@ -102,7 +102,7 @@
     <h2>3.6.3 The d-Block Elements (Transition Elements)</h2>
     <p>These elements form the center of the Periodic Table (Groups 3 to 12).</p>
     <ul>
-      <li><strong>Configuration:</strong> $(n-1)d^{1-10} ns^{0-2}$</li>
+      <li><strong>Configuration:</strong> (n-1)d<sup>1-10</sup> ns<sup>0-2</sup></li>
       <li><strong>Properties:</strong> They are all metals. They mostly form colored ions, exhibit variable oxidation states (valency), and are often used as catalysts.</li>
       <li><strong>Role:</strong> They form a "transition" or bridge between the highly reactive metals of the s-block and the non-metals of the p-block.</li>
     </ul>
@@ -115,7 +115,7 @@
     <h2>3.6.4 The f-Block Elements (Inner-Transition Elements)</h2>
     <p>These are the two rows placed at the bottom of the Periodic Table.</p>
     <ul>
-      <li><strong>Configuration:</strong> $(n-2)f^{1-14} (n-1)d^{0-1} ns^2$</li>
+      <li><strong>Configuration:</strong> (n-2)f<sup>1-14</sup> (n-1)d<sup>0-1</sup> ns<sup>2</sup></li>
       <li><strong>Lanthanoids:</strong> Ce (Z=58) to Lu (Z=71). They have very similar properties to one another.</li>
       <li><strong>Actinoids:</strong> Th (Z=90) to Lr (Z=103). The chemistry of actinoids is complicated because they have many oxidation states and are all radioactive. Elements after Uranium are called <em>transuranium elements</em>.</li>
     </ul>
@@ -132,7 +132,12 @@
   </div>
 </div>
 
-<!-- Slide 8: Periodic Trends Intro -->
+<!-- Slide 8: Interactive Periodic Table -->
+<div class="slide" data-type="interactive-pt" data-config='{"mode": "explore"}'>
+  <div class="component-container"></div>
+</div>
+
+<!-- Slide 9: Periodic Trends Intro -->
 <div class="slide" data-type="static">
   <div class="teaching-content">
     <h2>3.7 Periodic Trends in Properties of Elements</h2>
@@ -148,7 +153,7 @@
     <h2>3.7.1(a) Atomic Radius</h2>
     <p>An atom does not have a sharp boundary, so measuring its absolute size is impossible. Instead, we measure the distance between the nuclei of bonded atoms.</p>
     <ul>
-      <li><strong>Covalent Radius:</strong> Half the distance between two adjacent nuclei of the same element in a covalently bonded molecule (e.g., $Cl_2$).</li>
+      <li><strong>Covalent Radius:</strong> Half the distance between two adjacent nuclei of the same element in a covalently bonded molecule (e.g., Cl<sub>2</sub>).</li>
       <li><strong>Metallic Radius:</strong> Half the internuclear distance separating the metal cores in the metallic crystal (e.g., solid Copper).</li>
     </ul>
     <p>We generally refer to both simply as "Atomic Radius." Let's look at how this radius changes across the Periodic Table.</p>
@@ -193,11 +198,12 @@
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 12</span>
+  <span id="slide-counter">Slide 1 of 13</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
 <script src="../../../progress.js?v=15"></script>
+<script src="../../../components/interactive-pt.js?v=15"></script>
 <script src="../mcq-data.js?v=15"></script>
 <script src="../../../assets/mcq-fx.js?v=15"></script>
 <script src="../../../assets/mcq-overlay.js?v=15"></script>
@@ -219,9 +225,14 @@ function goToSlide(n) {
 
 function initCurrentSlide() {
   const slide = slides[currentSlide];
+  const type = slide.dataset.type;
   const container = slide.querySelector('.component-container');
   if (!container || container.dataset.init === 'true') return;
   container.dataset.init = 'true';
+  const config = JSON.parse(slide.dataset.config || '{}');
+  if (type === 'interactive-pt') {
+    InteractivePT.init(container, config);
+  }
 }
 
 document.addEventListener('keydown', e => {

@@ -1,7 +1,6 @@
 /**
  * InteractivePT - Modern Periodic Table visualization
- * window.InteractivePT.init(container, config)
- * config: { mode: 'explore' }
+ * Features Directional Hover: Left/Right highlights Period, Up/Down highlights Group
  */
 window.InteractivePT = (() => {
   const ELEMENTS = [
@@ -49,7 +48,7 @@ window.InteractivePT = (() => {
     { z: 42, sym: 'Mo', group: 6, period: 5, block: 'd' },
     { z: 43, sym: 'Tc', group: 7, period: 5, block: 'd' },
     { z: 44, sym: 'Ru', group: 8, period: 5, block: 'd' },
-    { z: 45, rh: 'Rh', group: 9, period: 5, block: 'd', sym: 'Rh' },
+    { z: 45, sym: 'Rh', group: 9, period: 5, block: 'd' },
     { z: 46, sym: 'Pd', group: 10, period: 5, block: 'd' },
     { z: 47, sym: 'Ag', group: 11, period: 5, block: 'd' },
     { z: 48, sym: 'Cd', group: 12, period: 5, block: 'd' },
@@ -133,7 +132,7 @@ window.InteractivePT = (() => {
   const BLOCK_COLORS = {
     's': '#00B4CC', 
     'p': '#FFD740',
-    'd': 'var(--color-accent)', // #00E5FF
+    'd': '#00E5FF', 
     'f': '#1A6B8A'
   };
 
@@ -156,7 +155,7 @@ window.InteractivePT = (() => {
     infoPanel.style.color = 'var(--color-text)';
     infoPanel.style.fontWeight = 'bold';
     infoPanel.style.fontSize = '1.1rem';
-    infoPanel.textContent = 'Hover over elements or block buttons to explore the table.';
+    infoPanel.textContent = 'Wiggle cursor LEFT/RIGHT to highlight PERIOD. Wiggle UP/DOWN to highlight GROUP.';
 
     const btnS = document.createElement('button'); btnS.className = 'btn btn-outline'; btnS.textContent = 's-block';
     const btnP = document.createElement('button'); btnP.className = 'btn btn-outline'; btnP.textContent = 'p-block';
@@ -173,6 +172,11 @@ window.InteractivePT = (() => {
     ptGrid.style.position = 'relative';
 
     const cells = [];
+    
+    let activeMode = 'none';
+    let startX = 0;
+    let startY = 0;
+    let originCell = null;
 
     ELEMENTS.forEach(el => {
       const cell = document.createElement('div');
@@ -183,7 +187,7 @@ window.InteractivePT = (() => {
       cell.style.fontWeight = 'bold';
       cell.style.borderRadius = '4px';
       cell.style.cursor = 'pointer';
-      cell.style.transition = 'all 0.2s';
+      cell.style.transition = 'all 0.3s ease';
       cell.style.border = '1px solid var(--color-border)';
       cell.style.background = 'var(--color-card)';
       cell.style.color = 'var(--color-text)';
@@ -193,7 +197,6 @@ window.InteractivePT = (() => {
         cell.style.gridColumn = el.group;
         cell.style.gridRow = el.period;
       } else {
-        // f block offset
         const offset = (el.z >= 58 && el.z <= 71) ? el.z - 57 : el.z - 89;
         cell.style.gridColumn = 3 + offset;
         cell.style.gridRow = el.period;
@@ -206,22 +209,104 @@ window.InteractivePT = (() => {
       cell.dataset.group = el.group || '';
       cell.dataset.period = el.period;
 
-      cell.onmouseover = () => {
+      cell.onmouseenter = (e) => {
+        startX = e.clientX;
+        startY = e.clientY;
+        originCell = cell;
+        activeMode = 'none';
+        
         infoPanel.textContent = `Z=${el.z} | ${el.sym} | ${el.block}-block | Period ${el.period > 7 ? el.period-2 : el.period}` + (el.group ? ` | Group ${el.group}` : '');
-        highlightBlock(el.block);
-        cell.style.transform = 'scale(1.1)';
-        cell.style.zIndex = '10';
-        cell.style.background = BLOCK_COLORS[el.block];
-        cell.style.color = '#000';
-        cell.style.opacity = '1';
-        cell.style.borderColor = BLOCK_COLORS[el.block];
+        
+        // Initial hover: Blur everything else slightly, highlight this cell
+        cells.forEach(c => {
+          if (c === cell) {
+            c.style.transform = 'scale(1.2)';
+            c.style.zIndex = '10';
+            c.style.background = BLOCK_COLORS[el.block];
+            c.style.color = '#000';
+            c.style.opacity = '1';
+            c.style.borderColor = BLOCK_COLORS[el.block];
+            c.style.boxShadow = `0 0 15px ${BLOCK_COLORS[el.block]}`;
+            c.style.filter = 'blur(0px)';
+          } else {
+            c.style.opacity = '0.4';
+            c.style.filter = 'blur(2px)';
+            c.style.background = 'var(--color-card)';
+            c.style.color = 'var(--color-text-muted)';
+            c.style.transform = 'scale(1)';
+            c.style.zIndex = '1';
+            c.style.boxShadow = 'none';
+            c.style.borderColor = 'transparent';
+          }
+        });
       };
       
-      cell.onmouseout = () => {
-        infoPanel.textContent = 'Hover over elements or block buttons to explore the table.';
+      cell.onmousemove = (e) => {
+        if (!originCell || originCell !== cell) return;
+        
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        
+        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+          if (Math.abs(dx) > Math.abs(dy)) {
+            activeMode = 'period';
+          } else {
+            activeMode = 'group';
+          }
+        }
+        
+        if (activeMode === 'period') {
+          cells.forEach(c => {
+            if (c.dataset.period === cell.dataset.period) {
+              c.style.background = BLOCK_COLORS[c.dataset.block];
+              c.style.color = '#000';
+              c.style.opacity = '1';
+              c.style.transform = 'scale(1.1)';
+              c.style.zIndex = '5';
+              c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
+              c.style.filter = 'blur(0px)';
+              c.style.borderColor = 'transparent';
+            } else {
+              c.style.opacity = '0.1';
+              c.style.filter = 'blur(4px)';
+              c.style.transform = 'scale(0.95)';
+              c.style.background = 'var(--color-card)';
+              c.style.color = 'var(--color-text-muted)';
+              c.style.zIndex = '1';
+              c.style.boxShadow = 'none';
+            }
+          });
+        } else if (activeMode === 'group') {
+          cells.forEach(c => {
+            const isSameGroup = cell.dataset.group && c.dataset.group === cell.dataset.group;
+            const isSameFBlock = !cell.dataset.group && c.dataset.period === cell.dataset.period && c.dataset.block === 'f';
+            
+            if (isSameGroup || isSameFBlock) {
+              c.style.background = BLOCK_COLORS[c.dataset.block];
+              c.style.color = '#000';
+              c.style.opacity = '1';
+              c.style.transform = 'scale(1.1)';
+              c.style.zIndex = '5';
+              c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
+              c.style.filter = 'blur(0px)';
+              c.style.borderColor = 'transparent';
+            } else {
+              c.style.opacity = '0.1';
+              c.style.filter = 'blur(4px)';
+              c.style.transform = 'scale(0.95)';
+              c.style.background = 'var(--color-card)';
+              c.style.color = 'var(--color-text-muted)';
+              c.style.zIndex = '1';
+              c.style.boxShadow = 'none';
+            }
+          });
+        }
+      };
+      
+      cell.onmouseleave = () => {
+        originCell = null;
+        activeMode = 'none';
         resetHighlights();
-        cell.style.transform = 'scale(1)';
-        cell.style.zIndex = '1';
       };
 
       cells.push(cell);
@@ -235,21 +320,32 @@ window.InteractivePT = (() => {
           c.style.color = '#000';
           c.style.borderColor = BLOCK_COLORS[block];
           c.style.opacity = '1';
+          c.style.filter = 'blur(0px)';
+          c.style.transform = 'scale(1.05)';
+          c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[block]}`;
         } else {
           c.style.background = 'var(--color-card)';
           c.style.color = 'var(--color-text-muted)';
           c.style.borderColor = 'var(--color-border)';
-          c.style.opacity = '0.3';
+          c.style.opacity = '0.2';
+          c.style.filter = 'blur(3px)';
+          c.style.transform = 'scale(0.95)';
+          c.style.boxShadow = 'none';
         }
       });
     };
 
     const resetHighlights = () => {
+      infoPanel.textContent = 'Wiggle cursor LEFT/RIGHT to highlight PERIOD. Wiggle UP/DOWN to highlight GROUP.';
       cells.forEach(c => {
         c.style.background = 'var(--color-card)';
         c.style.color = 'var(--color-text)';
         c.style.borderColor = 'var(--color-border)';
         c.style.opacity = '1';
+        c.style.filter = 'blur(0px)';
+        c.style.transform = 'scale(1)';
+        c.style.zIndex = '1';
+        c.style.boxShadow = 'none';
       });
     };
 
