@@ -3341,7 +3341,7 @@ window.InteractivePT = (() => {
             
             html += `<div style="display:flex; justify-content:space-between; margin-top: 10px; font-size: 1.1rem; color: rgba(255,255,255,0.7);">`;
             html += `<div>Z = <span style="color:#fff; font-weight:bold;">${el.z}</span></div>`;
-            html += `<div>Mass = <span style="color:#fff; font-weight:bold;">${ECONFS[el.z].mass}</span></div>`;
+            html += `<div>A = <span style="color:#fff; font-weight:bold;">${ECONFS[el.z].mass}</span></div>`;
             html += `</div>`;
             
             html += `<div style="margin-top:20px; background:rgba(0,0,0,0.3); border-radius: 8px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); text-align:center;">`;
