@@ -3238,6 +3238,15 @@ window.InteractivePT = (() => {
             renderHighlights();
         }
     });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'c' || e.key === 'C' || e.key === 'Escape') {
+            selectedType = null;
+            selectedVal = null;
+            selectedElementZ = null;
+            renderHighlights();
+        }
+    });
 
     // Add a close button to the modal
     const closeBtn = document.createElement("div");
