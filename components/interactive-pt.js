@@ -3587,12 +3587,18 @@ window.InteractivePT = (() => {
 
       cell.onclick = (e) => {
           e.stopPropagation();
-          if (selectedType === 'group' && parseInt(el.group) !== selectedVal) return;
+          let allowed = true;
+          if (selectedType === 'group' && parseInt(el.group) !== selectedVal) allowed = false;
           if (selectedType === 'period') {
               let p = parseInt(el.period);
-              let allowed = (p === selectedVal) || (selectedVal === 6 && p === 8) || (selectedVal === 7 && p === 9);
-              if (!allowed) return;
+              allowed = (p === selectedVal) || (selectedVal === 6 && p === 8) || (selectedVal === 7 && p === 9);
           }
+          
+          if (!allowed) {
+              selectedType = null;
+              selectedVal = null;
+          }
+          
           if (selectedElementZ === el.z) selectedElementZ = null;
           else selectedElementZ = el.z;
           renderHighlights(e);
