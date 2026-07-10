@@ -3344,20 +3344,35 @@ window.InteractivePT = (() => {
         }
 
         if (selectedElementZ) {
-            if (!selectedType) infoTitle.textContent = "Element Selection";
             const el = getEl(selectedElementZ);
-            if (selectedType) html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
             const blockColor = ELEMENT_COLORS[el.z];
+            
+            if (!selectedType) {
+                infoTitle.textContent = `${el.sym} - ${ECONFS[el.z].name}`;
+            } else {
+                html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
+            }
             
             html += `<div style="background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2)); border:1px solid var(--color-border); padding:20px; border-radius:8px; animation: fadeIn 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">`;
             html += `<div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">`;
             html += `<div style="flex:1;">`;
-            html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor}; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${ECONFS[el.z].name}</h4>`;
-            html += `<div style="font-size:1rem; font-weight:bold; margin-top:4px;">${el.sym} (Z = ${el.z} | Mass: ${ECONFS[el.z].mass})</div>`;
-            html += `<div style="font-size:0.9rem; color:var(--color-text-muted); margin-top:2px;">${el.block}-block</div>`;
-            html += `<div style="margin-top:15px; font-size:1.1rem; letter-spacing:1px;">${ECONFS[el.z].html}</div>`;
+            
+            if (selectedType) {
+                 html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor}; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${el.sym} - ${ECONFS[el.z].name}</h4>`;
+            }
+            
+            html += `<table style="margin-top:10px; border-collapse: collapse; width: 100%; font-size: 1.05rem;">`;
+            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7); width: 45%;">Symbol:</td><td style="font-weight:bold;">${el.sym}</td></tr>`;
+            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Element Name:</td><td style="font-weight:bold;">${ECONFS[el.z].name}</td></tr>`;
+            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Atomic Number:</td><td style="font-weight:bold;">${el.z}</td></tr>`;
+            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Atomic Mass:</td><td style="font-weight:bold;">${ECONFS[el.z].mass}</td></tr>`;
+            html += `<tr><td style="padding:6px 0; color:rgba(255,255,255,0.7);">Electronic Config:</td><td style="font-weight:bold; letter-spacing:1px;">${ECONFS[el.z].html}</td></tr>`;
+            html += `</table>`;
+            
+            html += `<div style="margin-top: 15px;">`;
             html += renderOrbitals(ECONFS[el.z].valence);
-            html += `</div>`;
+            html += `</div></div>`;
+            
             html += renderAtomSimulation(ECONFS[el.z].shells, blockColor);
             html += `</div></div>`;
         }
