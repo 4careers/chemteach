@@ -3101,6 +3101,7 @@ window.InteractivePT = (() => {
     ptContainer.style.display = "flex";
     ptContainer.style.flexDirection = "column";
     ptContainer.style.gap = "20px";
+    ptContainer.style.transition = "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)"; // Animation for sliding
 
     const ptGrid = document.createElement("div");
     ptGrid.style.display = "grid";
@@ -3147,30 +3148,36 @@ window.InteractivePT = (() => {
     infoPanel.style.position = "fixed";
     infoPanel.style.top = "0";
     infoPanel.style.right = "-480px";
-    infoPanel.style.width = "400px";
+    infoPanel.style.width = "420px";
     infoPanel.style.height = "100vh";
     infoPanel.style.maxWidth = "85vw";
     infoPanel.style.overflowY = "auto";
-    infoPanel.style.background = "var(--color-card)";
-    infoPanel.style.borderLeft = "1px solid var(--color-border)";
-    infoPanel.style.padding = "20px";
+    infoPanel.style.background = "rgba(15, 23, 42, 0.75)";
+    infoPanel.style.backdropFilter = "blur(24px)";
+    infoPanel.style.borderLeft = "1px solid rgba(255, 255, 255, 0.15)";
+    infoPanel.style.padding = "30px 25px";
     infoPanel.style.color = "var(--color-text)";
-    infoPanel.style.boxShadow = "-5px 0 25px rgba(0,0,0,0.5)";
+    infoPanel.style.boxShadow = "-10px 0 30px rgba(0,0,0,0.5)";
     infoPanel.style.display = "flex";
     infoPanel.style.flexDirection = "column";
     infoPanel.style.gap = "15px";
-    infoPanel.style.transition = "right 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+    infoPanel.style.transition = "right 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
     infoPanel.style.zIndex = "1000";
 
     const infoTitle = document.createElement("h3");
     infoTitle.style.margin = "0";
-    infoTitle.style.fontSize = "1.5rem";
-    infoTitle.style.borderBottom = "1px solid var(--color-border)";
-    infoTitle.style.paddingBottom = "10px";
+    infoTitle.style.fontSize = "1.8rem";
+    infoTitle.style.fontWeight = "800";
+    infoTitle.style.background = "linear-gradient(90deg, #fff, #a5b4fc)";
+    infoTitle.style.webkitBackgroundClip = "text";
+    infoTitle.style.webkitTextFillColor = "transparent";
+    infoTitle.style.borderBottom = "1px solid rgba(255, 255, 255, 0.1)";
+    infoTitle.style.paddingBottom = "15px";
+    infoTitle.style.letterSpacing = "0.5px";
 
     const infoContent = document.createElement("div");
-    infoContent.style.fontSize = "1rem";
-    infoContent.style.lineHeight = "1.6";
+    infoContent.style.fontSize = "1.05rem";
+    infoContent.style.lineHeight = "1.7";
     
     infoPanel.appendChild(infoTitle);
     infoPanel.appendChild(infoContent);
@@ -3196,10 +3203,12 @@ window.InteractivePT = (() => {
     const updateInfoPanel = () => {
         if (!selectedType && !selectedElementZ) {
             infoPanel.style.right = "-480px"; // Hide drawer
+            ptContainer.style.transform = "translateX(0)"; // Reset PT position
             return;
         }
         
         infoPanel.style.right = "0"; // Show drawer
+        ptContainer.style.transform = "translateX(-200px)"; // Slide PT left to make room!
 
         let html = "";
         
@@ -3374,7 +3383,7 @@ window.InteractivePT = (() => {
             selectedElementZ = null;
             renderHighlights();
         };
-        ptGrid.appendChild(lbl);
+        targetGrid.appendChild(lbl);
     };
 
     // Titles
@@ -3424,6 +3433,8 @@ window.InteractivePT = (() => {
     };
 
     ELEMENTS.forEach(el => {
+      const cellColor = ELEMENT_COLORS[el.z];
+      
       const cell = document.createElement('div');
       cell.style.display = 'flex';
       cell.style.flexDirection = 'column';
@@ -3431,11 +3442,14 @@ window.InteractivePT = (() => {
       cell.style.justifyContent = 'center';
       cell.style.cursor = 'pointer';
       cell.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-      cell.style.border = '1px solid rgba(0,0,0,0.2)';
-      cell.style.background = ELEMENT_COLORS[el.z];
+      cell.style.border = '1px solid rgba(255,255,255,0.1)';
+      cell.style.background = `linear-gradient(135deg, ${cellColor}dd, ${cellColor}99)`;
+      cell.style.backdropFilter = "blur(4px)";
+      cell.style.boxShadow = "inset 1px 1px 1px rgba(255,255,255,0.4), inset -1px -1px 3px rgba(0,0,0,0.2)";
       cell.style.color = '#000';
       cell.style.userSelect = 'none';
       cell.style.position = 'relative';
+      cell.style.borderRadius = '4px';
 
       const pos = getGridPos(el);
       cell.style.gridRow = pos.row;
@@ -3455,9 +3469,10 @@ window.InteractivePT = (() => {
       // Symbol (Center)
       const symEl = document.createElement('div');
       symEl.textContent = el.sym;
-      symEl.style.fontSize = '24px';
-      symEl.style.fontWeight = 'bold';
+      symEl.style.fontSize = '26px';
+      symEl.style.fontWeight = '900';
       symEl.style.marginTop = '4px';
+      symEl.style.textShadow = '1px 1px 0px rgba(255,255,255,0.5)';
       cell.appendChild(symEl);
 
       // Mass (Bottom)
