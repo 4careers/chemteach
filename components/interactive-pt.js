@@ -3356,12 +3356,11 @@ window.InteractivePT = (() => {
         }
         infoContent.innerHTML = html;
         
-        // Smart Collision-Avoidance Repositioning
+        // Advanced Dynamic Bounding Box Layout Engine
         setTimeout(() => {
             const screenW = window.innerWidth;
             const screenH = window.innerHeight;
             const modalW = infoPanel.offsetWidth || 550;
-            const modalH = infoPanel.offsetHeight || 600;
             
             let highlightedCells = Array.from(cells).filter(c => parseFloat(c.style.opacity) >= 1);
             if (highlightedCells.length === 0 && selectedElementZ) {
@@ -3369,45 +3368,41 @@ window.InteractivePT = (() => {
                  if (elCell) highlightedCells = [elCell];
             }
             
-            const padding = 40;
-            const candidates = [
-                { id: 'top-left', left: padding, right: null, top: padding, bottom: null, rect: { l: padding, r: padding+modalW, t: padding, b: padding+modalH } },
-                { id: 'top-right', left: null, right: padding, top: padding, bottom: null, rect: { l: screenW-padding-modalW, r: screenW-padding, t: padding, b: padding+modalH } },
-                { id: 'bottom-left', left: padding, right: null, top: null, bottom: padding, rect: { l: padding, r: padding+modalW, t: screenH-padding-modalH, b: screenH-padding } },
-                { id: 'bottom-right', left: null, right: padding, top: null, bottom: padding, rect: { l: screenW-padding-modalW, r: screenW-padding, t: screenH-padding-modalH, b: screenH-padding } },
-                { id: 'top-center', left: (screenW-modalW)/2, right: null, top: padding, bottom: null, rect: { l: (screenW-modalW)/2, r: (screenW+modalW)/2, t: padding, b: padding+modalH } },
-                { id: 'bottom-center', left: (screenW-modalW)/2, right: null, top: null, bottom: padding, rect: { l: (screenW-modalW)/2, r: (screenW+modalW)/2, t: screenH-padding-modalH, b: screenH-padding } }
-            ];
-            
-            let bestCandidate = candidates[0];
-            let minOverlap = Infinity;
-            
-            candidates.forEach(cand => {
-                 let overlapArea = 0;
-                 highlightedCells.forEach(c => {
-                     const cRect = c.getBoundingClientRect();
-                     const xOverlap = Math.max(0, Math.min(cand.rect.r, cRect.right) - Math.max(cand.rect.l, cRect.left));
-                     const yOverlap = Math.max(0, Math.min(cand.rect.b, cRect.bottom) - Math.max(cand.rect.t, cRect.top));
-                     let area = xOverlap * yOverlap;
-                     if (selectedElementZ && parseInt(c.dataset.z) === selectedElementZ) {
-                         area *= 1000;
-                     }
-                     overlapArea += area;
-                 });
-                 if (cand.rect.b > screenH) overlapArea += 100000;
-                 if (cand.rect.r > screenW) overlapArea += 100000;
-                 
-                 if (overlapArea < minOverlap) {
-                     minOverlap = overlapArea;
-                     bestCandidate = cand;
-                 }
+            if (highlightedCells.length === 0) return;
+
+            let minX = screenW, maxX = 0, minY = screenH, maxY = 0;
+            highlightedCells.forEach(c => {
+                 const r = c.getBoundingClientRect();
+                 if (r.left < minX) minX = r.left;
+                 if (r.right > maxX) maxX = r.right;
+                 if (r.top < minY) minY = r.top;
+                 if (r.bottom > maxY) maxY = r.bottom;
             });
             
-            if (bestCandidate.left !== null) { infoPanel.style.left = bestCandidate.left + 'px'; infoPanel.style.right = 'auto'; }
-            else { infoPanel.style.right = bestCandidate.right + 'px'; infoPanel.style.left = 'auto'; }
+            const padding = 20;
             
-            if (bestCandidate.top !== null) { infoPanel.style.top = bestCandidate.top + 'px'; infoPanel.style.bottom = 'auto'; }
-            else { infoPanel.style.bottom = bestCandidate.bottom + 'px'; infoPanel.style.top = 'auto'; }
+            // 4 major non-overlapping regions defined by the bounding box of ALL highlighted cells
+            const areas = [
+                { id: 'top', w: screenW, h: minY - padding*2, top: padding, left: (screenW - modalW) / 2 },
+                { id: 'bottom', w: screenW, h: screenH - maxY - padding*2, top: maxY + padding, left: (screenW - modalW) / 2 },
+                { id: 'left', w: minX - padding*2, h: screenH - padding*2, top: padding, left: padding },
+                { id: 'right', w: screenW - maxX - padding*2, h: screenH - padding*2, top: padding, left: maxX + padding }
+            ];
+            
+            // Only consider regions wide enough to fit the modal
+            const validAreas = areas.filter(a => a.w >= modalW);
+            
+            if (validAreas.length > 0) {
+                // Pick the region that gives us the most vertical height to minimize scrolling
+                const best = validAreas.reduce((prev, curr) => (curr.h > prev.h) ? curr : prev);
+                
+                infoPanel.style.left = best.left + "px";
+                infoPanel.style.right = "auto";
+                infoPanel.style.top = best.top + "px";
+                infoPanel.style.bottom = "auto";
+                // Dynamically constrain the height so it literally cannot overlap the highlighted zone
+                infoPanel.style.maxHeight = Math.max(250, best.h) + "px"; 
+            }
         }, 10); // slight delay to allow innerHTML to reflow and calculate offsetHeight
     };
 
