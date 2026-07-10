@@ -3011,7 +3011,7 @@ window.InteractivePT = (() => {
           html += `<div style="margin-bottom:4px; font-size:1rem; color:var(--color-text-muted); font-weight:bold;">${orb.subshell}</div>`;
           html += '<div style="display:flex; gap:2px;">';
           boxes.forEach(b => {
-              html += `<div style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-size:1.2rem; font-weight:bold; color:var(--color-primary); border-radius:3px; font-family:monospace;">${b}</div>`;
+              html += `<div style="width:36px; height:36px; border:1px solid var(--color-border); background:var(--color-card-hover); display:flex; align-items:center; justify-content:center; font-size:1.2rem; font-weight:bold; color:var(--color-primary); border-radius:3px; font-family:monospace;">${b}</div>`;
           });
           html += '</div></div>';
       });
@@ -3038,7 +3038,7 @@ window.InteractivePT = (() => {
           const duration = 12 + index * 4; // slower for outer shells
           
           // Draw orbit path
-          html += `<circle cx="${CENTER}" cy="${CENTER}" r="${r}" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" />`;
+          html += `<circle cx="${CENTER}" cy="${CENTER}" r="${r}" fill="none" stroke="var(--color-border)" stroke-width="1" />`;
           
           // Draw electrons on this orbit inside a rotating group
           html += `<g>`;
@@ -3048,7 +3048,7 @@ window.InteractivePT = (() => {
               const angle = (i / electrons) * 2 * Math.PI;
               const x = CENTER + r * Math.cos(angle);
               const y = CENTER + r * Math.sin(angle);
-              html += `<circle cx="${x}" cy="${y}" r="2.5" fill="#fff" />`;
+              html += `<circle cx="${x}" cy="${y}" r="2.5" fill="var(--color-text)" />`;
           }
           
           html += `</g>`;
@@ -3117,7 +3117,7 @@ window.InteractivePT = (() => {
     fGrid.style.gap = "4px";
     fGrid.style.position = "relative";
     fGrid.style.fontFamily = "sans-serif";
-    fGrid.style.border = "1px solid rgba(255, 255, 255, 0.3)";
+    fGrid.style.border = "1px solid var(--color-border)";
     fGrid.style.padding = "4px";
     fGrid.style.marginLeft = "190px"; 
     fGrid.style.alignSelf = "flex-start";
@@ -3127,7 +3127,7 @@ window.InteractivePT = (() => {
         const box = document.createElement('div');
         box.style.gridRow = `${rStart} / span ${rSpan}`;
         box.style.gridColumn = `${cStart} / span ${cSpan}`;
-        box.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+        box.style.border = '1px solid var(--color-border)';
         box.style.pointerEvents = 'none';
         box.style.zIndex = '0';
         targetGrid.appendChild(box);
@@ -3147,9 +3147,9 @@ window.InteractivePT = (() => {
     infoPanel.style.maxWidth = "90vw";
     infoPanel.style.maxHeight = "85vh"; 
     infoPanel.style.overflowY = "auto";
-    infoPanel.style.background = "rgba(15, 23, 42, 0.85)";
+    infoPanel.style.background = "var(--color-overlay)";
     infoPanel.style.backdropFilter = "blur(24px)";
-    infoPanel.style.border = "1px solid rgba(255, 255, 255, 0.15)";
+    infoPanel.style.border = "1px solid var(--color-border)";
     infoPanel.style.borderRadius = "12px";
     infoPanel.style.padding = "35px";
     infoPanel.style.color = "var(--color-text)";
@@ -3169,7 +3169,7 @@ window.InteractivePT = (() => {
     infoTitle.style.background = "linear-gradient(90deg, #fff, #a5b4fc)";
     infoTitle.style.webkitBackgroundClip = "text";
     infoTitle.style.webkitTextFillColor = "transparent";
-    infoTitle.style.borderBottom = "1px solid rgba(255, 255, 255, 0.1)";
+    infoTitle.style.borderBottom = "1px solid var(--color-border)";
     infoTitle.style.paddingBottom = "15px";
     infoTitle.style.letterSpacing = "0.5px";
 
@@ -3288,7 +3288,7 @@ window.InteractivePT = (() => {
             if (groupEls.length > 0) {
                 const first = groupEls[0];
                 const last = groupEls[groupEls.length - 1];
-                html += `<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; margin-bottom:10px;">`;
+                html += `<div style="background:var(--color-card); padding:10px; border-radius:4px; margin-bottom:10px;">`;
                 html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z].html}</div>`;
                 html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
@@ -3310,7 +3310,7 @@ window.InteractivePT = (() => {
             if (periodEls.length > 0) {
                 const first = periodEls[0];
                 const last = periodEls[periodEls.length - 1];
-                html += `<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; margin-bottom:10px;">`;
+                html += `<div style="background:var(--color-card); padding:10px; border-radius:4px; margin-bottom:10px;">`;
                 html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z].html}</div>`;
                 html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
@@ -3331,7 +3331,7 @@ window.InteractivePT = (() => {
                 html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
             }
             
-            html += `<div style="background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2)); border:1px solid var(--color-border); padding:20px; border-radius:8px; animation: fadeIn 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">`;
+            html += `<div style="background:linear-gradient(135deg, var(--color-border), rgba(0,0,0,0.2)); border:1px solid var(--color-border); padding:20px; border-radius:8px; animation: fadeIn 0.3s; box-shadow: 0 4px 10px var(--color-card-hover);">`;
             html += `<div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">`;
             html += `<div style="flex:1;">`;
             
@@ -3339,13 +3339,13 @@ window.InteractivePT = (() => {
                  html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor}; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${el.sym} - ${ECONFS[el.z].name}</h4>`;
             }
             
-            html += `<div style="display:flex; justify-content:space-between; margin-top: 10px; font-size: 1.1rem; color: rgba(255,255,255,0.7);">`;
-            html += `<div>Z = <span style="color:#fff; font-weight:bold;">${el.z}</span></div>`;
-            html += `<div>A = <span style="color:#fff; font-weight:bold;">${ECONFS[el.z].mass}</span></div>`;
+            html += `<div style="display:flex; justify-content:space-between; margin-top: 10px; font-size: 1.1rem; color: var(--color-text-body);">`;
+            html += `<div>Z = <span style="color:var(--color-text); font-weight:bold;">${el.z}</span></div>`;
+            html += `<div>A = <span style="color:var(--color-text); font-weight:bold;">${ECONFS[el.z].mass}</span></div>`;
             html += `</div>`;
             
-            html += `<div style="margin-top:20px; background:rgba(0,0,0,0.3); border-radius: 8px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); text-align:center;">`;
-            html += `<div style="font-size:0.9rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">Electronic Configuration</div>`;
+            html += `<div style="margin-top:20px; background:var(--color-card-hover); border-radius: 8px; padding: 15px; border: 1px solid var(--color-border); text-align:center;">`;
+            html += `<div style="font-size:0.9rem; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">Electronic Configuration</div>`;
             html += `<div style="font-size:1.6rem; font-weight:bold; letter-spacing: 2px; color:${blockColor}; text-shadow: 0 0 10px rgba(0,0,0,0.5);">${ECONFS[el.z].html}</div>`;
             html += `</div>`;
             
@@ -3426,7 +3426,7 @@ window.InteractivePT = (() => {
                 c.style.transform = 'scale(1.1)';
                 c.style.zIndex = '10';
                 c.style.opacity = '1';
-                c.style.borderColor = '#fff';
+                c.style.borderColor = 'var(--color-text)';
                 c.style.borderWidth = '2px';
                 c.style.boxShadow = `0 0 20px ${elColor}`;
                 c.style.filter = 'blur(0px) brightness(1.2)';
@@ -3467,7 +3467,7 @@ window.InteractivePT = (() => {
         lbl.style.display = 'flex';
         lbl.style.alignItems = 'center';
         lbl.style.justifyContent = 'center';
-        lbl.style.color = isTitle ? 'var(--color-text)' : 'rgba(255,255,255,0.6)';
+        lbl.style.color = isTitle ? 'var(--color-text)' : 'var(--color-text-muted)';
         lbl.style.fontSize = isTitle ? '14px' : '12px';
         lbl.style.fontStyle = isTitle ? 'italic' : 'normal';
         if (text.includes('\n')) {
@@ -3566,7 +3566,7 @@ window.InteractivePT = (() => {
       cell.style.justifyContent = 'center';
       cell.style.cursor = 'pointer';
       cell.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-      cell.style.border = '1px solid rgba(255,255,255,0.1)';
+      cell.style.border = '1px solid var(--color-border)';
       cell.style.background = `linear-gradient(135deg, ${cellColor}dd, ${cellColor}99)`;
       cell.style.backdropFilter = "blur(4px)";
       cell.style.boxShadow = "inset 1px 1px 1px rgba(255,255,255,0.4), inset -1px -1px 3px rgba(0,0,0,0.2)";
@@ -3597,7 +3597,7 @@ window.InteractivePT = (() => {
       symEl.style.fontSize = '26px';
       symEl.style.fontWeight = '900';
       symEl.style.marginTop = '4px';
-      symEl.style.textShadow = '1px 1px 0px rgba(255,255,255,0.5)';
+      symEl.style.textShadow = '1px 1px 0px var(--color-text-muted)';
       cell.appendChild(symEl);
 
       // Mass (Bottom)
