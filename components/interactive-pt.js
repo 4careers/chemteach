@@ -3388,7 +3388,11 @@ window.InteractivePT = (() => {
                      const cRect = c.getBoundingClientRect();
                      const xOverlap = Math.max(0, Math.min(cand.rect.r, cRect.right) - Math.max(cand.rect.l, cRect.left));
                      const yOverlap = Math.max(0, Math.min(cand.rect.b, cRect.bottom) - Math.max(cand.rect.t, cRect.top));
-                     overlapArea += (xOverlap * yOverlap);
+                     let area = xOverlap * yOverlap;
+                     if (selectedElementZ && parseInt(c.dataset.z) === selectedElementZ) {
+                         area *= 1000;
+                     }
+                     overlapArea += area;
                  });
                  if (cand.rect.b > screenH) overlapArea += 100000;
                  if (cand.rect.r > screenW) overlapArea += 100000;
