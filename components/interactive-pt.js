@@ -3101,26 +3101,25 @@ window.InteractivePT = (() => {
     ptContainer.style.display = "flex";
     ptContainer.style.flexDirection = "column";
     ptContainer.style.gap = "20px";
-    ptContainer.style.transition = "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)"; // Animation for sliding
 
     const ptGrid = document.createElement("div");
     ptGrid.style.display = "grid";
-    ptGrid.style.gridTemplateColumns = "30px 60px 60px 20px 30px repeat(10, 60px) 20px 30px repeat(6, 60px)";
-    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 70px)";
+    ptGrid.style.gridTemplateColumns = "30px 50px 50px 20px 30px repeat(10, 50px) 20px 30px repeat(6, 50px)";
+    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 55px)";
     ptGrid.style.gap = "4px";
     ptGrid.style.position = "relative";
     ptGrid.style.fontFamily = "sans-serif";
 
     const fGrid = document.createElement("div");
     fGrid.style.display = "grid";
-    fGrid.style.gridTemplateColumns = "60px repeat(14, 60px)";
-    fGrid.style.gridTemplateRows = "25px 70px 70px";
+    fGrid.style.gridTemplateColumns = "50px repeat(14, 50px)";
+    fGrid.style.gridTemplateRows = "25px 55px 55px";
     fGrid.style.gap = "4px";
     fGrid.style.position = "relative";
     fGrid.style.fontFamily = "sans-serif";
     fGrid.style.border = "1px solid rgba(255, 255, 255, 0.3)";
     fGrid.style.padding = "4px";
-    fGrid.style.marginLeft = "146px"; 
+    fGrid.style.marginLeft = "200px"; 
     fGrid.style.alignSelf = "flex-start";
 
     // Draw Background Boxes for Blocks (Main Grid)
@@ -3145,24 +3144,24 @@ window.InteractivePT = (() => {
     const getEl = (z) => ELEMENTS.find(e => e.z === z);
 
     const infoPanel = document.createElement("div");
-    infoPanel.style.position = "fixed";
-    infoPanel.style.top = "0";
-    infoPanel.style.right = "-480px";
-    infoPanel.style.width = "420px";
-    infoPanel.style.height = "100vh";
-    infoPanel.style.maxWidth = "85vw";
+    infoPanel.style.flex = "1";
+    infoPanel.style.minWidth = "300px";
+    infoPanel.style.maxWidth = "480px";
+    infoPanel.style.maxHeight = "85vh"; 
     infoPanel.style.overflowY = "auto";
+    infoPanel.style.position = "sticky";
+    infoPanel.style.top = "20px";
     infoPanel.style.background = "rgba(15, 23, 42, 0.75)";
     infoPanel.style.backdropFilter = "blur(24px)";
-    infoPanel.style.borderLeft = "1px solid rgba(255, 255, 255, 0.15)";
-    infoPanel.style.padding = "30px 25px";
+    infoPanel.style.border = "1px solid rgba(255, 255, 255, 0.15)";
+    infoPanel.style.borderRadius = "8px";
+    infoPanel.style.padding = "25px";
     infoPanel.style.color = "var(--color-text)";
-    infoPanel.style.boxShadow = "-10px 0 30px rgba(0,0,0,0.5)";
+    infoPanel.style.boxShadow = "0 4px 20px rgba(0,0,0,0.3)";
     infoPanel.style.display = "flex";
     infoPanel.style.flexDirection = "column";
     infoPanel.style.gap = "15px";
-    infoPanel.style.transition = "right 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
-    infoPanel.style.zIndex = "1000";
+    infoPanel.style.transition = "all 0.3s ease";
 
     const infoTitle = document.createElement("h3");
     infoTitle.style.margin = "0";
@@ -3182,33 +3181,12 @@ window.InteractivePT = (() => {
     infoPanel.appendChild(infoTitle);
     infoPanel.appendChild(infoContent);
 
-    // Add a close button to the drawer
-    const closeBtn = document.createElement("div");
-    closeBtn.innerHTML = "&times;";
-    closeBtn.style.position = "absolute";
-    closeBtn.style.top = "15px";
-    closeBtn.style.right = "20px";
-    closeBtn.style.fontSize = "28px";
-    closeBtn.style.cursor = "pointer";
-    closeBtn.style.color = "var(--color-text-muted)";
-    closeBtn.onclick = (e) => {
-        e.stopPropagation();
-        selectedType = null;
-        selectedVal = null;
-        selectedElementZ = null;
-        renderHighlights();
-    };
-    infoPanel.appendChild(closeBtn);
-
     const updateInfoPanel = () => {
         if (!selectedType && !selectedElementZ) {
-            infoPanel.style.right = "-480px"; // Hide drawer
-            ptContainer.style.transform = "translateX(0)"; // Reset PT position
+            infoTitle.textContent = "Interactive Periodic Table";
+            infoContent.innerHTML = "<p>Tap on any Period or Group button to view its properties and boundary elements.</p><p>Tap on an individual element to view its exact electronic configuration.</p>";
             return;
         }
-        
-        infoPanel.style.right = "0"; // Show drawer
-        ptContainer.style.transform = "translateX(-200px)"; // Slide PT left to make room!
 
         let html = "";
         
@@ -3390,7 +3368,6 @@ window.InteractivePT = (() => {
     addLabel('s-BLOCK', 1, 1, 3, 1, true);
     addLabel('d-BLOCK', 4, 5, 11, 1, true);
     addLabel('p-BLOCK', 1, 17, 7, 1, true);
-    addLabel('f-BLOCK', 11, 4, 16, 1, true);
 
     // Group numbers
     [1,2].forEach(g => addClickableLabel(g.toString(), 2, g+1, 'group', g));
@@ -3458,29 +3435,29 @@ window.InteractivePT = (() => {
       // Z (Top Left)
       const zEl = document.createElement('div');
       zEl.textContent = el.z;
-      zEl.style.fontSize = '11px';
+      zEl.style.fontSize = '9px';
       zEl.style.fontWeight = 'bold';
       zEl.style.position = 'absolute';
-      zEl.style.top = '3px';
-      zEl.style.left = '4px';
+      zEl.style.top = '2px';
+      zEl.style.left = '3px';
       zEl.style.opacity = '0.8';
       cell.appendChild(zEl);
 
       // Symbol (Center)
       const symEl = document.createElement('div');
       symEl.textContent = el.sym;
-      symEl.style.fontSize = '26px';
+      symEl.style.fontSize = '22px';
       symEl.style.fontWeight = '900';
-      symEl.style.marginTop = '4px';
+      symEl.style.marginTop = '2px';
       symEl.style.textShadow = '1px 1px 0px rgba(255,255,255,0.5)';
       cell.appendChild(symEl);
 
       // Mass (Bottom)
       const massEl = document.createElement('div');
       massEl.textContent = ECONFS[el.z].mass;
-      massEl.style.fontSize = '11px';
+      massEl.style.fontSize = '9px';
       massEl.style.marginTop = 'auto';
-      massEl.style.marginBottom = '3px';
+      massEl.style.marginBottom = '2px';
       massEl.style.opacity = '0.9';
       cell.appendChild(massEl);
 
