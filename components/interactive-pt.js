@@ -1,6 +1,6 @@
 /**
  * InteractivePT - Modern Periodic Table visualization
- * Features touch-friendly UI, dynamic Info Panel, and Orbital Diagrams
+ * Features touch-friendly UI, dynamic Info Panel, Orbital Diagrams, and Atom Sim
  */
 window.InteractivePT = (() => {
   const ELEMENTS = [
@@ -131,42 +131,61 @@ window.InteractivePT = (() => {
 
   const ECONFS = {
     "1": {
+        "name": "Hydrogen",
         "html": "1s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "1s",
                 "e": 1
             }
+        ],
+        "shells": [
+            1
         ]
     },
     "2": {
+        "name": "Helium",
         "html": "1s<sup>2</sup>",
         "valence": [
             {
                 "subshell": "1s",
                 "e": 2
             }
+        ],
+        "shells": [
+            2
         ]
     },
     "3": {
+        "name": "Lithium",
         "html": "[He] 2s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "2s",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            1
         ]
     },
     "4": {
+        "name": "Beryllium",
         "html": "[He] 2s<sup>2</sup>",
         "valence": [
             {
                 "subshell": "2s",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            2
         ]
     },
     "5": {
+        "name": "Boron",
         "html": "[He] 2s<sup>2</sup> 2p<sup>1</sup>",
         "valence": [
             {
@@ -177,9 +196,14 @@ window.InteractivePT = (() => {
                 "subshell": "2p",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            3
         ]
     },
     "6": {
+        "name": "Carbon",
         "html": "[He] 2s<sup>2</sup> 2p<sup>2</sup>",
         "valence": [
             {
@@ -190,9 +214,14 @@ window.InteractivePT = (() => {
                 "subshell": "2p",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            4
         ]
     },
     "7": {
+        "name": "Nitrogen",
         "html": "[He] 2s<sup>2</sup> 2p<sup>3</sup>",
         "valence": [
             {
@@ -203,9 +232,14 @@ window.InteractivePT = (() => {
                 "subshell": "2p",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            5
         ]
     },
     "8": {
+        "name": "Oxygen",
         "html": "[He] 2s<sup>2</sup> 2p<sup>4</sup>",
         "valence": [
             {
@@ -216,9 +250,14 @@ window.InteractivePT = (() => {
                 "subshell": "2p",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            6
         ]
     },
     "9": {
+        "name": "Fluorine",
         "html": "[He] 2s<sup>2</sup> 2p<sup>5</sup>",
         "valence": [
             {
@@ -229,9 +268,14 @@ window.InteractivePT = (() => {
                 "subshell": "2p",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            7
         ]
     },
     "10": {
+        "name": "Neon",
         "html": "[He] 2s<sup>2</sup> 2p<sup>6</sup>",
         "valence": [
             {
@@ -242,27 +286,44 @@ window.InteractivePT = (() => {
                 "subshell": "2p",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8
         ]
     },
     "11": {
+        "name": "Sodium",
         "html": "[Ne] 3s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "3s",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            1
         ]
     },
     "12": {
+        "name": "Magnesium",
         "html": "[Ne] 3s<sup>2</sup>",
         "valence": [
             {
                 "subshell": "3s",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            2
         ]
     },
     "13": {
+        "name": "Aluminum",
         "html": "[Ne] 3s<sup>2</sup> 3p<sup>1</sup>",
         "valence": [
             {
@@ -273,9 +334,15 @@ window.InteractivePT = (() => {
                 "subshell": "3p",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            3
         ]
     },
     "14": {
+        "name": "Silicon",
         "html": "[Ne] 3s<sup>2</sup> 3p<sup>2</sup>",
         "valence": [
             {
@@ -286,9 +353,15 @@ window.InteractivePT = (() => {
                 "subshell": "3p",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            4
         ]
     },
     "15": {
+        "name": "Phosphorus",
         "html": "[Ne] 3s<sup>2</sup> 3p<sup>3</sup>",
         "valence": [
             {
@@ -299,9 +372,15 @@ window.InteractivePT = (() => {
                 "subshell": "3p",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            5
         ]
     },
     "16": {
+        "name": "Sulfur",
         "html": "[Ne] 3s<sup>2</sup> 3p<sup>4</sup>",
         "valence": [
             {
@@ -312,9 +391,15 @@ window.InteractivePT = (() => {
                 "subshell": "3p",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            6
         ]
     },
     "17": {
+        "name": "Chlorine",
         "html": "[Ne] 3s<sup>2</sup> 3p<sup>5</sup>",
         "valence": [
             {
@@ -325,9 +410,15 @@ window.InteractivePT = (() => {
                 "subshell": "3p",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            7
         ]
     },
     "18": {
+        "name": "Argon",
         "html": "[Ne] 3s<sup>2</sup> 3p<sup>6</sup>",
         "valence": [
             {
@@ -338,27 +429,47 @@ window.InteractivePT = (() => {
                 "subshell": "3p",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            8
         ]
     },
     "19": {
+        "name": "Potassium",
         "html": "[Ar] 4s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "4s",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            8,
+            1
         ]
     },
     "20": {
+        "name": "Calcium",
         "html": "[Ar] 4s<sup>2</sup>",
         "valence": [
             {
                 "subshell": "4s",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            8,
+            2
         ]
     },
     "21": {
+        "name": "Scandium",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>1</sup>",
         "valence": [
             {
@@ -369,9 +480,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            9,
+            2
         ]
     },
     "22": {
+        "name": "Titanium",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>2</sup>",
         "valence": [
             {
@@ -382,9 +500,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            10,
+            2
         ]
     },
     "23": {
+        "name": "Vanadium",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>3</sup>",
         "valence": [
             {
@@ -395,9 +520,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            11,
+            2
         ]
     },
     "24": {
+        "name": "Chromium",
         "html": "[Ar] 4s<sup>1</sup> 3d<sup>5</sup>",
         "valence": [
             {
@@ -408,9 +540,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            13,
+            1
         ]
     },
     "25": {
+        "name": "Manganese",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>5</sup>",
         "valence": [
             {
@@ -421,9 +560,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            13,
+            2
         ]
     },
     "26": {
+        "name": "Iron",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>6</sup>",
         "valence": [
             {
@@ -434,9 +580,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            14,
+            2
         ]
     },
     "27": {
+        "name": "Cobalt",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>7</sup>",
         "valence": [
             {
@@ -447,9 +600,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 7
             }
+        ],
+        "shells": [
+            2,
+            8,
+            15,
+            2
         ]
     },
     "28": {
+        "name": "Nickel",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>8</sup>",
         "valence": [
             {
@@ -460,9 +620,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 8
             }
+        ],
+        "shells": [
+            2,
+            8,
+            16,
+            2
         ]
     },
     "29": {
+        "name": "Copper",
         "html": "[Ar] 4s<sup>1</sup> 3d<sup>10</sup>",
         "valence": [
             {
@@ -473,9 +640,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            1
         ]
     },
     "30": {
+        "name": "Zinc",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup>",
         "valence": [
             {
@@ -486,9 +660,16 @@ window.InteractivePT = (() => {
                 "subshell": "3d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            2
         ]
     },
     "31": {
+        "name": "Gallium",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>1</sup>",
         "valence": [
             {
@@ -503,9 +684,16 @@ window.InteractivePT = (() => {
                 "subshell": "4p",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            3
         ]
     },
     "32": {
+        "name": "Germanium",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>2</sup>",
         "valence": [
             {
@@ -520,9 +708,16 @@ window.InteractivePT = (() => {
                 "subshell": "4p",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            4
         ]
     },
     "33": {
+        "name": "Arsenic",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>3</sup>",
         "valence": [
             {
@@ -537,9 +732,16 @@ window.InteractivePT = (() => {
                 "subshell": "4p",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            5
         ]
     },
     "34": {
+        "name": "Selenium",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>4</sup>",
         "valence": [
             {
@@ -554,9 +756,16 @@ window.InteractivePT = (() => {
                 "subshell": "4p",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            6
         ]
     },
     "35": {
+        "name": "Bromine",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>5</sup>",
         "valence": [
             {
@@ -571,9 +780,16 @@ window.InteractivePT = (() => {
                 "subshell": "4p",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            7
         ]
     },
     "36": {
+        "name": "Krypton",
         "html": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>6</sup>",
         "valence": [
             {
@@ -588,27 +804,50 @@ window.InteractivePT = (() => {
                 "subshell": "4p",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            8
         ]
     },
     "37": {
+        "name": "Rubidium",
         "html": "[Kr] 5s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "5s",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            8,
+            1
         ]
     },
     "38": {
+        "name": "Strontium",
         "html": "[Kr] 5s<sup>2</sup>",
         "valence": [
             {
                 "subshell": "5s",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            8,
+            2
         ]
     },
     "39": {
+        "name": "Yttrium",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>1</sup>",
         "valence": [
             {
@@ -619,9 +858,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            9,
+            2
         ]
     },
     "40": {
+        "name": "Zirconium",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>2</sup>",
         "valence": [
             {
@@ -632,9 +879,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            10,
+            2
         ]
     },
     "41": {
+        "name": "Niobium",
         "html": "[Kr] 5s<sup>1</sup> 4d<sup>4</sup>",
         "valence": [
             {
@@ -645,9 +900,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            12,
+            1
         ]
     },
     "42": {
+        "name": "Molybdenum",
         "html": "[Kr] 5s<sup>1</sup> 4d<sup>5</sup>",
         "valence": [
             {
@@ -658,9 +921,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            13,
+            1
         ]
     },
     "43": {
+        "name": "Technetium",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>5</sup>",
         "valence": [
             {
@@ -671,9 +942,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            13,
+            2
         ]
     },
     "44": {
+        "name": "Ruthenium",
         "html": "[Kr] 5s<sup>1</sup> 4d<sup>7</sup>",
         "valence": [
             {
@@ -684,9 +963,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 7
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            15,
+            1
         ]
     },
     "45": {
+        "name": "Rhodium",
         "html": "[Kr] 5s<sup>1</sup> 4d<sup>8</sup>",
         "valence": [
             {
@@ -697,18 +984,33 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 8
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            16,
+            1
         ]
     },
     "46": {
+        "name": "Palladium",
         "html": "[Kr] 4d<sup>10</sup>",
         "valence": [
             {
                 "subshell": "4d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18
         ]
     },
     "47": {
+        "name": "Silver",
         "html": "[Kr] 5s<sup>1</sup> 4d<sup>10</sup>",
         "valence": [
             {
@@ -719,9 +1021,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            1
         ]
     },
     "48": {
+        "name": "Cadmium",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup>",
         "valence": [
             {
@@ -732,9 +1042,17 @@ window.InteractivePT = (() => {
                 "subshell": "4d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            2
         ]
     },
     "49": {
+        "name": "Indium",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>1</sup>",
         "valence": [
             {
@@ -749,9 +1067,17 @@ window.InteractivePT = (() => {
                 "subshell": "5p",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            3
         ]
     },
     "50": {
+        "name": "Tin",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>2</sup>",
         "valence": [
             {
@@ -766,9 +1092,17 @@ window.InteractivePT = (() => {
                 "subshell": "5p",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            4
         ]
     },
     "51": {
+        "name": "Antimony",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>3</sup>",
         "valence": [
             {
@@ -783,9 +1117,17 @@ window.InteractivePT = (() => {
                 "subshell": "5p",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            5
         ]
     },
     "52": {
+        "name": "Tellurium",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>4</sup>",
         "valence": [
             {
@@ -800,9 +1142,17 @@ window.InteractivePT = (() => {
                 "subshell": "5p",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            6
         ]
     },
     "53": {
+        "name": "Iodine",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>5</sup>",
         "valence": [
             {
@@ -817,9 +1167,17 @@ window.InteractivePT = (() => {
                 "subshell": "5p",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            7
         ]
     },
     "54": {
+        "name": "Xenon",
         "html": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>6</sup>",
         "valence": [
             {
@@ -834,27 +1192,53 @@ window.InteractivePT = (() => {
                 "subshell": "5p",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            8
         ]
     },
     "55": {
+        "name": "Cesium",
         "html": "[Xe] 6s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "6s",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            8,
+            1
         ]
     },
     "56": {
+        "name": "Barium",
         "html": "[Xe] 6s<sup>2</sup>",
         "valence": [
             {
                 "subshell": "6s",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            8,
+            2
         ]
     },
     "57": {
+        "name": "Lanthanum",
         "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup>",
         "valence": [
             {
@@ -865,9 +1249,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            18,
+            9,
+            2
         ]
     },
     "58": {
+        "name": "Cerium",
         "html": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup> 4f<sup>1</sup>",
         "valence": [
             {
@@ -882,9 +1275,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            19,
+            9,
+            2
         ]
     },
     "59": {
+        "name": "Praseodymium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>3</sup>",
         "valence": [
             {
@@ -895,9 +1297,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            21,
+            8,
+            2
         ]
     },
     "60": {
+        "name": "Neodymium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>4</sup>",
         "valence": [
             {
@@ -908,9 +1319,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            22,
+            8,
+            2
         ]
     },
     "61": {
+        "name": "Promethium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>5</sup>",
         "valence": [
             {
@@ -921,9 +1341,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            23,
+            8,
+            2
         ]
     },
     "62": {
+        "name": "Samarium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>6</sup>",
         "valence": [
             {
@@ -934,9 +1363,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            24,
+            8,
+            2
         ]
     },
     "63": {
+        "name": "Europium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup>",
         "valence": [
             {
@@ -947,9 +1385,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 7
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            25,
+            8,
+            2
         ]
     },
     "64": {
+        "name": "Gadolinium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup> 5d<sup>1</sup>",
         "valence": [
             {
@@ -964,9 +1411,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            25,
+            9,
+            2
         ]
     },
     "65": {
+        "name": "Terbium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>9</sup>",
         "valence": [
             {
@@ -977,9 +1433,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 9
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            27,
+            8,
+            2
         ]
     },
     "66": {
+        "name": "Dysprosium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>10</sup>",
         "valence": [
             {
@@ -990,9 +1455,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            28,
+            8,
+            2
         ]
     },
     "67": {
+        "name": "Holmium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>11</sup>",
         "valence": [
             {
@@ -1003,9 +1477,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 11
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            29,
+            8,
+            2
         ]
     },
     "68": {
+        "name": "Erbium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>12</sup>",
         "valence": [
             {
@@ -1016,9 +1499,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 12
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            30,
+            8,
+            2
         ]
     },
     "69": {
+        "name": "Thulium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>13</sup>",
         "valence": [
             {
@@ -1029,9 +1521,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 13
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            31,
+            8,
+            2
         ]
     },
     "70": {
+        "name": "Ytterbium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup>",
         "valence": [
             {
@@ -1042,9 +1543,18 @@ window.InteractivePT = (() => {
                 "subshell": "4f",
                 "e": 14
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            8,
+            2
         ]
     },
     "71": {
+        "name": "Lutetium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>1</sup>",
         "valence": [
             {
@@ -1059,9 +1569,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            9,
+            2
         ]
     },
     "72": {
+        "name": "Hafnium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>2</sup>",
         "valence": [
             {
@@ -1076,9 +1595,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            10,
+            2
         ]
     },
     "73": {
+        "name": "Tantalum",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>3</sup>",
         "valence": [
             {
@@ -1093,9 +1621,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            11,
+            2
         ]
     },
     "74": {
+        "name": "Tungsten",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>4</sup>",
         "valence": [
             {
@@ -1110,9 +1647,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            12,
+            2
         ]
     },
     "75": {
+        "name": "Rhenium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>5</sup>",
         "valence": [
             {
@@ -1127,9 +1673,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            13,
+            2
         ]
     },
     "76": {
+        "name": "Osmium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>6</sup>",
         "valence": [
             {
@@ -1144,9 +1699,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            14,
+            2
         ]
     },
     "77": {
+        "name": "Iridium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>7</sup>",
         "valence": [
             {
@@ -1161,9 +1725,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 7
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            15,
+            2
         ]
     },
     "78": {
+        "name": "Platinum",
         "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>9</sup>",
         "valence": [
             {
@@ -1178,9 +1751,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 9
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            17,
+            1
         ]
     },
     "79": {
+        "name": "Gold",
         "html": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
         "valence": [
             {
@@ -1195,9 +1777,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            1
         ]
     },
     "80": {
+        "name": "Mercury",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
         "valence": [
             {
@@ -1212,9 +1803,18 @@ window.InteractivePT = (() => {
                 "subshell": "5d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            2
         ]
     },
     "81": {
+        "name": "Thallium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>1</sup>",
         "valence": [
             {
@@ -1233,9 +1833,18 @@ window.InteractivePT = (() => {
                 "subshell": "6p",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            3
         ]
     },
     "82": {
+        "name": "Lead",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>2</sup>",
         "valence": [
             {
@@ -1254,9 +1863,18 @@ window.InteractivePT = (() => {
                 "subshell": "6p",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            4
         ]
     },
     "83": {
+        "name": "Bismuth",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>3</sup>",
         "valence": [
             {
@@ -1275,9 +1893,18 @@ window.InteractivePT = (() => {
                 "subshell": "6p",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            5
         ]
     },
     "84": {
+        "name": "Polonium",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>4</sup>",
         "valence": [
             {
@@ -1296,9 +1923,18 @@ window.InteractivePT = (() => {
                 "subshell": "6p",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            6
         ]
     },
     "85": {
+        "name": "Astatine",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>5</sup>",
         "valence": [
             {
@@ -1317,9 +1953,18 @@ window.InteractivePT = (() => {
                 "subshell": "6p",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            7
         ]
     },
     "86": {
+        "name": "Radon",
         "html": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>6</sup>",
         "valence": [
             {
@@ -1338,27 +1983,56 @@ window.InteractivePT = (() => {
                 "subshell": "6p",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            8
         ]
     },
     "87": {
+        "name": "Francium",
         "html": "[Rn] 7s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "7s",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            8,
+            1
         ]
     },
     "88": {
+        "name": "Radium",
         "html": "[Rn] 7s<sup>2</sup>",
         "valence": [
             {
                 "subshell": "7s",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            8,
+            2
         ]
     },
     "89": {
+        "name": "Actinium",
         "html": "[Rn] 7s<sup>2</sup> 6d<sup>1</sup>",
         "valence": [
             {
@@ -1369,9 +2043,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            9,
+            2
         ]
     },
     "90": {
+        "name": "Thorium",
         "html": "[Rn] 7s<sup>2</sup> 6d<sup>2</sup>",
         "valence": [
             {
@@ -1382,9 +2066,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            10,
+            2
         ]
     },
     "91": {
+        "name": "Protactinium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>2</sup> 6d<sup>1</sup>",
         "valence": [
             {
@@ -1399,9 +2093,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            20,
+            9,
+            2
         ]
     },
     "92": {
+        "name": "Uranium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>3</sup> 6d<sup>1</sup>",
         "valence": [
             {
@@ -1416,9 +2120,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            21,
+            9,
+            2
         ]
     },
     "93": {
+        "name": "Neptunium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>4</sup> 6d<sup>1</sup>",
         "valence": [
             {
@@ -1433,9 +2147,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            22,
+            9,
+            2
         ]
     },
     "94": {
+        "name": "Plutonium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>6</sup>",
         "valence": [
             {
@@ -1446,9 +2170,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            24,
+            8,
+            2
         ]
     },
     "95": {
+        "name": "Americium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup>",
         "valence": [
             {
@@ -1459,9 +2193,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 7
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            25,
+            8,
+            2
         ]
     },
     "96": {
+        "name": "Curium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup> 6d<sup>1</sup>",
         "valence": [
             {
@@ -1476,9 +2220,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            25,
+            9,
+            2
         ]
     },
     "97": {
+        "name": "Berkelium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>9</sup>",
         "valence": [
             {
@@ -1489,9 +2243,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 9
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            27,
+            8,
+            2
         ]
     },
     "98": {
+        "name": "Californium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>10</sup>",
         "valence": [
             {
@@ -1502,9 +2266,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            28,
+            8,
+            2
         ]
     },
     "99": {
+        "name": "Einsteinium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>11</sup>",
         "valence": [
             {
@@ -1515,9 +2289,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 11
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            29,
+            8,
+            2
         ]
     },
     "100": {
+        "name": "Fermium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>12</sup>",
         "valence": [
             {
@@ -1528,9 +2312,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 12
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            30,
+            8,
+            2
         ]
     },
     "101": {
+        "name": "Mendelevium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>13</sup>",
         "valence": [
             {
@@ -1541,9 +2335,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 13
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            31,
+            8,
+            2
         ]
     },
     "102": {
+        "name": "Nobelium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup>",
         "valence": [
             {
@@ -1554,9 +2358,19 @@ window.InteractivePT = (() => {
                 "subshell": "5f",
                 "e": 14
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            8,
+            2
         ]
     },
     "103": {
+        "name": "Lawrencium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 7p<sup>1</sup>",
         "valence": [
             {
@@ -1571,9 +2385,19 @@ window.InteractivePT = (() => {
                 "subshell": "7p",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            8,
+            3
         ]
     },
     "104": {
+        "name": "Rutherfordium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>2</sup>",
         "valence": [
             {
@@ -1588,9 +2412,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            10,
+            2
         ]
     },
     "105": {
+        "name": "Dubnium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>3</sup>",
         "valence": [
             {
@@ -1605,9 +2439,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            11,
+            2
         ]
     },
     "106": {
+        "name": "Seaborgium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>4</sup>",
         "valence": [
             {
@@ -1622,9 +2466,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            12,
+            2
         ]
     },
     "107": {
+        "name": "Bohrium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>5</sup>",
         "valence": [
             {
@@ -1639,9 +2493,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            13,
+            2
         ]
     },
     "108": {
+        "name": "Hassium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>6</sup>",
         "valence": [
             {
@@ -1656,9 +2520,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            14,
+            2
         ]
     },
     "109": {
+        "name": "Meitnerium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>7</sup>",
         "valence": [
             {
@@ -1673,9 +2547,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 7
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            15,
+            2
         ]
     },
     "110": {
+        "name": "Darmstadtium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>8</sup>",
         "valence": [
             {
@@ -1690,9 +2574,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 8
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            16,
+            2
         ]
     },
     "111": {
+        "name": "Roentgenium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>9</sup>",
         "valence": [
             {
@@ -1707,9 +2601,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 9
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            17,
+            2
         ]
     },
     "112": {
+        "name": "Copernicium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup>",
         "valence": [
             {
@@ -1724,9 +2628,19 @@ window.InteractivePT = (() => {
                 "subshell": "6d",
                 "e": 10
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            2
         ]
     },
     "113": {
+        "name": "Nihonium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>1</sup>",
         "valence": [
             {
@@ -1745,9 +2659,19 @@ window.InteractivePT = (() => {
                 "subshell": "7p",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            3
         ]
     },
     "114": {
+        "name": "Flerovium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>2</sup>",
         "valence": [
             {
@@ -1766,9 +2690,19 @@ window.InteractivePT = (() => {
                 "subshell": "7p",
                 "e": 2
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            4
         ]
     },
     "115": {
+        "name": "Moscovium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>3</sup>",
         "valence": [
             {
@@ -1787,9 +2721,19 @@ window.InteractivePT = (() => {
                 "subshell": "7p",
                 "e": 3
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            5
         ]
     },
     "116": {
+        "name": "Livermorium",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>4</sup>",
         "valence": [
             {
@@ -1808,9 +2752,19 @@ window.InteractivePT = (() => {
                 "subshell": "7p",
                 "e": 4
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            6
         ]
     },
     "117": {
+        "name": "Tennessine",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>5</sup>",
         "valence": [
             {
@@ -1829,9 +2783,19 @@ window.InteractivePT = (() => {
                 "subshell": "7p",
                 "e": 5
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            7
         ]
     },
     "118": {
+        "name": "Oganesson",
         "html": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>6</sup>",
         "valence": [
             {
@@ -1850,15 +2814,35 @@ window.InteractivePT = (() => {
                 "subshell": "7p",
                 "e": 6
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            8
         ]
     },
     "119": {
+        "name": "Element 119",
         "html": "[Og] 8s<sup>1</sup>",
         "valence": [
             {
                 "subshell": "8s",
                 "e": 1
             }
+        ],
+        "shells": [
+            2,
+            8,
+            18,
+            32,
+            32,
+            18,
+            8,
+            1
         ]
     }
 };
@@ -1929,6 +2913,45 @@ window.InteractivePT = (() => {
       return html;
   };
 
+  const renderAtomSimulation = (shells, color) => {
+      const SVG_SIZE = 160;
+      const CENTER = SVG_SIZE / 2;
+      let html = `<div style="width:${SVG_SIZE}px; height:${SVG_SIZE}px; position:relative; display:flex; align-items:center; justify-content:center; flex-shrink:0;">`;
+      html += `<svg width="${SVG_SIZE}" height="${SVG_SIZE}" viewBox="0 0 ${SVG_SIZE} ${SVG_SIZE}">`;
+      
+      // Nucleus
+      html += `<circle cx="${CENTER}" cy="${CENTER}" r="6" fill="${color}" style="filter: drop-shadow(0 0 5px ${color});" />`;
+      
+      const maxShells = shells.length;
+      const shellSpacing = (SVG_SIZE/2 - 10) / maxShells;
+      
+      shells.forEach((electrons, index) => {
+          const n = index + 1;
+          const r = 12 + index * shellSpacing;
+          const duration = 12 + index * 4; // slower for outer shells
+          
+          // Draw orbit path
+          html += `<circle cx="${CENTER}" cy="${CENTER}" r="${r}" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" />`;
+          
+          // Draw electrons on this orbit inside a rotating group
+          html += `<g transform-origin="${CENTER}px ${CENTER}px">`;
+          html += `<animateTransform attributeName="transform" type="rotate" from="0 ${CENTER} ${CENTER}" to="360 ${CENTER} ${CENTER}" dur="${duration}s" repeatCount="indefinite" />`;
+          
+          for(let i=0; i<electrons; i++) {
+              const angle = (i / electrons) * 2 * Math.PI;
+              const x = CENTER + r * Math.cos(angle);
+              const y = CENTER + r * Math.sin(angle);
+              html += `<circle cx="${x}" cy="${y}" r="2.5" fill="#fff" />`;
+          }
+          
+          html += `</g>`;
+      });
+      
+      html += `</svg>`;
+      html += `</div>`;
+      return html;
+  };
+
   function build(container, config) {
     container.innerHTML = "";
     
@@ -1950,8 +2973,8 @@ window.InteractivePT = (() => {
 
     const ptGrid = document.createElement("div");
     ptGrid.style.display = "grid";
-    ptGrid.style.gridTemplateColumns = "20px repeat(18, 30px)";
-    ptGrid.style.gridTemplateRows = "20px repeat(10, 30px)";
+    ptGrid.style.gridTemplateColumns = "20px repeat(18, 40px)"; // INCREASED WIDTH from 30px to 40px for names
+    ptGrid.style.gridTemplateRows = "20px repeat(10, 42px)"; // INCREASED HEIGHT from 30px to 42px
     ptGrid.style.gap = "4px";
     ptGrid.style.position = "relative";
 
@@ -1959,7 +2982,7 @@ window.InteractivePT = (() => {
     const infoPanel = document.createElement("div");
     infoPanel.style.flex = "1";
     infoPanel.style.minWidth = "300px";
-    infoPanel.style.maxWidth = "450px";
+    infoPanel.style.maxWidth = "480px"; // slightly wider for side-by-side
     infoPanel.style.background = "var(--color-card)";
     infoPanel.style.border = "1px solid var(--color-border)";
     infoPanel.style.borderRadius = "8px";
@@ -2057,13 +3080,25 @@ window.InteractivePT = (() => {
             if (selectedType) {
                 html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
             }
+            const blockColor = BLOCK_COLORS[el.block];
+            
             html += `<div style="background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2)); border:1px solid var(--color-border); padding:20px; border-radius:8px; animation: fadeIn 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">`;
-            html += `<div style="display:flex; justify-content:space-between; align-items:center;">`;
-            html += `<h4 style="margin:0; font-size:1.5rem; color:var(--color-primary);">${el.sym}</h4>`;
-            html += `<span style="font-size:0.9rem; color:var(--color-text-muted);">Z = ${el.z} | ${el.block}-block</span>`;
-            html += `</div>`;
+            
+            html += `<div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">`;
+            
+            // Text Details Left Side
+            html += `<div style="flex:1;">`;
+            html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor};">${ECONFS[el.z].name}</h4>`;
+            html += `<div style="font-size:1rem; font-weight:bold; margin-top:4px;">${el.sym} (Z = ${el.z})</div>`;
+            html += `<div style="font-size:0.9rem; color:var(--color-text-muted); margin-top:2px;">${el.block}-block</div>`;
             html += `<div style="margin-top:15px; font-size:1.1rem; letter-spacing:1px;">${ECONFS[el.z].html}</div>`;
             html += renderOrbitals(ECONFS[el.z].valence);
+            html += `</div>`;
+            
+            // Atom Simulation Right Side
+            html += renderAtomSimulation(ECONFS[el.z].shells, blockColor);
+            
+            html += `</div>`;
             html += `</div>`;
         }
 
@@ -2084,7 +3119,7 @@ window.InteractivePT = (() => {
             const isSelectedElement = selectedElementZ && parseInt(c.dataset.z) === selectedElementZ;
 
             if (isSelectedElement) {
-                c.style.transform = 'scale(1.2)';
+                c.style.transform = 'scale(1.1)';
                 c.style.zIndex = '10';
                 c.style.background = BLOCK_COLORS[c.dataset.block];
                 c.style.color = '#000';
@@ -2097,7 +3132,7 @@ window.InteractivePT = (() => {
                 c.style.background = BLOCK_COLORS[c.dataset.block];
                 c.style.color = '#000';
                 c.style.opacity = '1';
-                c.style.transform = 'scale(1.1)';
+                c.style.transform = 'scale(1.05)';
                 c.style.zIndex = '5';
                 c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
                 c.style.filter = 'blur(0px)';
@@ -2215,10 +3250,9 @@ window.InteractivePT = (() => {
     ELEMENTS.forEach(el => {
       const cell = document.createElement('div');
       cell.style.display = 'flex';
+      cell.style.flexDirection = 'column';
       cell.style.alignItems = 'center';
       cell.style.justifyContent = 'center';
-      cell.style.fontSize = 'clamp(12px, 1.2vw, 26px)';
-      cell.style.fontWeight = 'bold';
       cell.style.borderRadius = '4px';
       cell.style.cursor = 'pointer';
       cell.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -2236,7 +3270,25 @@ window.InteractivePT = (() => {
         cell.style.gridRow = el.period + 1;
       }
 
-      cell.textContent = el.sym;
+      // Add Symbol
+      const symEl = document.createElement('div');
+      symEl.textContent = el.sym;
+      symEl.style.fontSize = 'clamp(14px, 1.2vw, 20px)';
+      symEl.style.fontWeight = 'bold';
+      cell.appendChild(symEl);
+
+      // Add Full Name
+      const nameEl = document.createElement('div');
+      nameEl.textContent = ECONFS[el.z].name;
+      nameEl.style.fontSize = '8px';
+      nameEl.style.marginTop = '2px';
+      nameEl.style.textOverflow = 'ellipsis';
+      nameEl.style.overflow = 'hidden';
+      nameEl.style.whiteSpace = 'nowrap';
+      nameEl.style.width = '100%';
+      nameEl.style.textAlign = 'center';
+      cell.appendChild(nameEl);
+
       cell.dataset.block = el.block;
       cell.dataset.z = el.z;
       cell.dataset.group = el.group || '';
