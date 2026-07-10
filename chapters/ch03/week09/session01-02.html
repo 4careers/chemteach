@@ -4,10 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <title>Ch03 W09 S01-02 | ChemTeach</title>
-<link rel="stylesheet" href="../../../assets/design-tokens.css?v=14">
-<link rel="stylesheet" href="../../../assets/session.css?v=14">
-<script src="../../../assets/theme.js?v=14"></script>
-<link rel="stylesheet" href="../../../assets/mcq-overlay.css?v=14">
+<link rel="stylesheet" href="../../../assets/design-tokens.css?v=15">
+<link rel="stylesheet" href="../../../assets/session.css?v=15">
+<script src="../../../assets/theme.js?v=15"></script>
+<link rel="stylesheet" href="../../../assets/mcq-overlay.css?v=15">
+<style>
+  .teaching-content {
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .teaching-content h2 { color: #00d4ff; margin-bottom: 20px; text-align: center; font-size: 28px; }
+  .teaching-content h3 { color: #ffd60a; margin-top: 20px; }
+  .teaching-content ul { padding-left: 20px; margin-bottom: 20px; }
+  .teaching-content li { margin-bottom: 10px; }
+  .teaching-content p { margin-bottom: 15px; }
+  .highlight { color: #00ffaa; font-weight: bold; }
+  
+  table.nomen-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255,255,255,0.05); }
+  table.nomen-table th, table.nomen-table td { border: 1px solid rgba(255,255,255,0.2); padding: 10px; text-align: center; }
+  table.nomen-table th { background: rgba(0,212,255,0.2); color: #fff; }
+</style>
 </head>
 <body>
 
@@ -24,70 +47,179 @@
   </div>
 </div>
 
+<!-- Slide 1: Title -->
 <div class="slide active" data-type="static">
   <div class="title-card">
     <div class="meta">Chapter 3 | Week 9 | Session 1-2 | July 13-14, 2026</div>
-    <h1>NOMENCLATURE OF ELEMENTS (Z>100) & ELECTRONIC CONFIGURATION</h1>
-    <div class="topics">Topics covered today:<br>3.4-3.5 Nomenclature of Elements Z>100, Electronic Configuration</div>
+    <h1>NCERT 3.4 - 3.5: Nomenclature & Electronic Configurations</h1>
+    <div class="topics">Topics covered today:<br>3.4 Nomenclature of Elements Z>100<br>3.5 Electronic Configurations of Elements and the Periodic Table<br>(3.5.1 Period-wise, 3.5.2 Group-wise)</div>
   </div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "The Present Form of the Periodic Table", "image": "ch03_coe/18_present_form.png"}'>
-  <div class="component-container"></div>
+<!-- Slide 2: Why IUPAC nomenclature -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>3.4 Nomenclature of Elements with Z > 100</h2>
+    <p>The naming of new elements traditionally belonged to the discoverer. However, finding elements with atomic numbers > 100 is highly competitive.</p>
+    <p>For example, both American and Soviet scientists claimed credit for discovering element 104. The Americans named it <strong>Rutherfordium</strong>, while the Soviets named it <strong>Kurchatovium</strong>.</p>
+    <p>To avoid such controversies while claims are being verified, the <strong>IUPAC (International Union of Pure and Applied Chemistry)</strong> created a systematic, temporary nomenclature based purely on the element's atomic number.</p>
+  </div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "Understanding Groups and Periods", "image": "ch03_coe/19_groups_periods.png"}'>
-  <div class="component-container"></div>
-  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":6},{"category":"MCQs Corner","qNum":11},{"category":"MCQs Corner","qNum":14},{"category":"MCQs Corner","qNum":16},{"category":"MCQs Corner","qNum":17},{"category":"MCQs Corner","qNum":21},{"category":"MCQs Corner","qNum":23},{"category":"MCQs Corner","qNum":27},{"category":"MCQs Corner","qNum":28},{"category":"MCQs Corner","qNum":32},{"category":"MCQs Corner","qNum":34},{"category":"MCQs Corner","qNum":35},{"category":"MCQs Corner","qNum":43},{"category":"MCQs Corner","qNum":51},{"category":"MCQs Corner","qNum":57},{"category":"MCQs Corner","qNum":67},{"category":"MCQs Corner","qNum":70},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":85},{"category":"MCQs Corner","qNum":89},{"category":"MCQs Corner","qNum":91},{"category":"MCQs Corner","qNum":97},{"category":"MCQs Corner","qNum":108},{"category":"MCQs Corner","qNum":114},{"category":"MCQs Corner","qNum":116},{"category":"MCQs Corner","qNum":120},{"category":"MCQs Corner","qNum":126},{"category":"MCQs Corner","qNum":129},{"category":"MCQs Corner","qNum":142},{"category":"MCQs Corner","qNum":147},{"category":"MCQs Corner","qNum":148},{"category":"MCQs Corner","qNum":149},{"category":"MCQs Corner","qNum":150},{"category":"MCQs Corner","qNum":151},{"category":"MCQs Corner","qNum":153},{"category":"MCQs Corner","qNum":155},{"category":"MCQs Corner","qNum":163},{"category":"MCQs Corner","qNum":167},{"category":"MCQs Corner","qNum":168}])'>MCQs 📝</button></div>
+<!-- Slide 3: The IUPAC Roots -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>The Roots for Systematic Naming</h2>
+    <p>The name is derived directly from the atomic number using numerical roots, ending with the suffix <span class="highlight">-ium</span>.</p>
+    <table class="nomen-table">
+      <tr><th>Digit</th><th>Name</th><th>Abbreviation</th></tr>
+      <tr><td>0</td><td>nil</td><td>n</td></tr>
+      <tr><td>1</td><td>un</td><td>u</td></tr>
+      <tr><td>2</td><td>bi</td><td>b</td></tr>
+      <tr><td>3</td><td>tri</td><td>t</td></tr>
+      <tr><td>4</td><td>quad</td><td>q</td></tr>
+      <tr><td>5</td><td>pent</td><td>p</td></tr>
+      <tr><td>6</td><td>hex</td><td>h</td></tr>
+      <tr><td>7</td><td>sept</td><td>s</td></tr>
+      <tr><td>8</td><td>oct</td><td>o</td></tr>
+      <tr><td>9</td><td>enn</td><td>e</td></tr>
+    </table>
+    <p><em>Example:</em> Element 101 is <span class="highlight">un</span> + <span class="highlight">nil</span> + <span class="highlight">un</span> + ium = <strong>Unnilunium (Unu)</strong>.</p>
+  </div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "Periods in the Modern Periodic Table", "image": "ch03_coe/21_periods.png"}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="accelerator-sim" data-config='{}'>
-  <div class="component-container"></div>
-</div>
-
+<!-- Slide 4: IUPAC Namer interactive component -->
 <div class="slide" data-type="iupac-namer" data-config='{}'>
   <div class="component-container"></div>
-  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":9},{"category":"MCQs Corner","qNum":10},{"category":"MCQs Corner","qNum":18},{"category":"MCQs Corner","qNum":25},{"category":"MCQs Corner","qNum":78},{"category":"MCQs Corner","qNum":80},{"category":"MCQs Corner","qNum":82},{"category":"MCQs Corner","qNum":143},{"category":"MCQs Corner","qNum":144},{"category":"MCQs Corner","qNum":145},{"category":"MCQs Corner","qNum":146},{"category":"MCQs Corner","qNum":160},{"category":"MCQs Corner","qNum":166}])'>MCQs 📝</button></div>
+</div>
+
+<!-- Slide 5: Introducti
+  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":9},{"category":"MCQs Corner","qNum":10},{"category":"MCQs Corner","qNum":18},{"category":"MCQs Corner","qNum":25},{"category":"MCQs Corner","qNum":78},{"category":"MCQs Corner","qNum":80},{"category":"MCQs Corner","qNum":82},{"category":"MCQs Corner","qNum":143},{"category":"MCQs Corner","qNum":144},{"category":"MCQs Corner","qNum":145},{"category":"MCQs Corner","qNum":146},{"category":"MCQs Corner","qNum":160},{"category":"MCQs Corner","qNum":166}])'>MCQs 📝</button></div>on to Electronic Config -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>3.5 Electronic Configurations and the Periodic Table</h2>
+    <p>An element's location in the Periodic Table reflects the quantum numbers of the last orbital filled.</p>
+    <p>The <strong>Principal Quantum Number (n)</strong> defines the main energy level (shell). Crucially, <span class="highlight">the Period Number corresponds to the highest principal quantum number (n)</span> of the elements in that period.</p>
+    <ul>
+      <li>Period 1 elements fill the n=1 shell (1s).</li>
+      <li>Period 2 elements fill the n=2 shell (2s, 2p).</li>
+      <li>Period 3 elements fill the n=3 shell (3s, 3p).</li>
+    </ul>
+    <p>The number of elements in each period is twice the number of atomic orbitals available in the energy level being filled.</p>
   
+  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":12},{"category":"MCQs Corner","qNum":15},{"category":"MCQs Corner","qNum":18},{"category":"MCQs Corner","qNum":23},{"category":"MCQs Corner","qNum":24},{"category":"MCQs Corner","qNum":26},{"category":"MCQs Corner","qNum":27},{"category":"MCQs Corner","qNum":28},{"category":"MCQs Corner","qNum":30},{"category":"MCQs Corner","qNum":32},{"category":"MCQs Corner","qNum":33},{"category":"MCQs Corner","qNum":48},{"category":"MCQs Corner","qNum":59},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":105},{"category":"MCQs Corner","qNum":112},{"category":"MCQs Corner","qNum":114},{"category":"MCQs Corner","qNum":116},{"category":"MCQs Corner","qNum":120},{"category":"MCQs Corner","qNum":121},{"category":"MCQs Corner","qNum":129},{"category":"MCQs Corner","qNum":147},{"category":"MCQs Corner","qNum":148},{"category":"MCQs Corner","qNum":149},{"category":"MCQs Corner","qNum":150},{"category":"MCQs Corner","qNum":151},{"category":"MCQs Corner","qNum":152},{"category":"MCQs Corner","qNum":155},{"category":"MCQs Corner","qNum":163},{"category":"MCQs Corner","qNum":167},{"category":"MCQs Corner","qNum":168}])'>MCQs 📝</button></div></div>
 </div>
 
-<div class="slide" data-type="riddle" data-config='{"question": "Element 104 was called &#39;Unnilquadium&#39; systematically before being officially named Rutherfordium. Why does IUPAC bother with a temporary systematic name at all, instead of just waiting for the permanent name?", "hint": "Think about international cooperation and the time gap between discovery and naming consensus.", "answer": "To give scientists worldwide an immediate, unambiguous way to refer to it during the (often lengthy) naming dispute process", "explanation": "Discovery of superheavy elements can be contested between labs/countries, and official naming takes time to ratify. A systematic name derived purely from the atomic number lets every scientist worldwide refer to the same element unambiguously immediately, with zero controversy, while the permanent name is settled."}'>
-  <div class="component-container"></div>
+<!-- Slide 6: Period 1 -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>3.5.1 Electronic Configurations in Periods (Period 1)</h2>
+    <p><strong>First Period (n = 1):</strong></p>
+    <p>The lowest energy level is 1s. Since an s-orbital can hold a maximum of 2 electrons, this period has exactly 2 elements.</p>
+    <ul>
+      <li><strong>Hydrogen (Z=1):</strong> $1s^1$</li>
+      <li><strong>Helium (Z=2):</strong> $1s^2$ (The first shell is now completely full, making Helium a noble gas).</li>
+    </ul>
+  </div>
 </div>
 
-<div class="slide" data-type="gamification" data-config='{"instruction": "Match each Aufbau-related rule to its statement.", "items": ["Aufbau Principle", "Pauli Exclusion Principle", "Hund&#39;s Rule"], "categories": ["Fill lowest energy orbitals first", "Max 2 electrons per orbital, opposite spins", "One electron per orbital before pairing begins"], "answers": {"Aufbau Principle": "Fill lowest energy orbitals first", "Pauli Exclusion Principle": "Max 2 electrons per orbital, opposite spins", "Hund&#39;s Rule": "One electron per orbital before pairing begins"}}'>
-  <div class="component-container"></div>
-  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":12},{"category":"MCQs Corner","qNum":15},{"category":"MCQs Corner","qNum":18},{"category":"MCQs Corner","qNum":23},{"category":"MCQs Corner","qNum":24},{"category":"MCQs Corner","qNum":26},{"category":"MCQs Corner","qNum":27},{"category":"MCQs Corner","qNum":28},{"category":"MCQs Corner","qNum":30},{"category":"MCQs Corner","qNum":32},{"category":"MCQs Corner","qNum":33},{"category":"MCQs Corner","qNum":48},{"category":"MCQs Corner","qNum":59},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":105},{"category":"MCQs Corner","qNum":112},{"category":"MCQs Corner","qNum":114},{"category":"MCQs Corner","qNum":116},{"category":"MCQs Corner","qNum":120},{"category":"MCQs Corner","qNum":121},{"category":"MCQs Corner","qNum":129},{"category":"MCQs Corner","qNum":147},{"category":"MCQs Corner","qNum":148},{"category":"MCQs Corner","qNum":149},{"category":"MCQs Corner","qNum":150},{"category":"MCQs Corner","qNum":151},{"category":"MCQs Corner","qNum":152},{"category":"MCQs Corner","qNum":155},{"category":"MCQs Corner","qNum":163},{"category":"MCQs Corner","qNum":167},{"category":"MCQs Corner","qNum":168}])'>MCQs 📝</button></div>
+<!-- Slide 7: Period 2 and 3 -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Periods 2 & 3: Filling the 2nd and 3rd Shells</h2>
+    <h3>Second Period (n = 2)</h3>
+    <p>Starts with Lithium ($1s^2 2s^1$) and Beryllium ($1s^2 2s^2$). Next, the 2p orbitals begin to fill starting with Boron ($2s^2 2p^1$) and ending with Neon ($2s^2 2p^6$). Total: 8 elements (2 in s, 6 in p).</p>
+    
+    <h3>Third Period (n = 3)</h3>
+    <p>Begins at Sodium (Na). The added electron enters the 3s orbital ($3s^1$). Filling continues identically through the 3p orbitals until Argon ($3s^2 3p^6$). Total: 8 elements.</p>
+    <p><em>Note:</em> The 3d orbitals are available in the 3rd shell, but according to the Aufbau principle, the 4s orbital is lower in energy than 3d, so 3d doesn't start filling until the 4th period.</p>
+  </div>
 </div>
 
-<div class="slide" data-type="infographic" data-config='{"title": "Next Chapter: Chemical Bonding", "image": "chemical_bonding_intro.jpg", "caption": "How isolated atoms unite.", "explanation": "Now that we know how atoms are structured and organized, the next chapter will explore how and why they bond together to form molecules and compounds."}'>
-  <div class="component-container"></div>
-  
+<!-- Slide 8: Period 4 -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Fourth Period (n = 4) and the Transition Series</h2>
+    <p>Begins at Potassium (K), filling the 4s orbital ($4s^1$). Calcium fills the second 4s spot ($4s^2$).</p>
+    <p><strong>The 3d Transition Series:</strong> After 4s is filled, the next lowest energy orbital is the <span class="highlight">3d</span> orbital. Scandium (Sc, Z=21) starts this filling: $3d^1 4s^2$. The 3d orbitals (which hold 10 electrons) are filled across the next 10 elements, ending at Zinc (Zn, $3d^{10} 4s^2$). This forms the <strong>first transition series</strong>.</p>
+    <p>After Zinc, the 4p orbitals fill from Gallium to Krypton. Total: 18 elements (2 in 4s + 10 in 3d + 6 in 4p).</p>
+  </div>
 </div>
 
+<!-- Slide 9: Period 5 -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Fifth Period (n = 5)</h2>
+    <p>Exactly analogous to the fourth period, the 5s, 4d, and 5p orbitals are filled.</p>
+    <ul>
+      <li>Starts with Rubidium (Rb).</li>
+      <li>The 4d orbitals are filled forming the <strong>second transition series</strong> starting from Yttrium (Y) to Cadmium (Cd).</li>
+      <li>Ends with Xenon (Xe) when the 5p orbitals are completely filled.</li>
+    </ul>
+    <p>Total: 18 elements.</p>
+  </div>
+</div>
+
+<!-- Slide 10: Period 6 -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Sixth Period (n = 6) and the Lanthanoid Series</h2>
+    <p>This period introduces a new subshell: the <strong>4f</strong> orbitals.</p>
+    <ul>
+      <li>Starts with filling the 6s orbital (Cs, Ba).</li>
+      <li>Then, electrons begin to fill the 4f orbitals (which can hold 14 electrons). This forms the <strong>Lanthanoid series</strong> (or inner transition series) from Cerium (Ce, Z=58) to Lutetium (Lu, Z=71).</li>
+      <li>After 4f, the 5d orbitals fill (third transition series).</li>
+      <li>Finally, the 6p orbitals fill, ending at Radon (Rn).</li>
+    </ul>
+    <p>Total: 32 elements (2 in 6s + 14 in 4f + 10 in 5d + 6 in 6p).</p>
+  </div>
+</div>
+
+<!-- Slide 11: Period 7 -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Seventh Period (n = 7) and the Actinoid Series</h2>
+    <p>The seventh period is similarly long and includes the filling of the 7s, 5f, 6d, and 7p orbitals.</p>
+    <p>Filling the <strong>5f</strong> orbitals generates the <strong>Actinoid series</strong> from Thorium (Th, Z=90) to Lawrencium (Lr, Z=103).</p>
+    <p>Most elements in the actinoid series are radioactive and artificially synthesized. This period is now complete up to element 118 (Oganesson), fulfilling the maximum capacity of 32 elements.</p>
+  </div>
+</div>
+
+<!-- Slide 12: Groupwise Config -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>3.5.2 Groupwise Electronic Configurations</h2>
+    <p>Elements belonging to the same vertical column (Group) exhibit similar chemical properties. Why?</p>
+    <p>Because they have the <span class="highlight">exact same number and distribution of electrons in their outermost (valence) shells.</span></p>
+    <p><em>Example: Group 1 (Alkali Metals)</em></p>
+    <ul>
+      <li>Lithium: $[He] 2s^1$</li>
+      <li>Sodium: $[Ne] 3s^1$</li>
+      <li>Potassium: $[Ar] 4s^1$</li>
+      <li>Rubidium: $[Kr] 5s^1$</li>
+    </ul>
+    <p>Therefore, we can classify elements into four major blocks (s, p, d, f) depending on which orbital the last electron enters. We will cover these blocks in detail in the next session!</p>
+  </div>
+</div>
+
+<!-- Slide 13: Summary -->
 <div class="slide" data-type="static">
   <div class="title-card" style="text-align: left; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 900px; margin: 0 auto;">
     <h1 style="text-align: center; color: #00d4ff; margin-bottom: 30px;">Session Summary</h1>
     <ul style="font-size: 22px; line-height: 1.8; color: #ddd; list-style-type: none; padding-left: 0;">
-      <li style="margin-bottom: 15px;">🔹 <strong>Present Form:</strong> The periodic table organized into 18 Groups and 7 Periods based on electron configuration.</li>
-      <li style="margin-bottom: 15px;">🔹 <strong>Nomenclature (Z>100):</strong> Systematic IUPAC naming ensures universal understanding while permanent names are ratified.</li>
-      <li style="margin-bottom: 15px;">🔹 <strong>Electronic Configuration:</strong> Electrons fill orbitals systematically following the Aufbau Principle, Pauli Exclusion Principle, and Hund&#39;s Rule.</li>
-      <li style="margin-bottom: 15px;">🔹 <strong>Looking Ahead:</strong> The way atoms are structured dictates how they will interact and bond chemically!</li>
+      <li style="margin-bottom: 15px;">🔹 <strong>Nomenclature (Z>100):</strong> Systematic IUPAC naming ensures universal understanding while permanent names are ratified using roots (nil, un, bi, etc.).</li>
+      <li style="margin-bottom: 15px;">🔹 <strong>Periods & n:</strong> The period number corresponds to the highest principal quantum number (n) being filled.</li>
+      <li style="margin-bottom: 15px;">🔹 <strong>Period Lengths:</strong> 2, 8, 8, 18, 18, 32, 32 elements respectively. 4th period introduces 3d, 6th introduces 4f.</li>
+      <li style="margin-bottom: 15px;">🔹 <strong>Groups:</strong> Elements in the same group share identical valence shell configurations, giving them similar properties.</li>
     </ul>
-    
     <h2 style="text-align: center; color: #00ffaa; margin-top: 40px; font-style: italic;">Great job completing the session!</h2>
   </div>
 </div>
 
-
 <div class="slide" data-type="static">
   <div class="title-card" style="text-align: left; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
     <h1 style="text-align: center; color: #FFD166; margin-bottom: 20px;">Chapter 3 Questions Bank</h1>
-    <p style="font-size: 22px; color: #ddd; text-align: center; margin-bottom: 40px;">Practice all 168 questions from the Question Bank.</p>
+    <p style="font-size: 22px; color: #ddd; text-align: center; margin-bottom: 40px;">Practice all questions from the Question Bank.</p>
     <a href="../mcqs.html?week=9&session=session01-02" style="display: inline-block; padding: 15px 30px; background: #118AB2; color: white; font-size: 24px; font-weight: bold; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: all 0.2s ease;">Practice All MCQs 📝</a>
   </div>
 </div>
@@ -98,25 +230,11 @@
   <button id="btn-next">NEXT ▶</button>
 </div>
 
-<script src="../../../progress.js?v=14"></script>
-<script src="../../../components/infographic.js?v=14"></script>
-<script src="../../../components/accelerator-sim.js?v=14"></script>
-<script src="../../../components/story.js?v=14"></script>
-<script src="../../../components/scaffold.js?v=14"></script>
-<script src="../../../components/particle-sim.js?v=14"></script>
-<script src="../../../components/model-3d.js?v=14"></script>
-<script src="../../../components/analogy.js?v=14"></script>
-<script src="../../../components/visual-explain.js?v=14"></script>
-<script src="../../../components/iupac-namer.js?v=14"></script>
-<script src="../../../components/drag-drop.js?v=14"></script>
-<script src="../../../components/riddle.js?v=14"></script>
-<script src="../../../components/mnemonic.js?v=14"></script>
-<script src="../../../components/comic-strip.js?v=14"></script>
-<script src="../../../components/animation.js?v=14"></script>
-
-<script src="../mcq-data.js?v=14"></script>
-<script src="../../../assets/mcq-fx.js?v=14"></script>
-<script src="../../../assets/mcq-overlay.js?v=14"></script>
+<script src="../../../progress.js?v=15"></script>
+<script src="../../../components/iupac-namer.js?v=15"></script>
+<script src="../mcq-data.js?v=15"></script>
+<script src="../../../assets/mcq-fx.js?v=15"></script>
+<script src="../../../assets/mcq-overlay.js?v=15"></script>
 <script>
 const SESSION_ID = 'ch03_w09_s01-02';
 let currentSlide = 0;
@@ -140,22 +258,7 @@ function initCurrentSlide() {
   if (!container || container.dataset.init === 'true') return;
   container.dataset.init = 'true';
   const config = JSON.parse(slide.dataset.config || '{}');
-  switch (type) {
-    case 'story': Story.init(container, config); break;
-    case 'infographic': Infographic.init(container, config); break;
-    case 'accelerator-sim': AcceleratorSim.init(container, config); break;
-    case 'known-unknown': Scaffold.init(container, config); break;
-    case 'experiment-sim': ParticleSim.init(container, config); break;
-    case 'model-3d': Model3D.init(container, config); break;
-    case 'analogy': Analogy.init(container, config); break;
-    case 'visual-explain': VisualExplain.init(container, config); break;
-    case 'iupac-namer': IupacNamer.init(container, config); break;
-    case 'gamification': DragDrop.init(container, config); break;
-    case 'riddle': Riddle.init(container, config); break;
-    case 'mnemonic': Mnemonic.init(container, config); break;
-    case 'comic-strip': ComicStrip.init(container, config); break;
-    case 'animation': ChemAnimation.init(container, config); break;
-  }
+  if (type === 'iupac-namer') IupacNamer.init(container, config);
 }
 
 document.addEventListener('keydown', e => {
