@@ -3133,24 +3133,23 @@ window.InteractivePT = (() => {
     const getEl = (z) => ELEMENTS.find(e => e.z === z);
 
     const infoPanel = document.createElement("div");
-    infoPanel.style.flex = "1";
-    infoPanel.style.minWidth = "300px";
-    infoPanel.style.maxWidth = "480px";
-    // ADD SCROLLABILITY to Info Panel specifically
-    infoPanel.style.maxHeight = "85vh"; 
+    infoPanel.style.position = "fixed";
+    infoPanel.style.top = "0";
+    infoPanel.style.right = "-480px";
+    infoPanel.style.width = "400px";
+    infoPanel.style.height = "100vh";
+    infoPanel.style.maxWidth = "85vw";
     infoPanel.style.overflowY = "auto";
-    infoPanel.style.position = "sticky"; // helps if page does scroll a bit
-    infoPanel.style.top = "20px";
     infoPanel.style.background = "var(--color-card)";
-    infoPanel.style.border = "1px solid var(--color-border)";
-    infoPanel.style.borderRadius = "8px";
+    infoPanel.style.borderLeft = "1px solid var(--color-border)";
     infoPanel.style.padding = "20px";
     infoPanel.style.color = "var(--color-text)";
-    infoPanel.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
+    infoPanel.style.boxShadow = "-5px 0 25px rgba(0,0,0,0.5)";
     infoPanel.style.display = "flex";
     infoPanel.style.flexDirection = "column";
     infoPanel.style.gap = "15px";
-    infoPanel.style.transition = "all 0.3s ease";
+    infoPanel.style.transition = "right 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+    infoPanel.style.zIndex = "1000";
 
     const infoTitle = document.createElement("h3");
     infoTitle.style.margin = "0";
@@ -3165,12 +3164,31 @@ window.InteractivePT = (() => {
     infoPanel.appendChild(infoTitle);
     infoPanel.appendChild(infoContent);
 
+    // Add a close button to the drawer
+    const closeBtn = document.createElement("div");
+    closeBtn.innerHTML = "&times;";
+    closeBtn.style.position = "absolute";
+    closeBtn.style.top = "15px";
+    closeBtn.style.right = "20px";
+    closeBtn.style.fontSize = "28px";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.color = "var(--color-text-muted)";
+    closeBtn.onclick = (e) => {
+        e.stopPropagation();
+        selectedType = null;
+        selectedVal = null;
+        selectedElementZ = null;
+        renderHighlights();
+    };
+    infoPanel.appendChild(closeBtn);
+
     const updateInfoPanel = () => {
         if (!selectedType && !selectedElementZ) {
-            infoTitle.textContent = "Interactive Periodic Table";
-            infoContent.innerHTML = "<p>Tap on any Period or Group button to view its properties and boundary elements.</p><p>Tap on an individual element to view its exact electronic configuration.</p>";
+            infoPanel.style.right = "-480px"; // Hide drawer
             return;
         }
+        
+        infoPanel.style.right = "0"; // Show drawer
 
         let html = "";
         
@@ -3289,7 +3307,7 @@ window.InteractivePT = (() => {
     };
 
     document.addEventListener('click', (e) => {
-        if (!wrapper.contains(e.target)) {
+        if (!infoPanel.contains(e.target)) {
             selectedType = null;
             selectedVal = null;
             selectedElementZ = null;
