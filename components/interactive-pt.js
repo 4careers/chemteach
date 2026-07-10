@@ -132,8 +132,8 @@ window.InteractivePT = (() => {
   const BLOCK_COLORS = {
     's': '#00B4CC', 
     'p': '#FFD740',
-    'd': '#00E5FF', 
-    'f': '#1A6B8A'
+    'd': '#FF5252', 
+    'f': '#E040FB'
   };
 
   function build(container, config) {
