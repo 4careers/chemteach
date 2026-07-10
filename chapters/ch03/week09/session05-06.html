@@ -4,17 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <title>Ch03 W09 S05-06 | ChemTeach</title>
-<link rel="stylesheet" href="../../../assets/design-tokens.css?v=14">
-<link rel="stylesheet" href="../../../assets/session.css?v=14">
-<script src="../../../assets/theme.js?v=14"></script>
-<link rel="stylesheet" href="../../../assets/mcq-overlay.css?v=14">
+<link rel="stylesheet" href="../../../assets/design-tokens.css?v=15">
+<link rel="stylesheet" href="../../../assets/session.css?v=15">
+<script src="../../../assets/theme.js?v=15"></script>
+<link rel="stylesheet" href="../../../assets/mcq-overlay.css?v=15">
+<style>
+  .teaching-content {
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .teaching-content h2 { color: #00d4ff; margin-bottom: 20px; text-align: center; font-size: 28px; }
+  .teaching-content h3 { color: #ffd60a; margin-top: 20px; }
+  .teaching-content ul { padding-left: 20px; margin-bottom: 20px; }
+  .teaching-content li { margin-bottom: 10px; }
+  .teaching-content p { margin-bottom: 15px; }
+  .highlight { color: #00ffaa; font-weight: bold; }
+</style>
 </head>
 <body>
 
 <div class="slide-header">
   <div>
     <div class="crumb">Chapter 03 | Week 9 | Session 5-6</div>
-    <div class="session-title">Chemical Bonding and Molecular Structure</div>
+    <div class="session-title">Classification of Elements and Periodicity</div>
   </div>
   <div class="top-controls">
     <button class="theme-toggle-btn" onclick="ChemTheme.toggle()">☀️ Light Mode</button>
@@ -24,81 +43,165 @@
   </div>
 </div>
 
+<!-- Slide 1: Title -->
 <div class="slide active" data-type="static">
   <div class="title-card">
     <div class="meta">Chapter 3 | Week 9 | Session 5-6 | July 17-18, 2026</div>
-    <h1>KOSSEL-LEWIS APPROACH, OCTET RULE & COVALENT BOND</h1>
-    <div class="topics">Topics covered today:<br>4.1 Kossel-Lewis Approach, Octet Rule, Covalent Bond</div>
+    <h1>NCERT 3.7 & 4.1: Periodic Trends & Bonding</h1>
+    <div class="topics">Topics covered today:<br>3.7 Periodic Trends (Ionic Radius, Ionization & Electron Gain Enthalpy, Electronegativity)<br>4.1 Kossel-Lewis Approach & Octet Rule</div>
   </div>
 </div>
 
-<div class="slide" data-type="known-unknown" data-config='{"known": {"label": "YOU ALREADY KNOW THIS", "text": "Noble gases (He, Ne, Ar...) are famously unreactive \u2014 they almost never form compounds."}, "bridge": {"label": "BUT HERE IS THE QUESTION", "text": "Why are noble gases so stable while almost every other element eagerly reacts and bonds? What is special about their electron arrangement?"}, "unknown": {"label": "TODAY&#39;S ANSWER", "text": "Noble gases have a complete outer shell of 8 electrons (an octet) \u2014 the most stable arrangement possible. Every other atom bonds specifically to ACHIEVE this same stable octet, by sharing or transferring electrons."}}'>
-  <div class="component-container"></div>
-  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":7},{"category":"MCQs Corner","qNum":40},{"category":"MCQs Corner","qNum":43},{"category":"MCQs Corner","qNum":44},{"category":"MCQs Corner","qNum":47},{"category":"MCQs Corner","qNum":48},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":85},{"category":"MCQs Corner","qNum":99},{"category":"MCQs Corner","qNum":130},{"category":"MCQs Corner","qNum":137},{"category":"MCQs Corner","qNum":150}])'>MCQs 📝</button></div>
-</div>
-
-<div class="slide" data-type="story" data-config='{"setting": "Germany & USA, 1916 (independently)", "narrative": "Walther Kossel and Gilbert Lewis, working independently and unaware of each other, both proposed the same revolutionary idea: atoms bond because they are &#39;chasing&#39; the stable electron arrangement of noble gases. Kossel focused on atoms that achieve this by completely losing or gaining electrons (forming ions). Lewis focused on atoms that achieve this by SHARING electron pairs \u2014 and invented the simple dot diagrams chemists still use today.", "reveal": "Two scientists, continents apart, arrived at the same truth: bonding is really atoms competing to copy the stability of noble gases.", "visual": "classroom-1800s"}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="visual-explain" data-config='{"diagram": "bond-polarity-spectrum", "revealSteps": true, "caption": "Click REVEAL to build: octet rule \u2192 ionic bond (Kossel, electron transfer) \u2192 covalent bond (Lewis, electron sharing) \u2192 Lewis dot structures."}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="riddle" data-config='{"question": "A chlorine atom (7 valence electrons) and another chlorine atom (also 7 valence electrons) bond to form Cl2. Neither atom can fully give away or take electrons completely, since they are identical. How do they BOTH achieve a stable octet?", "hint": "If neither can take electrons fully, what&#39;s the alternative way to &#39;complete&#39; an octet?", "answer": "They SHARE a pair of electrons \u2014 a COVALENT BOND", "explanation": "By sharing one electron pair between them, each chlorine atom can &#39;count&#39; that shared pair toward its own octet \u2014 both atoms effectively see 8 electrons around themselves without either having to fully lose or gain anything. This is the essence of covalent bonding."}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="mnemonic" data-config='{"mnemonic": "Eight is Great, Share to Complete", "breakdown": ["Eight is Great \u2192 octet rule: atoms are most stable with 8 electrons in their outer shell (like noble gases)", "Share to Complete \u2192 covalent bond: atoms achieve octet by SHARING electron pairs, not transferring them", "Lewis Structure \u2192 dots represent valence electrons; lines/dot-pairs between atoms represent shared bonding pairs"], "rule": "Covalent bonds form typically between two non-metals, both needing to gain electrons \u2014 sharing solves both their needs simultaneously.", "tip": "Exceptions to the octet rule exist (e.g. H needs only 2, Be needs only 4) \u2014 the rule is a strong guideline, not an absolute law."}'>
-  <div class="component-container"></div>
-</div>
-
-<div class="slide" data-type="gamification" data-config='{"instruction": "Sort each pair of elements to the bond type they would most likely form.", "items": ["Cl + Cl", "H + H", "O + O", "N + N"], "categories": ["Covalent Bond (sharing)"], "answers": {"Cl + Cl": "Covalent Bond (sharing)", "H + H": "Covalent Bond (sharing)", "O + O": "Covalent Bond (sharing)", "N + N": "Covalent Bond (sharing)"}}'>
-  <div class="component-container"></div>
-</div>
-
+<!-- Slide 2: Ionic Radius -->
 <div class="slide" data-type="static">
-  <div class="summary-card">
-    <h1>✓ SESSION COMPLETE</h1>
-    <div style="color: var(--color-text); font-weight: 700; margin-bottom: 10px;">KEY CONCEPTS FROM TODAY:</div>
-    <ul><li>Octet rule: atoms tend toward 8 electrons in their outermost shell, mimicking noble gas stability</li><li>Kossel's approach: ionic bonding via electron transfer</li><li>Lewis's approach: covalent bonding via electron SHARING</li><li>Lewis dot structures represent valence electrons and shared bonding pairs</li></ul>
-    
+  <div class="teaching-content">
+    <h2>3.7.1(b) Ionic Radius</h2>
+    <p>The removal or addition of an electron to an atom changes its size.</p>
+    <ul>
+      <li><strong>Cation (Positive Ion):</strong> Formed by losing an electron. A cation is always <span class="highlight">smaller</span> than its parent atom because it has fewer electrons but the same number of protons (increasing effective nuclear charge per electron).</li>
+      <li><strong>Anion (Negative Ion):</strong> Formed by gaining an electron. An anion is always <span class="highlight">larger</span> than its parent atom because the added electron increases electron-electron repulsion, causing the cloud to expand.</li>
+    </ul>
+    <h3>Isoelectronic Species</h3>
+    <p>Species with the same number of electrons (e.g., $O^{2-}$, $F^-$, $Na^+$, $Mg^{2+}$ all have 10 electrons). Among isoelectronic species, the one with the higher nuclear charge (more protons) has a <span class="highlight">smaller</span> radius.</p>
   </div>
 </div>
 
+<!-- Slide 3: Ionization Enthalpy -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>3.7.1(c) Ionization Enthalpy ($\Delta_i H$)</h2>
+    <p>The minimum energy required to remove the most loosely bound electron from an isolated gaseous atom.</p>
+    <p>It is always a positive value (endothermic) because energy must be supplied to overcome the nucleus's attraction.</p>
+    <ul>
+      <li><strong>Successive Ionization:</strong> The second ionization enthalpy ($\Delta_i H_2$) is always higher than the first because it's harder to remove an electron from an already positive ion.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Slide 4: Trends in Ionization Enthalpy -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Trends in Ionization Enthalpy</h2>
+    <h3>Across a Period</h3>
+    <p>Generally <span class="highlight">increases</span> from left to right. Why? The effective nuclear charge increases and the atomic radius decreases, making it harder to remove an electron.</p>
+    <p><em>Anomaly:</em> Be ($1s^2 2s^2$) > B ($1s^2 2s^2 2p^1$). The fully filled 2s orbital is more stable than the partially filled 2p orbital.</p>
+    
+    <h3>Down a Group</h3>
+    <p>Generally <span class="highlight">decreases</span> from top to bottom. Why? The outermost electron is further from the nucleus and heavily shielded by inner electrons, making it easier to remove.</p>
+  
+  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":39},{"category":"MCQs Corner","qNum":104},{"category":"MCQs Corner","qNum":106},{"category":"MCQs Corner","qNum":132},{"category":"MCQs Corner","qNum":134}])'>MCQs 📝</button></div></div>
+</div>
+
+<!-- Slide 5: Electron Gain Enthalpy -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>3.7.1(d) Electron Gain Enthalpy ($\Delta_{eg} H$)</h2>
+    <p>The enthalpy change when an electron is added to an isolated gaseous atom to form a negative ion.</p>
+    <p>Unlike ionization enthalpy, this can be <strong>exothermic (negative)</strong> or <strong>endothermic (positive)</strong>.</p>
+    <ul>
+      <li><strong>Halogens (Group 17):</strong> Have highly negative $\Delta_{eg} H$ because gaining one electron gives them a stable noble gas configuration.</li>
+      <li><strong>Noble Gases (Group 18):</strong> Have highly positive $\Delta_{eg} H$ because the added electron would have to enter a higher principal quantum level, making the process highly unfavorable.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Slide 6: Trends in Electron Gain Enthalpy -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Trends in Electron Gain Enthalpy</h2>
+    <p><strong>Across a period:</strong> Becomes more negative (more exothermic) as effective nuclear charge increases.</p>
+    <p><strong>Down a group:</strong> Becomes less negative.</p>
+    <p><em>Important Anomaly:</em> The electron gain enthalpy of O or F is <span class="highlight">less negative</span> than that of the succeeding element (S or Cl). Why? Because O and F are very small atoms. Adding an electron to their compact 2p orbitals causes significant electron-electron repulsion.</p>
+  
+  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":41},{"category":"MCQs Corner","qNum":63},{"category":"MCQs Corner","qNum":65},{"category":"MCQs Corner","qNum":66},{"category":"MCQs Corner","qNum":67},{"category":"MCQs Corner","qNum":68},{"category":"MCQs Corner","qNum":69},{"category":"MCQs Corner","qNum":70},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":74},{"category":"MCQs Corner","qNum":75},{"category":"MCQs Corner","qNum":91},{"category":"MCQs Corner","qNum":93},{"category":"MCQs Corner","qNum":100},{"category":"MCQs Corner","qNum":107},{"category":"MCQs Corner","qNum":123},{"category":"MCQs Corner","qNum":135},{"category":"MCQs Corner","qNum":143},{"category":"MCQs Corner","qNum":144},{"category":"MCQs Corner","qNum":145},{"category":"MCQs Corner","qNum":146},{"category":"MCQs Corner","qNum":147},{"category":"MCQs Corner","qNum":148},{"category":"MCQs Corner","qNum":149},{"category":"MCQs Corner","qNum":150},{"category":"MCQs Corner","qNum":151}])'>MCQs 📝</button></div></div>
+</div>
+
+<!-- Slide 7: Electronegativity -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>3.7.1(e) Electronegativity</h2>
+    <p>A qualitative measure of the ability of an atom in a chemical compound to attract shared electrons to itself.</p>
+    <p>Unlike ionization enthalpy (which is absolute), electronegativity is a relative scale. The most common scale is the Pauling scale, where Fluorine is assigned the highest value (4.0).</p>
+    <ul>
+      <li><strong>Across a period:</strong> Increases (due to increasing effective nuclear charge and smaller size).</li>
+      <li><strong>Down a group:</strong> Decreases (due to larger atomic size).</li>
+    </ul>
+  
+  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":39},{"category":"MCQs Corner","qNum":69},{"category":"MCQs Corner","qNum":71},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":74},{"category":"MCQs Corner","qNum":89},{"category":"MCQs Corner","qNum":93},{"category":"MCQs Corner","qNum":137},{"category":"MCQs Corner","qNum":147},{"category":"MCQs Corner","qNum":148},{"category":"MCQs Corner","qNum":149},{"category":"MCQs Corner","qNum":150},{"category":"MCQs Corner","qNum":151},{"category":"MCQs Corner","qNum":152},{"category":"MCQs Corner","qNum":157}])'>MCQs 📝</button></div></div>
+</div>
+
+<!-- Slide 8: Chapter 4 Introduction -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>4.1 Kossel-Lewis Approach to Chemical Bonding</h2>
+    <p>We've now completed Chapter 3! We know atoms have varying radii, ionization enthalpies, and electronegativities. How does this dictate the way they combine to form molecules?</p>
+    <p>In 1916, Kossel and Lewis independently proposed a logical explanation for chemical bonding based on the inertness of noble gases.</p>
+    <p>They realized that noble gases are highly stable because they have a completely filled outer shell of 8 electrons (an octet).</p>
+  </div>
+</div>
+
+<!-- Slide 9: Octet Rule -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>The Octet Rule</h2>
+    <p>Lewis postulated that atoms achieve the stable octet when they are linked by chemical bonds.</p>
+    <p><strong>The Octet Rule:</strong> Atoms can combine either by transfer of valence electrons from one atom to another (gaining or losing) or by sharing of valence electrons in order to have an octet in their valence shells.</p>
+    <ul>
+      <li><strong>Kossel's approach:</strong> Explained the formation of <em>ionic bonds</em> via electron transfer (e.g., $Na$ loses 1, $Cl$ gains 1).</li>
+      <li><strong>Lewis's approach:</strong> Explained the formation of <em>covalent bonds</em> via electron sharing (e.g., $Cl$ shares 1 pair with another $Cl$).</li>
+    </ul>
+  
+  <div style="margin-top:20px;text-align:center;"><button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":7},{"category":"MCQs Corner","qNum":40},{"category":"MCQs Corner","qNum":43},{"category":"MCQs Corner","qNum":44},{"category":"MCQs Corner","qNum":47},{"category":"MCQs Corner","qNum":48},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":85},{"category":"MCQs Corner","qNum":99},{"category":"MCQs Corner","qNum":130},{"category":"MCQs Corner","qNum":137},{"category":"MCQs Corner","qNum":150}])'>MCQs 📝</button></div></div>
+</div>
+
+<!-- Slide 10: Lewis Dot Structures -->
+<div class="slide" data-type="static">
+  <div class="teaching-content">
+    <h2>Lewis Dot Structures</h2>
+    <p>Lewis introduced a simple notation to represent valence electrons in an atom, using dots around the atomic symbol.</p>
+    <ul>
+      <li>$Li \cdot$</li>
+      <li>$\cdot Be \cdot$</li>
+      <li>$\cdot \dot{C} \cdot$</li>
+      <li>$:\ddot{N}\cdot$</li>
+    </ul>
+    <p>These symbols instantly show the number of valence electrons, which helps calculate the common or group valence of the element (either the number of dots, or 8 minus the number of dots).</p>
+  </div>
+</div>
+
+<!-- Slide 11: Summary -->
+<div class="slide" data-type="static">
+  <div class="title-card" style="text-align: left; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 900px; margin: 0 auto;">
+    <h1 style="text-align: center; color: #00d4ff; margin-bottom: 30px;">Session Summary</h1>
+    <ul style="font-size: 22px; line-height: 1.8; color: #ddd; list-style-type: none; padding-left: 0;">
+      <li style="margin-bottom: 15px;">🔹 <strong>Periodic Trends:</strong> Ionization enthalpy and electronegativity increase across a period and decrease down a group. Atomic radius does the opposite.</li>
+      <li style="margin-bottom: 15px;">🔹 <strong>Anomalies:</strong> Small atoms (Be, N, O, F) often break smooth trends due to orbital stability or electron-electron repulsion.</li>
+      <li style="margin-bottom: 15px;">🔹 <strong>Bonding (Chapter 4):</strong> Atoms bond to achieve a stable octet, mimicking noble gases, either by transferring electrons (Ionic) or sharing them (Covalent).</li>
+    </ul>
+    <h2 style="text-align: center; color: #00ffaa; margin-top: 40px; font-style: italic;">Great job completing the session!</h2>
+  </div>
+</div>
 
 <div class="slide" data-type="static">
   <div class="title-card" style="text-align: left; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
     <h1 style="text-align: center; color: #FFD166; margin-bottom: 20px;">Chapter 3 Questions Bank</h1>
-    <p style="font-size: 22px; color: #ddd; text-align: center; margin-bottom: 40px;">Practice all 168 questions from the Question Bank.</p>
+    <p style="font-size: 22px; color: #ddd; text-align: center; margin-bottom: 40px;">Practice all questions from the Question Bank.</p>
     <a href="../mcqs.html?week=9&session=session05-06" style="display: inline-block; padding: 15px 30px; background: #118AB2; color: white; font-size: 24px; font-weight: bold; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: all 0.2s ease;">Practice All MCQs 📝</a>
   </div>
 </div>
 
 <div class="slide-nav">
   <button id="btn-prev">◀ PREV</button>
-  <span id="slide-counter">Slide 1 of 8</span>
+  <span id="slide-counter">Slide 1 of 12</span>
   <button id="btn-next">NEXT ▶</button>
 </div>
 
-<script src="../../../progress.js?v=14"></script>
-<script src="../../../components/story.js?v=14"></script>
-<script src="../../../components/scaffold.js?v=14"></script>
-<script src="../../../components/particle-sim.js?v=14"></script>
-<script src="../../../components/model-3d.js?v=14"></script>
-<script src="../../../components/analogy.js?v=14"></script>
-<script src="../../../components/visual-explain.js?v=14"></script>
-<script src="../../../components/drag-drop.js?v=14"></script>
-<script src="../../../components/riddle.js?v=14"></script>
-<script src="../../../components/mnemonic.js?v=14"></script>
-<script src="../../../components/comic-strip.js?v=14"></script>
-<script src="../../../components/animation.js?v=14"></script>
-
-<script src="../mcq-data.js?v=14"></script>
-<script src="../../../assets/mcq-fx.js?v=14"></script>
-<script src="../../../assets/mcq-overlay.js?v=14"></script>
+<script src="../../../progress.js?v=15"></script>
+<script src="../mcq-data.js?v=15"></script>
+<script src="../../../assets/mcq-fx.js?v=15"></script>
+<script src="../../../assets/mcq-overlay.js?v=15"></script>
 <script>
-const SESSION_ID = 'ch04_w09_s05-06';
+const SESSION_ID = 'ch03_w09_s05-06';
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 
@@ -115,24 +218,9 @@ function goToSlide(n) {
 
 function initCurrentSlide() {
   const slide = slides[currentSlide];
-  const type = slide.dataset.type;
   const container = slide.querySelector('.component-container');
   if (!container || container.dataset.init === 'true') return;
   container.dataset.init = 'true';
-  const config = JSON.parse(slide.dataset.config || '{}');
-  switch (type) {
-    case 'story': Story.init(container, config); break;
-    case 'known-unknown': Scaffold.init(container, config); break;
-    case 'experiment-sim': ParticleSim.init(container, config); break;
-    case 'model-3d': Model3D.init(container, config); break;
-    case 'analogy': Analogy.init(container, config); break;
-    case 'visual-explain': VisualExplain.init(container, config); break;
-    case 'gamification': DragDrop.init(container, config); break;
-    case 'riddle': Riddle.init(container, config); break;
-    case 'mnemonic': Mnemonic.init(container, config); break;
-    case 'comic-strip': ComicStrip.init(container, config); break;
-    case 'animation': ChemAnimation.init(container, config); break;
-  }
 }
 
 document.addEventListener('keydown', e => {
@@ -153,7 +241,7 @@ document.getElementById('btn-complete').onclick = () => {
 };
 document.getElementById('btn-fullscreen').onclick = () => document.documentElement.requestFullscreen?.();
 
-ChemProgress.setLastOpened(4, 9, '05-06');
+ChemProgress.setLastOpened(3, 9, '05-06');
 const savedSlide = ChemProgress.getLastSlide(SESSION_ID);
 goToSlide(savedSlide - 1);
 if (ChemProgress.isComplete(SESSION_ID)) {
