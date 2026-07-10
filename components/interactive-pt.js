@@ -3104,22 +3104,22 @@ window.InteractivePT = (() => {
 
     const ptGrid = document.createElement("div");
     ptGrid.style.display = "grid";
-    ptGrid.style.gridTemplateColumns = "30px 50px 50px 20px 30px repeat(10, 50px) 20px 30px repeat(6, 50px)";
-    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 55px)";
+    ptGrid.style.gridTemplateColumns = "30px 60px 60px 20px 30px repeat(10, 60px) 20px 30px repeat(6, 60px)";
+    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 70px)";
     ptGrid.style.gap = "4px";
     ptGrid.style.position = "relative";
     ptGrid.style.fontFamily = "sans-serif";
 
     const fGrid = document.createElement("div");
     fGrid.style.display = "grid";
-    fGrid.style.gridTemplateColumns = "50px repeat(14, 50px)";
-    fGrid.style.gridTemplateRows = "25px 55px 55px";
+    fGrid.style.gridTemplateColumns = "80px repeat(14, 60px)"; // 80px for the wide labels!
+    fGrid.style.gridTemplateRows = "25px 70px 70px";
     fGrid.style.gap = "4px";
     fGrid.style.position = "relative";
     fGrid.style.fontFamily = "sans-serif";
     fGrid.style.border = "1px solid rgba(255, 255, 255, 0.3)";
     fGrid.style.padding = "4px";
-    fGrid.style.marginLeft = "200px"; 
+    fGrid.style.marginLeft = "190px"; 
     fGrid.style.alignSelf = "flex-start";
 
     // Draw Background Boxes for Blocks (Main Grid)
@@ -3141,27 +3141,49 @@ window.InteractivePT = (() => {
     let selectedVal = null;
     let selectedElementZ = null;
 
-    const getEl = (z) => ELEMENTS.find(e => e.z === z);
+    const modalBackdrop = document.createElement("div");
+    modalBackdrop.style.position = "fixed";
+    modalBackdrop.style.top = "0";
+    modalBackdrop.style.left = "0";
+    modalBackdrop.style.width = "100vw";
+    modalBackdrop.style.height = "100vh";
+    modalBackdrop.style.background = "rgba(0,0,0,0.6)";
+    modalBackdrop.style.backdropFilter = "blur(5px)";
+    modalBackdrop.style.zIndex = "1999";
+    modalBackdrop.style.opacity = "0";
+    modalBackdrop.style.pointerEvents = "none";
+    modalBackdrop.style.transition = "opacity 0.3s ease";
+    
+    modalBackdrop.onclick = () => {
+        selectedType = null;
+        selectedVal = null;
+        selectedElementZ = null;
+        renderHighlights();
+    };
 
     const infoPanel = document.createElement("div");
-    infoPanel.style.flex = "1";
-    infoPanel.style.minWidth = "300px";
-    infoPanel.style.maxWidth = "480px";
+    infoPanel.style.position = "fixed";
+    infoPanel.style.top = "50%";
+    infoPanel.style.left = "50%";
+    infoPanel.style.transform = "translate(-50%, -50%) scale(0.9)";
+    infoPanel.style.width = "550px";
+    infoPanel.style.maxWidth = "90vw";
     infoPanel.style.maxHeight = "85vh"; 
     infoPanel.style.overflowY = "auto";
-    infoPanel.style.position = "sticky";
-    infoPanel.style.top = "20px";
-    infoPanel.style.background = "rgba(15, 23, 42, 0.75)";
+    infoPanel.style.background = "rgba(15, 23, 42, 0.85)";
     infoPanel.style.backdropFilter = "blur(24px)";
     infoPanel.style.border = "1px solid rgba(255, 255, 255, 0.15)";
-    infoPanel.style.borderRadius = "8px";
-    infoPanel.style.padding = "25px";
+    infoPanel.style.borderRadius = "12px";
+    infoPanel.style.padding = "35px";
     infoPanel.style.color = "var(--color-text)";
-    infoPanel.style.boxShadow = "0 4px 20px rgba(0,0,0,0.3)";
+    infoPanel.style.boxShadow = "0 20px 50px rgba(0,0,0,0.5)";
     infoPanel.style.display = "flex";
     infoPanel.style.flexDirection = "column";
     infoPanel.style.gap = "15px";
-    infoPanel.style.transition = "all 0.3s ease";
+    infoPanel.style.opacity = "0";
+    infoPanel.style.pointerEvents = "none";
+    infoPanel.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+    infoPanel.style.zIndex = "2000";
 
     const infoTitle = document.createElement("h3");
     infoTitle.style.margin = "0";
@@ -3181,12 +3203,39 @@ window.InteractivePT = (() => {
     infoPanel.appendChild(infoTitle);
     infoPanel.appendChild(infoContent);
 
+    // Add a close button to the modal
+    const closeBtn = document.createElement("div");
+    closeBtn.innerHTML = "&times;";
+    closeBtn.style.position = "absolute";
+    closeBtn.style.top = "15px";
+    closeBtn.style.right = "20px";
+    closeBtn.style.fontSize = "32px";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.color = "var(--color-text-muted)";
+    closeBtn.onclick = (e) => {
+        e.stopPropagation();
+        selectedType = null;
+        selectedVal = null;
+        selectedElementZ = null;
+        renderHighlights();
+    };
+    infoPanel.appendChild(closeBtn);
+
     const updateInfoPanel = () => {
         if (!selectedType && !selectedElementZ) {
-            infoTitle.textContent = "Interactive Periodic Table";
-            infoContent.innerHTML = "<p>Tap on any Period or Group button to view its properties and boundary elements.</p><p>Tap on an individual element to view its exact electronic configuration.</p>";
+            modalBackdrop.style.opacity = "0";
+            modalBackdrop.style.pointerEvents = "none";
+            infoPanel.style.opacity = "0";
+            infoPanel.style.pointerEvents = "none";
+            infoPanel.style.transform = "translate(-50%, -50%) scale(0.9)";
             return;
         }
+        
+        modalBackdrop.style.opacity = "1";
+        modalBackdrop.style.pointerEvents = "auto";
+        infoPanel.style.opacity = "1";
+        infoPanel.style.pointerEvents = "auto";
+        infoPanel.style.transform = "translate(-50%, -50%) scale(1)";
 
         let html = "";
         
@@ -3303,15 +3352,6 @@ window.InteractivePT = (() => {
         });
         updateInfoPanel();
     };
-
-    document.addEventListener('click', (e) => {
-        if (!infoPanel.contains(e.target)) {
-            selectedType = null;
-            selectedVal = null;
-            selectedElementZ = null;
-            renderHighlights();
-        }
-    });
 
     const addLabel = (text, row, col, spanC = 1, spanR = 1, isTitle = false, targetGrid = ptGrid) => {
         const lbl = document.createElement('div');
@@ -3435,29 +3475,29 @@ window.InteractivePT = (() => {
       // Z (Top Left)
       const zEl = document.createElement('div');
       zEl.textContent = el.z;
-      zEl.style.fontSize = '9px';
+      zEl.style.fontSize = '11px';
       zEl.style.fontWeight = 'bold';
       zEl.style.position = 'absolute';
-      zEl.style.top = '2px';
-      zEl.style.left = '3px';
+      zEl.style.top = '3px';
+      zEl.style.left = '4px';
       zEl.style.opacity = '0.8';
       cell.appendChild(zEl);
 
       // Symbol (Center)
       const symEl = document.createElement('div');
       symEl.textContent = el.sym;
-      symEl.style.fontSize = '22px';
+      symEl.style.fontSize = '26px';
       symEl.style.fontWeight = '900';
-      symEl.style.marginTop = '2px';
+      symEl.style.marginTop = '4px';
       symEl.style.textShadow = '1px 1px 0px rgba(255,255,255,0.5)';
       cell.appendChild(symEl);
 
       // Mass (Bottom)
       const massEl = document.createElement('div');
       massEl.textContent = ECONFS[el.z].mass;
-      massEl.style.fontSize = '9px';
+      massEl.style.fontSize = '11px';
       massEl.style.marginTop = 'auto';
-      massEl.style.marginBottom = '2px';
+      massEl.style.marginBottom = '3px';
       massEl.style.opacity = '0.9';
       cell.appendChild(massEl);
 
@@ -3486,7 +3526,10 @@ window.InteractivePT = (() => {
     ptContainer.appendChild(ptGrid);
     ptContainer.appendChild(fGrid);
     wrapper.appendChild(ptContainer);
-    wrapper.appendChild(infoPanel);
+    
+    // Add modal backdrop and info panel globally to the body or container
+    container.appendChild(modalBackdrop);
+    container.appendChild(infoPanel);
     
     const style = document.createElement('style');
     style.textContent = `
