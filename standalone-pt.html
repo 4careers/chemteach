@@ -6,6 +6,7 @@
 <title>Interactive Periodic Table | ChemTeach</title>
 <link rel="stylesheet" href="assets/design-tokens.css?v=15">
 <link rel="stylesheet" href="assets/session.css?v=15">
+<link rel="stylesheet" href="assets/mcq-overlay.css?v=15">
 <script src="assets/theme.js?v=15"></script>
 <style>
   body {
@@ -27,6 +28,7 @@
   .header-actions {
       display: flex;
       gap: 15px;
+      align-items: center;
   }
   .theme-toggle-btn {
       background: rgba(255,255,255,0.1);
@@ -57,6 +59,7 @@
   <div class="logo" style="font-size: 1.5rem; font-weight: bold; color: var(--color-primary);">ChemTeach</div>
   <div style="font-size: 1.2rem; font-weight: 500; color: var(--color-text);">Interactive Periodic Table</div>
   <div class="header-actions">
+    <button class="mcq-slide-btn" onclick='MCQOverlay.open([{"category":"MCQs Corner","qNum":6},{"category":"MCQs Corner","qNum":11},{"category":"MCQs Corner","qNum":14},{"category":"MCQs Corner","qNum":15},{"category":"MCQs Corner","qNum":16},{"category":"MCQs Corner","qNum":17},{"category":"MCQs Corner","qNum":18},{"category":"MCQs Corner","qNum":20},{"category":"MCQs Corner","qNum":21},{"category":"MCQs Corner","qNum":23},{"category":"MCQs Corner","qNum":27},{"category":"MCQs Corner","qNum":28},{"category":"MCQs Corner","qNum":29},{"category":"MCQs Corner","qNum":30},{"category":"MCQs Corner","qNum":31},{"category":"MCQs Corner","qNum":32},{"category":"MCQs Corner","qNum":33},{"category":"MCQs Corner","qNum":34},{"category":"MCQs Corner","qNum":35},{"category":"MCQs Corner","qNum":36},{"category":"MCQs Corner","qNum":37},{"category":"MCQs Corner","qNum":43},{"category":"MCQs Corner","qNum":48},{"category":"MCQs Corner","qNum":51},{"category":"MCQs Corner","qNum":57},{"category":"MCQs Corner","qNum":59},{"category":"MCQs Corner","qNum":67},{"category":"MCQs Corner","qNum":70},{"category":"MCQs Corner","qNum":72},{"category":"MCQs Corner","qNum":85}])' style="padding: 8px 15px; font-size: 0.9rem; margin:0;">MCQs 📝</button>
     <button class="theme-toggle-btn" aria-label="Toggle Theme" onclick="ChemTheme.toggle()">🌗 Light Mode</button>
   </div>
 </header>
@@ -64,6 +67,9 @@
 <main class="pt-container" id="pt-root"></main>
 
 <script src="components/interactive-pt.js?v=15"></script>
+<script src="chapters/ch03/mcq-data.js?v=15"></script>
+<script src="assets/mcq-fx.js?v=15"></script>
+<script src="assets/mcq-overlay.js?v=15"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     InteractivePT.init(document.getElementById('pt-root'));
