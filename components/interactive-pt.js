@@ -3141,31 +3141,8 @@ window.InteractivePT = (() => {
     let selectedVal = null;
     let selectedElementZ = null;
 
-    const modalBackdrop = document.createElement("div");
-    modalBackdrop.style.position = "fixed";
-    modalBackdrop.style.top = "0";
-    modalBackdrop.style.left = "0";
-    modalBackdrop.style.width = "100vw";
-    modalBackdrop.style.height = "100vh";
-    modalBackdrop.style.background = "rgba(0,0,0,0.6)";
-    modalBackdrop.style.backdropFilter = "blur(5px)";
-    modalBackdrop.style.zIndex = "1999";
-    modalBackdrop.style.opacity = "0";
-    modalBackdrop.style.pointerEvents = "none";
-    modalBackdrop.style.transition = "opacity 0.3s ease";
-    
-    modalBackdrop.onclick = () => {
-        selectedType = null;
-        selectedVal = null;
-        selectedElementZ = null;
-        renderHighlights();
-    };
-
     const infoPanel = document.createElement("div");
     infoPanel.style.position = "fixed";
-    infoPanel.style.top = "50%";
-    infoPanel.style.left = "50%";
-    infoPanel.style.transform = "translate(-50%, -50%) scale(0.9)";
     infoPanel.style.width = "550px";
     infoPanel.style.maxWidth = "90vw";
     infoPanel.style.maxHeight = "85vh"; 
@@ -3182,7 +3159,7 @@ window.InteractivePT = (() => {
     infoPanel.style.gap = "15px";
     infoPanel.style.opacity = "0";
     infoPanel.style.pointerEvents = "none";
-    infoPanel.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+    infoPanel.style.transition = "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
     infoPanel.style.zIndex = "2000";
 
     const infoTitle = document.createElement("h3");
@@ -3217,25 +3194,47 @@ window.InteractivePT = (() => {
         selectedType = null;
         selectedVal = null;
         selectedElementZ = null;
-        renderHighlights();
+        renderHighlights(e);
     };
     infoPanel.appendChild(closeBtn);
 
-    const updateInfoPanel = () => {
+    const updateInfoPanel = (e) => {
         if (!selectedType && !selectedElementZ) {
-            modalBackdrop.style.opacity = "0";
-            modalBackdrop.style.pointerEvents = "none";
             infoPanel.style.opacity = "0";
             infoPanel.style.pointerEvents = "none";
-            infoPanel.style.transform = "translate(-50%, -50%) scale(0.9)";
             return;
         }
         
-        modalBackdrop.style.opacity = "1";
-        modalBackdrop.style.pointerEvents = "auto";
+        if (e && e.clientX && e.clientY) {
+            const clickX = e.clientX;
+            const clickY = e.clientY;
+            const screenW = window.innerWidth;
+            const screenH = window.innerHeight;
+            
+            if (clickX > screenW / 2) {
+                infoPanel.style.left = "40px";
+                infoPanel.style.right = "auto";
+            } else {
+                infoPanel.style.right = "40px";
+                infoPanel.style.left = "auto";
+            }
+            
+            if (clickY > screenH / 2) {
+                infoPanel.style.top = "40px";
+                infoPanel.style.bottom = "auto";
+            } else {
+                infoPanel.style.bottom = "40px";
+                infoPanel.style.top = "auto";
+            }
+        } else if (infoPanel.style.opacity === "0") {
+             infoPanel.style.left = "40px";
+             infoPanel.style.top = "40px";
+             infoPanel.style.right = "auto";
+             infoPanel.style.bottom = "auto";
+        }
+        
         infoPanel.style.opacity = "1";
         infoPanel.style.pointerEvents = "auto";
-        infoPanel.style.transform = "translate(-50%, -50%) scale(1)";
 
         let html = "";
         
@@ -3302,7 +3301,7 @@ window.InteractivePT = (() => {
         infoContent.innerHTML = html;
     };
 
-    const renderHighlights = () => {
+    const renderHighlights = (e) => {
         cells.forEach(c => {
             let shouldHighlightGroupPeriod = false;
             if (selectedType === 'group' && parseInt(c.dataset.group) === selectedVal) shouldHighlightGroupPeriod = true;
@@ -3350,7 +3349,7 @@ window.InteractivePT = (() => {
                 c.style.borderWidth = '1px';
             }
         });
-        updateInfoPanel();
+        updateInfoPanel(e);
     };
 
     const addLabel = (text, row, col, spanC = 1, spanR = 1, isTitle = false, targetGrid = ptGrid) => {
@@ -3399,7 +3398,7 @@ window.InteractivePT = (() => {
                 selectedVal = val;
             }
             selectedElementZ = null;
-            renderHighlights();
+            renderHighlights(e);
         };
         targetGrid.appendChild(lbl);
     };
@@ -3516,7 +3515,7 @@ window.InteractivePT = (() => {
           }
           if (selectedElementZ === el.z) selectedElementZ = null;
           else selectedElementZ = el.z;
-          renderHighlights();
+          renderHighlights(e);
       };
 
       cells.push(cell);
@@ -3527,8 +3526,7 @@ window.InteractivePT = (() => {
     ptContainer.appendChild(fGrid);
     wrapper.appendChild(ptContainer);
     
-    // Add modal backdrop and info panel globally to the body or container
-    container.appendChild(modalBackdrop);
+    // Add info panel globally to the body or container
     container.appendChild(infoPanel);
     
     const style = document.createElement('style');
