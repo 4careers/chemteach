@@ -3180,6 +3180,65 @@ window.InteractivePT = (() => {
     infoPanel.appendChild(infoTitle);
     infoPanel.appendChild(infoContent);
 
+    // Make infoPanel draggable
+    let isDragging = false, startX, startY, initialLeft, initialTop;
+    infoTitle.style.cursor = 'grab';
+    
+    const startDrag = (x, y) => {
+        isDragging = true;
+        infoTitle.style.cursor = 'grabbing';
+        startX = x;
+        startY = y;
+        const rect = infoPanel.getBoundingClientRect();
+        initialLeft = rect.left;
+        initialTop = rect.top;
+        infoPanel.style.left = `${initialLeft}px`;
+        infoPanel.style.top = `${initialTop}px`;
+        infoPanel.style.right = 'auto';
+        infoPanel.style.bottom = 'auto';
+        infoPanel.style.margin = '0';
+    };
+
+    infoTitle.addEventListener('mousedown', (e) => {
+        startDrag(e.clientX, e.clientY);
+        e.preventDefault();
+    });
+    infoTitle.addEventListener('touchstart', (e) => {
+        startDrag(e.touches[0].clientX, e.touches[0].clientY);
+    }, {passive: true});
+
+    const doDrag = (x, y) => {
+        if (!isDragging) return;
+        const dx = x - startX;
+        const dy = y - startY;
+        infoPanel.style.left = `${initialLeft + dx}px`;
+        infoPanel.style.top = `${initialTop + dy}px`;
+    };
+
+    document.addEventListener('mousemove', (e) => {
+        doDrag(e.clientX, e.clientY);
+    });
+    document.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) doDrag(e.touches[0].clientX, e.touches[0].clientY);
+    }, {passive: true});
+
+    const endDrag = () => {
+        isDragging = false;
+        infoTitle.style.cursor = 'grab';
+    };
+
+    document.addEventListener('mouseup', endDrag);
+    document.addEventListener('touchend', endDrag);
+
+    document.addEventListener('click', (e) => {
+        if (!infoPanel.contains(e.target) && !e.target.closest('.pt-cell') && !e.target.closest('.pt-label')) {
+            selectedType = null;
+            selectedVal = null;
+            selectedElementZ = null;
+            renderHighlights();
+        }
+    });
+
     // Add a close button to the modal
     const closeBtn = document.createElement("div");
     closeBtn.innerHTML = "&times;";
@@ -3205,32 +3264,36 @@ window.InteractivePT = (() => {
             return;
         }
         
-        if (e && e.clientX && e.clientY) {
-            const clickX = e.clientX;
-            const clickY = e.clientY;
-            const screenW = window.innerWidth;
-            const screenH = window.innerHeight;
+        if (infoPanel.style.opacity === "0") {
+            let clickX = 0, clickY = 0, hasPos = false;
+            if (e && e.clientX) { clickX = e.clientX; clickY = e.clientY; hasPos = true; }
+            else if (e && e.touches && e.touches.length > 0) { clickX = e.touches[0].clientX; clickY = e.touches[0].clientY; hasPos = true; }
             
-            if (clickX > screenW / 2) {
-                infoPanel.style.left = "40px";
-                infoPanel.style.right = "auto";
+            if (hasPos) {
+                const screenW = window.innerWidth;
+                const screenH = window.innerHeight;
+                
+                if (clickX > screenW / 2) {
+                    infoPanel.style.left = "40px";
+                    infoPanel.style.right = "auto";
+                } else {
+                    infoPanel.style.right = "40px";
+                    infoPanel.style.left = "auto";
+                }
+                
+                if (clickY > screenH / 2) {
+                    infoPanel.style.top = "40px";
+                    infoPanel.style.bottom = "auto";
+                } else {
+                    infoPanel.style.bottom = "40px";
+                    infoPanel.style.top = "auto";
+                }
             } else {
-                infoPanel.style.right = "40px";
-                infoPanel.style.left = "auto";
+                 infoPanel.style.left = "40px";
+                 infoPanel.style.top = "40px";
+                 infoPanel.style.right = "auto";
+                 infoPanel.style.bottom = "auto";
             }
-            
-            if (clickY > screenH / 2) {
-                infoPanel.style.top = "40px";
-                infoPanel.style.bottom = "auto";
-            } else {
-                infoPanel.style.bottom = "40px";
-                infoPanel.style.top = "auto";
-            }
-        } else if (infoPanel.style.opacity === "0") {
-             infoPanel.style.left = "40px";
-             infoPanel.style.top = "40px";
-             infoPanel.style.right = "auto";
-             infoPanel.style.bottom = "auto";
         }
         
         infoPanel.style.opacity = "1";
@@ -3387,6 +3450,7 @@ window.InteractivePT = (() => {
             lbl.style.textAlign = 'center';
             lbl.style.lineHeight = '1.2';
         }
+        lbl.classList.add('pt-label');
         
         lbl.onclick = (e) => {
             e.stopPropagation();
@@ -3466,6 +3530,7 @@ window.InteractivePT = (() => {
       cell.style.userSelect = 'none';
       cell.style.position = 'relative';
       cell.style.borderRadius = '4px';
+      cell.classList.add('pt-cell');
 
       const pos = getGridPos(el);
       cell.style.gridRow = pos.row;
