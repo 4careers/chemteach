@@ -272,7 +272,7 @@ window.InteractivePT = (() => {
       ptGrid.appendChild(cell);
     });
 
-    const highlightSingleCell = (targetCell, block) => {
+    function highlightSingleCell(targetCell, block) {
       cells.forEach(c => {
         if (c === targetCell) {
           c.style.transform = 'scale(1.2)';
@@ -294,9 +294,9 @@ window.InteractivePT = (() => {
           c.style.borderColor = 'transparent';
         }
       });
-    };
+    }
 
-    const highlightPeriod = (periodNum) => {
+    function highlightPeriod(periodNum) {
       cells.forEach(c => {
         // match period, or corresponding f-block period (8=lanthanides in p6, 9=actinides in p7)
         const isSamePeriod = parseInt(c.dataset.period) === periodNum || (periodNum === 6 && parseInt(c.dataset.period) === 8) || (periodNum === 7 && parseInt(c.dataset.period) === 9);
@@ -319,9 +319,9 @@ window.InteractivePT = (() => {
           c.style.boxShadow = 'none';
         }
       });
-    };
+    }
 
-    const highlightGroup = (groupNum) => {
+    function highlightGroup(groupNum) {
       cells.forEach(c => {
         if (parseInt(c.dataset.group) === groupNum) {
           c.style.background = BLOCK_COLORS[c.dataset.block];
@@ -342,9 +342,9 @@ window.InteractivePT = (() => {
           c.style.boxShadow = 'none';
         }
       });
-    };
+    }
 
-    const highlightBlock = (block) => {
+    function highlightBlock(block) {
       cells.forEach(c => {
         if (c.dataset.block === block) {
           c.style.background = BLOCK_COLORS[block];
@@ -364,9 +364,9 @@ window.InteractivePT = (() => {
           c.style.boxShadow = 'none';
         }
       });
-    };
+    }
 
-    const resetHighlights = () => {
+    function resetHighlights() {
       infoPanel.textContent = 'Hover over elements or the tiny Period/Group buttons.';
       cells.forEach(c => {
         c.style.background = 'var(--color-card)';
@@ -378,7 +378,7 @@ window.InteractivePT = (() => {
         c.style.zIndex = '1';
         c.style.boxShadow = 'none';
       });
-    };
+    }
 
     btnS.onmouseover = () => highlightBlock('s');
     btnP.onmouseover = () => highlightBlock('p');
