@@ -3344,6 +3344,7 @@ window.InteractivePT = (() => {
         }
 
         if (selectedElementZ) {
+            const getEl = (z) => ELEMENTS.find(e => e.z === z);
             const el = getEl(selectedElementZ);
             const blockColor = ELEMENT_COLORS[el.z];
             
