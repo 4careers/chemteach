@@ -1,6 +1,6 @@
 /**
  * InteractivePT - Modern Periodic Table visualization
- * Features tiny clickable/hoverable buttons for Periods and Groups
+ * Features touch-friendly UI and dynamic Info Panel
  */
 window.InteractivePT = (() => {
   const ELEMENTS = [
@@ -129,59 +129,376 @@ window.InteractivePT = (() => {
     { z: 118, sym: 'Og', group: 18, period: 7, block: 'p' }
   ];
 
+  const ECONFS = {
+    "1": "1s<sup>1</sup>",
+    "2": "1s<sup>2</sup>",
+    "3": "[He] 2s<sup>1</sup>",
+    "4": "[He] 2s<sup>2</sup>",
+    "5": "[He] 2s<sup>2</sup> 2p<sup>1</sup>",
+    "6": "[He] 2s<sup>2</sup> 2p<sup>2</sup>",
+    "7": "[He] 2s<sup>2</sup> 2p<sup>3</sup>",
+    "8": "[He] 2s<sup>2</sup> 2p<sup>4</sup>",
+    "9": "[He] 2s<sup>2</sup> 2p<sup>5</sup>",
+    "10": "[He] 2s<sup>2</sup> 2p<sup>6</sup>",
+    "11": "[Ne] 3s<sup>1</sup>",
+    "12": "[Ne] 3s<sup>2</sup>",
+    "13": "[Ne] 3s<sup>2</sup> 3p<sup>1</sup>",
+    "14": "[Ne] 3s<sup>2</sup> 3p<sup>2</sup>",
+    "15": "[Ne] 3s<sup>2</sup> 3p<sup>3</sup>",
+    "16": "[Ne] 3s<sup>2</sup> 3p<sup>4</sup>",
+    "17": "[Ne] 3s<sup>2</sup> 3p<sup>5</sup>",
+    "18": "[Ne] 3s<sup>2</sup> 3p<sup>6</sup>",
+    "19": "[Ar] 4s<sup>1</sup>",
+    "20": "[Ar] 4s<sup>2</sup>",
+    "21": "[Ar] 4s<sup>2</sup> 3d<sup>1</sup>",
+    "22": "[Ar] 4s<sup>2</sup> 3d<sup>2</sup>",
+    "23": "[Ar] 4s<sup>2</sup> 3d<sup>3</sup>",
+    "24": "[Ar] 4s<sup>1</sup> 3d<sup>5</sup>",
+    "25": "[Ar] 4s<sup>2</sup> 3d<sup>5</sup>",
+    "26": "[Ar] 4s<sup>2</sup> 3d<sup>6</sup>",
+    "27": "[Ar] 4s<sup>2</sup> 3d<sup>7</sup>",
+    "28": "[Ar] 4s<sup>2</sup> 3d<sup>8</sup>",
+    "29": "[Ar] 4s<sup>1</sup> 3d<sup>10</sup>",
+    "30": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup>",
+    "31": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>1</sup>",
+    "32": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>2</sup>",
+    "33": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>3</sup>",
+    "34": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>4</sup>",
+    "35": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>5</sup>",
+    "36": "[Ar] 4s<sup>2</sup> 3d<sup>10</sup> 4p<sup>6</sup>",
+    "37": "[Kr] 5s<sup>1</sup>",
+    "38": "[Kr] 5s<sup>2</sup>",
+    "39": "[Kr] 5s<sup>2</sup> 4d<sup>1</sup>",
+    "40": "[Kr] 5s<sup>2</sup> 4d<sup>2</sup>",
+    "41": "[Kr] 5s<sup>1</sup> 4d<sup>4</sup>",
+    "42": "[Kr] 5s<sup>1</sup> 4d<sup>5</sup>",
+    "43": "[Kr] 5s<sup>2</sup> 4d<sup>5</sup>",
+    "44": "[Kr] 5s<sup>1</sup> 4d<sup>7</sup>",
+    "45": "[Kr] 5s<sup>1</sup> 4d<sup>8</sup>",
+    "46": "[Kr] 4d<sup>10</sup>",
+    "47": "[Kr] 5s<sup>1</sup> 4d<sup>10</sup>",
+    "48": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup>",
+    "49": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>1</sup>",
+    "50": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>2</sup>",
+    "51": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>3</sup>",
+    "52": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>4</sup>",
+    "53": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>5</sup>",
+    "54": "[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>6</sup>",
+    "55": "[Xe] 6s<sup>1</sup>",
+    "56": "[Xe] 6s<sup>2</sup>",
+    "57": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup>",
+    "58": "[Xe] 6s<sup>2</sup> 5d<sup>1</sup> 4f<sup>1</sup>",
+    "59": "[Xe] 6s<sup>2</sup> 4f<sup>3</sup>",
+    "60": "[Xe] 6s<sup>2</sup> 4f<sup>4</sup>",
+    "61": "[Xe] 6s<sup>2</sup> 4f<sup>5</sup>",
+    "62": "[Xe] 6s<sup>2</sup> 4f<sup>6</sup>",
+    "63": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup>",
+    "64": "[Xe] 6s<sup>2</sup> 4f<sup>7</sup> 5d<sup>1</sup>",
+    "65": "[Xe] 6s<sup>2</sup> 4f<sup>9</sup>",
+    "66": "[Xe] 6s<sup>2</sup> 4f<sup>10</sup>",
+    "67": "[Xe] 6s<sup>2</sup> 4f<sup>11</sup>",
+    "68": "[Xe] 6s<sup>2</sup> 4f<sup>12</sup>",
+    "69": "[Xe] 6s<sup>2</sup> 4f<sup>13</sup>",
+    "70": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup>",
+    "71": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>1</sup>",
+    "72": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>2</sup>",
+    "73": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>3</sup>",
+    "74": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>4</sup>",
+    "75": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>5</sup>",
+    "76": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>6</sup>",
+    "77": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>7</sup>",
+    "78": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>9</sup>",
+    "79": "[Xe] 6s<sup>1</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
+    "80": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup>",
+    "81": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>1</sup>",
+    "82": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>2</sup>",
+    "83": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>3</sup>",
+    "84": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>4</sup>",
+    "85": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>5</sup>",
+    "86": "[Xe] 6s<sup>2</sup> 4f<sup>14</sup> 5d<sup>10</sup> 6p<sup>6</sup>",
+    "87": "[Rn] 7s<sup>1</sup>",
+    "88": "[Rn] 7s<sup>2</sup>",
+    "89": "[Rn] 7s<sup>2</sup> 6d<sup>1</sup>",
+    "90": "[Rn] 7s<sup>2</sup> 6d<sup>2</sup>",
+    "91": "[Rn] 7s<sup>2</sup> 5f<sup>2</sup> 6d<sup>1</sup>",
+    "92": "[Rn] 7s<sup>2</sup> 5f<sup>3</sup> 6d<sup>1</sup>",
+    "93": "[Rn] 7s<sup>2</sup> 5f<sup>4</sup> 6d<sup>1</sup>",
+    "94": "[Rn] 7s<sup>2</sup> 5f<sup>6</sup>",
+    "95": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup>",
+    "96": "[Rn] 7s<sup>2</sup> 5f<sup>7</sup> 6d<sup>1</sup>",
+    "97": "[Rn] 7s<sup>2</sup> 5f<sup>9</sup>",
+    "98": "[Rn] 7s<sup>2</sup> 5f<sup>10</sup>",
+    "99": "[Rn] 7s<sup>2</sup> 5f<sup>11</sup>",
+    "100": "[Rn] 7s<sup>2</sup> 5f<sup>12</sup>",
+    "101": "[Rn] 7s<sup>2</sup> 5f<sup>13</sup>",
+    "102": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup>",
+    "103": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 7p<sup>1</sup>",
+    "104": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>2</sup>",
+    "105": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>3</sup>",
+    "106": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>4</sup>",
+    "107": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>5</sup>",
+    "108": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>6</sup>",
+    "109": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>7</sup>",
+    "110": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>8</sup>",
+    "111": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>9</sup>",
+    "112": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup>",
+    "113": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>1</sup>",
+    "114": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>2</sup>",
+    "115": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>3</sup>",
+    "116": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>4</sup>",
+    "117": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>5</sup>",
+    "118": "[Rn] 7s<sup>2</sup> 5f<sup>14</sup> 6d<sup>10</sup> 7p<sup>6</sup>",
+    "119": "[Og] 8s<sup>1</sup>"
+};
+
+  const GROUP_INFO = {
+    1: { name: "Alkali Metals", outer: "ns¹", props: ["Highly reactive metals", "Low ionization enthalpy", "Readily lose 1 electron to form +1 ions", "Never found free in nature"] },
+    2: { name: "Alkaline Earth Metals", outer: "ns²", props: ["Reactive metals, but less than Group 1", "Form basic oxides and hydroxides", "Readily lose 2 electrons to form +2 ions"] },
+    13: { name: "Boron Family", outer: "ns²np¹", props: ["Shows non-metallic to metallic transition down the group", "Common oxidation states +3, +1"] },
+    14: { name: "Carbon Family", outer: "ns²np²", props: ["Carbon shows high catenation", "Transition from non-metal to metal", "Common oxidation states +4, +2"] },
+    15: { name: "Pnictogens (Nitrogen Family)", outer: "ns²np³", props: ["Extra stability due to exactly half-filled p-orbitals", "Shows variety of oxidation states from -3 to +5"] },
+    16: { name: "Chalcogens (Oxygen Family)", outer: "ns²np⁴", props: ["Ore-forming elements", "High negative electron gain enthalpy", "Form -2 ions or covalent bonds"] },
+    17: { name: "Halogens", outer: "ns²np⁵", props: ["Most reactive non-metals", "Highest negative electron gain enthalpy", "Readily form -1 ions (halides)"] },
+    18: { name: "Noble Gases", outer: "ns²np⁶", props: ["Except He (1s²)", "Very stable, completely filled valence shells", "Extremely low reactivity", "Positive electron gain enthalpy"] },
+  };
+
+  const PERIOD_INFO = {
+    1: { name: "1st Period", outer: "1s", props: ["Contains only 2 elements (H, He)", "Fills the K shell (n=1)"] },
+    2: { name: "2nd Period", outer: "2s, 2p", props: ["Contains 8 elements (Li to Ne)", "Fills the L shell (n=2)", "Elements show anomalous properties due to small size"] },
+    3: { name: "3rd Period", outer: "3s, 3p", props: ["Contains 8 elements (Na to Ar)", "Fills the M shell (n=3)"] },
+    4: { name: "4th Period", outer: "4s, 3d, 4p", props: ["Contains 18 elements (K to Kr)", "First transition series (3d) starts here"] },
+    5: { name: "5th Period", outer: "5s, 4d, 5p", props: ["Contains 18 elements (Rb to Xe)", "Second transition series (4d)"] },
+    6: { name: "6th Period", outer: "6s, 4f, 5d, 6p", props: ["Contains 32 elements (Cs to Rn)", "Includes Lanthanoid series (4f)"] },
+    7: { name: "7th Period", outer: "7s, 5f, 6d, 7p", props: ["Contains 32 elements (Fr to Og)", "Includes Actinoid series (5f)", "All elements beyond Uranium are man-made"] },
+    8: { name: "Lanthanoids (4f Series)", outer: "4f, 5d, 6s", props: ["Inner transition metals", "Electrons fill the 4f subshell", "Lanthanoid contraction causes similar radii"] },
+    9: { name: "Actinoids (5f Series)", outer: "5f, 6d, 7s", props: ["Inner transition metals", "Electrons fill the 5f subshell", "Radioactive, mostly synthetic elements"] }
+  };
+
   const BLOCK_COLORS = {
-    's': '#00B4CC', 
-    'p': '#FFD740',
-    'd': '#FF5252', 
-    'f': '#E040FB'
+    "s": "#00B4CC", 
+    "p": "#FFD740",
+    "d": "#FF5252", 
+    "f": "#E040FB"
   };
 
   function build(container, config) {
-    container.innerHTML = '';
-    const wrapper = document.createElement('div');
-    wrapper.className = 'interactive-pt-wrapper';
-    wrapper.style.display = 'flex';
-    wrapper.style.flexDirection = 'column';
-    wrapper.style.alignItems = 'center';
-    wrapper.style.gap = '20px';
-
-    const controls = document.createElement('div');
-    controls.style.display = 'flex';
-    controls.style.gap = '10px';
-    controls.style.justifyContent = 'center';
-
-    const infoPanel = document.createElement('div');
-    infoPanel.style.height = '40px';
-    infoPanel.style.color = 'var(--color-text)';
-    infoPanel.style.fontWeight = 'bold';
-    infoPanel.style.fontSize = '1.1rem';
-    infoPanel.textContent = 'Hover over elements or the tiny Period/Group buttons.';
-
-    const btnS = document.createElement('button'); btnS.className = 'btn btn-outline'; btnS.textContent = 's-block';
-    const btnP = document.createElement('button'); btnP.className = 'btn btn-outline'; btnP.textContent = 'p-block';
-    const btnD = document.createElement('button'); btnD.className = 'btn btn-outline'; btnD.textContent = 'd-block';
-    const btnF = document.createElement('button'); btnF.className = 'btn btn-outline'; btnF.textContent = 'f-block';
+    container.innerHTML = "";
     
-    controls.append(btnS, btnP, btnD, btnF);
+    // Main wrapper (Flex Row for Table and Info Panel)
+    const wrapper = document.createElement("div");
+    wrapper.style.display = "flex";
+    wrapper.style.flexDirection = "row";
+    wrapper.style.alignItems = "flex-start";
+    wrapper.style.justifyContent = "center";
+    wrapper.style.gap = "40px";
+    wrapper.style.width = "100%";
+    wrapper.style.flexWrap = "wrap"; // allow wrapping on smaller screens
 
-    const ptGrid = document.createElement('div');
-    ptGrid.style.display = 'grid';
-    // Col 1 is for period buttons (20px), Cols 2-19 are for elements (30px)
-    ptGrid.style.gridTemplateColumns = '20px repeat(18, 30px)';
-    // Row 1 is for group buttons (20px), Rows 2-11 are for elements (30px)
-    ptGrid.style.gridTemplateRows = '20px repeat(10, 30px)';
-    ptGrid.style.gap = '4px';
-    ptGrid.style.position = 'relative';
+    // Left container for PT
+    const ptContainer = document.createElement("div");
+    ptContainer.style.display = "flex";
+    ptContainer.style.flexDirection = "column";
+    ptContainer.style.gap = "20px";
+
+    const ptGrid = document.createElement("div");
+    ptGrid.style.display = "grid";
+    ptGrid.style.gridTemplateColumns = "20px repeat(18, 30px)";
+    ptGrid.style.gridTemplateRows = "20px repeat(10, 30px)";
+    ptGrid.style.gap = "4px";
+    ptGrid.style.position = "relative";
+
+    // Info Panel
+    const infoPanel = document.createElement("div");
+    infoPanel.style.flex = "1";
+    infoPanel.style.minWidth = "300px";
+    infoPanel.style.maxWidth = "450px";
+    infoPanel.style.background = "var(--color-card)";
+    infoPanel.style.border = "1px solid var(--color-border)";
+    infoPanel.style.borderRadius = "8px";
+    infoPanel.style.padding = "20px";
+    infoPanel.style.color = "var(--color-text)";
+    infoPanel.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
+    infoPanel.style.display = "flex";
+    infoPanel.style.flexDirection = "column";
+    infoPanel.style.gap = "15px";
+    infoPanel.style.transition = "all 0.3s ease";
+
+    const infoTitle = document.createElement("h3");
+    infoTitle.style.margin = "0";
+    infoTitle.style.fontSize = "1.5rem";
+    infoTitle.style.borderBottom = "1px solid var(--color-border)";
+    infoTitle.style.paddingBottom = "10px";
+    infoTitle.textContent = "Interactive Periodic Table";
+
+    const infoContent = document.createElement("div");
+    infoContent.style.fontSize = "1rem";
+    infoContent.style.lineHeight = "1.6";
+    infoContent.innerHTML = "<p>Tap on any Period or Group button to view its properties and boundary elements.</p><p>Tap on an individual element to view its exact electronic configuration.</p>";
+    
+    infoPanel.appendChild(infoTitle);
+    infoPanel.appendChild(infoContent);
 
     const cells = [];
-    
-    // Group Buttons (Top Row)
+    let selectedType = null; // 'group', 'period'
+    let selectedVal = null;
+    let selectedElementZ = null;
+
+    const getEl = (z) => ELEMENTS.find(e => e.z === z);
+
+    const updateInfoPanel = () => {
+        if (!selectedType && !selectedElementZ) {
+            infoTitle.textContent = "Interactive Periodic Table";
+            infoContent.innerHTML = "<p>Tap on any Period or Group button to view its properties and boundary elements.</p><p>Tap on an individual element to view its exact electronic configuration.</p>";
+            return;
+        }
+
+        let html = "";
+        
+        if (selectedType === "group") {
+            const grp = selectedVal;
+            const data = GROUP_INFO[grp] || { name: "Transition Metals (d-block)", outer: "(n-1)d¹⁻¹⁰ ns⁰⁻²", props: ["Typical metallic properties", "Variable oxidation states", "Form colored ions", "Catalytic properties"] };
+            infoTitle.textContent = `Group ${grp} - ${data.name}`;
+            html += `<p><strong>Outer Configuration:</strong> ${data.outer}</p>`;
+            
+            // Find first and last element of this group
+            const groupEls = ELEMENTS.filter(e => e.group === grp).sort((a,b) => a.z - b.z);
+            if (groupEls.length > 0) {
+                const first = groupEls[0];
+                const last = groupEls[groupEls.length - 1];
+                html += `<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; margin-bottom:10px;">`;
+                html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z]}</div>`;
+                html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z]}</div>`;
+                html += `</div>`;
+            }
+
+            html += `<strong>Key Properties:</strong><ul style="margin-top:5px; padding-left:20px;">`;
+            data.props.forEach(p => html += `<li>${p}</li>`);
+            html += `</ul>`;
+
+        } else if (selectedType === "period") {
+            const per = selectedVal;
+            const data = PERIOD_INFO[per];
+            infoTitle.textContent = data.name;
+            html += `<p><strong>Fills Subshells:</strong> ${data.outer}</p>`;
+            
+            // Note: periods 8 and 9 are f-block series
+            let periodEls = [];
+            if (per === 8) {
+                periodEls = ELEMENTS.filter(e => e.period === 8).sort((a,b) => a.z - b.z);
+            } else if (per === 9) {
+                periodEls = ELEMENTS.filter(e => e.period === 9).sort((a,b) => a.z - b.z);
+            } else {
+                periodEls = ELEMENTS.filter(e => e.period === per).sort((a,b) => a.z - b.z);
+            }
+            
+            if (periodEls.length > 0) {
+                const first = periodEls[0];
+                const last = periodEls[periodEls.length - 1];
+                html += `<div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; margin-bottom:10px;">`;
+                html += `<div><strong>First:</strong> ${first.sym} (Z=${first.z}) &nbsp;&mdash;&nbsp; ${ECONFS[first.z]}</div>`;
+                html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z]}</div>`;
+                html += `</div>`;
+            }
+
+            html += `<strong>Key Trends:</strong><ul style="margin-top:5px; padding-left:20px;">`;
+            data.props.forEach(p => html += `<li>${p}</li>`);
+            html += `</ul>`;
+        }
+
+        if (selectedElementZ) {
+            if (!selectedType) infoTitle.textContent = "Element Selection";
+            const el = getEl(selectedElementZ);
+            if (selectedType) {
+                html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
+            }
+            html += `<div style="background:var(--color-primary); color:#000; padding:15px; border-radius:8px; animation: fadeIn 0.3s;">`;
+            html += `<h4 style="margin:0 0 10px 0; font-size:1.2rem;">${el.sym} (Atomic Number: ${el.z})</h4>`;
+            html += `<div><strong>Block:</strong> ${el.block}-block</div>`;
+            html += `<div style="margin-top:8px;"><strong>Configuration:</strong> <span style="font-size:1.1rem; display:block; margin-top:4px;">${ECONFS[el.z]}</span></div>`;
+            html += `</div>`;
+        }
+
+        infoContent.innerHTML = html;
+    };
+
+    const renderHighlights = () => {
+        cells.forEach(c => {
+            let shouldHighlightGroupPeriod = false;
+            if (selectedType === 'group' && parseInt(c.dataset.group) === selectedVal) shouldHighlightGroupPeriod = true;
+            if (selectedType === 'period') {
+                const p = parseInt(c.dataset.period);
+                if (p === selectedVal) {
+                    shouldHighlightGroupPeriod = true;
+                }
+            }
+
+            const isSelectedElement = selectedElementZ && parseInt(c.dataset.z) === selectedElementZ;
+
+            if (isSelectedElement) {
+                c.style.transform = 'scale(1.2)';
+                c.style.zIndex = '10';
+                c.style.background = BLOCK_COLORS[c.dataset.block];
+                c.style.color = '#000';
+                c.style.opacity = '1';
+                c.style.borderColor = '#fff';
+                c.style.borderWidth = '2px';
+                c.style.boxShadow = `0 0 20px ${BLOCK_COLORS[c.dataset.block]}`;
+                c.style.filter = 'blur(0px)';
+            } else if (shouldHighlightGroupPeriod) {
+                c.style.background = BLOCK_COLORS[c.dataset.block];
+                c.style.color = '#000';
+                c.style.opacity = '1';
+                c.style.transform = 'scale(1.1)';
+                c.style.zIndex = '5';
+                c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
+                c.style.filter = 'blur(0px)';
+                c.style.borderColor = 'transparent';
+                c.style.borderWidth = '1px';
+            } else if (selectedType || selectedElementZ) {
+                // Dim others
+                c.style.opacity = '0.15';
+                c.style.filter = 'blur(3px)';
+                c.style.transform = 'scale(0.95)';
+                c.style.background = 'var(--color-card)';
+                c.style.color = 'var(--color-text-muted)';
+                c.style.zIndex = '1';
+                c.style.boxShadow = 'none';
+                c.style.borderColor = 'var(--color-border)';
+                c.style.borderWidth = '1px';
+            } else {
+                // Normal state
+                c.style.background = 'var(--color-card)';
+                c.style.color = 'var(--color-text)';
+                c.style.borderColor = 'var(--color-border)';
+                c.style.opacity = '1';
+                c.style.filter = 'blur(0px)';
+                c.style.transform = 'scale(1)';
+                c.style.zIndex = '1';
+                c.style.boxShadow = 'none';
+                c.style.borderWidth = '1px';
+            }
+        });
+        updateInfoPanel();
+    };
+
+    // Global click listener to reset if clicked outside
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            selectedType = null;
+            selectedVal = null;
+            selectedElementZ = null;
+            renderHighlights();
+        }
+    });
+
+    // Group Buttons
     for (let i = 1; i <= 18; i++) {
       const gBtn = document.createElement('div');
       gBtn.textContent = i;
       gBtn.style.gridRow = 1;
-      gBtn.style.gridColumn = i + 1; // offset by 1
-      gBtn.style.fontSize = '10px';
+      gBtn.style.gridColumn = i + 1;
+      gBtn.style.fontSize = '12px';
+      gBtn.style.fontWeight = 'bold';
       gBtn.style.display = 'flex';
       gBtn.style.alignItems = 'center';
       gBtn.style.justifyContent = 'center';
@@ -191,25 +508,37 @@ window.InteractivePT = (() => {
       gBtn.style.color = 'var(--color-text)';
       gBtn.style.transition = 'all 0.2s ease';
       
-      gBtn.onmouseenter = () => {
-        gBtn.style.background = 'rgba(255,255,255,0.3)';
-        infoPanel.textContent = `Group ${i}`;
-        highlightGroup(i);
-      };
-      gBtn.onmouseleave = () => {
-        gBtn.style.background = 'rgba(255,255,255,0.1)';
-        resetHighlights();
+      gBtn.onclick = (e) => {
+          e.stopPropagation();
+          if (selectedType === 'group' && selectedVal === i) {
+              selectedType = null;
+              selectedVal = null;
+          } else {
+              selectedType = 'group';
+              selectedVal = i;
+          }
+          selectedElementZ = null;
+          renderHighlights();
       };
       ptGrid.appendChild(gBtn);
     }
     
-    // Period Buttons (Left Column)
-    for (let i = 1; i <= 7; i++) {
+    // Period Buttons
+    for (let i = 1; i <= 9; i++) {
       const pBtn = document.createElement('div');
-      pBtn.textContent = i;
-      pBtn.style.gridRow = i + 1; // offset by 1
+      if (i <= 7) {
+        pBtn.textContent = i;
+      } else if (i === 8) {
+        pBtn.textContent = '4f';
+        pBtn.title = 'Lanthanoids';
+      } else if (i === 9) {
+        pBtn.textContent = '5f';
+        pBtn.title = 'Actinoids';
+      }
+      pBtn.style.gridRow = i + 1;
       pBtn.style.gridColumn = 1;
-      pBtn.style.fontSize = '10px';
+      pBtn.style.fontSize = '12px';
+      pBtn.style.fontWeight = 'bold';
       pBtn.style.display = 'flex';
       pBtn.style.alignItems = 'center';
       pBtn.style.justifyContent = 'center';
@@ -219,14 +548,17 @@ window.InteractivePT = (() => {
       pBtn.style.color = 'var(--color-text)';
       pBtn.style.transition = 'all 0.2s ease';
       
-      pBtn.onmouseenter = () => {
-        pBtn.style.background = 'rgba(255,255,255,0.3)';
-        infoPanel.textContent = `Period ${i}`;
-        highlightPeriod(i);
-      };
-      pBtn.onmouseleave = () => {
-        pBtn.style.background = 'rgba(255,255,255,0.1)';
-        resetHighlights();
+      pBtn.onclick = (e) => {
+          e.stopPropagation();
+          if (selectedType === 'period' && selectedVal === i) {
+              selectedType = null;
+              selectedVal = null;
+          } else {
+              selectedType = 'period';
+              selectedVal = i;
+          }
+          selectedElementZ = null;
+          renderHighlights();
       };
       ptGrid.appendChild(pBtn);
     }
@@ -240,7 +572,7 @@ window.InteractivePT = (() => {
       cell.style.fontWeight = 'bold';
       cell.style.borderRadius = '4px';
       cell.style.cursor = 'pointer';
-      cell.style.transition = 'all 0.3s ease';
+      cell.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
       cell.style.border = '1px solid var(--color-border)';
       cell.style.background = 'var(--color-card)';
       cell.style.color = 'var(--color-text)';
@@ -256,143 +588,40 @@ window.InteractivePT = (() => {
       }
 
       cell.textContent = el.sym;
-      
       cell.dataset.block = el.block;
       cell.dataset.z = el.z;
       cell.dataset.group = el.group || '';
       cell.dataset.period = el.period;
 
-      cell.onmouseenter = () => {
-        infoPanel.textContent = `Z=${el.z} | ${el.sym} | ${el.block}-block | Period ${el.period > 7 ? el.period-2 : el.period}` + (el.group ? ` | Group ${el.group}` : '');
-        highlightSingleCell(cell, el.block);
+      cell.onclick = (e) => {
+          e.stopPropagation();
+          if (selectedElementZ === el.z) {
+              // Clicked again, clear element highlight but KEEP period/group
+              selectedElementZ = null;
+          } else {
+              selectedElementZ = el.z;
+          }
+          renderHighlights();
       };
-      cell.onmouseleave = resetHighlights;
 
       cells.push(cell);
       ptGrid.appendChild(cell);
     });
 
-    function highlightSingleCell(targetCell, block) {
-      cells.forEach(c => {
-        if (c === targetCell) {
-          c.style.transform = 'scale(1.2)';
-          c.style.zIndex = '10';
-          c.style.background = BLOCK_COLORS[block];
-          c.style.color = '#000';
-          c.style.opacity = '1';
-          c.style.borderColor = BLOCK_COLORS[block];
-          c.style.boxShadow = `0 0 15px ${BLOCK_COLORS[block]}`;
-          c.style.filter = 'blur(0px)';
-        } else {
-          c.style.opacity = '0.4';
-          c.style.filter = 'blur(2px)';
-          c.style.background = 'var(--color-card)';
-          c.style.color = 'var(--color-text-muted)';
-          c.style.transform = 'scale(1)';
-          c.style.zIndex = '1';
-          c.style.boxShadow = 'none';
-          c.style.borderColor = 'transparent';
-        }
-      });
-    }
-
-    function highlightPeriod(periodNum) {
-      cells.forEach(c => {
-        // match period, or corresponding f-block period (8=lanthanides in p6, 9=actinides in p7)
-        const isSamePeriod = parseInt(c.dataset.period) === periodNum || (periodNum === 6 && parseInt(c.dataset.period) === 8) || (periodNum === 7 && parseInt(c.dataset.period) === 9);
-        if (isSamePeriod) {
-          c.style.background = BLOCK_COLORS[c.dataset.block];
-          c.style.color = '#000';
-          c.style.opacity = '1';
-          c.style.transform = 'scale(1.1)';
-          c.style.zIndex = '5';
-          c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
-          c.style.filter = 'blur(0px)';
-          c.style.borderColor = 'transparent';
-        } else {
-          c.style.opacity = '0.1';
-          c.style.filter = 'blur(4px)';
-          c.style.transform = 'scale(0.95)';
-          c.style.background = 'var(--color-card)';
-          c.style.color = 'var(--color-text-muted)';
-          c.style.zIndex = '1';
-          c.style.boxShadow = 'none';
-        }
-      });
-    }
-
-    function highlightGroup(groupNum) {
-      cells.forEach(c => {
-        if (parseInt(c.dataset.group) === groupNum) {
-          c.style.background = BLOCK_COLORS[c.dataset.block];
-          c.style.color = '#000';
-          c.style.opacity = '1';
-          c.style.transform = 'scale(1.1)';
-          c.style.zIndex = '5';
-          c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
-          c.style.filter = 'blur(0px)';
-          c.style.borderColor = 'transparent';
-        } else {
-          c.style.opacity = '0.1';
-          c.style.filter = 'blur(4px)';
-          c.style.transform = 'scale(0.95)';
-          c.style.background = 'var(--color-card)';
-          c.style.color = 'var(--color-text-muted)';
-          c.style.zIndex = '1';
-          c.style.boxShadow = 'none';
-        }
-      });
-    }
-
-    function highlightBlock(block) {
-      cells.forEach(c => {
-        if (c.dataset.block === block) {
-          c.style.background = BLOCK_COLORS[block];
-          c.style.color = '#000';
-          c.style.borderColor = BLOCK_COLORS[block];
-          c.style.opacity = '1';
-          c.style.filter = 'blur(0px)';
-          c.style.transform = 'scale(1.05)';
-          c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[block]}`;
-        } else {
-          c.style.background = 'var(--color-card)';
-          c.style.color = 'var(--color-text-muted)';
-          c.style.borderColor = 'var(--color-border)';
-          c.style.opacity = '0.2';
-          c.style.filter = 'blur(3px)';
-          c.style.transform = 'scale(0.95)';
-          c.style.boxShadow = 'none';
-        }
-      });
-    }
-
-    function resetHighlights() {
-      infoPanel.textContent = 'Hover over elements or the tiny Period/Group buttons.';
-      cells.forEach(c => {
-        c.style.background = 'var(--color-card)';
-        c.style.color = 'var(--color-text)';
-        c.style.borderColor = 'var(--color-border)';
-        c.style.opacity = '1';
-        c.style.filter = 'blur(0px)';
-        c.style.transform = 'scale(1)';
-        c.style.zIndex = '1';
-        c.style.boxShadow = 'none';
-      });
-    }
-
-    btnS.onmouseover = () => highlightBlock('s');
-    btnP.onmouseover = () => highlightBlock('p');
-    btnD.onmouseover = () => highlightBlock('d');
-    btnF.onmouseover = () => highlightBlock('f');
-    
-    btnS.onmouseout = resetHighlights;
-    btnP.onmouseout = resetHighlights;
-    btnD.onmouseout = resetHighlights;
-    btnF.onmouseout = resetHighlights;
-
+    ptContainer.appendChild(ptGrid);
+    wrapper.appendChild(ptContainer);
     wrapper.appendChild(infoPanel);
-    wrapper.appendChild(ptGrid);
-    wrapper.appendChild(controls);
+    
+    // Add simple fadeIn animation for the element highlight box
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    wrapper.appendChild(style);
+    
     container.appendChild(wrapper);
   }
 
