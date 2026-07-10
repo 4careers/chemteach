@@ -2952,35 +2952,10 @@ window.InteractivePT = (() => {
       return html;
   };
 
-  const ELEMENT_COLORS = {};
-  const cBLUE = '#99C7DF';
-  const cGREEN = '#6AB683';
-  const cORANGE = '#E49975';
-  const cPINK = '#E4889F';
-  const cTAN = '#D8C6A8';
-  const cPURPLE = '#D9A9B9';
-  
-  const _assign = (list, color) => list.forEach(z => ELEMENT_COLORS[z] = color);
-  _assign([3,4,11,12,19,20,37,38,55,56,87,88, 13,31,49,50,81,82,83,113,114,115,116,117], cBLUE);
-  _assign([1, 5,6,7,8,9, 15,16,17, 34,35, 53, 85], cGREEN);
-  _assign([14, 32,33, 51,52, 84], cORANGE);
-  _assign([2,10,18,36,54,86,118], cPINK);
-  
-  let _tanEls = [];
-  for(let i=21; i<=30; i++) _tanEls.push(i);
-  for(let i=39; i<=48; i++) _tanEls.push(i);
-  for(let i=57; i<=80; i++) _tanEls.push(i);
-  _tanEls.push(89);
-  for(let i=104; i<=112; i++) _tanEls.push(i);
-  _assign(_tanEls, cTAN);
-  
-  let _purpEls = [];
-  for(let i=90; i<=103; i++) _purpEls.push(i);
-  _assign(_purpEls, cPURPLE);
-
   function build(container, config) {
     container.innerHTML = "";
     
+    // Main wrapper (Flex Row for Table and Info Panel)
     const wrapper = document.createElement("div");
     wrapper.style.display = "flex";
     wrapper.style.flexDirection = "row";
@@ -2990,6 +2965,7 @@ window.InteractivePT = (() => {
     wrapper.style.width = "100%";
     wrapper.style.flexWrap = "wrap"; 
 
+    // Left container for PT
     const ptContainer = document.createElement("div");
     ptContainer.style.display = "flex";
     ptContainer.style.flexDirection = "column";
@@ -2997,38 +2973,16 @@ window.InteractivePT = (() => {
 
     const ptGrid = document.createElement("div");
     ptGrid.style.display = "grid";
-    ptGrid.style.gridTemplateColumns = "30px 42px 42px 20px 30px repeat(10, 42px) 20px 30px repeat(6, 42px)";
-    ptGrid.style.gridTemplateRows = "25px 20px repeat(7, 45px) 20px 25px repeat(2, 45px)";
+    ptGrid.style.gridTemplateColumns = "20px repeat(18, 40px)"; // INCREASED WIDTH from 30px to 40px for names
+    ptGrid.style.gridTemplateRows = "20px repeat(10, 42px)"; // INCREASED HEIGHT from 30px to 42px
     ptGrid.style.gap = "4px";
     ptGrid.style.position = "relative";
-    ptGrid.style.fontFamily = "sans-serif";
 
-    // Draw Background Boxes for Blocks
-    const drawBox = (rStart, rSpan, cStart, cSpan) => {
-        const box = document.createElement('div');
-        box.style.gridRow = `${rStart} / span ${rSpan}`;
-        box.style.gridColumn = `${cStart} / span ${cSpan}`;
-        box.style.border = '1px solid rgba(255, 255, 255, 0.3)';
-        box.style.pointerEvents = 'none';
-        box.style.zIndex = '0';
-        ptGrid.appendChild(box);
-    };
-    drawBox(1, 9, 1, 3); // s-BLOCK
-    drawBox(4, 6, 5, 11); // d-BLOCK
-    drawBox(1, 9, 17, 7); // p-BLOCK
-    drawBox(11, 3, 4, 16); // f-BLOCK
-
-    const cells = [];
-    let selectedType = null;
-    let selectedVal = null;
-    let selectedElementZ = null;
-
-    const getEl = (z) => ELEMENTS.find(e => e.z === z);
-
+    // Info Panel
     const infoPanel = document.createElement("div");
     infoPanel.style.flex = "1";
     infoPanel.style.minWidth = "300px";
-    infoPanel.style.maxWidth = "480px";
+    infoPanel.style.maxWidth = "480px"; // slightly wider for side-by-side
     infoPanel.style.background = "var(--color-card)";
     infoPanel.style.border = "1px solid var(--color-border)";
     infoPanel.style.borderRadius = "8px";
@@ -3045,13 +2999,22 @@ window.InteractivePT = (() => {
     infoTitle.style.fontSize = "1.5rem";
     infoTitle.style.borderBottom = "1px solid var(--color-border)";
     infoTitle.style.paddingBottom = "10px";
+    infoTitle.textContent = "Interactive Periodic Table";
 
     const infoContent = document.createElement("div");
     infoContent.style.fontSize = "1rem";
     infoContent.style.lineHeight = "1.6";
+    infoContent.innerHTML = "<p>Tap on any Period or Group button to view its properties and boundary elements.</p><p>Tap on an individual element to view its exact electronic configuration.</p>";
     
     infoPanel.appendChild(infoTitle);
     infoPanel.appendChild(infoContent);
+
+    const cells = [];
+    let selectedType = null; // 'group', 'period'
+    let selectedVal = null;
+    let selectedElementZ = null;
+
+    const getEl = (z) => ELEMENTS.find(e => e.z === z);
 
     const updateInfoPanel = () => {
         if (!selectedType && !selectedElementZ) {
@@ -3077,9 +3040,11 @@ window.InteractivePT = (() => {
                 html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
             }
+
             html += `<strong>Key Properties:</strong><ul style="margin-top:5px; padding-left:20px;">`;
             data.props.forEach(p => html += `<li>${p}</li>`);
             html += `</ul>`;
+
         } else if (selectedType === "period") {
             const per = selectedVal;
             const data = PERIOD_INFO[per];
@@ -3087,9 +3052,13 @@ window.InteractivePT = (() => {
             html += `<p><strong>Fills Subshells:</strong> ${data.outer}</p>`;
             
             let periodEls = [];
-            if (per === 8) periodEls = ELEMENTS.filter(e => e.period === 8).sort((a,b) => a.z - b.z);
-            else if (per === 9) periodEls = ELEMENTS.filter(e => e.period === 9).sort((a,b) => a.z - b.z);
-            else periodEls = ELEMENTS.filter(e => e.period === per).sort((a,b) => a.z - b.z);
+            if (per === 8) {
+                periodEls = ELEMENTS.filter(e => e.period === 8).sort((a,b) => a.z - b.z);
+            } else if (per === 9) {
+                periodEls = ELEMENTS.filter(e => e.period === 9).sort((a,b) => a.z - b.z);
+            } else {
+                periodEls = ELEMENTS.filter(e => e.period === per).sort((a,b) => a.z - b.z);
+            }
             
             if (periodEls.length > 0) {
                 const first = periodEls[0];
@@ -3099,6 +3068,7 @@ window.InteractivePT = (() => {
                 html += `<div><strong>Last:</strong> ${last.sym} (Z=${last.z}) &nbsp;&mdash;&nbsp; ${ECONFS[last.z].html}</div>`;
                 html += `</div>`;
             }
+
             html += `<strong>Key Trends:</strong><ul style="margin-top:5px; padding-left:20px;">`;
             data.props.forEach(p => html += `<li>${p}</li>`);
             html += `</ul>`;
@@ -3107,21 +3077,31 @@ window.InteractivePT = (() => {
         if (selectedElementZ) {
             if (!selectedType) infoTitle.textContent = "Element Selection";
             const el = getEl(selectedElementZ);
-            if (selectedType) html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
-            const blockColor = ELEMENT_COLORS[el.z];
+            if (selectedType) {
+                html += `<hr style="border:none; border-top:1px solid var(--color-border); margin: 15px 0;" />`;
+            }
+            const blockColor = BLOCK_COLORS[el.block];
             
             html += `<div style="background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2)); border:1px solid var(--color-border); padding:20px; border-radius:8px; animation: fadeIn 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">`;
+            
             html += `<div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">`;
+            
+            // Text Details Left Side
             html += `<div style="flex:1;">`;
-            html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor}; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${ECONFS[el.z].name}</h4>`;
+            html += `<h4 style="margin:0; font-size:1.6rem; color:${blockColor};">${ECONFS[el.z].name}</h4>`;
             html += `<div style="font-size:1rem; font-weight:bold; margin-top:4px;">${el.sym} (Z = ${el.z})</div>`;
             html += `<div style="font-size:0.9rem; color:var(--color-text-muted); margin-top:2px;">${el.block}-block</div>`;
             html += `<div style="margin-top:15px; font-size:1.1rem; letter-spacing:1px;">${ECONFS[el.z].html}</div>`;
             html += renderOrbitals(ECONFS[el.z].valence);
             html += `</div>`;
+            
+            // Atom Simulation Right Side
             html += renderAtomSimulation(ECONFS[el.z].shells, blockColor);
-            html += `</div></div>`;
+            
+            html += `</div>`;
+            html += `</div>`;
         }
+
         infoContent.innerHTML = html;
     };
 
@@ -3131,51 +3111,61 @@ window.InteractivePT = (() => {
             if (selectedType === 'group' && parseInt(c.dataset.group) === selectedVal) shouldHighlightGroupPeriod = true;
             if (selectedType === 'period') {
                 const p = parseInt(c.dataset.period);
-                if (p === selectedVal || (selectedVal === 6 && p === 8) || (selectedVal === 7 && p === 9)) {
+                if (p === selectedVal) {
                     shouldHighlightGroupPeriod = true;
                 }
             }
 
             const isSelectedElement = selectedElementZ && parseInt(c.dataset.z) === selectedElementZ;
-            const elColor = ELEMENT_COLORS[parseInt(c.dataset.z)];
 
             if (isSelectedElement) {
                 c.style.transform = 'scale(1.1)';
                 c.style.zIndex = '10';
+                c.style.background = BLOCK_COLORS[c.dataset.block];
+                c.style.color = '#000';
                 c.style.opacity = '1';
                 c.style.borderColor = '#fff';
                 c.style.borderWidth = '2px';
-                c.style.boxShadow = `0 0 20px ${elColor}`;
-                c.style.filter = 'blur(0px) brightness(1.2)';
+                c.style.boxShadow = `0 0 20px ${BLOCK_COLORS[c.dataset.block]}`;
+                c.style.filter = 'blur(0px)';
             } else if (shouldHighlightGroupPeriod) {
+                c.style.background = BLOCK_COLORS[c.dataset.block];
+                c.style.color = '#000';
                 c.style.opacity = '1';
                 c.style.transform = 'scale(1.05)';
                 c.style.zIndex = '5';
-                c.style.boxShadow = `0 0 10px ${elColor}`;
-                c.style.filter = 'blur(0px) brightness(1.1)';
-                c.style.borderColor = 'rgba(0,0,0,0.5)';
+                c.style.boxShadow = `0 0 10px ${BLOCK_COLORS[c.dataset.block]}`;
+                c.style.filter = 'blur(0px)';
+                c.style.borderColor = 'transparent';
                 c.style.borderWidth = '1px';
             } else if (selectedType || selectedElementZ) {
-                c.style.opacity = '0.4';
-                c.style.filter = 'blur(1px) grayscale(50%)';
+                // Dim others
+                c.style.opacity = '0.15';
+                c.style.filter = 'blur(3px)';
                 c.style.transform = 'scale(0.95)';
+                c.style.background = 'var(--color-card)';
+                c.style.color = 'var(--color-text-muted)';
                 c.style.zIndex = '1';
                 c.style.boxShadow = 'none';
-                c.style.borderColor = 'rgba(0,0,0,0.2)';
+                c.style.borderColor = 'var(--color-border)';
                 c.style.borderWidth = '1px';
             } else {
+                // Normal state
+                c.style.background = 'var(--color-card)';
+                c.style.color = 'var(--color-text)';
+                c.style.borderColor = 'var(--color-border)';
                 c.style.opacity = '1';
-                c.style.filter = 'none';
+                c.style.filter = 'blur(0px)';
                 c.style.transform = 'scale(1)';
                 c.style.zIndex = '1';
                 c.style.boxShadow = 'none';
-                c.style.borderColor = 'rgba(0,0,0,0.2)';
                 c.style.borderWidth = '1px';
             }
         });
         updateInfoPanel();
     };
 
+    // Global click listener to reset if clicked outside
     document.addEventListener('click', (e) => {
         if (!wrapper.contains(e.target)) {
             selectedType = null;
@@ -3185,101 +3175,77 @@ window.InteractivePT = (() => {
         }
     });
 
-    const addLabel = (text, row, col, spanC = 1, spanR = 1, isTitle = false) => {
-        const lbl = document.createElement('div');
-        lbl.textContent = text;
-        lbl.style.gridRow = `${row} / span ${spanR}`;
-        lbl.style.gridColumn = `${col} / span ${spanC}`;
-        lbl.style.display = 'flex';
-        lbl.style.alignItems = 'center';
-        lbl.style.justifyContent = 'center';
-        lbl.style.color = isTitle ? 'var(--color-text)' : 'rgba(255,255,255,0.6)';
-        lbl.style.fontSize = isTitle ? '14px' : '12px';
-        lbl.style.fontStyle = isTitle ? 'italic' : 'normal';
-        if (text.includes('\n')) {
-            lbl.style.whiteSpace = 'pre-wrap';
-            lbl.style.textAlign = 'center';
-            lbl.style.lineHeight = '1.2';
-        }
-        ptGrid.appendChild(lbl);
-    };
-
-    const addClickableLabel = (text, row, col, type, val, spanC = 1) => {
-        const lbl = document.createElement('div');
-        lbl.textContent = text;
-        lbl.style.gridRow = row;
-        lbl.style.gridColumn = `${col} / span ${spanC}`;
-        lbl.style.display = 'flex';
-        lbl.style.alignItems = 'center';
-        lbl.style.justifyContent = 'center';
-        lbl.style.fontSize = '12px';
-        lbl.style.cursor = 'pointer';
-        lbl.style.color = 'var(--color-text)';
-        if (text.includes('\n')) {
-            lbl.style.whiteSpace = 'pre-wrap';
-            lbl.style.textAlign = 'center';
-            lbl.style.lineHeight = '1.2';
-        }
-        
-        lbl.onclick = (e) => {
-            e.stopPropagation();
-            if (selectedType === type && selectedVal === val) {
-                selectedType = null;
-                selectedVal = null;
-            } else {
-                selectedType = type;
-                selectedVal = val;
-            }
-            selectedElementZ = null;
-            renderHighlights();
-        };
-        ptGrid.appendChild(lbl);
-    };
-
-    // Titles
-    addLabel('s-BLOCK', 1, 1, 3, 1, true);
-    addLabel('d-BLOCK', 4, 5, 11, 1, true);
-    addLabel('p-BLOCK', 1, 17, 7, 1, true);
-    addLabel('f-BLOCK', 11, 4, 16, 1, true);
-
-    // Group numbers
-    [1,2].forEach(g => addClickableLabel(g.toString(), 2, g+1, 'group', g));
-    for(let g=3; g<=12; g++) addClickableLabel(g.toString(), 5, g+3, 'group', g);
-    for(let g=13; g<=18; g++) addClickableLabel(g.toString(), 2, g+5, 'group', g);
-
-    // s-block orbitals (Periods)
-    ['1s', '2s', '3s', '4s', '5s', '6s', '7s'].forEach((orb, i) => addClickableLabel(orb, i+3, 1, 'period', i+1));
-    // d-block orbitals
-    ['3d', '4d', '5d', '6d'].forEach((orb, i) => addLabel(orb, i+6, 5));
-    // p-block orbitals
-    ['2p', '3p', '4p', '5p', '6p', '7p'].forEach((orb, i) => addLabel(orb, i+4, 17));
-
-    // f-block labels (Periods 8 and 9)
-    addClickableLabel('Lanthanoids\n4f', 12, 4, 'period', 8, 2);
-    addClickableLabel('Actinoids\n5f', 13, 4, 'period', 9, 2);
-
-    const getGridPos = (el) => {
-        if (el.z === 1) return { row: 3, col: 10 };
-        if (el.z === 2) return { row: 3, col: 23 };
-        
-        if (el.z >= 58 && el.z <= 71) return { row: 12, col: el.z - 58 + 6 };
-        if (el.z >= 90 && el.z <= 103) return { row: 13, col: el.z - 90 + 6 };
-        
-        let row;
-        if (el.period === 2) row = 4;
-        else if (el.period === 3) row = 5;
-        else if (el.period === 4) row = 6;
-        else if (el.period === 5) row = 7;
-        else if (el.period === 6) row = 8;
-        else if (el.period === 7) row = 9;
-        
-        let col;
-        if (el.group <= 2) col = el.group + 1;
-        else if (el.group >= 3 && el.group <= 12) col = el.group + 3;
-        else if (el.group >= 13) col = el.group + 5;
-        
-        return { row, col };
-    };
+    // Group Buttons
+    for (let i = 1; i <= 18; i++) {
+      const gBtn = document.createElement('div');
+      gBtn.textContent = i;
+      gBtn.style.gridRow = 1;
+      gBtn.style.gridColumn = i + 1;
+      gBtn.style.fontSize = '12px';
+      gBtn.style.fontWeight = 'bold';
+      gBtn.style.display = 'flex';
+      gBtn.style.alignItems = 'center';
+      gBtn.style.justifyContent = 'center';
+      gBtn.style.background = 'rgba(255,255,255,0.1)';
+      gBtn.style.borderRadius = '4px';
+      gBtn.style.cursor = 'pointer';
+      gBtn.style.color = 'var(--color-text)';
+      gBtn.style.transition = 'all 0.2s ease';
+      
+      gBtn.onclick = (e) => {
+          e.stopPropagation();
+          if (selectedType === 'group' && selectedVal === i) {
+              selectedType = null;
+              selectedVal = null;
+          } else {
+              selectedType = 'group';
+              selectedVal = i;
+          }
+          selectedElementZ = null;
+          renderHighlights();
+      };
+      ptGrid.appendChild(gBtn);
+    }
+    
+    // Period Buttons
+    for (let i = 1; i <= 9; i++) {
+      const pBtn = document.createElement('div');
+      if (i <= 7) {
+        pBtn.textContent = i;
+      } else if (i === 8) {
+        pBtn.textContent = '4f';
+        pBtn.title = 'Lanthanoids';
+      } else if (i === 9) {
+        pBtn.textContent = '5f';
+        pBtn.title = 'Actinoids';
+      }
+      pBtn.style.gridRow = i + 1;
+      pBtn.style.gridColumn = 1;
+      pBtn.style.fontSize = '12px';
+      pBtn.style.fontWeight = 'bold';
+      pBtn.style.display = 'flex';
+      pBtn.style.alignItems = 'center';
+      pBtn.style.justifyContent = 'center';
+      pBtn.style.background = 'rgba(255,255,255,0.1)';
+      pBtn.style.borderRadius = '4px';
+      pBtn.style.cursor = 'pointer';
+      pBtn.style.color = 'var(--color-text)';
+      pBtn.style.transition = 'all 0.2s ease';
+      
+      pBtn.onclick = (e) => {
+          e.stopPropagation();
+          if (selectedType === 'period' && selectedVal === i) {
+              selectedType = null;
+              selectedVal = null;
+          } else {
+              selectedType = 'period';
+              selectedVal = i;
+          }
+          selectedElementZ = null;
+          renderHighlights();
+      };
+      ptGrid.appendChild(pBtn);
+    }
 
     ELEMENTS.forEach(el => {
       const cell = document.createElement('div');
@@ -3287,23 +3253,31 @@ window.InteractivePT = (() => {
       cell.style.flexDirection = 'column';
       cell.style.alignItems = 'center';
       cell.style.justifyContent = 'center';
+      cell.style.borderRadius = '4px';
       cell.style.cursor = 'pointer';
       cell.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-      cell.style.border = '1px solid rgba(0,0,0,0.2)';
-      cell.style.background = ELEMENT_COLORS[el.z];
-      cell.style.color = '#000';
+      cell.style.border = '1px solid var(--color-border)';
+      cell.style.background = 'var(--color-card)';
+      cell.style.color = 'var(--color-text)';
       cell.style.userSelect = 'none';
 
-      const pos = getGridPos(el);
-      cell.style.gridRow = pos.row;
-      cell.style.gridColumn = pos.col;
+      if (el.group) {
+        cell.style.gridColumn = el.group + 1;
+        cell.style.gridRow = el.period + 1;
+      } else {
+        const offset = (el.z >= 58 && el.z <= 71) ? el.z - 57 : el.z - 89;
+        cell.style.gridColumn = 3 + offset + 1;
+        cell.style.gridRow = el.period + 1;
+      }
 
+      // Add Symbol
       const symEl = document.createElement('div');
       symEl.textContent = el.sym;
       symEl.style.fontSize = 'clamp(14px, 1.2vw, 20px)';
       symEl.style.fontWeight = 'bold';
       cell.appendChild(symEl);
 
+      // Add Full Name
       const nameEl = document.createElement('div');
       nameEl.textContent = ECONFS[el.z].name;
       nameEl.style.fontSize = '8px';
@@ -3322,14 +3296,20 @@ window.InteractivePT = (() => {
 
       cell.onclick = (e) => {
           e.stopPropagation();
+          
           if (selectedType === 'group' && parseInt(el.group) !== selectedVal) return;
           if (selectedType === 'period') {
               let p = parseInt(el.period);
               let allowed = (p === selectedVal) || (selectedVal === 6 && p === 8) || (selectedVal === 7 && p === 9);
               if (!allowed) return;
           }
-          if (selectedElementZ === el.z) selectedElementZ = null;
-          else selectedElementZ = el.z;
+          
+          if (selectedElementZ === el.z) {
+              // Clicked again, clear element highlight
+              selectedElementZ = null;
+          } else {
+              selectedElementZ = el.z;
+          }
           renderHighlights();
       };
 
@@ -3341,6 +3321,7 @@ window.InteractivePT = (() => {
     wrapper.appendChild(ptContainer);
     wrapper.appendChild(infoPanel);
     
+    // Add simple fadeIn animation
     const style = document.createElement('style');
     style.textContent = `
       @keyframes fadeIn {
@@ -3351,7 +3332,6 @@ window.InteractivePT = (() => {
     wrapper.appendChild(style);
     
     container.appendChild(wrapper);
-    updateInfoPanel(); // Initialize default text
   }
 
   return { init: build };
