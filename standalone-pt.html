@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>Interactive Periodic Table | ChemTeach</title>
+<link rel="stylesheet" href="assets/design-tokens.css?v=15">
+<link rel="stylesheet" href="assets/session.css?v=15">
+<script src="assets/theme.js?v=15"></script>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--color-surface);
+  }
+  .app-header {
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+  }
+  .header-actions {
+      display: flex;
+      gap: 15px;
+  }
+  .theme-toggle-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+  }
+  .theme-toggle-btn:hover {
+      background: rgba(255,255,255,0.2);
+  }
+  .pt-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+  }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="logo" style="font-size: 1.5rem; font-weight: bold; color: var(--color-primary);">ChemTeach</div>
+  <div style="font-size: 1.2rem; font-weight: 500; color: var(--color-text);">Interactive Periodic Table</div>
+  <div class="header-actions">
+    <button class="theme-toggle-btn" aria-label="Toggle Theme" onclick="ChemTheme.toggle()">🌗 Light Mode</button>
+  </div>
+</header>
+
+<main class="pt-container" id="pt-root"></main>
+
+<script src="components/interactive-pt.js?v=15"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    InteractivePT.init(document.getElementById('pt-root'));
+  });
+</script>
+
+</body>
+</html>
